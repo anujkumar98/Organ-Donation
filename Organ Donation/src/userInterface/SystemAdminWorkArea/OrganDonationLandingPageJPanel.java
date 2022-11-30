@@ -50,13 +50,14 @@ public class OrganDonationLandingPageJPanel extends javax.swing.JPanel {
 
         jSplitPane1.setLeftComponent(jPanel1);
 
-        jPanel2.setBackground(new java.awt.Color(255, 102, 0));
+        jPanel2.setBackground(new java.awt.Color(255, 51, 51));
 
         UserLoginIDJText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         UserPasswordJText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("REGISTER");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -69,9 +70,8 @@ public class OrganDonationLandingPageJPanel extends javax.swing.JPanel {
                 .addContainerGap(181, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(UserLoginIDJText, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                        .addComponent(UserPasswordJText, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)))
+                    .addComponent(UserLoginIDJText, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                    .addComponent(UserPasswordJText, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
                 .addGap(168, 168, 168))
         );
         jPanel2Layout.setVerticalGroup(

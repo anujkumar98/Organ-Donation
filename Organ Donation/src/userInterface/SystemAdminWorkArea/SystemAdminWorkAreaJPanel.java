@@ -33,32 +33,33 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jButtonOPOAdminLogin = new javax.swing.JButton();
         jButtonTransportEnterpriseLogin = new javax.swing.JButton();
         jButtonNGOEnterpriseLogin = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
 
         jButton1.setText("jButton1");
 
-        jSplitPane1.setDividerLocation(210);
+        jSplitPane1.setDividerLocation(180);
         jSplitPane1.setMinimumSize(new java.awt.Dimension(100, 100));
         jSplitPane1.setPreferredSize(new java.awt.Dimension(185, 50));
 
         jPanel1.setBackground(new java.awt.Color(204, 0, 204));
         jPanel1.setOpaque(false);
 
-        jButtonHospitalEnterpriseLogin.setBackground(new java.awt.Color(255, 102, 0));
+        jButtonHospitalEnterpriseLogin.setBackground(new java.awt.Color(255, 0, 51));
         jButtonHospitalEnterpriseLogin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButtonHospitalEnterpriseLogin.setForeground(new java.awt.Color(255, 255, 255));
         jButtonHospitalEnterpriseLogin.setText("MANAGE HOSPITAL");
 
-        jButtonOPOAdminLogin.setBackground(new java.awt.Color(255, 102, 0));
+        jButtonOPOAdminLogin.setBackground(new java.awt.Color(255, 0, 51));
         jButtonOPOAdminLogin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButtonOPOAdminLogin.setForeground(new java.awt.Color(255, 255, 255));
         jButtonOPOAdminLogin.setText("MANAGE OPO");
 
-        jButtonTransportEnterpriseLogin.setBackground(new java.awt.Color(255, 102, 0));
+        jButtonTransportEnterpriseLogin.setBackground(new java.awt.Color(255, 0, 51));
         jButtonTransportEnterpriseLogin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButtonTransportEnterpriseLogin.setForeground(new java.awt.Color(255, 255, 255));
         jButtonTransportEnterpriseLogin.setText("MANAGE TRANSPORT");
 
-        jButtonNGOEnterpriseLogin.setBackground(new java.awt.Color(255, 102, 0));
+        jButtonNGOEnterpriseLogin.setBackground(new java.awt.Color(255, 0, 51));
         jButtonNGOEnterpriseLogin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButtonNGOEnterpriseLogin.setForeground(new java.awt.Color(255, 255, 255));
         jButtonNGOEnterpriseLogin.setText("MANAGE NGO");
@@ -68,46 +69,59 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonHospitalEnterpriseLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButtonNGOEnterpriseLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonOPOAdminLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonTransportEnterpriseLogin)))
-                .addGap(18, 18, Short.MAX_VALUE))
+                    .addComponent(jButtonTransportEnterpriseLogin)
+                    .addComponent(jButtonNGOEnterpriseLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonOPOAdminLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonHospitalEnterpriseLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
+                .addContainerGap(60, Short.MAX_VALUE)
                 .addComponent(jButtonHospitalEnterpriseLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonOPOAdminLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonNGOEnterpriseLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(jButtonTransportEnterpriseLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonTransportEnterpriseLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(86, 86, 86))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 504, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 468, Short.MAX_VALUE)
+        );
+
+        jSplitPane1.setRightComponent(jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
-                .addGap(35, 35, 35))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -119,6 +133,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButtonOPOAdminLogin;
     private javax.swing.JButton jButtonTransportEnterpriseLogin;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables
 }
