@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package userInterface.AdministrativeRole;
+package userInterface.RecepitionistRole;
 
 /**
  *
  * @author Lenovo
  */
-public class ManageUserAccountJPanel extends javax.swing.JPanel {
+public class NewJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form ManageUserAccountJPanel
+     * Creates new form NewJPanel
      */
-    public ManageUserAccountJPanel() {
+    public NewJPanel() {
         initComponents();
     }
 
