@@ -4,12 +4,11 @@
  */
 package userInterface.SystemAdminWorkArea;
 
-import Business.Enterprise.HospitalDirectory;
-import Business.Enterprise.HospitalEnterprise;
-import Business.Enterprise.NgoDirectory;
-import Business.Enterprise.NgoEnterprise;
-import DatabaseUtility.DatabaseConnection;
+import Business.Enterprise.OpoDirectory;
+import Business.Enterprise.OpoEnterprise;
+import DatabaseUtility.DatabaseEnterpriseUtilities;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,11 +21,15 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
      * Creates new form ManageHospitalJPanel
      */
     
-    DatabaseConnection dbCon;
+    DatabaseEnterpriseUtilities dbCon;
+    Boolean update;
+    int fetchId;
     public ManageOPOJPanel() {
         initComponents();
-        dbCon=new DatabaseConnection();
-        populateTable(dbCon.fetchNGO());
+        this.update=false;
+        this.fetchId=-1;
+        dbCon=new DatabaseEnterpriseUtilities();
+        populateTable(dbCon.fetchOpo());
     }
 
     /**
@@ -41,7 +44,7 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableNgo = new javax.swing.JTable();
+        jTableOPO = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -64,7 +67,7 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
         jTextField1.setBackground(new java.awt.Color(0, 0, 0));
         jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setText("MANAGE NGO");
+        jTextField1.setText("MANAGE OPO");
         jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,7 +92,7 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
-        jTableNgo.setModel(new javax.swing.table.DefaultTableModel(
+        jTableOPO.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -97,13 +100,13 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "NGO ID", "NGO NAME", "REGION", "CITY", "EMAIL", "CONTACT"
+                "ID", "NAME", "REGION", "CITY", "STATE", "CONTACT"
             }
         ));
-        jScrollPane1.setViewportView(jTableNgo);
+        jScrollPane1.setViewportView(jTableOPO);
 
         jButton1.setBackground(new java.awt.Color(255, 153, 0));
-        jButton1.setText("CREATE NGO");
+        jButton1.setText("CREATE OPO");
         jButton1.setMaximumSize(new java.awt.Dimension(100, 40));
         jButton1.setMinimumSize(new java.awt.Dimension(100, 40));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -113,22 +116,37 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
         });
 
         jButton2.setBackground(new java.awt.Color(255, 153, 0));
-        jButton2.setText("UPDATE NGO");
+        jButton2.setText("UPDATE OPO");
         jButton2.setMaximumSize(new java.awt.Dimension(100, 40));
         jButton2.setMinimumSize(new java.awt.Dimension(100, 40));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(255, 153, 0));
-        jButton3.setText("DELETE NGO");
+        jButton3.setText("DELETE OPO");
         jButton3.setMaximumSize(new java.awt.Dimension(100, 40));
         jButton3.setMinimumSize(new java.awt.Dimension(100, 40));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(255, 153, 0));
-        jButton4.setText("VIEW NGO");
+        jButton4.setText("VIEW OPO");
         jButton4.setMaximumSize(new java.awt.Dimension(100, 40));
         jButton4.setMinimumSize(new java.awt.Dimension(100, 40));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setText("NGO NAME");
+        jLabel1.setText("OPO NAME");
         jLabel1.setMaximumSize(new java.awt.Dimension(100, 100));
         jLabel1.setMinimumSize(new java.awt.Dimension(100, 100));
 
@@ -240,21 +258,74 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
         String region=jTextFieldRegion.getText();
         String state=jTextFieldState.getText();
         
-        dbCon.createEnterprise(name, city, state, region,"NGO");
-        populateTable(dbCon.fetchNGO());
+        dbCon.createEnterprise(name, city, state, region,"OPO");
+        populateTable(dbCon.fetchOpo());
+        jTextFieldName.setText("");
+        jTextFieldCity.setText("");
+        jTextFieldRegion.setText("");
+        jTextFieldState.setText("");
         
     }//GEN-LAST:event_jButton1ActionPerformed
-void populateTable(NgoDirectory hd){
-        ArrayList<NgoEnterprise> ngoDirectory=hd.getNgoDirectory();
-        DefaultTableModel model=(DefaultTableModel) jTableNgo.getModel();
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex=jTableOPO.getSelectedRow();
+        if (selectedIndex != -1){
+            int deleteId=(int)jTableOPO.getValueAt(selectedIndex,0);
+            dbCon.deleteEnterprise(deleteId,"OPO");
+            populateTable(dbCon.fetchOpo());
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Please select a row to delete");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex=jTableOPO.getSelectedRow();
+        if (selectedIndex != -1){
+            this.update=true;
+            this.fetchId=(int)jTableOPO.getValueAt(selectedIndex,0);
+            jTextFieldName.setText(jTableOPO.getValueAt(selectedIndex,1).toString());
+            jTextFieldRegion.setText(jTableOPO.getValueAt(selectedIndex,2).toString());
+            jTextFieldCity.setText(jTableOPO.getValueAt(selectedIndex,3).toString());
+            jTextFieldState.setText(jTableOPO.getValueAt(selectedIndex,4).toString());
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Please select a row to fetch");
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if (update){
+            String name=jTextFieldName.getText();
+            String city=jTextFieldCity.getText();
+            String region=jTextFieldRegion.getText();
+            String state=jTextFieldState.getText();
+            dbCon.updateEnterprise(fetchId,name, city, state, region,"OPO");
+            populateTable(dbCon.fetchOpo());
+            JOptionPane.showMessageDialog(this, "Record Updated");
+            jTextFieldName.setText("");
+            jTextFieldCity.setText("");
+            jTextFieldRegion.setText("");
+            jTextFieldState.setText("");
+            this.update=false;
+            this.fetchId=-1;
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Please fetch a row to update");
+    }//GEN-LAST:event_jButton2ActionPerformed
+void populateTable(OpoDirectory od){
+        ArrayList<OpoEnterprise> opoDirectory=od.getOpoDirectory();
+        DefaultTableModel model=(DefaultTableModel) jTableOPO.getModel();
         model.setRowCount(0);
-        for (NgoEnterprise n: ngoDirectory)
+        for (OpoEnterprise o: opoDirectory)
         {
             Object[] row =new Object[7];
-            row[0]=n.getName();
-            row[1]=n.getRegion();
-            row[2]=n.getCity();
-            row[3]=n.getState();
+            row[0]=o.getId();
+            row[1]=o.getName();
+            row[2]=o.getRegion();
+            row[3]=o.getCity();
+            row[4]=o.getState();
             model.addRow(row);
         }
     }
@@ -271,7 +342,7 @@ void populateTable(NgoDirectory hd){
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableNgo;
+    private javax.swing.JTable jTableOPO;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextFieldCity;

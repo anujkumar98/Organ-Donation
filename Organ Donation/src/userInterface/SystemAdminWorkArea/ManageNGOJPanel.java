@@ -3,13 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package userInterface.SystemAdminWorkArea;
-
-import Business.Enterprise.HospitalDirectory;
-import Business.Enterprise.HospitalEnterprise;
 import Business.Enterprise.NgoDirectory;
 import Business.Enterprise.NgoEnterprise;
-import DatabaseUtility.DatabaseConnection;
+import DatabaseUtility.DatabaseEnterpriseUtilities;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,10 +20,14 @@ public class ManageNGOJPanel extends javax.swing.JPanel {
      * Creates new form ManageHospitalJPanel
      */
     
-    DatabaseConnection dbCon;
+    DatabaseEnterpriseUtilities dbCon;
+    Boolean update;
+    int fetchId;
     public ManageNGOJPanel() {
         initComponents();
-        dbCon=new DatabaseConnection();
+        this.update=false;
+        this.fetchId=-1;
+        dbCon=new DatabaseEnterpriseUtilities();
         populateTable(dbCon.fetchNGO());
     }
 
@@ -97,7 +99,7 @@ public class ManageNGOJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "NGO ID", "NGO NAME", "REGION", "CITY", "EMAIL", "CONTACT"
+                "ID", "NAME", "REGION", "CITY", "EMAIL", "CONTACT"
             }
         ));
         jScrollPane1.setViewportView(jTableNgo);
@@ -116,16 +118,31 @@ public class ManageNGOJPanel extends javax.swing.JPanel {
         jButton2.setText("UPDATE NGO");
         jButton2.setMaximumSize(new java.awt.Dimension(100, 40));
         jButton2.setMinimumSize(new java.awt.Dimension(100, 40));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(255, 153, 0));
         jButton3.setText("DELETE NGO");
         jButton3.setMaximumSize(new java.awt.Dimension(100, 40));
         jButton3.setMinimumSize(new java.awt.Dimension(100, 40));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(255, 153, 0));
         jButton4.setText("VIEW NGO");
         jButton4.setMaximumSize(new java.awt.Dimension(100, 40));
         jButton4.setMinimumSize(new java.awt.Dimension(100, 40));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("NGO NAME");
@@ -242,8 +259,61 @@ public class ManageNGOJPanel extends javax.swing.JPanel {
         
         dbCon.createEnterprise(name, city, state, region,"NGO");
         populateTable(dbCon.fetchNGO());
+        jTextFieldName.setText("");
+        jTextFieldCity.setText("");
+        jTextFieldRegion.setText("");
+        jTextFieldState.setText("");
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex=jTableNgo.getSelectedRow();
+        if (selectedIndex != -1){
+            int deleteId=(int)jTableNgo.getValueAt(selectedIndex,0);
+            dbCon.deleteEnterprise(deleteId,"NGO");
+            populateTable(dbCon.fetchNGO());
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Please select a row to delete");
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex=jTableNgo.getSelectedRow();
+        if (selectedIndex != -1){
+            this.update=true;
+            this.fetchId=(int)jTableNgo.getValueAt(selectedIndex,0);
+            jTextFieldName.setText(jTableNgo.getValueAt(selectedIndex,1).toString());
+            jTextFieldRegion.setText(jTableNgo.getValueAt(selectedIndex,2).toString());
+            jTextFieldCity.setText(jTableNgo.getValueAt(selectedIndex,3).toString());
+            jTextFieldState.setText(jTableNgo.getValueAt(selectedIndex,4).toString());
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Please select a row to fetch");
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if (update){
+            String name=jTextFieldName.getText();
+            String city=jTextFieldCity.getText();
+            String region=jTextFieldRegion.getText();
+            String state=jTextFieldState.getText();
+            dbCon.updateEnterprise(fetchId,name, city, state, region,"NGO");
+            populateTable(dbCon.fetchNGO());
+            JOptionPane.showMessageDialog(this, "Record Updated");
+            jTextFieldName.setText("");
+            jTextFieldCity.setText("");
+            jTextFieldRegion.setText("");
+            jTextFieldState.setText("");
+            this.update=false;
+            this.fetchId=-1;
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Please fetch a row to update");
+    }//GEN-LAST:event_jButton2ActionPerformed
 void populateTable(NgoDirectory hd){
         ArrayList<NgoEnterprise> ngoDirectory=hd.getNgoDirectory();
         DefaultTableModel model=(DefaultTableModel) jTableNgo.getModel();
@@ -251,10 +321,11 @@ void populateTable(NgoDirectory hd){
         for (NgoEnterprise n: ngoDirectory)
         {
             Object[] row =new Object[7];
-            row[0]=n.getName();
-            row[1]=n.getRegion();
-            row[2]=n.getCity();
-            row[3]=n.getState();
+            row[0]=n.getId();
+            row[1]=n.getName();
+            row[2]=n.getRegion();
+            row[3]=n.getCity();
+            row[4]=n.getState();
             model.addRow(row);
         }
     }
