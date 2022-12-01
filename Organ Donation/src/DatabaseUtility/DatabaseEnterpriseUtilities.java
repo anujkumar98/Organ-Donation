@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  *
  * @author anujkumar
  */
-public class DatabaseConnection {
+public class DatabaseEnterpriseUtilities {
     public static Connection createConnection(){
         
         Connection con=null;
@@ -34,7 +34,7 @@ public class DatabaseConnection {
         try { 
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DatabaseConnection.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DatabaseEnterpriseUtilities.class.getName()).log(Level.SEVERE, null, ex);
         }
         try
          {
@@ -60,6 +60,23 @@ public void createEnterprise(String name,String city,String state,String region,
             + "`"+enterprise.toUpperCase()+"_STATE"+"`, `"+enterprise.toUpperCase()+"_REGION"+"`) "
             + "VALUES ('"+name+"', '"+city+"', '"+state+"', '"+region+"')";
     statement.executeUpdate(query);
+
+    }
+    catch(Exception e){
+        System.out.println(e);
+    }
+}
+
+public void updateEnterprise(int id,String name,String city,String state,String region,String enterprise){
+    try{
+    Connection con=createConnection();
+    Statement statement=con.createStatement();
+    String query="UPDATE `OrganDonation`.`"+enterprise.toUpperCase()+"` SET "
+            + "`"+enterprise.toUpperCase()+"_NAME` = '"+name+"', `"+enterprise.toUpperCase()+"_CITY` = '"+city+"', "
+            + "`"+enterprise.toUpperCase()+"_STATE` = '"+state+"', `"+enterprise.toUpperCase()+"_REGION` = '"+region+"' WHERE (`"+
+            enterprise.toUpperCase()+"_ID` = '"+Integer.toString(id)+"');";
+    System.out.println(query);
+    statement.executeUpdate(query);
     
     }
     catch(Exception e){
@@ -77,6 +94,7 @@ public HospitalDirectory fetchHospital(){
         ResultSet resultSet=statement.executeQuery("SELECT * FROM HOSPITAL");
         while(resultSet.next()){
             HospitalEnterprise h=new HospitalEnterprise();
+            h.setId(resultSet.getInt("HOSPITAL_ID"));
             h.setName(resultSet.getString("HOSPITAL_NAME"));
             h.setCity(resultSet.getString("HOSPITAL_CITY"));
             h.setState(resultSet.getString("HOSPITAL_STATE"));
@@ -100,6 +118,7 @@ public NgoDirectory fetchNGO(){
         ResultSet resultSet=statement.executeQuery("SELECT * FROM NGO");
         while(resultSet.next()){
             NgoEnterprise n=new NgoEnterprise();
+            n.setId(resultSet.getInt("NGO_ID"));
             n.setName(resultSet.getString("NGO_NAME"));
             n.setCity(resultSet.getString("NGO_CITY"));
             n.setState(resultSet.getString("NGO_STATE"));
@@ -123,6 +142,7 @@ public OpoDirectory fetchOpo(){
         ResultSet resultSet=statement.executeQuery("SELECT * FROM OPO");
         while(resultSet.next()){
             OpoEnterprise o=new OpoEnterprise();
+            o.setId(resultSet.getInt("OPO_ID"));
             o.setName(resultSet.getString("OPO_NAME"));
             o.setCity(resultSet.getString("OPO_CITY"));
             o.setState(resultSet.getString("OPO_STATE"));
@@ -146,6 +166,7 @@ public TransportDirectory fetchTransport(){
         ResultSet resultSet=statement.executeQuery("SELECT * FROM TRANSPORT");
         while(resultSet.next()){
             TransportEnterprise t=new TransportEnterprise();
+            t.setId(resultSet.getInt("TRANSPORT_ID"));
             t.setName(resultSet.getString("TRANSPORT_NAME"));
             t.setCity(resultSet.getString("TRANSPORT_CITY"));
             t.setState(resultSet.getString("TRANSPORT_STATE"));
@@ -159,6 +180,18 @@ public TransportDirectory fetchTransport(){
      return td;
         
     }
+
+ public void deleteEnterprise(int id,String enterprise){
+     try{
+        Connection con=createConnection();
+        Statement statement=con.createStatement();
+        statement.execute("DELETE FROM `"+enterprise.toUpperCase()+"` where "+enterprise.toUpperCase()+"_ID = '"+Integer.toString(id)+"'");
+        
+     }
+    catch(Exception e){
+        System.out.println(e);
+    }
+ }
 }
 
 

@@ -11,12 +11,21 @@ import Business.Network.Network;
  * @author anujkumar
  */
 public class Enterprise extends Network{
+    private int id;
+
     
     private EnterpriseType enterpriseType;
     private long contact;
     private String email;
     private int zipcode;
     
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     public Enterprise(EnterpriseType enterpriseType){
         this.enterpriseType=enterpriseType;
     }

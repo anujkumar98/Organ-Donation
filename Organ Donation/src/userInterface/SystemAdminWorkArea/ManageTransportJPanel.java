@@ -5,8 +5,9 @@
 package userInterface.SystemAdminWorkArea;
 import Business.Enterprise.TransportDirectory;
 import Business.Enterprise.TransportEnterprise;
-import DatabaseUtility.DatabaseConnection;
+import DatabaseUtility.DatabaseEnterpriseUtilities;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,10 +20,14 @@ public class ManageTransportJPanel extends javax.swing.JPanel {
      * Creates new form ManageHospitalJPanel
      */
     
-    DatabaseConnection dbCon;
+    DatabaseEnterpriseUtilities dbCon;
+    Boolean update;
+    int fetchId;
     public ManageTransportJPanel() {
         initComponents();
-        dbCon=new DatabaseConnection();
+        this.update=false;
+        this.fetchId=-1;
+        dbCon=new DatabaseEnterpriseUtilities();
         populateTable(dbCon.fetchTransport());
     }
     
@@ -101,7 +106,7 @@ public class ManageTransportJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTableTransport);
 
         jButton1.setBackground(new java.awt.Color(255, 153, 0));
-        jButton1.setText("CREATE NGO");
+        jButton1.setText("CREATE TRANSPORT");
         jButton1.setMaximumSize(new java.awt.Dimension(100, 40));
         jButton1.setMinimumSize(new java.awt.Dimension(100, 40));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -111,19 +116,34 @@ public class ManageTransportJPanel extends javax.swing.JPanel {
         });
 
         jButton2.setBackground(new java.awt.Color(255, 153, 0));
-        jButton2.setText("UPDATE NGO");
+        jButton2.setText("UPDATE TRANSPORT");
         jButton2.setMaximumSize(new java.awt.Dimension(100, 40));
         jButton2.setMinimumSize(new java.awt.Dimension(100, 40));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(255, 153, 0));
-        jButton3.setText("DELETE NGO");
+        jButton3.setText("DELETE TRANSPORT");
         jButton3.setMaximumSize(new java.awt.Dimension(100, 40));
         jButton3.setMinimumSize(new java.awt.Dimension(100, 40));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(255, 153, 0));
-        jButton4.setText("VIEW NGO");
+        jButton4.setText("VIEW TRANSPORT");
         jButton4.setMaximumSize(new java.awt.Dimension(100, 40));
         jButton4.setMinimumSize(new java.awt.Dimension(100, 40));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("TRANSPORT COMPANY NAME");
@@ -156,16 +176,16 @@ public class ManageTransportJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(78, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(128, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(60, 60, 60))
             .addGroup(layout.createSequentialGroup()
@@ -236,7 +256,60 @@ public class ManageTransportJPanel extends javax.swing.JPanel {
         
         dbCon.createEnterprise(name, city, state, region,"TRANSPORT");
         populateTable(dbCon.fetchTransport());
+        jTextFieldName.setText("");
+        jTextFieldCity.setText("");
+        jTextFieldRegion.setText("");
+        jTextFieldState.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        
+        int selectedIndex=jTableTransport.getSelectedRow();
+        if (selectedIndex != -1){
+            int deleteId=(int)jTableTransport.getValueAt(selectedIndex,0);
+            dbCon.deleteEnterprise(deleteId,"OPO");
+            populateTable(dbCon.fetchTransport());
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Please select a row to delete");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex=jTableTransport.getSelectedRow();
+        if (selectedIndex != -1){
+            this.update=true;
+            this.fetchId=(int)jTableTransport.getValueAt(selectedIndex,0);
+            jTextFieldName.setText(jTableTransport.getValueAt(selectedIndex,1).toString());
+            jTextFieldRegion.setText(jTableTransport.getValueAt(selectedIndex,2).toString());
+            jTextFieldCity.setText(jTableTransport.getValueAt(selectedIndex,3).toString());
+            jTextFieldState.setText(jTableTransport.getValueAt(selectedIndex,4).toString());
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Please select a row to fetch");
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if (update){
+            String name=jTextFieldName.getText();
+            String city=jTextFieldCity.getText();
+            String region=jTextFieldRegion.getText();
+            String state=jTextFieldState.getText();
+            dbCon.updateEnterprise(fetchId,name, city, state, region,"TRANSPORT");
+            populateTable(dbCon.fetchTransport());
+            JOptionPane.showMessageDialog(this, "Record Updated");
+            jTextFieldName.setText("");
+            jTextFieldCity.setText("");
+            jTextFieldRegion.setText("");
+            jTextFieldState.setText("");
+            this.update=false;
+            this.fetchId=-1;
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Please fetch a row to update");
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     void populateTable(TransportDirectory td){
         ArrayList<TransportEnterprise> transportDirectory=td.getTransportDirectory();
@@ -245,10 +318,11 @@ public class ManageTransportJPanel extends javax.swing.JPanel {
         for (TransportEnterprise t: transportDirectory)
         {
             Object[] row =new Object[7];
-            row[0]=t.getName();
-            row[1]=t.getRegion();
-            row[2]=t.getCity();
-            row[3]=t.getState();
+            row[0]=t.getId();
+            row[1]=t.getName();
+            row[2]=t.getRegion();
+            row[3]=t.getCity();
+            row[4]=t.getState();
             model.addRow(row);
         }
     }
