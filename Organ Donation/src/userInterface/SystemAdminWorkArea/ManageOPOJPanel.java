@@ -3,6 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package userInterface.SystemAdminWorkArea;
+import Business.Enterprise.OpoDirectory;
+import Business.Enterprise.OpoEnterprise;
+import DatabaseUtility.DatabaseConnection;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,8 +18,11 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageHospitalJPanel
      */
+    DatabaseConnection dbCon;
     public ManageOPOJPanel() {
         initComponents();
+        dbCon=new DatabaseConnection();
+        populateTable(dbCon.fetchOpo());
     }
 
     /**
@@ -29,7 +37,7 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableOPO = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -39,10 +47,10 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        jTextFieldName = new javax.swing.JTextField();
+        jTextFieldCity = new javax.swing.JTextField();
+        jTextFieldRegion = new javax.swing.JTextField();
+        jTextFieldState = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -77,7 +85,7 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableOPO.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -88,12 +96,17 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
                 "OPO ID", "OPO NAME", "REGION", "CITY", "EMAIL", "CONTACT"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableOPO);
 
         jButton1.setBackground(new java.awt.Color(255, 153, 0));
         jButton1.setText("CREATE HOSPITALS");
         jButton1.setMaximumSize(new java.awt.Dimension(100, 40));
         jButton1.setMinimumSize(new java.awt.Dimension(100, 40));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(255, 153, 0));
         jButton2.setText("UPDATE HOSPITAL");
@@ -126,7 +139,7 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
         jLabel3.setMinimumSize(new java.awt.Dimension(100, 100));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("EMAIL");
+        jLabel4.setText("STATE");
         jLabel4.setMaximumSize(new java.awt.Dimension(100, 100));
         jLabel4.setMinimumSize(new java.awt.Dimension(100, 100));
 
@@ -169,10 +182,10 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(93, 93, 93)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField4)
-                            .addComponent(jTextField5)
+                            .addComponent(jTextFieldName)
+                            .addComponent(jTextFieldCity)
+                            .addComponent(jTextFieldRegion)
+                            .addComponent(jTextFieldState)
                             .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -184,20 +197,20 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldRegion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -216,6 +229,34 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+<<<<<<< Updated upstream
+=======
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String name=jTextFieldName.getText();
+        String city=jTextFieldCity.getText();
+        String region=jTextFieldRegion.getText();
+        String state=jTextFieldState.getText();
+        
+        dbCon.createEnterprise(name, city, state, region,"OPO");
+        populateTable(dbCon.fetchOpo());
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+void populateTable(OpoDirectory od){
+        ArrayList<OpoEnterprise> opoDirectory=od.getOpoDirectory();
+        DefaultTableModel model=(DefaultTableModel) jTableOPO.getModel();
+        model.setRowCount(0);
+        for (OpoEnterprise o: opoDirectory)
+        {
+            Object[] row =new Object[7];
+            row[0]=o.getName();
+            row[1]=o.getRegion();
+            row[2]=o.getCity();
+            row[3]=o.getState();
+            model.addRow(row);
+        }
+    }
+>>>>>>> Stashed changes
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -229,12 +270,12 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableOPO;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextFieldCity;
+    private javax.swing.JTextField jTextFieldName;
+    private javax.swing.JTextField jTextFieldRegion;
+    private javax.swing.JTextField jTextFieldState;
     // End of variables declaration//GEN-END:variables
 }
