@@ -21,16 +21,10 @@ public class HospitalDirectory {
         hospitalDirectory=new ArrayList<>();
     }
 
-    public ArrayList<HospitalEnterprise> getHospitalDirectory() {
-        return hospitalDirectory;
-    }
-    
+   
     public void addHospital(HospitalEnterprise hospital){
         hospitalDirectory.add(hospital);
     }
     
-    public void addHospital(HospitalEnterprise hospital){
-        hospitalDirectory.add(hospital);
-    }
     
 }
