@@ -40,7 +40,7 @@ public class DatabaseEnterpriseUtilities {
          {
             
             con=DriverManager.getConnection(DB_URL,DB_USER,DB_PASSWD);
-            System.out.println("Connection Successful");
+            //System.out.println("Connection Successful");
          }
         catch (Exception e){
             System.out.println(e);
@@ -112,6 +112,25 @@ public HospitalDirectory fetchHospital(){
      return hd;
         
     }
+//Code to check unique username in the table
+public Boolean checkUniqueUserName(String uname,String enterprise){
+    Boolean check=true;
+    try {
+        Connection con = createConnection();
+        Statement statement=con.createStatement();
+        String query="SELECT * FROM `"+enterprise.toUpperCase()+"_ADMIN` ";
+        ResultSet resultSet=statement.executeQuery(query);
+        while(resultSet.next()){
+            String usrName=resultSet.getString(enterprise.toUpperCase()+"_ADMIN_USERNAME");
+            if (usrName.equals(uname))
+                check=false;
+        }
+    }   
+    catch(Exception e){
+        System.out.println(e);
+    }
+    return check;
+}
 public void createEnterpriseAdmin(int hospitalId,String name,String username,String password,String enterprise){
 try{
     
@@ -122,7 +141,6 @@ try{
             + "( `"+enterprise.toUpperCase()+"_ADMIN_USERNAME"+"`, `"+enterprise.toUpperCase()+"_ADMIN_NAME"+"`, "
             + "`"+enterprise.toUpperCase()+"_ID"+"`, `"+enterprise.toUpperCase()+"_ADMIN_PASSWORD"+"`) "
             + "VALUES ('"+username+"', '"+name+"', '"+hospitalId+"', '"+password+"')";
-        System.out.println(query);
         statement.executeUpdate(query);
     }
     catch(Exception e){

@@ -381,19 +381,26 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
             String name=jTextFieldAdminName.getText();
             String username=jTextFieldAdminId.getText();
             String password=jTextFieldAdminPassword.getText();
-            dbCon.createEnterpriseAdmin(fetchId,name,username,password,"HOSPITAL");
-            populateTable(dbCon.fetchHospital());
-            JOptionPane.showMessageDialog(this, "Admin Added Updated");
-            jTextFieldAdminName.setText("");
-            jTextFieldAdminId.setText("");
-            jTextFieldAdminPassword.setText("");
-            this.update=false;
-            this.fetchId=-1;
-            jTextFieldName.setText("");
-            jTextFieldCity.setText("");
-            jTextFieldRegion.setText("");
-            jTextFieldState.setText("");
-            
+            //Check username for unique values
+            System.out.println(dbCon.checkUniqueUserName(username,"HOSPITAL"));
+            if (dbCon.checkUniqueUserName(username,"HOSPITAL")==true){
+                dbCon.createEnterpriseAdmin(fetchId,name,username,password,"HOSPITAL");
+                populateTable(dbCon.fetchHospital());
+                JOptionPane.showMessageDialog(this, "Admin Created");
+                jTextFieldAdminName.setText("");
+                jTextFieldAdminId.setText("");
+                jTextFieldAdminPassword.setText("");
+                this.update=false;
+                this.fetchId=-1;
+                jTextFieldName.setText("");
+                jTextFieldCity.setText("");
+                jTextFieldRegion.setText("");
+                jTextFieldState.setText("");
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Username already exists");
+            }
+          
             return;
         }
         JOptionPane.showMessageDialog(this, "Please fetch a row to update");
