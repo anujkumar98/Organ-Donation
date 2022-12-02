@@ -37,7 +37,7 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        ManageHospitalJButton.setBackground(new java.awt.Color(255, 0, 51));
+        ManageHospitalJButton.setBackground(new java.awt.Color(0, 0, 0));
         ManageHospitalJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ManageHospitalJButton.setForeground(new java.awt.Color(255, 255, 255));
         ManageHospitalJButton.setText("MANAGE HOSPITAL");
@@ -47,7 +47,7 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
             }
         });
 
-        ManageOPOJButton.setBackground(new java.awt.Color(255, 0, 51));
+        ManageOPOJButton.setBackground(new java.awt.Color(0, 0, 0));
         ManageOPOJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ManageOPOJButton.setForeground(new java.awt.Color(255, 255, 255));
         ManageOPOJButton.setText("MANAGE OPO");
@@ -57,7 +57,7 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
             }
         });
 
-        ManageTransportJButton.setBackground(new java.awt.Color(255, 0, 51));
+        ManageTransportJButton.setBackground(new java.awt.Color(0, 0, 0));
         ManageTransportJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ManageTransportJButton.setForeground(new java.awt.Color(255, 255, 255));
         ManageTransportJButton.setText("MANAGE TRANSPORT");
@@ -67,7 +67,7 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
             }
         });
 
-        ManageNGOJButton.setBackground(new java.awt.Color(255, 0, 51));
+        ManageNGOJButton.setBackground(new java.awt.Color(0, 0, 0));
         ManageNGOJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ManageNGOJButton.setForeground(new java.awt.Color(255, 255, 255));
         ManageNGOJButton.setText("MANAGE NGO");
@@ -77,11 +77,13 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
             }
         });
 
-        ManageLogout.setBackground(new java.awt.Color(255, 0, 51));
-        ManageLogout.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        ManageLogout.setForeground(new java.awt.Color(255, 255, 255));
-        ManageLogout.setText("LOGOUT");
-        ManageLogout.addActionListener(new java.awt.event.ActionListener() {
+
+        ManageTransportJButton1.setBackground(new java.awt.Color(0, 0, 0));
+        ManageTransportJButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ManageTransportJButton1.setForeground(new java.awt.Color(255, 255, 255));
+        ManageTransportJButton1.setText("LOGOUT");
+        ManageTransportJButton1.addActionListener(new java.awt.event.ActionListener() {
+
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ManageLogoutActionPerformed(evt);
             }

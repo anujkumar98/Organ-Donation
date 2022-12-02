@@ -91,7 +91,10 @@ public HospitalDirectory fetchHospital(){
     
         Connection con=createConnection();
         Statement statement=con.createStatement();
-        ResultSet resultSet=statement.executeQuery("SELECT * FROM HOSPITAL");
+        ResultSet resultSet=statement.executeQuery("""
+                                                   SELECT * FROM `OrganDonation`.`HOSPITAL` AS HA
+                                                   LEFT JOIN `OrganDonation`.`HOSPITAL_ADMIN` AS H
+                                                   ON HA.HOSPITAL_ID=H.HOSPITAL_ID;""");
         while(resultSet.next()){
             HospitalEnterprise h=new HospitalEnterprise();
             h.setId(resultSet.getInt("HOSPITAL_ID"));
@@ -99,6 +102,7 @@ public HospitalDirectory fetchHospital(){
             h.setCity(resultSet.getString("HOSPITAL_CITY"));
             h.setState(resultSet.getString("HOSPITAL_STATE"));
             h.setRegion(resultSet.getString("HOSPITAL_REGION"));
+            h.setAdminName(resultSet.getString("HOSPITAL_ADMIN_NAME"));
             hd.addHospital(h);
         }
     }
@@ -108,7 +112,23 @@ public HospitalDirectory fetchHospital(){
      return hd;
         
     }
+public void createEnterpriseAdmin(int hospitalId,String name,String username,String password,String enterprise){
+try{
+    
+        Connection con=createConnection();
+        Statement statement=con.createStatement();
 
+        String query="INSERT INTO `OrganDonation`.`"+enterprise.toUpperCase()+"_ADMIN` "
+            + "( `"+enterprise.toUpperCase()+"_ADMIN_USERNAME"+"`, `"+enterprise.toUpperCase()+"_ADMIN_NAME"+"`, "
+            + "`"+enterprise.toUpperCase()+"_ID"+"`, `"+enterprise.toUpperCase()+"_ADMIN_PASSWORD"+"`) "
+            + "VALUES ('"+username+"', '"+name+"', '"+hospitalId+"', '"+password+"')";
+        System.out.println(query);
+        statement.executeUpdate(query);
+    }
+    catch(Exception e){
+        System.out.println(e);
+    }
+}
 public NgoDirectory fetchNGO(){
     NgoDirectory ne=new NgoDirectory();
     try{
