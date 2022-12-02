@@ -6,16 +6,14 @@ package userInterface.SystemAdminWorkArea;
 
 /**
  *
- * @author Lenovo
+ * @author kb282
  */
-public class OrganDonationLandingPageJFrame extends javax.swing.JFrame {
+public class SystemAdminTest extends javax.swing.JFrame {
 
     /**
-     * Creates new form OrganDonationLandingPageJFrame
+     * Creates new form SystemAdminTest
      */
-    static SystemAdminWorkArea sa;
-    static OrganDonationLandingPageJFrame odLanding;
-    public OrganDonationLandingPageJFrame() {
+    public SystemAdminTest() {
         initComponents();
     }
 
@@ -28,33 +26,11 @@ public class OrganDonationLandingPageJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSplitPane1 = new javax.swing.JSplitPane();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
         UserLoginIDJText = new javax.swing.JTextField();
         UserPasswordJText = new javax.swing.JTextField();
         jButtonLogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jSplitPane1.setDividerLocation(180);
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 180, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 473, Short.MAX_VALUE)
-        );
-
-        jSplitPane1.setLeftComponent(jPanel1);
-
-        jPanel2.setBackground(new java.awt.Color(255, 51, 51));
 
         UserLoginIDJText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         UserLoginIDJText.addActionListener(new java.awt.event.ActionListener() {
@@ -76,71 +52,52 @@ public class OrganDonationLandingPageJFrame extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(179, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButtonLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                    .addComponent(UserLoginIDJText, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                    .addComponent(UserPasswordJText, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
-                .addGap(168, 168, 168))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(169, 169, 169)
-                .addComponent(UserLoginIDJText, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                .addGap(29, 29, 29)
-                .addComponent(UserPasswordJText, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                .addGap(32, 32, 32)
-                .addComponent(jButtonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(141, Short.MAX_VALUE))
-        );
-
-        jSplitPane1.setRightComponent(jPanel2);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSplitPane1)
-                .addContainerGap())
+                .addGap(182, 182, 182)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UserPasswordJText, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UserLoginIDJText, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(287, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSplitPane1)
-                .addContainerGap())
+                .addGap(91, 91, 91)
+                .addComponent(UserLoginIDJText, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
+                .addComponent(UserPasswordJText, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
+                .addComponent(jButtonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
-        // TODO add your handling code here:
-        
-        String username=UserLoginIDJText.getText();
-        String password=UserPasswordJText.getText();
-        if (username.equals("root") && password.equals("root")){
-            sa=new SystemAdminWorkArea();
-            sa.setVisible(true);
-            odLanding.setVisible(false);
-            
-            ManageOPOJPanel manageOPO=new ManageOPOJPanel();
-        
-            jSplitPane1.setLeftComponent(manageOPO);
-        }
-    }//GEN-LAST:event_jButtonLoginActionPerformed
-
     private void UserLoginIDJTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserLoginIDJTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_UserLoginIDJTextActionPerformed
+
+    private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
+        // TODO add your handling code here:
+
+        String username=UserLoginIDJText.getText();
+        String password=UserPasswordJText.getText();
+        if (username.equals("root") && password.equals("root")){
+//            sa=new SystemAdminWorkArea();
+//            sa.setVisible(true);
+//            odLanding.setVisible(false);
+//
+//            ManageOPOJPanel manageOPO=new ManageOPOJPanel();
+//
+//            jSplitPane1.setLeftComponent(manageOPO);
+        }
+    }//GEN-LAST:event_jButtonLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,21 +116,20 @@ public class OrganDonationLandingPageJFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(OrganDonationLandingPageJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SystemAdminTest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(OrganDonationLandingPageJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SystemAdminTest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(OrganDonationLandingPageJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SystemAdminTest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(OrganDonationLandingPageJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SystemAdminTest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                odLanding = new OrganDonationLandingPageJFrame();
-                odLanding.setVisible(true);
+                new SystemAdminTest().setVisible(true);
             }
         });
     }
@@ -182,8 +138,5 @@ public class OrganDonationLandingPageJFrame extends javax.swing.JFrame {
     private javax.swing.JTextField UserLoginIDJText;
     private javax.swing.JTextField UserPasswordJText;
     private javax.swing.JButton jButtonLogin;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables
 }

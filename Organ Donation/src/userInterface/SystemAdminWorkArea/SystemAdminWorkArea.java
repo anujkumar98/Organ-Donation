@@ -32,7 +32,7 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
         ManageOPOJButton = new javax.swing.JButton();
         ManageTransportJButton = new javax.swing.JButton();
         ManageNGOJButton = new javax.swing.JButton();
-        ManageTransportJButton1 = new javax.swing.JButton();
+        ManageLogout = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -77,13 +77,13 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
             }
         });
 
-        ManageTransportJButton1.setBackground(new java.awt.Color(255, 0, 51));
-        ManageTransportJButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        ManageTransportJButton1.setForeground(new java.awt.Color(255, 255, 255));
-        ManageTransportJButton1.setText("LOGOUT");
-        ManageTransportJButton1.addActionListener(new java.awt.event.ActionListener() {
+        ManageLogout.setBackground(new java.awt.Color(255, 0, 51));
+        ManageLogout.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ManageLogout.setForeground(new java.awt.Color(255, 255, 255));
+        ManageLogout.setText("LOGOUT");
+        ManageLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ManageTransportJButton1ActionPerformed(evt);
+                ManageLogoutActionPerformed(evt);
             }
         });
 
@@ -93,14 +93,17 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ManageTransportJButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ManageLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(ManageNGOJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(ManageTransportJButton)
-                        .addComponent(ManageNGOJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(ManageOPOJButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ManageHospitalJButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)))
@@ -109,8 +112,10 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(511, Short.MAX_VALUE)
-                .addComponent(ManageTransportJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(327, Short.MAX_VALUE)
+                .addComponent(ManageNGOJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(112, 112, 112)
+                .addComponent(ManageLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(71, 71, 71))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -118,9 +123,7 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
                     .addComponent(ManageHospitalJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(ManageOPOJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(ManageNGOJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGap(102, 102, 102)
                     .addComponent(ManageTransportJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(166, Short.MAX_VALUE)))
         );
@@ -178,11 +181,15 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
         jSplitPaneAdmin.setRightComponent(manageTransport);
     }//GEN-LAST:event_ManageTransportJButtonActionPerformed
 
-    private void ManageTransportJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageTransportJButton1ActionPerformed
+    private void ManageLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageLogoutActionPerformed
         // TODO add your handling code here:
         
+        jSplitPaneAdmin.setLeftComponent(null);
+         jSplitPaneAdmin.setRightComponent(null);
         
-    }//GEN-LAST:event_ManageTransportJButton1ActionPerformed
+        
+        
+    }//GEN-LAST:event_ManageLogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -222,10 +229,10 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ManageHospitalJButton;
+    private javax.swing.JButton ManageLogout;
     private javax.swing.JButton ManageNGOJButton;
     private javax.swing.JButton ManageOPOJButton;
     private javax.swing.JButton ManageTransportJButton;
-    private javax.swing.JButton ManageTransportJButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPaneAdmin;
