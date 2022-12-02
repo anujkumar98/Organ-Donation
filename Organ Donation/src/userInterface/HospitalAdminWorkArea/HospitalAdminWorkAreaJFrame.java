@@ -28,7 +28,7 @@ public class HospitalAdminWorkAreaJFrame extends javax.swing.JFrame {
 
         hospitalAdminSplitPane = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
+        jButtonCreateRolesAdmin = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -39,11 +39,11 @@ public class HospitalAdminWorkAreaJFrame extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(196, 6, 44));
 
-        jButton3.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
-        jButton3.setText("CREATE ROLES");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCreateRolesAdmin.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
+        jButtonCreateRolesAdmin.setText("CREATE ROLES");
+        jButtonCreateRolesAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonCreateRolesAdminActionPerformed(evt);
             }
         });
 
@@ -67,14 +67,14 @@ public class HospitalAdminWorkAreaJFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonCreateRolesAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(139, 139, 139)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonCreateRolesAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
@@ -113,14 +113,14 @@ public class HospitalAdminWorkAreaJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButtonCreateRolesAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateRolesAdminActionPerformed
         // TODO add your handling code here:
         
         CreateRolesHospitalJPanel crm = new CreateRolesHospitalJPanel();
         hospitalAdminSplitPane.setRightComponent(crm);
         
         
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButtonCreateRolesAdminActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -163,9 +163,9 @@ public class HospitalAdminWorkAreaJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSplitPane hospitalAdminSplitPane;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButtonCreateRolesAdmin;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
