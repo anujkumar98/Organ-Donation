@@ -32,6 +32,13 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
         this.fetchId=-1;
         dbCon=new DatabaseEnterpriseUtilities();
         populateTable(dbCon.fetchHospital());
+        jLabel6.setVisible(false);
+        jLabel7.setVisible(false);
+        jLabel8.setVisible(false);
+        jButtonCreateHospitalAdmins.setVisible(false);
+        jTextFieldAdminName.setVisible(false);
+        jTextFieldAdminId.setVisible(false);
+        jTextFieldAdminPassword.setVisible(false);
     }
 
     /**
@@ -62,10 +69,10 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
         jButtonCreateHospitalAdmins = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        jTextFieldAdminName = new javax.swing.JTextField();
+        jTextFieldAdminId = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        jTextFieldAdminPassword = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -107,7 +114,7 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "NAME", "REGION", "CITY", "STATE", "CONTACT"
+                "ID", "NAME", "REGION", "CITY", "STATE", "ADMIN NAME"
             }
         ));
         jScrollPane1.setViewportView(jTableHospital);
@@ -172,7 +179,18 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
         jLabel4.setMaximumSize(new java.awt.Dimension(100, 100));
         jLabel4.setMinimumSize(new java.awt.Dimension(100, 100));
 
+        jTextFieldCity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCityActionPerformed(evt);
+            }
+        });
+
         jButtonCreateHospitalAdmins.setText("CREATE ADMINS");
+        jButtonCreateHospitalAdmins.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCreateHospitalAdminsActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("ADMIN NAME");
 
@@ -206,13 +224,12 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextFieldState, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addGap(55, 55, 55)
-                                        .addComponent(jButtonCreateHospitalAdmins, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jButtonCreateHospitalAdmins, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jTextFieldAdminName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                                            .addComponent(jTextFieldAdminId, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextFieldAdminPassword, javax.swing.GroupLayout.Alignment.LEADING))))))
                         .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
@@ -261,17 +278,18 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldAdminName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
+                    .addComponent(jTextFieldAdminId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonCreateHospitalAdmins, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44))
+                    .addComponent(jTextFieldAdminPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
+                .addComponent(jButtonCreateHospitalAdmins, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -319,6 +337,18 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
             jTextFieldRegion.setText(jTableHospital.getValueAt(selectedIndex,2).toString());
             jTextFieldCity.setText(jTableHospital.getValueAt(selectedIndex,3).toString());
             jTextFieldState.setText(jTableHospital.getValueAt(selectedIndex,4).toString());
+            
+            jLabel6.setVisible(true);
+            jLabel7.setVisible(true);
+            jLabel8.setVisible(true);
+            jButtonCreateHospitalAdmins.setVisible(true);
+            jTextFieldAdminName.setVisible(true);
+            jTextFieldAdminId.setVisible(true);
+            jTextFieldAdminPassword.setVisible(true);
+            
+            jTextFieldAdminName.setText(jTableHospital.getValueAt(selectedIndex,5).toString());
+            
+            
             return;
         }
         JOptionPane.showMessageDialog(this, "Please select a row to fetch");
@@ -344,6 +374,35 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
         }
         JOptionPane.showMessageDialog(this, "Please fetch a row to update");
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButtonCreateHospitalAdminsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateHospitalAdminsActionPerformed
+        // TODO add your handling code here:
+        if (update){
+            String name=jTextFieldAdminName.getText();
+            String username=jTextFieldAdminId.getText();
+            String password=jTextFieldAdminPassword.getText();
+            dbCon.createEnterpriseAdmin(fetchId,name,username,password,"HOSPITAL");
+            populateTable(dbCon.fetchHospital());
+            JOptionPane.showMessageDialog(this, "Admin Added Updated");
+            jTextFieldAdminName.setText("");
+            jTextFieldAdminId.setText("");
+            jTextFieldAdminPassword.setText("");
+            this.update=false;
+            this.fetchId=-1;
+            jTextFieldName.setText("");
+            jTextFieldCity.setText("");
+            jTextFieldRegion.setText("");
+            jTextFieldState.setText("");
+            
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Please fetch a row to update");
+        
+    }//GEN-LAST:event_jButtonCreateHospitalAdminsActionPerformed
+
+    private void jTextFieldCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCityActionPerformed
 void populateTable(HospitalDirectory hd){
         ArrayList<HospitalEnterprise> hospitalDirectory=hd.getHospitalDirectory();
         DefaultTableModel model=(DefaultTableModel) jTableHospital.getModel();
@@ -356,6 +415,11 @@ void populateTable(HospitalDirectory hd){
             row[2]=h.getRegion();
             row[3]=h.getCity();
             row[4]=h.getState();
+            if (h.getAdminName() == null){
+                row[5]="No Admin";
+            }else{
+            row[5]=h.getAdminName();
+            }
             model.addRow(row);
         }
     }
@@ -377,9 +441,9 @@ void populateTable(HospitalDirectory hd){
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableHospital;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextFieldAdminId;
+    private javax.swing.JTextField jTextFieldAdminName;
+    private javax.swing.JTextField jTextFieldAdminPassword;
     private javax.swing.JTextField jTextFieldCity;
     private javax.swing.JTextField jTextFieldName;
     private javax.swing.JTextField jTextFieldRegion;
