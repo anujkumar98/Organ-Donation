@@ -1,20 +1,37 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package userInterface.SystemAdminWorkArea;
 
+import Business.Employee.Employee;
+import DatabaseUtility.DatabaseHandelLogin;
+import javax.swing.JOptionPane;
+import userInterface.HospitalAdminWorkArea.HospitalAdminWorkAreaJFrame;
+
 /**
  *
- * @author Lenovo
+ * @author anujkumar
  */
-public class LoginJPanel extends javax.swing.JPanel {
+public class LoginJPanel extends javax.swing.JFrame {
 
     /**
-     * Creates new form LoginJPanel
+     * Creates new form LoginJPanel1
      */
+    DatabaseHandelLogin dblogin;
     public LoginJPanel() {
         initComponents();
+        addRoles();
+        dblogin=new DatabaseHandelLogin();
+    }
+    public void addRoles(){
+        jComboBoxRoles.addItem("SYSTEM ADMIN");
+        jComboBoxRoles.addItem("HOSPITAL ADMIN");
+        jComboBoxRoles.addItem("DOCTOR");
+        jComboBoxRoles.addItem("RECEPTIONIST");
+        jComboBoxRoles.addItem("PATHOLOGIST");
+        
     }
 
     /**
@@ -26,96 +43,189 @@ public class LoginJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        UserLoginIDJText = new javax.swing.JTextField();
-        UserPasswordJText = new javax.swing.JTextField();
-        jButtonLogin = new javax.swing.JButton();
+
+        jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
+        jTextFieldUserName = new javax.swing.JTextField();
+        jTextFieldPassword = new javax.swing.JTextField();
+        jComboBoxRoles = new javax.swing.JComboBox<>();
 
-        UserLoginIDJText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        UserPasswordJText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        jButtonLogin.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonLogin.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
-        jButtonLogin.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonLogin.setText("LOGIN");
-        jButtonLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jButtonLogin.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("LOGIN");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLoginActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Usename");
+        jLabel3.setText("Role");
+
+        jLabel1.setText("Username");
 
         jLabel2.setText("Password");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "System Admin", "Hospital Admin", "OPO Admin", "NGO Admin", "Doctor", "Transort Admin", "Receptionist" }));
+        jTextFieldUserName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldUserNameActionPerformed(evt);
+            }
+        });
 
-        jLabel3.setText("Role");
+        jTextFieldPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldPasswordActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        jComboBoxRoles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
+        jComboBoxRoles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxRolesActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(403, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addGap(53, 53, 53)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                    .addComponent(UserLoginIDJText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                    .addComponent(UserPasswordJText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
-                .addGap(168, 168, 168))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(157, 157, 157)
+                .addComponent(jButton1)
+                .addContainerGap(652, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(81, 81, 81)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel3))
+                    .addGap(52, 52, 52)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTextFieldUserName)
+                        .addComponent(jTextFieldPassword)
+                        .addComponent(jComboBoxRoles, 0, 127, Short.MAX_VALUE))
+                    .addContainerGap(562, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(169, 169, 169)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(UserLoginIDJText, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                    .addComponent(jLabel1))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(UserPasswordJText, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addComponent(jButtonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(173, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(269, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(267, 267, 267))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(100, 100, 100)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(jTextFieldUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboBoxRoles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3))
+                    .addContainerGap(360, Short.MAX_VALUE)))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-
-//        String username=UserLoginIDJText.getText();
-//        String password=UserPasswordJText.getText();
-//        if (username.equals("root") && password.equals("root")){
-//            sa=new SystemAdminWorkArea();
-//            sa.setVisible(true);
-//            odLanding.setVisible(false);
+        String username=jTextFieldUserName.getText();
+        String password=jTextFieldPassword.getText();
+        String role=jComboBoxRoles.getSelectedItem().toString();
+        
+        switch (role){
+            case "SYSTEM ADMIN":
+                if ((username.equals("root") && password.equals("root"))){
+                SystemAdminWorkArea JFrame = new SystemAdminWorkArea();
+                JFrame.setVisible(true);
+            }
+            else{
+            JOptionPane.showMessageDialog(this, "Please check the password");
+            }
+                break;
+            case "DOCTOR":
+                break;
+            case "HOSPITAL ADMIN":
+                Employee emp=dblogin.loginUser(username,password,"HOSPITAL_ADMIN","HOSPITAL");
+                if (emp != null){
+                   HospitalAdminWorkAreaJFrame JFrame = new HospitalAdminWorkAreaJFrame();
+                   JFrame.setVisible(true);  
+                }
+                break;
         }
-    }//GEN-LAST:event_jButtonLoginActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jTextFieldUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUserNameActionPerformed
+        // TODO add your handling code here:
+        String username=jTextFieldUserName.getText();
+        String password=jTextFieldPassword.getText();
+        String role=jComboBoxRoles.getSelectedItem().toString();
+        if(role.equalsIgnoreCase("SYSAD")){
+            if ((username.equals("root") && password.equals("root"))){
+                
+            }
+        }
+    }//GEN-LAST:event_jTextFieldUserNameActionPerformed
+
+    private void jTextFieldPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldPasswordActionPerformed
+
+    private void jComboBoxRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxRolesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxRolesActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(LoginJPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(LoginJPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(LoginJPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(LoginJPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new LoginJPanel().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField UserLoginIDJText;
-    private javax.swing.JTextField UserPasswordJText;
-    private javax.swing.JButton jButtonLogin;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBoxRoles;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JTextField jTextFieldPassword;
+    private javax.swing.JTextField jTextFieldUserName;
+
     // End of variables declaration//GEN-END:variables
 }

@@ -180,7 +180,7 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
 
     private void ManageTransportJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageTransportJButton1ActionPerformed
         // TODO add your handling code here:
-        
+        dispose();
         
     }//GEN-LAST:event_ManageTransportJButton1ActionPerformed
 
