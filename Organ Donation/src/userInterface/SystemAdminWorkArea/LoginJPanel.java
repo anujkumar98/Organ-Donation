@@ -1,5 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package userInterface.SystemAdminWorkArea;
@@ -32,6 +33,7 @@ public class LoginJPanel extends javax.swing.JFrame {
         jComboBoxRoles.addItem("PATHOLOGIST");
         
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,6 +42,7 @@ public class LoginJPanel extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
 
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -223,5 +226,6 @@ public class LoginJPanel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField jTextFieldPassword;
     private javax.swing.JTextField jTextFieldUserName;
+
     // End of variables declaration//GEN-END:variables
 }
