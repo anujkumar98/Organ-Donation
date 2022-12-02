@@ -13,6 +13,8 @@ public class OrganDonationLandingPageJFrame extends javax.swing.JFrame {
     /**
      * Creates new form OrganDonationLandingPageJFrame
      */
+    static SystemAdminWorkArea sa;
+    static OrganDonationLandingPageJFrame odLanding;
     public OrganDonationLandingPageJFrame() {
         initComponents();
     }
@@ -63,6 +65,11 @@ public class OrganDonationLandingPageJFrame extends javax.swing.JFrame {
         jButtonLogin.setForeground(new java.awt.Color(255, 255, 255));
         jButtonLogin.setText("LOGIN");
         jButtonLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jButtonLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLoginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -110,6 +117,18 @@ public class OrganDonationLandingPageJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
+        // TODO add your handling code here:
+        
+        String username=UserLoginIDJText.getText();
+        String password=UserPasswordJText.getText();
+        if (username.equals("root") && password.equals("root")){
+            sa=new SystemAdminWorkArea();
+            sa.setVisible(true);
+            odLanding.setVisible(false);
+        }
+    }//GEN-LAST:event_jButtonLoginActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -140,7 +159,8 @@ public class OrganDonationLandingPageJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new OrganDonationLandingPageJFrame().setVisible(true);
+                odLanding = new OrganDonationLandingPageJFrame();
+                odLanding.setVisible(true);
             }
         });
     }
