@@ -4,6 +4,8 @@
  */
 package userInterface.RecepitionistRole;
 
+import Business.Employee.Employee;
+
 /**
  *
  * @author Lenovo
@@ -13,8 +15,10 @@ public class RecepitionistWorkAreaJFrame extends javax.swing.JFrame {
     /**
      * Creates new form RecepitionistWorkAreaJFrame
      */
-    public RecepitionistWorkAreaJFrame() {
+    public static Employee emp;
+    public RecepitionistWorkAreaJFrame(Employee e) {
         initComponents();
+        this.emp=e;
     }
 
     /**
@@ -164,7 +168,7 @@ public class RecepitionistWorkAreaJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RecepitionistWorkAreaJFrame().setVisible(true);
+                new RecepitionistWorkAreaJFrame(emp).setVisible(true);
             }
         });
     }
