@@ -258,12 +258,17 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
         String region=jTextFieldRegion.getText();
         String state=jTextFieldState.getText();
         
-        dbCon.createEnterprise(name, city, state, region,"OPO");
-        populateTable(dbCon.fetchOpo());
-        jTextFieldName.setText("");
-        jTextFieldCity.setText("");
-        jTextFieldRegion.setText("");
-        jTextFieldState.setText("");
+        Boolean status=dbCon.createEnterprise(name, city, state, region,"OPO");
+        if (status){
+            populateTable(dbCon.fetchOpo());
+            jTextFieldName.setText("");
+            jTextFieldCity.setText("");
+            jTextFieldRegion.setText("");
+            jTextFieldState.setText("");
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Error in creating OPO");
+        }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -301,8 +306,9 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
             String city=jTextFieldCity.getText();
             String region=jTextFieldRegion.getText();
             String state=jTextFieldState.getText();
-            dbCon.updateEnterprise(fetchId,name, city, state, region,"OPO");
-            populateTable(dbCon.fetchOpo());
+            Boolean status=dbCon.updateEnterprise(fetchId,name, city, state, region,"OPO");
+            if (status){
+                populateTable(dbCon.fetchOpo());
             JOptionPane.showMessageDialog(this, "Record Updated");
             jTextFieldName.setText("");
             jTextFieldCity.setText("");
@@ -311,6 +317,10 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
             this.update=false;
             this.fetchId=-1;
             return;
+            }
+            else{
+              JOptionPane.showMessageDialog(this, "Error in update. Check the inputs.");
+            }
         }
         JOptionPane.showMessageDialog(this, "Please fetch a row to update");
     }//GEN-LAST:event_jButton2ActionPerformed

@@ -6,7 +6,6 @@ package DatabaseUtility;
 
 import Business.Employee.Employee;
 import Business.Employee.EmployeeDirectory;
-import static DatabaseUtility.DatabaseEnterpriseUtilities.createConnection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -44,8 +43,9 @@ public class DatabaseHandleHospitalRoles {
         return con;
     }
     
-    public static void createLogin(String name,String username, String password,String role,int hospitalID,String tableName){
-        try{
+public static Boolean createLogin(String name,String username, String password,String role,int hospitalID,String tableName){
+    Boolean status=false;    
+    try{
             Connection con=createConnection();
             Statement statement=con.createStatement();
             String query="INSERT INTO `OrganDonation`.`"+tableName+"` "
@@ -53,10 +53,12 @@ public class DatabaseHandleHospitalRoles {
             + "`"+tableName.toUpperCase()+"_PASSWORD"+"`, `"+"HOSPITAL_ID"+"`) "
             + "VALUES ('"+name+"', '"+username+"', '"+password+"', '"+hospitalID+"')";
     statement.executeUpdate(query);
+    status=true;
         }
         catch(Exception e){
             System.out.println("Create Login"+e);
         }
+    return status;
     }
     //Code to check unique username in the table
 public Boolean checkUniqueUserName(String uname,String tableName){
@@ -133,7 +135,8 @@ public ArrayList <Employee> employeeList(){
     }
     return employeeList;
 }
-public void updateProfile(String name,String email,String contact,int age,String address,String gender,String tableName,int id){
+public Boolean updateProfile(String name,String email,String contact,int age,String address,String gender,String tableName,int id){
+    Boolean status=false;
     try {
         Connection con = createConnection();
         Statement statement=con.createStatement();
@@ -144,10 +147,70 @@ public void updateProfile(String name,String email,String contact,int age,String
             tableName.toUpperCase()+"_ID` = '"+Integer.toString(id)+"');";
         //System.out.println(query);
         statement.executeUpdate(query);
-        
+        status=true;
     } 
     catch(Exception e){
         System.out.println("updateProfile :"+e);
     }
+    return status;
+}
+public Boolean createPerson(String name,int age,String email,String gender,String contact,String address,String type,int id){
+    int hospitalId=0;
+    Boolean status=false;
+    try{
+            Connection con=createConnection();
+            Statement statement=con.createStatement();
+            String queryHospitalId="SELECT HOSPITAL_ID FROM  `OrganDonation`.`HOSPITAL_RECEPTIONIST`"
+                    + "where HOSPITAL_RECEPTIONIST_ID = "+id+";";
+            ResultSet resultSet=statement.executeQuery(queryHospitalId);
+            
+            while(resultSet.next()){
+                hospitalId=Integer.parseInt(resultSet.getString("HOSPITAL_ID"));
+            }
+            String query="INSERT INTO `OrganDonation`.`HOSPITAL_PATIENT` (`HOSPITAL_PATIENT_NAME`,"
+                    + "`HOSPITAL_PATIENT_AGE`, `HOSPITAL_PATIENT_EMAIL`, `HOSPITAL_PATIENT_GENDER`, "
+                    + "`HOSPITAL_PATIENT_CONTACT`, `HOSPITAL_PATIENT_ADDRESS`, `HOSPITAL_PATIENT_TYPE`,`HOSPITAL_ID`) "
+                    + "VALUES ('"+name+"', '"+age+"', '"+email+"', '"+gender+"', '"+contact+"' , '"+address+"',"
+                    + "'"+type+"', '"+hospitalId+"');";
+            //System.out.println(query);
+            statement.executeUpdate(query);
+            status=true;
+        }
+        catch(Exception e){
+            System.out.println("createPerson"+e);
+        }
+    return status;
+}
+public ArrayList <Employee> fetchPatient(int id ){
+    EmployeeDirectory ed=new EmployeeDirectory();
+    ArrayList <Employee> employeeList = new ArrayList<> ();
+    int hospitalId=0;
+    try{
+            Connection con=createConnection();
+            Statement statement=con.createStatement();
+            String queryHospitalId="SELECT HOSPITAL_ID FROM  `OrganDonation`.`HOSPITAL_RECEPTIONIST`"
+                    + "where HOSPITAL_RECEPTIONIST_ID = "+id+";";
+            ResultSet resultSet=statement.executeQuery(queryHospitalId);
+            while(resultSet.next()){
+                hospitalId=Integer.parseInt(resultSet.getString("HOSPITAL_ID"));
+            }
+            String query="SELECT * FROM HOSPITAL_PATIENT WHERE HOSPITAL_ID = "+hospitalId;
+            resultSet=statement.executeQuery(query);
+            while(resultSet.next()){
+                Employee emp= new Employee();
+                emp.setName(resultSet.getString("HOSPITAL_PATIENT_NAME"));
+                emp.setEmail(resultSet.getString("HOSPITAL_PATIENT_EMAIL"));
+                emp.setAge(resultSet.getInt("HOSPITAL_PATIENT_AGE"));
+                emp.setGender(resultSet.getString("HOSPITAL_PATIENT_GENDER"));
+                emp.setContactNumber(resultSet.getString("HOSPITAL_PATIENT_CONTACT"));
+                emp.setAddress(resultSet.getString("HOSPITAL_PATIENT_ADDRESS"));
+                emp.setRole(resultSet.getString("HOSPITAL_PATIENT_TYPE"));
+                employeeList=ed.add(emp);
+            }
+        }
+        catch(Exception e){
+            System.out.println("createPerson"+e);
+        }
+    return employeeList;
 }
 }

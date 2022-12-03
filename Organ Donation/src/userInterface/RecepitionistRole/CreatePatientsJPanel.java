@@ -3,9 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package userInterface.RecepitionistRole;
-import com.googlecode.javacv.OpenCVFrameGrabber;
-import com.googlecode.javacv.cpp.opencv_core.IplImage;
-import static com.googlecode.javacv.cpp.opencv_highgui.cvSaveImage;
+
+import Business.Employee.Employee;
+import DatabaseUtility.DatabaseHandleHospitalRoles;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Lenovo
@@ -15,8 +19,15 @@ public class CreatePatientsJPanel extends javax.swing.JPanel {
     /**
      * Creates new form NewJPanel
      */
-    public CreatePatientsJPanel() {
+    DatabaseHandleHospitalRoles dbo;
+    Employee emp;
+    int receptionistId;
+    public CreatePatientsJPanel(Employee e) {
         initComponents();
+        dbo=new DatabaseHandleHospitalRoles();
+        this.emp=e;
+        this.receptionistId=emp.getId();
+        populateTable(dbo.fetchPatient(receptionistId));
     }
 
     /**
@@ -41,11 +52,11 @@ public class CreatePatientsJPanel extends javax.swing.JPanel {
         jTextFieldEmail = new javax.swing.JTextField();
         jTextFieldContact = new javax.swing.JTextField();
         jTextFieldAddress = new javax.swing.JTextField();
-        jComboBoxGender = new javax.swing.JComboBox<>();
-        jComboBoxDonor = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTablePatients = new javax.swing.JTable();
         jButtonWebCam = new javax.swing.JButton();
+        jComboBoxGender = new javax.swing.JComboBox<>();
+        jComboBoxType = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -70,27 +81,26 @@ public class CreatePatientsJPanel extends javax.swing.JPanel {
             }
         });
 
-        jComboBoxGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Perfer Not To Admin" }));
-        jComboBoxGender.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxGenderActionPerformed(evt);
-            }
-        });
-
-        jComboBoxDonor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Donor", "Receiver" }));
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTablePatients.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Name", "Age", "Email", "Gender", "Type", "Contact", "Address"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTablePatients);
 
         jButtonWebCam.setText("Web Cam");
         jButtonWebCam.addActionListener(new java.awt.event.ActionListener() {
@@ -98,6 +108,10 @@ public class CreatePatientsJPanel extends javax.swing.JPanel {
                 jButtonWebCamActionPerformed(evt);
             }
         });
+
+        jComboBoxGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male","Female" }));
+
+        jComboBoxType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Donor","Reciver"}));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -121,13 +135,13 @@ public class CreatePatientsJPanel extends javax.swing.JPanel {
                         .addGap(98, 98, 98)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldContact)
-                    .addComponent(jComboBoxDonor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBoxGender, 0, 338, Short.MAX_VALUE)
                     .addComponent(jTextFieldEmail)
                     .addComponent(jTextFieldAge)
                     .addComponent(jTextFieldName)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextFieldAddress))
+                    .addComponent(jTextFieldAddress)
+                    .addComponent(jComboBoxGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBoxType, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(41, 41, 41)
                 .addComponent(jButtonWebCam)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -139,7 +153,7 @@ public class CreatePatientsJPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(33, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,13 +174,16 @@ public class CreatePatientsJPanel extends javax.swing.JPanel {
                         .addComponent(jButtonWebCam)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxGender, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxDonor, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel4)
+                    .addComponent(jComboBoxGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jComboBoxType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jTextFieldContact, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -182,51 +199,84 @@ public class CreatePatientsJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jComboBoxGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxGenderActionPerformed
-        // TODO add your handling code here:
-        //Validation 
-        String name = jTextFieldName.getText();
+        //Validate
+        String name=jTextFieldName.getText();
         int age=Integer.parseInt(jTextFieldAge.getText());
         String email=jTextFieldEmail.getText();
         String gender=jComboBoxGender.getSelectedItem().toString();
-        String type=jComboBoxDonor.getSelectedItem().toString();
-        String contact =jTextFieldContact.getText();
+        String type=jComboBoxType.getSelectedItem().toString();
+        String contact=jTextFieldContact.getText();
         String address=jTextFieldAddress.getText();
-       
-        //Validation 
-        //Add image library
-        
-    }//GEN-LAST:event_jComboBoxGenderActionPerformed
+        //Validate
+        Boolean status=dbo.createPerson(name, age, email, gender, contact, address, type,receptionistId);
+        if (status){
+            populateTable(dbo.fetchPatient(receptionistId));
+            jTextFieldName.setText("");
+            jTextFieldAge.setText("");
+            jTextFieldEmail.setText("");
+            jTextFieldContact.setText("");
+            jTextFieldAddress.setText("");
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Error in creating patient. Check input fields");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButtonWebCamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonWebCamActionPerformed
         // TODO add your handling code here:
         //Default webcam = 0
+//        OpenCVFrameConverter.ToIplImage converter = new OpenCVFrameConverter.ToIplImage();
+//        try {
+//            OpenCVFrameGrabber grabber=new OpenCVFrameGrabber(0);
+//            grabber.start();
+//            Frame frame = grabber.grab();
+//            IplImage img=converter.convert(frame);
+//            if (img != null){
+//                cvSaveImage("aa.jpg", img);
+//            }
+//        }
+//        catch(Exception e){
+//            System.out.println("Camera Connection :"+ e);
+//        }
+//        BufferedImage image;
+//        
+//        Webcam webcam = Webcam.getDefault();
+//        webcam.setViewSize(new Dimension(1024,768));
+//        if(webcam != null){
+//            System.out.println("Webcam present");
+//        }
+//        webcam.open(false);
+//        image = webcam.getImage();
+//        
+//        try {
+//            ImageIO.write(image, "JPG", new File("test.jpg"));
+//        } catch (IOException ex) {
+//            System.out.println("File writing:"+ex);
+//        }
         
-        try {
-            OpenCVFrameGrabber grabber=new OpenCVFrameGrabber(0);
-            if (grabber != null){
-                System.out.println("grabber connected");
-            }
-            grabber.start();
-            IplImage img=grabber.grab();
-            if (img != null){
-                
-                cvSaveImage("img.jpeg",img);
-            }
-        }
-        catch(Exception e){
-            System.out.println("Camera Connection :"+ e);
-        }
     }//GEN-LAST:event_jButtonWebCamActionPerformed
-
+    private void populateTable(ArrayList<Employee> emp){
+        DefaultTableModel model=(DefaultTableModel) jTablePatients.getModel();
+        model.setRowCount(0);
+        for (Employee e: emp)
+        {
+            Object[] row =new Object[7];
+            row[0]=e.getName();
+            row[1]=e.getAge();
+            row[2]=e.getEmail();
+            row[3]=e.getGender();
+            row[4]=e.getRole(); //Patient type is stored in role
+            row[5]=e.getContactNumber();
+            row[6]=e.getAddress();
+            model.addRow(row);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonWebCam;
-    private javax.swing.JComboBox<String> jComboBoxDonor;
     private javax.swing.JComboBox<String> jComboBoxGender;
+    private javax.swing.JComboBox<String> jComboBoxType;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -235,7 +285,7 @@ public class CreatePatientsJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTablePatients;
     private javax.swing.JTextField jTextFieldAddress;
     private javax.swing.JTextField jTextFieldAge;
     private javax.swing.JTextField jTextFieldContact;

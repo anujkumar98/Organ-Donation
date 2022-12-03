@@ -159,7 +159,7 @@ public class LoginJPanel extends javax.swing.JFrame {
                    JFrame.setVisible(true);  
                 }
                 else{
-                 JOptionPane.showMessageDialog(this, "Please check the username,password and role. ");
+                 JOptionPane.showMessageDialog(this, "Please check the username, password and role. ");
                 }
                 break;
             case "HOSPITAL ADMIN":
@@ -169,17 +169,17 @@ public class LoginJPanel extends javax.swing.JFrame {
                    JFrame.setVisible(true);  
                 }
                 else{
-                 JOptionPane.showMessageDialog(this, "Please check the username,password and role. ");
+                 JOptionPane.showMessageDialog(this, "Please check the username, password and role. ");
                 }
                 break;
             case "RECEPTIONIST":
-                emp=dblogin.loginUser(username,password,"RECEPTIONIST","HOSPITAL");
+                emp=dblogin.loginUser(username,password,"HOSPITAL_RECEPTIONIST","HOSPITAL");
                 if (emp != null){
                    RecepitionistWorkAreaJFrame JFrame = new RecepitionistWorkAreaJFrame(emp);
                    JFrame.setVisible(true);  
                 }
                 else{
-                 JOptionPane.showMessageDialog(this, "Please check the username,password and role. ");
+                 JOptionPane.showMessageDialog(this, "Please check the username, password and role. ");
                 }
                 break;
         }

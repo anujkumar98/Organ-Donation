@@ -49,7 +49,8 @@ public class DatabaseEnterpriseUtilities {
     }
     
 
-public void createEnterprise(String name,String city,String state,String region,String enterprise){
+public Boolean createEnterprise(String name,String city,String state,String region,String enterprise){
+    Boolean status=false;
     try{
     Connection con=createConnection();
     Statement statement=con.createStatement();
@@ -58,14 +59,16 @@ public void createEnterprise(String name,String city,String state,String region,
             + "`"+enterprise.toUpperCase()+"_STATE"+"`, `"+enterprise.toUpperCase()+"_REGION"+"`) "
             + "VALUES ('"+name+"', '"+city+"', '"+state+"', '"+region+"')";
     statement.executeUpdate(query);
-
+    status=true;
     }
     catch(Exception e){
         System.out.println(e);
     }
+    return status;
 }
 
-public void updateEnterprise(int id,String name,String city,String state,String region,String enterprise){
+public Boolean updateEnterprise(int id,String name,String city,String state,String region,String enterprise){
+    Boolean status=false;
     try{
     Connection con=createConnection();
     Statement statement=con.createStatement();
@@ -75,11 +78,12 @@ public void updateEnterprise(int id,String name,String city,String state,String 
             enterprise.toUpperCase()+"_ID` = '"+Integer.toString(id)+"');";
     //System.out.println(query);
     statement.executeUpdate(query);
-    
+    status = true;
     }
     catch(Exception e){
         System.out.println(e);
     }
+    return status;
 }
 
 
@@ -129,8 +133,9 @@ public Boolean checkUniqueUserName(String uname,String enterprise){
     }
     return check;
 }
-public void createEnterpriseAdmin(int hospitalId,String name,String username,String password,String enterprise){
-try{
+public Boolean createEnterpriseAdmin(int hospitalId,String name,String username,String password,String enterprise){
+    Boolean status=false;
+    try{
     
         Connection con=createConnection();
         Statement statement=con.createStatement();
@@ -140,10 +145,12 @@ try{
             + "`"+enterprise.toUpperCase()+"_ID"+"`, `"+enterprise.toUpperCase()+"_ADMIN_PASSWORD"+"`) "
             + "VALUES ('"+username+"', '"+name+"', '"+hospitalId+"', '"+password+"')";
         statement.executeUpdate(query);
+        status=true;
     }
     catch(Exception e){
         System.out.println(e);
     }
+    return status;
 }
 public NgoDirectory fetchNGO(){
     NgoDirectory ne=new NgoDirectory();
@@ -217,16 +224,18 @@ public TransportDirectory fetchTransport(){
         
     }
 
- public void deleteEnterprise(int id,String enterprise){
+ public Boolean deleteEnterprise(int id,String enterprise){
+     Boolean status=false;
      try{
         Connection con=createConnection();
         Statement statement=con.createStatement();
         statement.execute("DELETE FROM `"+enterprise.toUpperCase()+"` where "+enterprise.toUpperCase()+"_ID = '"+Integer.toString(id)+"'");
-        
+        status=true;
      }
     catch(Exception e){
         System.out.println(e);
     }
+     return status;
  }
 }
 

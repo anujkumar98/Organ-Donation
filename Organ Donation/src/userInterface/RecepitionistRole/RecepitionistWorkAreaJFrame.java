@@ -134,7 +134,7 @@ public class RecepitionistWorkAreaJFrame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        CreatePatientsJPanel rwaJP = new CreatePatientsJPanel();
+        CreatePatientsJPanel rwaJP = new CreatePatientsJPanel(emp);
         jSplitReceptionistWorkArea.setRightComponent(rwaJP);
     }//GEN-LAST:event_jButton2ActionPerformed
 
