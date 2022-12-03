@@ -10,6 +10,7 @@ import DatabaseUtility.DatabaseHandelLogin;
 import javax.swing.JOptionPane;
 import userInterface.DoctorRole.DoctorWorkAreaJFrame;
 import userInterface.HospitalAdminWorkArea.HospitalAdminWorkAreaJFrame;
+import userInterface.RecepitionistRole.RecepitionistWorkAreaJFrame;
 
 /**
  *
@@ -165,6 +166,16 @@ public class LoginJPanel extends javax.swing.JFrame {
                 emp=dblogin.loginUser(username,password,"HOSPITAL_ADMIN","HOSPITAL");
                 if (emp != null){
                    HospitalAdminWorkAreaJFrame JFrame = new HospitalAdminWorkAreaJFrame(emp);
+                   JFrame.setVisible(true);  
+                }
+                else{
+                 JOptionPane.showMessageDialog(this, "Please check the username,password and role. ");
+                }
+                break;
+            case "RECEPTIONIST":
+                emp=dblogin.loginUser(username,password,"RECEPTIONIST","HOSPITAL");
+                if (emp != null){
+                   RecepitionistWorkAreaJFrame JFrame = new RecepitionistWorkAreaJFrame(emp);
                    JFrame.setVisible(true);  
                 }
                 else{
