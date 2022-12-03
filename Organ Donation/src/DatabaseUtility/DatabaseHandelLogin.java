@@ -57,6 +57,13 @@ public class DatabaseHandelLogin {
                 emp.setUsername(resultSet.getString(tableName+"_USERNAME"));
                 emp.setId(resultSet.getInt(tableName+"_ID"));
                 emp.setEnterprise(enterprise.toUpperCase()); 
+                emp.setName(resultSet.getString(tableName+"_NAME"));
+                emp.setAge(resultSet.getInt(tableName+"_AGE"));
+                emp.setGender(resultSet.getString(tableName+"_GENDER"));
+                emp.setContactNumber(resultSet.getString(tableName+"_CONTACT"));
+                emp.setEmail(resultSet.getString(tableName+"_EMAIL"));
+                emp.setAddress(resultSet.getString(tableName+"_ADDRESS"));
+                
             }
         }
         }

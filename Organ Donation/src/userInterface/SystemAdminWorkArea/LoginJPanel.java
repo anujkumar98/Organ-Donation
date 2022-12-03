@@ -8,6 +8,7 @@ package userInterface.SystemAdminWorkArea;
 import Business.Employee.Employee;
 import DatabaseUtility.DatabaseHandelLogin;
 import javax.swing.JOptionPane;
+import userInterface.DoctorRole.DoctorWorkAreaJFrame;
 import userInterface.HospitalAdminWorkArea.HospitalAdminWorkAreaJFrame;
 
 /**
@@ -139,7 +140,7 @@ public class LoginJPanel extends javax.swing.JFrame {
         String username=jTextFieldUserName.getText();
         String password=jTextFieldPassword.getText();
         String role=jComboBoxRoles.getSelectedItem().toString();
-        
+        Employee emp;
         switch (role){
             case "SYSTEM ADMIN":
                 if ((username.equals("root") && password.equals("root"))){
@@ -151,12 +152,23 @@ public class LoginJPanel extends javax.swing.JFrame {
             }
                 break;
             case "DOCTOR":
+                emp=dblogin.loginUser(username,password,"HOSPITAL_DOCTOR","HOSPITAL");
+                if (emp != null){
+                   DoctorWorkAreaJFrame JFrame = new DoctorWorkAreaJFrame(emp);
+                   JFrame.setVisible(true);  
+                }
+                else{
+                 JOptionPane.showMessageDialog(this, "Please check the username,password and role. ");
+                }
                 break;
             case "HOSPITAL ADMIN":
-                Employee emp=dblogin.loginUser(username,password,"HOSPITAL_ADMIN","HOSPITAL");
+                emp=dblogin.loginUser(username,password,"HOSPITAL_ADMIN","HOSPITAL");
                 if (emp != null){
-                   HospitalAdminWorkAreaJFrame JFrame = new HospitalAdminWorkAreaJFrame();
+                   HospitalAdminWorkAreaJFrame JFrame = new HospitalAdminWorkAreaJFrame(emp);
                    JFrame.setVisible(true);  
+                }
+                else{
+                 JOptionPane.showMessageDialog(this, "Please check the username,password and role. ");
                 }
                 break;
         }

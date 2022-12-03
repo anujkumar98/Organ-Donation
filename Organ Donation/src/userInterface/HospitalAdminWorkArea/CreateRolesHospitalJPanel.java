@@ -4,6 +4,13 @@
  */
 package userInterface.HospitalAdminWorkArea;
 
+import Business.Employee.Employee;
+import Business.Enterprise.HospitalEnterprise;
+import DatabaseUtility.DatabaseHandleHospitalRoles;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Lenovo
@@ -13,8 +20,19 @@ public class CreateRolesHospitalJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageReceiptionstJPanel
      */
-    public CreateRolesHospitalJPanel() {
+    
+    private static Employee emp;
+    private DatabaseHandleHospitalRoles dbo;
+    int id=-1;
+    public CreateRolesHospitalJPanel(Employee e) {
         initComponents();
+        this.emp=e;
+        this.id=emp.getId();
+        jComboHospitalRole.addItem("DOCTOR");
+        jComboHospitalRole.addItem("RECEPTIONIST");
+        jComboHospitalRole.addItem("PATHOLOGIST");
+        dbo=new DatabaseHandleHospitalRoles();
+        populateTable(dbo.employeeList());
     }
 
     /**
@@ -27,7 +45,7 @@ public class CreateRolesHospitalJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableHospitalStaff = new javax.swing.JTable();
         jLabelHospitalCreateRole = new javax.swing.JLabel();
         jLabelHospitalRoleLoginID = new javax.swing.JLabel();
         jLabelHospitalRolePassword = new javax.swing.JLabel();
@@ -37,11 +55,13 @@ public class CreateRolesHospitalJPanel extends javax.swing.JPanel {
         jComboHospitalRole = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jLabelHospitalRoleLoginID1 = new javax.swing.JLabel();
+        jTextHospitalRoleLoginName = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableHospitalStaff.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
+        jTableHospitalStaff.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -49,16 +69,24 @@ public class CreateRolesHospitalJPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "ROLE", "ID", "LOGIN", "PASSWORD"
+                "ID", "ROLE", "NAME", "USERNAME"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTableHospitalStaff);
 
         jLabelHospitalCreateRole.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         jLabelHospitalCreateRole.setText("CREATE ROLE");
 
         jLabelHospitalRoleLoginID.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
-        jLabelHospitalRoleLoginID.setText("LOGIN ID");
+        jLabelHospitalRoleLoginID.setText("LOGIN USERNAME");
 
         jLabelHospitalRolePassword.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         jLabelHospitalRolePassword.setText("PASSWORD");
@@ -66,8 +94,13 @@ public class CreateRolesHospitalJPanel extends javax.swing.JPanel {
         jButton1.setBackground(new java.awt.Color(255, 51, 51));
         jButton1.setFont(new java.awt.Font("Microsoft YaHei", 1, 18)); // NOI18N
         jButton1.setText("CREATE");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jComboHospitalRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Recepionist", "Doctor", "Pathologist" }));
+        jComboHospitalRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -92,32 +125,40 @@ public class CreateRolesHospitalJPanel extends javax.swing.JPanel {
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
+        jLabelHospitalRoleLoginID1.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
+        jLabelHospitalRoleLoginID1.setText("NAME");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(129, 412, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabelHospitalRolePassword)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextHospitalRolePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabelHospitalRoleLoginID)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextHospitalRoleLoginID, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabelHospitalCreateRole, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(81, 81, 81)
-                        .addComponent(jComboHospitalRole, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(328, 328, 328))
             .addGroup(layout.createSequentialGroup()
-                .addGap(473, 473, 473)
+                .addGap(474, 474, 474)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(129, 412, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelHospitalRoleLoginID1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextHospitalRoleLoginName, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabelHospitalRolePassword)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextHospitalRolePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabelHospitalRoleLoginID)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextHospitalRoleLoginID, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabelHospitalCreateRole, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(81, 81, 81)
+                            .addComponent(jComboHospitalRole, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(328, 328, 328))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,11 +166,15 @@ public class CreateRolesHospitalJPanel extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelHospitalCreateRole, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboHospitalRole, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelHospitalRoleLoginID1)
+                    .addComponent(jTextHospitalRoleLoginName, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelHospitalRoleLoginID)
                     .addComponent(jTextHospitalRoleLoginID, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -137,24 +182,81 @@ public class CreateRolesHospitalJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelHospitalRolePassword)
                     .addComponent(jTextHospitalRolePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
+                .addGap(28, 28, 28)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        //Validations
+        String role=jComboHospitalRole.getSelectedItem().toString();
+        String username = jTextHospitalRoleLoginID.getText();
+        String password=jTextHospitalRolePassword.getText();
+        String name=jTextHospitalRoleLoginName.getText();
+        //Validations
+        switch (role){
+            case "DOCTOR":
+                    if(dbo.checkUniqueUserName(username,"HOSPITAL_DOCTOR")){
+                        dbo.createLogin(name,username,password,"DOCTOR",id,"HOSPITAL_DOCTOR");
+                        JOptionPane.showMessageDialog(this, "Doctor Created");
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "Username already exists");
+                    }
+                   break; 
+            case "RECEPTIONIST":
+                    if(dbo.checkUniqueUserName(username,"HOSPITAL_RECEPTIONIST")){
+                        dbo.createLogin(name,username,password,"RECEPTIONIST",id,"HOSPITAL_RECEPTIONIST");
+                        JOptionPane.showMessageDialog(this, "Receptionist Created");
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "Username already exists");
+                    }
+                    break;
+            case "PATHOLOGIST":
+                    if(dbo.checkUniqueUserName(username,"HOSPITAL_PATHOLOGIST")){
+                        dbo.createLogin(name,username,password,"PATHOLOGIST",id,"HOSPITAL_PATHOLOGIST");
+                        JOptionPane.showMessageDialog(this, "Pathologist Created");
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "Username already exists");
+                    }
+                    break;
+           
+                
+        }
+        populateTable(dbo.employeeList());
+                
+    }//GEN-LAST:event_jButton1ActionPerformed
 
+    void populateTable(ArrayList<Employee> emp){
+        DefaultTableModel model=(DefaultTableModel) jTableHospitalStaff.getModel();
+        model.setRowCount(0);
+        for (Employee e: emp)
+        {
+            Object[] row =new Object[7];
+            row[0]=e.getId();
+            row[1]=e.getRole();
+            row[2]=e.getName();
+            row[3]=e.getUsername();
+            model.addRow(row);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboHospitalRole;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelHospitalCreateRole;
     private javax.swing.JLabel jLabelHospitalRoleLoginID;
+    private javax.swing.JLabel jLabelHospitalRoleLoginID1;
     private javax.swing.JLabel jLabelHospitalRolePassword;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableHospitalStaff;
     private javax.swing.JTextField jTextHospitalRoleLoginID;
+    private javax.swing.JTextField jTextHospitalRoleLoginName;
     private javax.swing.JTextField jTextHospitalRolePassword;
     // End of variables declaration//GEN-END:variables
 }

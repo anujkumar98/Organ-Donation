@@ -51,7 +51,7 @@
                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jButtonUpdateProfile" min="-2" pref="267" max="-2" attributes="0"/>
-                          <Component id="jTextLastNameDoctor" min="-2" pref="267" max="-2" attributes="0"/>
+                          <Component id="jTextUsername" min="-2" pref="267" max="-2" attributes="0"/>
                           <Component id="jTextFirstNameDoctor" min="-2" pref="267" max="-2" attributes="0"/>
                           <Component id="jTextAgeDoctor" min="-2" pref="267" max="-2" attributes="0"/>
                           <Component id="jTextEmailDoctor" min="-2" pref="267" max="-2" attributes="0"/>
@@ -86,7 +86,7 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jTextLastNameDoctor" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="jTextUsername" min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -189,7 +189,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Microsoft YaHei" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="LAST NAME:"/>
+        <Property name="text" type="java.lang.String" value="USERNAME"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
@@ -236,7 +236,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFirstNameDoctor">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextLastNameDoctor">
+    <Component class="javax.swing.JTextField" name="jTextUsername">
     </Component>
     <Component class="javax.swing.JTextField" name="jTextEmailDoctor">
     </Component>
@@ -277,6 +277,9 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonUpdateProfileActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -4,6 +4,7 @@
  */
 package userInterface.DoctorRole;
 
+import Business.Employee.Employee;
 import userInterface.RecepitionistRole.RecepionistProfileUpdateJPanel;
 
 /**
@@ -15,8 +16,10 @@ public class DoctorWorkAreaJFrame extends javax.swing.JFrame {
     /**
      * Creates new form DoctorWorkAreaJFrame
      */
-    public DoctorWorkAreaJFrame() {
+    private static Employee emp;
+    public DoctorWorkAreaJFrame(Employee e) {
         initComponents();
+        this.emp=e;
     }
 
     /**
@@ -123,7 +126,7 @@ public class DoctorWorkAreaJFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-          DoctorProfileJPanel rwaJP = new DoctorProfileJPanel();
+          DoctorProfileJPanel rwaJP = new DoctorProfileJPanel(emp);
         DoctorWorkAreaSplitPane.setRightComponent(rwaJP);
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -158,7 +161,7 @@ public class DoctorWorkAreaJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DoctorWorkAreaJFrame().setVisible(true);
+                new DoctorWorkAreaJFrame(emp).setVisible(true);
             }
         });
     }
