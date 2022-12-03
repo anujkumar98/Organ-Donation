@@ -29,4 +29,9 @@ public class EmployeeDirectory {
         employeeList.add(employee);
         return employee;
     }
+    //Adding employee details to list 
+    public ArrayList<Employee> add(Employee e){
+        employeeList.add(e);
+        return employeeList;
+    }
 }

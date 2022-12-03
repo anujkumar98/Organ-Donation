@@ -47,9 +47,7 @@ public class DatabaseEnterpriseUtilities {
             }
         return con;
     }
-    public static void main(String args[]){
-  
-}
+    
 
 public void createEnterprise(String name,String city,String state,String region,String enterprise){
     try{
@@ -75,7 +73,7 @@ public void updateEnterprise(int id,String name,String city,String state,String 
             + "`"+enterprise.toUpperCase()+"_NAME` = '"+name+"', `"+enterprise.toUpperCase()+"_CITY` = '"+city+"', "
             + "`"+enterprise.toUpperCase()+"_STATE` = '"+state+"', `"+enterprise.toUpperCase()+"_REGION` = '"+region+"' WHERE (`"+
             enterprise.toUpperCase()+"_ID` = '"+Integer.toString(id)+"');";
-    System.out.println(query);
+    //System.out.println(query);
     statement.executeUpdate(query);
     
     }
