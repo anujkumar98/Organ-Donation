@@ -6,6 +6,7 @@ package userInterface.DoctorRole;
 
 import Business.Employee.Employee;
 import DatabaseUtility.DatabaseHandleHospitalRoles;
+import javax.swing.JOptionPane;
 import userInterface.HospitalAdminWorkArea.*;
 
 /**
@@ -228,14 +229,19 @@ public class DoctorProfileJPanel extends javax.swing.JPanel {
         */
         //Validation
         
-        dbo.updateProfile(name,email,contact,age,address,gender,"HOSPITAL_DOCTOR",id);
-        emp.setName(name);
-        emp.setEmail(email);
-        emp.setAge(age);
-        emp.setGender(gender);
-        emp.setContactNumber(contact);
-        emp.setAddress(address);
-        populateTextBox(emp);
+        Boolean status=dbo.updateProfile(name,email,contact,age,address,gender,"HOSPITAL_DOCTOR",id);
+        if (status){
+            emp.setName(name);
+            emp.setEmail(email);
+            emp.setAge(age);
+            emp.setGender(gender);
+            emp.setContactNumber(contact);
+            emp.setAddress(address);
+            populateTextBox(emp);
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Error in updating profile. Please check the inputs.");
+        }
     }//GEN-LAST:event_jButtonUpdateProfileActionPerformed
 
 

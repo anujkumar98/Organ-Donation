@@ -306,12 +306,17 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
         String region=jTextFieldRegion.getText();
         String state=jTextFieldState.getText();
         
-        dbCon.createEnterprise(name, city, state, region,"HOSPITAL");
-        populateTable(dbCon.fetchHospital());
-        jTextFieldName.setText("");
-        jTextFieldCity.setText("");
-        jTextFieldRegion.setText("");
-        jTextFieldState.setText("");
+        Boolean status =dbCon.createEnterprise(name, city, state, region,"HOSPITAL");
+        if (status){
+            populateTable(dbCon.fetchHospital());
+            jTextFieldName.setText("");
+            jTextFieldCity.setText("");
+            jTextFieldRegion.setText("");
+            jTextFieldState.setText("");
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Error in creating hospital");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -319,7 +324,13 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
         int selectedIndex=jTableHospital.getSelectedRow();
         if (selectedIndex != -1){
             int deleteId=(int)jTableHospital.getValueAt(selectedIndex,0);
-            dbCon.deleteEnterprise(deleteId,"HOSPITAL");
+            Boolean status=dbCon.deleteEnterprise(deleteId,"HOSPITAL");
+            if (status){
+                JOptionPane.showMessageDialog(this, "Hospital Deleted");
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Check the delete conditon.");
+            }
             populateTable(dbCon.fetchHospital());
             return;
         }
@@ -361,16 +372,21 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
             String city=jTextFieldCity.getText();
             String region=jTextFieldRegion.getText();
             String state=jTextFieldState.getText();
-            dbCon.updateEnterprise(fetchId,name, city, state, region,"HOSPITAL");
-            populateTable(dbCon.fetchHospital());
-            JOptionPane.showMessageDialog(this, "Record Updated");
-            jTextFieldName.setText("");
-            jTextFieldCity.setText("");
-            jTextFieldRegion.setText("");
-            jTextFieldState.setText("");
-            this.update=false;
-            this.fetchId=-1;
-            return;
+            Boolean status =dbCon.updateEnterprise(fetchId,name, city, state, region,"HOSPITAL");
+            if (status){
+                populateTable(dbCon.fetchHospital());
+                JOptionPane.showMessageDialog(this, "Record Updated");
+                jTextFieldName.setText("");
+                jTextFieldCity.setText("");
+                jTextFieldRegion.setText("");
+                jTextFieldState.setText("");
+                this.update=false;
+                this.fetchId=-1;
+                return;
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Error in update. Check the inputs.");
+            }
         }
         JOptionPane.showMessageDialog(this, "Please fetch a row to update");
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -382,20 +398,29 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
             String username=jTextFieldAdminId.getText();
             String password=jTextFieldAdminPassword.getText();
             //Check username for unique values
+            if (!name.equals("No Admin")){
+                JOptionPane.showMessageDialog(this, "Admin already exists");
+                return;
+            }
             System.out.println(dbCon.checkUniqueUserName(username,"HOSPITAL"));
-            if (dbCon.checkUniqueUserName(username,"HOSPITAL")==true){
-                dbCon.createEnterpriseAdmin(fetchId,name,username,password,"HOSPITAL");
-                populateTable(dbCon.fetchHospital());
-                JOptionPane.showMessageDialog(this, "Admin Created");
-                jTextFieldAdminName.setText("");
-                jTextFieldAdminId.setText("");
-                jTextFieldAdminPassword.setText("");
-                this.update=false;
-                this.fetchId=-1;
-                jTextFieldName.setText("");
-                jTextFieldCity.setText("");
-                jTextFieldRegion.setText("");
-                jTextFieldState.setText("");
+            if(dbCon.checkUniqueUserName(username,"HOSPITAL")==true){
+                boolean status=dbCon.createEnterpriseAdmin(fetchId,name,username,password,"HOSPITAL");
+                if (status){
+                    populateTable(dbCon.fetchHospital());
+                    JOptionPane.showMessageDialog(this, "Admin Created");
+                    jTextFieldAdminName.setText("");
+                    jTextFieldAdminId.setText("");
+                    jTextFieldAdminPassword.setText("");
+                    this.update=false;
+                    this.fetchId=-1;
+                    jTextFieldName.setText("");
+                    jTextFieldCity.setText("");
+                    jTextFieldRegion.setText("");
+                    jTextFieldState.setText("");
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Error in creating admin");
+                }
             }
             else{
                 JOptionPane.showMessageDialog(this, "Username already exists");

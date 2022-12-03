@@ -195,12 +195,19 @@ public class CreateRolesHospitalJPanel extends javax.swing.JPanel {
         String username = jTextHospitalRoleLoginID.getText();
         String password=jTextHospitalRolePassword.getText();
         String name=jTextHospitalRoleLoginName.getText();
+        Boolean status=false;
         //Validations
         switch (role){
             case "DOCTOR":
                     if(dbo.checkUniqueUserName(username,"HOSPITAL_DOCTOR")){
-                        dbo.createLogin(name,username,password,"DOCTOR",id,"HOSPITAL_DOCTOR");
-                        JOptionPane.showMessageDialog(this, "Doctor Created");
+                        status=dbo.createLogin(name,username,password,"DOCTOR",id,"HOSPITAL_DOCTOR");
+                        if(status){
+                            JOptionPane.showMessageDialog(this, "Doctor Created");
+                            
+                        }else{
+                            JOptionPane.showMessageDialog(this, "Error in creating doctor");
+                        }
+                        
                     }
                     else{
                         JOptionPane.showMessageDialog(this, "Username already exists");
@@ -208,8 +215,12 @@ public class CreateRolesHospitalJPanel extends javax.swing.JPanel {
                    break; 
             case "RECEPTIONIST":
                     if(dbo.checkUniqueUserName(username,"HOSPITAL_RECEPTIONIST")){
-                        dbo.createLogin(name,username,password,"RECEPTIONIST",id,"HOSPITAL_RECEPTIONIST");
-                        JOptionPane.showMessageDialog(this, "Receptionist Created");
+                        status=dbo.createLogin(name,username,password,"RECEPTIONIST",id,"HOSPITAL_RECEPTIONIST");
+                        if (status){
+                            JOptionPane.showMessageDialog(this, "Receptionist Created");
+                        }else{
+                            JOptionPane.showMessageDialog(this, "Error in creating receptionist");
+                        }
                     }
                     else{
                         JOptionPane.showMessageDialog(this, "Username already exists");
@@ -217,8 +228,12 @@ public class CreateRolesHospitalJPanel extends javax.swing.JPanel {
                     break;
             case "PATHOLOGIST":
                     if(dbo.checkUniqueUserName(username,"HOSPITAL_PATHOLOGIST")){
-                        dbo.createLogin(name,username,password,"PATHOLOGIST",id,"HOSPITAL_PATHOLOGIST");
-                        JOptionPane.showMessageDialog(this, "Pathologist Created");
+                        status=dbo.createLogin(name,username,password,"PATHOLOGIST",id,"HOSPITAL_PATHOLOGIST");
+                        if (status){
+                            JOptionPane.showMessageDialog(this, "Pathologist Created");
+                        }else{
+                             JOptionPane.showMessageDialog(this, "Error in creating pathologist");
+                        }
                     }
                     else{
                         JOptionPane.showMessageDialog(this, "Username already exists");
@@ -227,7 +242,13 @@ public class CreateRolesHospitalJPanel extends javax.swing.JPanel {
            
                 
         }
-        populateTable(dbo.employeeList());
+        if (status){
+            populateTable(dbo.employeeList());
+            jTextHospitalRoleLoginID.setText("");
+            jTextHospitalRolePassword.setText("");
+            jTextHospitalRoleLoginName.setText("");
+        }
+        
                 
     }//GEN-LAST:event_jButton1ActionPerformed
 
