@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -160,13 +161,7 @@ public Boolean createPerson(String name,int age,String email,String gender,Strin
     try{
             Connection con=createConnection();
             Statement statement=con.createStatement();
-            String queryHospitalId="SELECT HOSPITAL_ID FROM  `OrganDonation`.`HOSPITAL_RECEPTIONIST`"
-                    + "where HOSPITAL_RECEPTIONIST_ID = "+id+";";
-            ResultSet resultSet=statement.executeQuery(queryHospitalId);
-            
-            while(resultSet.next()){
-                hospitalId=Integer.parseInt(resultSet.getString("HOSPITAL_ID"));
-            }
+            hospitalId=fetchHosplitalId(id);
             String query="INSERT INTO `OrganDonation`.`HOSPITAL_PATIENT` (`HOSPITAL_PATIENT_NAME`,"
                     + "`HOSPITAL_PATIENT_AGE`, `HOSPITAL_PATIENT_EMAIL`, `HOSPITAL_PATIENT_GENDER`, "
                     + "`HOSPITAL_PATIENT_CONTACT`, `HOSPITAL_PATIENT_ADDRESS`, `HOSPITAL_PATIENT_TYPE`,`HOSPITAL_ID`) "
@@ -181,9 +176,8 @@ public Boolean createPerson(String name,int age,String email,String gender,Strin
         }
     return status;
 }
-public ArrayList <Employee> fetchPatient(int id ){
-    EmployeeDirectory ed=new EmployeeDirectory();
-    ArrayList <Employee> employeeList = new ArrayList<> ();
+//Fetch Hospital ID based on the id of receptionist
+public int fetchHosplitalId(int id){
     int hospitalId=0;
     try{
             Connection con=createConnection();
@@ -194,10 +188,25 @@ public ArrayList <Employee> fetchPatient(int id ){
             while(resultSet.next()){
                 hospitalId=Integer.parseInt(resultSet.getString("HOSPITAL_ID"));
             }
+    }
+    catch(Exception e){
+        System.out.println("fetchHosplitalId" + e);
+    }
+    return hospitalId;
+}
+public ArrayList <Employee> fetchPatient(int id ){
+    EmployeeDirectory ed=new EmployeeDirectory();
+    ArrayList <Employee> employeeList = new ArrayList<> ();
+    int hospitalId=0;
+    try{
+            Connection con=createConnection();
+            Statement statement=con.createStatement();
+            hospitalId=fetchHosplitalId(id);
             String query="SELECT * FROM HOSPITAL_PATIENT WHERE HOSPITAL_ID = "+hospitalId;
-            resultSet=statement.executeQuery(query);
+            ResultSet resultSet=statement.executeQuery(query);
             while(resultSet.next()){
                 Employee emp= new Employee();
+                emp.setId(resultSet.getInt("HOSPITAL_PATIENT_ID"));
                 emp.setName(resultSet.getString("HOSPITAL_PATIENT_NAME"));
                 emp.setEmail(resultSet.getString("HOSPITAL_PATIENT_EMAIL"));
                 emp.setAge(resultSet.getInt("HOSPITAL_PATIENT_AGE"));
@@ -212,5 +221,57 @@ public ArrayList <Employee> fetchPatient(int id ){
             System.out.println("createPerson"+e);
         }
     return employeeList;
+}
+
+public ArrayList <Employee> fetchDoctor(int id ){
+    EmployeeDirectory ed=new EmployeeDirectory();
+    ArrayList <Employee> employeeList = new ArrayList<> ();
+    int hospitalId=0;
+    try{
+            Connection con=createConnection();
+            Statement statement=con.createStatement();
+            String queryHospitalId="SELECT HOSPITAL_ID FROM  `OrganDonation`.`HOSPITAL_RECEPTIONIST`"
+                    + "where HOSPITAL_RECEPTIONIST_ID = "+id+";";
+            ResultSet resultSet=statement.executeQuery(queryHospitalId);
+            while(resultSet.next()){
+                hospitalId=Integer.parseInt(resultSet.getString("HOSPITAL_ID"));
+            }
+            String query="SELECT * FROM HOSPITAL_DOCTOR WHERE HOSPITAL_ID = "+hospitalId;
+            resultSet=statement.executeQuery(query);
+            while(resultSet.next()){
+                Employee emp= new Employee();
+                emp.setId(resultSet.getInt("HOSPITAL_DOCTOR_ID"));
+                emp.setName(resultSet.getString("HOSPITAL_DOCTOR_NAME"));
+                emp.setEmail(resultSet.getString("HOSPITAL_DOCTOR_EMAIL"));
+                emp.setAge(resultSet.getInt("HOSPITAL_DOCTOR_AGE"));
+                emp.setGender(resultSet.getString("HOSPITAL_DOCTOR_GENDER"));
+                emp.setContactNumber(resultSet.getString("HOSPITAL_DOCTOR_CONTACT"));
+                emp.setAddress(resultSet.getString("HOSPITAL_DOCTOR_ADDRESS"));
+                emp.setRole("DOCTOR");
+                employeeList=ed.add(emp);
+            }
+        }
+        catch(Exception e){
+            System.out.println("createPerson"+e);
+        }
+    return employeeList;
+}
+
+public Boolean creatVisit(int patientId,int doctorId){
+    Boolean status=false;
+    try{
+        Connection con=createConnection();
+        Statement statement=con.createStatement();
+        String query="INSERT INTO `OrganDonation`.`PATIENTS_VISIT` (`"
+                + "PATIENTS_VISIT_DOCTOR_ID`, `PATIENTS_VISIT_PATIENT_ID`) VALUES "
+                + "('"+doctorId+"', '"+patientId+"')";
+
+        statement.executeUpdate(query);
+        status=true;
+    }
+    catch (Exception e){
+    System.out.println("creatVisit"+ e);
+    }
+    return status;
 }
 }
