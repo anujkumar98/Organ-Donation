@@ -83,17 +83,17 @@ public class CreatePatientsJPanel extends javax.swing.JPanel {
 
         jTablePatients.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "Age", "Email", "Gender", "Type", "Contact", "Address"
+                "Id", "Name", "Age", "Email", "Gender", "Type", "Contact", "Address"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, false, false, false
+                true, false, false, false, true, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -260,14 +260,15 @@ public class CreatePatientsJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for (Employee e: emp)
         {
-            Object[] row =new Object[7];
-            row[0]=e.getName();
-            row[1]=e.getAge();
-            row[2]=e.getEmail();
-            row[3]=e.getGender();
-            row[4]=e.getRole(); //Patient type is stored in role
-            row[5]=e.getContactNumber();
-            row[6]=e.getAddress();
+            Object[] row =new Object[8];
+            row[0]=e.getId();
+            row[1]=e.getName();
+            row[2]=e.getAge();
+            row[3]=e.getEmail();
+            row[4]=e.getGender();
+            row[5]=e.getRole();row[0]=e.getId(); //Patient type is stored in role
+            row[6]=e.getContactNumber();
+            row[7]=e.getAddress();
             model.addRow(row);
         }
     }
