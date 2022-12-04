@@ -23,11 +23,15 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< Updated upstream:Organ Donation/src/userInterface/SystemAdminWorkArea/SystemAdminWorkAreaJFrame.form
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Component id="jSplitAdminWorkArea" min="-2" pref="712" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
+=======
+          <Component id="jSplitPaneAdmin" alignment="1" max="32767" attributes="0"/>
+>>>>>>> Stashed changes:Organ Donation/src/userInterface/SystemAdminWorkArea/SystemAdminWorkArea.form
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -70,12 +74,35 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< Updated upstream:Organ Donation/src/userInterface/SystemAdminWorkArea/SystemAdminWorkAreaJFrame.form
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="ManageTransportJButton" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="ManageNGOJButton" alignment="0" min="-2" pref="184" max="-2" attributes="0"/>
                           <Component id="ManageOPOJButton" alignment="0" min="-2" pref="184" max="-2" attributes="0"/>
                           <Component id="ManageHospitalJButton" alignment="0" min="-2" pref="184" max="-2" attributes="0"/>
+=======
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="ManageTransportJButton1" pref="184" max="32767" attributes="0"/>
+                          <Component id="jButton1" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="ManageTransportJButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="ManageNGOJButton" alignment="0" min="-2" pref="184" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="ManageOPOJButton" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="ManageHospitalJButton" alignment="0" pref="184" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+>>>>>>> Stashed changes:Organ Donation/src/userInterface/SystemAdminWorkArea/SystemAdminWorkArea.form
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -83,6 +110,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< Updated upstream:Organ Donation/src/userInterface/SystemAdminWorkArea/SystemAdminWorkAreaJFrame.form
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace pref="60" max="32767" attributes="0"/>
                       <Component id="ManageHospitalJButton" min="-2" pref="68" max="-2" attributes="0"/>
@@ -93,6 +121,27 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="ManageTransportJButton" min="-2" pref="72" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+=======
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" pref="49" max="-2" attributes="0"/>
+                      <EmptySpace pref="373" max="32767" attributes="0"/>
+                      <Component id="ManageTransportJButton1" min="-2" pref="72" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
+                          <Component id="ManageHospitalJButton" min="-2" pref="68" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="ManageOPOJButton" min="-2" pref="68" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="ManageNGOJButton" min="-2" pref="72" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="ManageTransportJButton" min="-2" pref="72" max="-2" attributes="0"/>
+                          <EmptySpace pref="166" max="32767" attributes="0"/>
+                      </Group>
+>>>>>>> Stashed changes:Organ Donation/src/userInterface/SystemAdminWorkArea/SystemAdminWorkArea.form
                   </Group>
               </Group>
             </DimensionLayout>
@@ -154,6 +203,14 @@
                 <Property name="text" type="java.lang.String" value="MANAGE NGO"/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JButton" name="jButton1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="CREATE NETWORK"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="AdminWorkAreaPanel2">
@@ -171,7 +228,11 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< Updated upstream:Organ Donation/src/userInterface/SystemAdminWorkArea/SystemAdminWorkAreaJFrame.form
                   <EmptySpace min="0" pref="527" max="32767" attributes="0"/>
+=======
+                  <EmptySpace min="0" pref="615" max="32767" attributes="0"/>
+>>>>>>> Stashed changes:Organ Donation/src/userInterface/SystemAdminWorkArea/SystemAdminWorkArea.form
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
