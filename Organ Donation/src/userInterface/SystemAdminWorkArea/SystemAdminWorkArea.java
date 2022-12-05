@@ -33,6 +33,7 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
         ManageTransportJButton = new javax.swing.JButton();
         ManageNGOJButton = new javax.swing.JButton();
         ManageTransportJButton1 = new javax.swing.JButton();
+        jButtonNetwork = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -87,13 +88,22 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
             }
         });
 
+        jButtonNetwork.setText("Network");
+        jButtonNetwork.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNetworkActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ManageTransportJButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ManageTransportJButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                    .addComponent(jButtonNetwork, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -109,7 +119,9 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(511, Short.MAX_VALUE)
+                .addGap(83, 83, 83)
+                .addComponent(jButtonNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 373, Short.MAX_VALUE)
                 .addComponent(ManageTransportJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(71, 71, 71))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,6 +196,12 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
         
     }//GEN-LAST:event_ManageTransportJButton1ActionPerformed
 
+    private void jButtonNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNetworkActionPerformed
+        // TODO add your handling code here:
+        CreateNetworkJPanel createNetwork=new CreateNetworkJPanel();
+        jSplitPaneAdmin.setRightComponent(createNetwork);
+    }//GEN-LAST:event_jButtonNetworkActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -226,6 +244,7 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
     private javax.swing.JButton ManageOPOJButton;
     private javax.swing.JButton ManageTransportJButton;
     private javax.swing.JButton ManageTransportJButton1;
+    private javax.swing.JButton jButtonNetwork;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPaneAdmin;
