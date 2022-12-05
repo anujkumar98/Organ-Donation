@@ -36,6 +36,7 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
         this.fetchId=-1;
         dbCon=new DatabaseEnterpriseUtilities();
         populateTable(dbCon.fetchHospital());
+        
         jLabel6.setVisible(false);
         jLabel7.setVisible(false);
         jLabel8.setVisible(false);
@@ -45,7 +46,7 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
         jTextFieldAdminPassword.setVisible(false);
         nd=dbCon.fetchNetwork();
         
-        addDropdown(nd.getNetorkList());
+        addDropdown(nd.getNetworkList());
         //System.out.println(nd.getNetorkList().size());
     }
 
@@ -201,6 +202,11 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
         jLabel8.setText("ADMIN PASSWORD");
 
         jComboBoxCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
+        jComboBoxCity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxCityActionPerformed(evt);
+            }
+        });
 
         jComboBoxRegion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
 
@@ -333,6 +339,11 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
             jTextFieldAdminPassword.setText(""); 
         JOptionPane.showMessageDialog(this, "Hospital Created.");
         
+        
+        
+        
+        
+        
         }
         else{
             JOptionPane.showMessageDialog(this, "Error in creating hospital");
@@ -419,6 +430,7 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
             String city=jComboBoxCity.getSelectedItem().toString();
             String region=jComboBoxRegion.getSelectedItem().toString();
             String state=jComboBoxState.getSelectedItem().toString();
+            
             Boolean status =dbCon.updateEnterprise(fetchId,name, city, state, region,"HOSPITAL");
             if (status){
                 populateTable(dbCon.fetchHospital());
@@ -478,6 +490,10 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, "Please fetch a row to update");
         
     }//GEN-LAST:event_jButtonCreateHospitalAdminsActionPerformed
+
+    private void jComboBoxCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxCityActionPerformed
 void populateTable(HospitalDirectory hd){
         ArrayList<HospitalEnterprise> hospitalDirectory=hd.getHospitalDirectory();
         DefaultTableModel model=(DefaultTableModel) jTableHospital.getModel();
