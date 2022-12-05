@@ -28,11 +28,11 @@ import java.util.logging.Logger;
  */
 public class DatabaseEnterpriseUtilities {
     public static Connection createConnection(){
-        
+//        jdbc:mysql://localhost:3306/organdonation?zeroDateTimeBehavior=CONVERT_TO_NULL [root on Default schema]
         Connection con=null;
-        final String DB_URL ="jdbc:mysql://localhost:3306/OrganDonation";
+        final String DB_URL ="jdbc:mysql://localhost:3306/organdonation";
         final String DB_USER = "root";
-        final String DB_PASSWD = "anujkumar";
+        final String DB_PASSWD = "root";
         try { 
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
