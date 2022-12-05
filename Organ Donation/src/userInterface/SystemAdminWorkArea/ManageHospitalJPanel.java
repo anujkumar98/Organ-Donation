@@ -8,6 +8,8 @@ import Business.Enterprise.HospitalDirectory;
 import Business.Enterprise.HospitalEnterprise;
 import Business.Enterprise.NgoDirectory;
 import Business.Enterprise.NgoEnterprise;
+import Business.Network.Network;
+import Business.Network.NetworkDirectory;
 import DatabaseUtility.DatabaseEnterpriseUtilities;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -26,6 +28,8 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
     DatabaseEnterpriseUtilities dbCon;
     Boolean update;
     int fetchId;
+    NetworkDirectory nd;
+    
     public ManageHospitalJPanel() {
         initComponents();
         this.update=false;
@@ -39,6 +43,10 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
         jTextFieldAdminName.setVisible(false);
         jTextFieldAdminId.setVisible(false);
         jTextFieldAdminPassword.setVisible(false);
+        nd=dbCon.fetchNetwork();
+        
+        addDropdown(nd.getNetorkList());
+        //System.out.println(nd.getNetorkList().size());
     }
 
     /**
@@ -63,9 +71,6 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jTextFieldName = new javax.swing.JTextField();
-        jTextFieldCity = new javax.swing.JTextField();
-        jTextFieldRegion = new javax.swing.JTextField();
-        jTextFieldState = new javax.swing.JTextField();
         jButtonCreateHospitalAdmins = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -73,6 +78,9 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
         jTextFieldAdminId = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jTextFieldAdminPassword = new javax.swing.JTextField();
+        jComboBoxCity = new javax.swing.JComboBox<>();
+        jComboBoxRegion = new javax.swing.JComboBox<>();
+        jComboBoxState = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -179,12 +187,6 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
         jLabel4.setMaximumSize(new java.awt.Dimension(100, 100));
         jLabel4.setMinimumSize(new java.awt.Dimension(100, 100));
 
-        jTextFieldCity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCityActionPerformed(evt);
-            }
-        });
-
         jButtonCreateHospitalAdmins.setText("CREATE ADMINS");
         jButtonCreateHospitalAdmins.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -198,6 +200,12 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
 
         jLabel8.setText("ADMIN PASSWORD");
 
+        jComboBoxCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
+
+        jComboBoxRegion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
+
+        jComboBoxState.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -208,28 +216,33 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(252, 252, 252)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextFieldCity, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldRegion)
-                                    .addComponent(jTextFieldName)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldState, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jButtonCreateHospitalAdmins, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jTextFieldAdminName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-                                            .addComponent(jTextFieldAdminId, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextFieldAdminPassword, javax.swing.GroupLayout.Alignment.LEADING))))))
+                                .addComponent(jComboBoxState, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButtonCreateHospitalAdmins, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jTextFieldAdminName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                                        .addComponent(jTextFieldAdminId, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTextFieldAdminPassword, javax.swing.GroupLayout.Alignment.LEADING)))
+                                .addGap(180, 180, 180))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jTextFieldName, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                                        .addComponent(jComboBoxCity, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(71, 71, 71)
+                                    .addComponent(jComboBoxRegion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
@@ -260,22 +273,22 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldRegion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxRegion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jTextFieldAdminName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -301,18 +314,25 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        jComboBoxCity.setEnabled(true);
+        jComboBoxRegion.setEnabled(true);
+        jComboBoxState.setEnabled(true);
         String name=jTextFieldName.getText();
-        String city=jTextFieldCity.getText();
-        String region=jTextFieldRegion.getText();
-        String state=jTextFieldState.getText();
+        
+        String city=jComboBoxCity.getSelectedItem().toString();
+        String region=jComboBoxRegion.getSelectedItem().toString();
+        String state=jComboBoxState.getSelectedItem().toString();
+        
         
         Boolean status =dbCon.createEnterprise(name, city, state, region,"HOSPITAL");
         if (status){
             populateTable(dbCon.fetchHospital());
             jTextFieldName.setText("");
-            jTextFieldCity.setText("");
-            jTextFieldRegion.setText("");
-            jTextFieldState.setText("");
+            jTextFieldAdminName.setText("");
+            jTextFieldAdminId.setText("");
+            jTextFieldAdminPassword.setText(""); 
+        JOptionPane.showMessageDialog(this, "Hospital Created.");
+        
         }
         else{
             JOptionPane.showMessageDialog(this, "Error in creating hospital");
@@ -327,6 +347,14 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
             Boolean status=dbCon.deleteEnterprise(deleteId,"HOSPITAL");
             if (status){
                 JOptionPane.showMessageDialog(this, "Hospital Deleted");
+                jComboBoxCity.setEnabled(true);
+                jComboBoxRegion.setEnabled(true);
+                jComboBoxState.setEnabled(true);
+                jTextFieldAdminName.setText("");
+                jTextFieldAdminId.setText("");
+                jTextFieldAdminPassword.setText("");
+                jTextFieldName.setText("");
+                
             }
             else {
                 JOptionPane.showMessageDialog(this, "Check the delete conditon.");
@@ -345,9 +373,17 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
             this.update=true;
             this.fetchId=(int)jTableHospital.getValueAt(selectedIndex,0);
             jTextFieldName.setText(jTableHospital.getValueAt(selectedIndex,1).toString());
-            jTextFieldRegion.setText(jTableHospital.getValueAt(selectedIndex,2).toString());
-            jTextFieldCity.setText(jTableHospital.getValueAt(selectedIndex,3).toString());
-            jTextFieldState.setText(jTableHospital.getValueAt(selectedIndex,4).toString());
+            jComboBoxCity.setEnabled(false);
+            jComboBoxRegion.setEnabled(false);
+            jComboBoxState.setEnabled(false);
+            
+            
+            //jTextFieldRegion.setText(jTableHospital.getValueAt(selectedIndex,2).toString());
+            //jTextFieldCity.setText(jTableHospital.getValueAt(selectedIndex,3).toString());
+            //jTextFieldState.setText(jTableHospital.getValueAt(selectedIndex,4).toString());
+            jComboBoxCity.setSelectedItem(jTableHospital.getValueAt(selectedIndex,3));
+            jComboBoxRegion.setSelectedItem(jTableHospital.getValueAt(selectedIndex,2));
+            jComboBoxState.setSelectedItem(jTableHospital.getValueAt(selectedIndex,4));
             
             jLabel6.setVisible(true);
             jLabel7.setVisible(true);
@@ -357,8 +393,15 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
             jTextFieldAdminId.setVisible(true);
             jTextFieldAdminPassword.setVisible(true);
             
-            jTextFieldAdminName.setText(jTableHospital.getValueAt(selectedIndex,5).toString());
-            
+            if (!jTableHospital.getValueAt(selectedIndex,5).toString().equals("No Admin")){
+                jLabel6.setVisible(false);
+                jLabel7.setVisible(false);
+                jLabel8.setVisible(false);
+                jButtonCreateHospitalAdmins.setVisible(false);
+                jTextFieldAdminName.setVisible(false);
+                jTextFieldAdminId.setVisible(false);
+                jTextFieldAdminPassword.setVisible(false);
+            }
             
             return;
         }
@@ -369,19 +412,23 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (update){
             String name=jTextFieldName.getText();
-            String city=jTextFieldCity.getText();
-            String region=jTextFieldRegion.getText();
-            String state=jTextFieldState.getText();
+            
+            //String city=jTextFieldCity.getText();
+            //String region=jTextFieldRegion.getText();
+            //String state=jTextFieldState.getText();
+            String city=jComboBoxCity.getSelectedItem().toString();
+            String region=jComboBoxRegion.getSelectedItem().toString();
+            String state=jComboBoxState.getSelectedItem().toString();
             Boolean status =dbCon.updateEnterprise(fetchId,name, city, state, region,"HOSPITAL");
             if (status){
                 populateTable(dbCon.fetchHospital());
                 JOptionPane.showMessageDialog(this, "Record Updated");
                 jTextFieldName.setText("");
-                jTextFieldCity.setText("");
-                jTextFieldRegion.setText("");
-                jTextFieldState.setText("");
                 this.update=false;
                 this.fetchId=-1;
+                jComboBoxCity.setEnabled(true);
+                jComboBoxRegion.setEnabled(true);
+                jComboBoxState.setEnabled(true);
                 return;
             }
             else {
@@ -398,10 +445,10 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
             String username=jTextFieldAdminId.getText();
             String password=jTextFieldAdminPassword.getText();
             //Check username for unique values
-            if (!name.equals("No Admin")){
-                JOptionPane.showMessageDialog(this, "Admin already exists");
-                return;
-            }
+//            if (!name.equals("No Admin")){
+//                JOptionPane.showMessageDialog(this, "Admin already exists");
+//                return;
+//            }
             System.out.println(dbCon.checkUniqueUserName(username,"HOSPITAL"));
             if(dbCon.checkUniqueUserName(username,"HOSPITAL")==true){
                 boolean status=dbCon.createEnterpriseAdmin(fetchId,name,username,password,"HOSPITAL");
@@ -414,9 +461,9 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
                     this.update=false;
                     this.fetchId=-1;
                     jTextFieldName.setText("");
-                    jTextFieldCity.setText("");
-                    jTextFieldRegion.setText("");
-                    jTextFieldState.setText("");
+                    jComboBoxCity.setEnabled(true);
+                    jComboBoxRegion.setEnabled(true);
+                    jComboBoxState.setEnabled(true);
                 }
                 else{
                     JOptionPane.showMessageDialog(this, "Error in creating admin");
@@ -431,10 +478,6 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, "Please fetch a row to update");
         
     }//GEN-LAST:event_jButtonCreateHospitalAdminsActionPerformed
-
-    private void jTextFieldCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCityActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldCityActionPerformed
 void populateTable(HospitalDirectory hd){
         ArrayList<HospitalEnterprise> hospitalDirectory=hd.getHospitalDirectory();
         DefaultTableModel model=(DefaultTableModel) jTableHospital.getModel();
@@ -462,6 +505,9 @@ void populateTable(HospitalDirectory hd){
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButtonCreateHospitalAdmins;
+    private javax.swing.JComboBox<String> jComboBoxCity;
+    private javax.swing.JComboBox<String> jComboBoxRegion;
+    private javax.swing.JComboBox<String> jComboBoxState;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -476,9 +522,14 @@ void populateTable(HospitalDirectory hd){
     private javax.swing.JTextField jTextFieldAdminId;
     private javax.swing.JTextField jTextFieldAdminName;
     private javax.swing.JTextField jTextFieldAdminPassword;
-    private javax.swing.JTextField jTextFieldCity;
     private javax.swing.JTextField jTextFieldName;
-    private javax.swing.JTextField jTextFieldRegion;
-    private javax.swing.JTextField jTextFieldState;
     // End of variables declaration//GEN-END:variables
+
+    private void addDropdown(ArrayList <Network> networkList) {
+        for (Network n: networkList){
+            jComboBoxCity.addItem(n.getCity());
+            jComboBoxRegion.addItem(n.getRegion());
+            jComboBoxState.addItem(n.getState());
+        }
+    }
 }

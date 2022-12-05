@@ -11,6 +11,8 @@ import Business.Enterprise.OpoDirectory;
 import Business.Enterprise.OpoEnterprise;
 import Business.Enterprise.TransportDirectory;
 import Business.Enterprise.TransportEnterprise;
+import Business.Network.Network;
+import Business.Network.NetworkDirectory;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -48,7 +50,42 @@ public class DatabaseEnterpriseUtilities {
         return con;
     }
     
+public Boolean createNetwork(String cityName, String stateName, String regionName){
+    Boolean status=false;
+    try{
+        Connection con=createConnection();
+        Statement statement=con.createStatement();
+        String query="INSERT INTO `OrganDonation`.`NETWORK` (`NETWORK_CITY`, `NETWORK_STATE`,"
+                + " `NETWORK_REGION`) VALUES ('"+cityName+"', '"+stateName+"', '"+regionName+"')";
+        statement.executeUpdate(query);
+        status=true;
+    }
+    catch(Exception e){
+        System.out.println(e);
+    }
+    return status;
+}
 
+public NetworkDirectory fetchNetwork(){
+    NetworkDirectory nd=new NetworkDirectory();
+    try{
+        Connection con=createConnection();
+        Statement statement=con.createStatement();
+        String query="SELECT * FROM `OrganDonation`.`NETWORK`;";
+        ResultSet resultSet=statement.executeQuery(query);
+        while(resultSet.next()){
+            Network n =new Network();
+            n.setCity(resultSet.getString("NETWORK_CITY"));
+            n.setRegion(resultSet.getString("NETWORK_REGION"));
+            n.setState(resultSet.getString("NETWORK_STATE"));
+            nd.addNetwork(n);
+        }
+    }
+    catch(Exception e){
+        System.out.println("fetchNetwork:"+e);
+    }
+    return nd;
+}
 public Boolean createEnterprise(String name,String city,String state,String region,String enterprise){
     Boolean status=false;
     try{

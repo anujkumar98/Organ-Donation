@@ -4,6 +4,14 @@
  */
 package userInterface.SystemAdminWorkArea;
 
+import Business.Enterprise.HospitalEnterprise;
+import Business.Network.Network;
+import Business.Network.NetworkDirectory;
+import DatabaseUtility.DatabaseEnterpriseUtilities;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Lenovo
@@ -13,8 +21,13 @@ public class CreateNetworkJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CreateNetworkJPanel
      */
+    DatabaseEnterpriseUtilities dbCon;
+    NetworkDirectory nd;
     public CreateNetworkJPanel() {
         initComponents();
+        dbCon= new DatabaseEnterpriseUtilities();
+        nd=new NetworkDirectory();
+        populateTable(dbCon.fetchNetwork());
     }
 
     /**
@@ -33,6 +46,8 @@ public class CreateNetworkJPanel extends javax.swing.JPanel {
         jTextStateName = new javax.swing.JTextField();
         jTextCityName = new javax.swing.JTextField();
         jButtonCreateNetwork = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableNetwork = new javax.swing.JTable();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("REGION");
@@ -45,13 +60,31 @@ public class CreateNetworkJPanel extends javax.swing.JPanel {
 
         jButtonCreateNetwork.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButtonCreateNetwork.setText("CREATE NETWORK");
+        jButtonCreateNetwork.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCreateNetworkActionPerformed(evt);
+            }
+        });
+
+        jTableNetwork.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "City", "State", "Region"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableNetwork);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(345, 345, 345)
+                .addGap(428, 428, 428)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -65,13 +98,15 @@ public class CreateNetworkJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextCityName)
                             .addComponent(jTextStateName)
-                            .addComponent(jButtonCreateNetwork, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE))))
-                .addContainerGap(350, Short.MAX_VALUE))
+                            .addComponent(jButtonCreateNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(514, Short.MAX_VALUE))
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(146, 146, 146)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextRegionName, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -85,16 +120,54 @@ public class CreateNetworkJPanel extends javax.swing.JPanel {
                     .addComponent(jTextCityName, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(jButtonCreateNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(209, Short.MAX_VALUE))
+                .addGap(56, 56, 56))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonCreateNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateNetworkActionPerformed
+        // TODO add your handling code here:
+        //Validation
+        String regionName=jTextRegionName.getText();
+        String stateName=jTextStateName.getText();
+        String cityName=jTextCityName.getText();
+                
+        //Validation
+        
+        Boolean status=dbCon.createNetwork(cityName, stateName, regionName);
+        if (status){
+            jTextRegionName.setText("");
+            jTextStateName.setText("");
+            jTextCityName.setText("");
+            JOptionPane.showMessageDialog(this, "Network Created.");
+            populateTable(dbCon.fetchNetwork());
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Error in creating network.");
+        }
+        
+    }//GEN-LAST:event_jButtonCreateNetworkActionPerformed
 
+void populateTable(NetworkDirectory nd){
+    ArrayList <Network> networkList= nd.getNetorkList();
+    DefaultTableModel model=(DefaultTableModel) jTableNetwork.getModel();
+        model.setRowCount(0);
+        for (Network n: networkList)
+        {
+            Object[] row =new Object[4];
+            row[0]=n.getCity();
+            row[1]=n.getState();
+            row[2]=n.getRegion();
+            
+            model.addRow(row);
+        }
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCreateNetwork;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableNetwork;
     private javax.swing.JTextField jTextCityName;
     private javax.swing.JTextField jTextRegionName;
     private javax.swing.JTextField jTextStateName;

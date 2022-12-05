@@ -20,8 +20,7 @@ public class EmployeeDirectory {
     public ArrayList<Employee> getEmployeeList() {
         return employeeList;
     }
-    
-    public Employee createEmployee(String name,String password,String enterprise){
+public Employee createEmployee(String name,String password,String enterprise){
         Employee employee = new Employee();
         employee.setUsername(name);
         employee.setPassword(password);
@@ -30,7 +29,7 @@ public class EmployeeDirectory {
         return employee;
     }
     //Adding employee details to list 
-    public ArrayList<Employee> add(Employee e){
+public ArrayList<Employee> add(Employee e){
         employeeList.add(e);
         return employeeList;
     }

@@ -9,10 +9,11 @@ package Business.Network;
  * @author anujkumar
  */
 public class Network {
-    private String name;
     private String city;
     private String state;
     private String region;
+    private String name;
+
     public String getName() {
         return name;
     }
@@ -20,7 +21,8 @@ public class Network {
     public void setName(String name) {
         this.name = name;
     }
-
+    
+    
     public String getCity() {
         return city;
     }
