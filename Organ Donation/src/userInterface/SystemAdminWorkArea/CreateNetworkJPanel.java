@@ -148,7 +148,7 @@ public class CreateNetworkJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonCreateNetworkActionPerformed
 
 void populateTable(NetworkDirectory nd){
-    ArrayList <Network> networkList= nd.getNetorkList();
+    ArrayList <Network> networkList= nd.getNetworkList();
     DefaultTableModel model=(DefaultTableModel) jTableNetwork.getModel();
         model.setRowCount(0);
         for (Network n: networkList)

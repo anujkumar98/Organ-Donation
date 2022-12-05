@@ -20,7 +20,7 @@ public class NetworkDirectory {
     
     
 
-    public ArrayList<Network> getNetorkList() {
+    public ArrayList<Network> getNetworkList() {
         return networkList;
     }
 
