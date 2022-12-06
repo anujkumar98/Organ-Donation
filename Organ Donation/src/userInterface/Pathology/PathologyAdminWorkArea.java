@@ -4,6 +4,7 @@
  */
 package userInterface.Pathology;
 
+import Business.Employee.Employee;
 import userInterface.Transport.*;
 import userInterface.NgoAdmin.*;
 import userInterface.SystemAdminWorkArea.*;
@@ -17,6 +18,7 @@ public class PathologyAdminWorkArea extends javax.swing.JFrame {
     /**
      * Creates new form SystemAdminWorkArea
      */
+    Employee e = new Employee();
     public PathologyAdminWorkArea() {
         initComponents();
     }
@@ -32,20 +34,20 @@ public class PathologyAdminWorkArea extends javax.swing.JFrame {
 
         jSplitPaneAdmin = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
-        ManageDriverJButton = new javax.swing.JButton();
+        ManageReportsJButton = new javax.swing.JButton();
         LogoutJButton = new javax.swing.JButton();
-        ManageRosterJButton = new javax.swing.JButton();
+        ManageProfileJButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        ManageDriverJButton.setBackground(new java.awt.Color(0, 0, 0));
-        ManageDriverJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        ManageDriverJButton.setForeground(new java.awt.Color(255, 255, 255));
-        ManageDriverJButton.setText("MANAGE REPORTS");
-        ManageDriverJButton.addActionListener(new java.awt.event.ActionListener() {
+        ManageReportsJButton.setBackground(new java.awt.Color(0, 0, 0));
+        ManageReportsJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ManageReportsJButton.setForeground(new java.awt.Color(255, 255, 255));
+        ManageReportsJButton.setText("MANAGE REPORTS");
+        ManageReportsJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ManageDriverJButtonActionPerformed(evt);
+                ManageReportsJButtonActionPerformed(evt);
             }
         });
 
@@ -59,13 +61,13 @@ public class PathologyAdminWorkArea extends javax.swing.JFrame {
             }
         });
 
-        ManageRosterJButton.setBackground(new java.awt.Color(0, 0, 0));
-        ManageRosterJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        ManageRosterJButton.setForeground(new java.awt.Color(255, 255, 255));
-        ManageRosterJButton.setText("MANAGE PROFILE");
-        ManageRosterJButton.addActionListener(new java.awt.event.ActionListener() {
+        ManageProfileJButton.setBackground(new java.awt.Color(0, 0, 0));
+        ManageProfileJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ManageProfileJButton.setForeground(new java.awt.Color(255, 255, 255));
+        ManageProfileJButton.setText("MANAGE PROFILE");
+        ManageProfileJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ManageRosterJButtonActionPerformed(evt);
+                ManageProfileJButtonActionPerformed(evt);
             }
         });
 
@@ -79,21 +81,21 @@ public class PathologyAdminWorkArea extends javax.swing.JFrame {
                     .addComponent(LogoutJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ManageDriverJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ManageRosterJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ManageProfileJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ManageReportsJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(113, 113, 113)
-                .addComponent(ManageDriverJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(ManageRosterJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
+                .addGap(112, 112, 112)
+                .addComponent(ManageReportsJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(ManageProfileJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
                 .addComponent(LogoutJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(235, Short.MAX_VALUE))
+                .addContainerGap(245, Short.MAX_VALUE))
         );
 
         jSplitPaneAdmin.setLeftComponent(jPanel1);
@@ -125,11 +127,11 @@ public class PathologyAdminWorkArea extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ManageDriverJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageDriverJButtonActionPerformed
+    private void ManageReportsJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageReportsJButtonActionPerformed
         // TODO add your handling code here:
-        ManageDriverJPanel manageDriver=new ManageDriverJPanel();
-        jSplitPaneAdmin.setRightComponent(manageDriver);
-    }//GEN-LAST:event_ManageDriverJButtonActionPerformed
+         PathoManagePatientsJPanel manageRep=new PathoManagePatientsJPanel(e);
+        jSplitPaneAdmin.setRightComponent(manageRep);
+    }//GEN-LAST:event_ManageReportsJButtonActionPerformed
 
     private void LogoutJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutJButtonActionPerformed
         // TODO add your handling code here:
@@ -137,12 +139,12 @@ public class PathologyAdminWorkArea extends javax.swing.JFrame {
         
     }//GEN-LAST:event_LogoutJButtonActionPerformed
 
-    private void ManageRosterJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageRosterJButtonActionPerformed
+    private void ManageProfileJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageProfileJButtonActionPerformed
         // TODO add your handling code here:
-       ManageTransportPanel manageVolunteer=new ManageTransportPanel();
-        jSplitPaneAdmin.setRightComponent(manageVolunteer);
+       ManagePathoProfileJPanel managePro =new ManagePathoProfileJPanel();
+        jSplitPaneAdmin.setRightComponent(managePro);
         
-    }//GEN-LAST:event_ManageRosterJButtonActionPerformed
+    }//GEN-LAST:event_ManageProfileJButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,8 +191,8 @@ public class PathologyAdminWorkArea extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LogoutJButton;
-    private javax.swing.JButton ManageDriverJButton;
-    private javax.swing.JButton ManageRosterJButton;
+    private javax.swing.JButton ManageProfileJButton;
+    private javax.swing.JButton ManageReportsJButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPaneAdmin;
