@@ -4,17 +4,11 @@
  */
 package userInterface.SystemAdminWorkArea;
 
-<<<<<<< Updated upstream
 import Business.Enterprise.OpoDirectory;
 import Business.Enterprise.OpoEnterprise;
+import Business.Network.Network;
+import Business.Network.NetworkDirectory;
 import DatabaseUtility.DatabaseEnterpriseUtilities;
-=======
-import Business.Enterprise.HospitalDirectory;
-import Business.Enterprise.HospitalEnterprise;
-import Business.Enterprise.NgoDirectory;
-import Business.Enterprise.NgoEnterprise;
-import DatabaseUtility.DatabaseConnection;
->>>>>>> Stashed changes
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -29,23 +23,31 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
      * Creates new form ManageHospitalJPanel
      */
     
-<<<<<<< Updated upstream
     DatabaseEnterpriseUtilities dbCon;
     Boolean update;
     int fetchId;
+      NetworkDirectory nd;
+    
     public ManageOPOJPanel() {
         initComponents();
         this.update=false;
         this.fetchId=-1;
+       
+         
         dbCon=new DatabaseEnterpriseUtilities();
         populateTable(dbCon.fetchOpo());
-=======
-    DatabaseConnection dbCon;
-    public ManageOPOJPanel() {
-        initComponents();
-        dbCon=new DatabaseConnection();
-        populateTable(dbCon.fetchNGO());
->>>>>>> Stashed changes
+        
+        
+         jLabel6.setVisible(false);
+        jLabel7.setVisible(false);
+        jLabel8.setVisible(false);
+        jButtonOPOAdminCreate.setVisible(false);
+        jTextOGOAdminName.setVisible(false);
+        jTextOGOAdminUsername.setVisible(false);
+        jTextOGOAdminPassword.setVisible(false);
+        nd=dbCon.fetchNetwork();
+        
+        addDropdown(nd.getNetworkList());
     }
 
     /**
@@ -60,21 +62,26 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableNgo = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jTableOPO = new javax.swing.JTable();
+        jButtonCreateOPO = new javax.swing.JButton();
+        jButtonUpdateOPO = new javax.swing.JButton();
+        jButtonDeleteOPO = new javax.swing.JButton();
+        jButtonViewOPO = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jTextFieldName = new javax.swing.JTextField();
-        jTextFieldCity = new javax.swing.JTextField();
-        jTextFieldRegion = new javax.swing.JTextField();
-        jTextFieldState = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        jComboBoxRegion = new javax.swing.JComboBox<>();
+        jComboBoxCity = new javax.swing.JComboBox<>();
+        jComboBoxState = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jTextOGOAdminName = new javax.swing.JTextField();
+        jTextOGOAdminUsername = new javax.swing.JTextField();
+        jTextOGOAdminPassword = new javax.swing.JTextField();
+        jButtonOPOAdminCreate = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -83,11 +90,7 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
         jTextField1.setBackground(new java.awt.Color(0, 0, 0));
         jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-<<<<<<< Updated upstream
         jTextField1.setText("MANAGE OPO");
-=======
-        jTextField1.setText("MANAGE NGO");
->>>>>>> Stashed changes
         jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,17 +105,17 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(202, 202, 202))
+                .addGap(451, 451, 451))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(27, 27, 27)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        jTableNgo.setModel(new javax.swing.table.DefaultTableModel(
+        jTableOPO.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -120,77 +123,53 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-<<<<<<< Updated upstream
-                "ID", "NAME", "REGION", "CITY", "STATE", "CONTACT"
-=======
-                "NGO ID", "NGO NAME", "REGION", "CITY", "EMAIL", "CONTACT"
->>>>>>> Stashed changes
+                "ID", "NAME", "REGION", "CITY", "STATE", "ADMIN NAME"
             }
         ));
-        jScrollPane1.setViewportView(jTableNgo);
+        jScrollPane1.setViewportView(jTableOPO);
 
-        jButton1.setBackground(new java.awt.Color(255, 153, 0));
-<<<<<<< Updated upstream
-        jButton1.setText("CREATE OPO");
-=======
-        jButton1.setText("CREATE NGO");
->>>>>>> Stashed changes
-        jButton1.setMaximumSize(new java.awt.Dimension(100, 40));
-        jButton1.setMinimumSize(new java.awt.Dimension(100, 40));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCreateOPO.setBackground(new java.awt.Color(255, 153, 0));
+        jButtonCreateOPO.setText("CREATE OPO");
+        jButtonCreateOPO.setMaximumSize(new java.awt.Dimension(100, 40));
+        jButtonCreateOPO.setMinimumSize(new java.awt.Dimension(100, 40));
+        jButtonCreateOPO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonCreateOPOActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 153, 0));
-<<<<<<< Updated upstream
-        jButton2.setText("UPDATE OPO");
-=======
-        jButton2.setText("UPDATE NGO");
->>>>>>> Stashed changes
-        jButton2.setMaximumSize(new java.awt.Dimension(100, 40));
-        jButton2.setMinimumSize(new java.awt.Dimension(100, 40));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonUpdateOPO.setBackground(new java.awt.Color(255, 153, 0));
+        jButtonUpdateOPO.setText("UPDATE OPO");
+        jButtonUpdateOPO.setMaximumSize(new java.awt.Dimension(100, 40));
+        jButtonUpdateOPO.setMinimumSize(new java.awt.Dimension(100, 40));
+        jButtonUpdateOPO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonUpdateOPOActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(255, 153, 0));
-<<<<<<< Updated upstream
-        jButton3.setText("DELETE OPO");
-=======
-        jButton3.setText("DELETE NGO");
->>>>>>> Stashed changes
-        jButton3.setMaximumSize(new java.awt.Dimension(100, 40));
-        jButton3.setMinimumSize(new java.awt.Dimension(100, 40));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonDeleteOPO.setBackground(new java.awt.Color(255, 153, 0));
+        jButtonDeleteOPO.setText("DELETE OPO");
+        jButtonDeleteOPO.setMaximumSize(new java.awt.Dimension(100, 40));
+        jButtonDeleteOPO.setMinimumSize(new java.awt.Dimension(100, 40));
+        jButtonDeleteOPO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonDeleteOPOActionPerformed(evt);
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(255, 153, 0));
-<<<<<<< Updated upstream
-        jButton4.setText("VIEW OPO");
-=======
-        jButton4.setText("VIEW NGO");
->>>>>>> Stashed changes
-        jButton4.setMaximumSize(new java.awt.Dimension(100, 40));
-        jButton4.setMinimumSize(new java.awt.Dimension(100, 40));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButtonViewOPO.setBackground(new java.awt.Color(255, 153, 0));
+        jButtonViewOPO.setText("VIEW OPO");
+        jButtonViewOPO.setMaximumSize(new java.awt.Dimension(100, 40));
+        jButtonViewOPO.setMinimumSize(new java.awt.Dimension(100, 40));
+        jButtonViewOPO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButtonViewOPOActionPerformed(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-<<<<<<< Updated upstream
         jLabel1.setText("OPO NAME");
-=======
-        jLabel1.setText("NGO NAME");
->>>>>>> Stashed changes
         jLabel1.setMaximumSize(new java.awt.Dimension(100, 100));
         jLabel1.setMinimumSize(new java.awt.Dimension(100, 100));
 
@@ -209,85 +188,121 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
         jLabel4.setMaximumSize(new java.awt.Dimension(100, 100));
         jLabel4.setMinimumSize(new java.awt.Dimension(100, 100));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setText("CONTACT");
-        jLabel5.setMaximumSize(new java.awt.Dimension(100, 100));
-        jLabel5.setMinimumSize(new java.awt.Dimension(100, 100));
+        jLabel6.setText("ADMIN NAME");
+
+        jLabel7.setText("ADMIN USERNAME");
+
+        jLabel8.setText("ADMIN PASSWORD");
+
+        jButtonOPOAdminCreate.setText("CREATE ADMIN");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(78, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 35, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(175, 175, 175)
+                        .addGap(161, 161, 161)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(63, 63, 63))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(83, 83, 83))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextFieldName, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+                                    .addComponent(jComboBoxRegion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBoxCity, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(62, 62, 62)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButtonCreateOPO, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                                    .addComponent(jButtonDeleteOPO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(93, 93, 93)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jTextOGOAdminPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextOGOAdminUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(71, 71, 71)
+                                .addComponent(jButtonOPOAdminCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldName)
-                            .addComponent(jTextFieldCity)
-                            .addComponent(jTextFieldRegion)
-                            .addComponent(jTextFieldState)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE))))
+                            .addComponent(jButtonUpdateOPO, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                            .addComponent(jButtonViewOPO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jTextOGOAdminName, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxState, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonOPOAdminCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButtonCreateOPO, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonViewOPO, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButtonDeleteOPO, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonUpdateOPO, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboBoxCity, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(47, 47, 47)
+                                .addComponent(jLabel6))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(jComboBoxRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23)
+                                .addComponent(jComboBoxState, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextOGOAdminName, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jTextOGOAdminUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldRegion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(101, 101, 101))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jTextOGOAdminPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(76, 76, 76))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -295,72 +310,139 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonCreateOPOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateOPOActionPerformed
         // TODO add your handling code here:
         String name=jTextFieldName.getText();
-        String city=jTextFieldCity.getText();
-        String region=jTextFieldRegion.getText();
-        String state=jTextFieldState.getText();
         
-<<<<<<< Updated upstream
+        
+      jComboBoxCity.setEnabled(true);
+        jComboBoxRegion.setEnabled(true);
+        jComboBoxState.setEnabled(true);
+        
+        
+         String city=jComboBoxCity.getSelectedItem().toString();
+        String region=jComboBoxRegion.getSelectedItem().toString();
+        String state=jComboBoxState.getSelectedItem().toString();
+       
+        
         Boolean status=dbCon.createEnterprise(name, city, state, region,"OPO");
         if (status){
             populateTable(dbCon.fetchOpo());
             jTextFieldName.setText("");
-            jTextFieldCity.setText("");
-            jTextFieldRegion.setText("");
-            jTextFieldState.setText("");
+             jTextOGOAdminName.setText("");
+            jTextOGOAdminUsername.setText("");
+            jTextOGOAdminPassword.setText("");
         }
         else{
             JOptionPane.showMessageDialog(this, "Error in creating OPO");
         }
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+    }//GEN-LAST:event_jButtonCreateOPOActionPerformed
+
+    private void jButtonDeleteOPOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteOPOActionPerformed
         // TODO add your handling code here:
         int selectedIndex=jTableOPO.getSelectedRow();
         if (selectedIndex != -1){
             int deleteId=(int)jTableOPO.getValueAt(selectedIndex,0);
-            dbCon.deleteEnterprise(deleteId,"OPO");
+          Boolean status=  dbCon.deleteEnterprise(deleteId,"OPO");
+             if (status){
+                JOptionPane.showMessageDialog(this, "Hospital Deleted");
+                jComboBoxCity.setEnabled(true);
+                jComboBoxRegion.setEnabled(true);
+                jComboBoxState.setEnabled(true);
+                jTextOGOAdminName.setText("");
+                jTextOGOAdminUsername.setText("");
+                jTextOGOAdminPassword.setText("");
+                jTextFieldName.setText("");
+          
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Check the delete conditon.");
+            }
+            
+            
+            
             populateTable(dbCon.fetchOpo());
             return;
         }
         JOptionPane.showMessageDialog(this, "Please select a row to delete");
-    }//GEN-LAST:event_jButton3ActionPerformed
+        
+        
+        
+        
+//        ====================================================
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+
+  
+    }//GEN-LAST:event_jButtonDeleteOPOActionPerformed
+
+    private void jButtonViewOPOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViewOPOActionPerformed
         // TODO add your handling code here:
         int selectedIndex=jTableOPO.getSelectedRow();
         if (selectedIndex != -1){
             this.update=true;
             this.fetchId=(int)jTableOPO.getValueAt(selectedIndex,0);
             jTextFieldName.setText(jTableOPO.getValueAt(selectedIndex,1).toString());
-            jTextFieldRegion.setText(jTableOPO.getValueAt(selectedIndex,2).toString());
-            jTextFieldCity.setText(jTableOPO.getValueAt(selectedIndex,3).toString());
-            jTextFieldState.setText(jTableOPO.getValueAt(selectedIndex,4).toString());
+             jComboBoxCity.setEnabled(false);
+            jComboBoxRegion.setEnabled(false);
+            jComboBoxState.setEnabled(false);
+            
+            
+            
+              jComboBoxCity.setSelectedItem(jTableOPO.getValueAt(selectedIndex,3));
+            jComboBoxRegion.setSelectedItem(jTableOPO.getValueAt(selectedIndex,2));
+            jComboBoxState.setSelectedItem(jTableOPO.getValueAt(selectedIndex,4));
+            
+            
+             
+            jLabel6.setVisible(true);
+            jLabel7.setVisible(true);
+            jLabel8.setVisible(true);
+            
+            jButtonOPOAdminCreate.setVisible(true);
+            jTextOGOAdminName.setVisible(true);
+            jTextOGOAdminUsername.setVisible(true);
+            jTextOGOAdminPassword.setVisible(true);
+            
+            
+              if (!jTableOPO.getValueAt(selectedIndex,5).toString().equals("No Admin")){
+                jLabel6.setVisible(false);
+                jLabel7.setVisible(false);
+                jLabel8.setVisible(false);
+                jButtonOPOAdminCreate.setVisible(false);
+                jTextOGOAdminName.setVisible(false);
+                jTextOGOAdminUsername.setVisible(false);
+                jTextOGOAdminPassword.setVisible(false);
+            }
+            
+            
             return;
         }
         JOptionPane.showMessageDialog(this, "Please select a row to fetch");
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jButtonViewOPOActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonUpdateOPOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateOPOActionPerformed
         // TODO add your handling code here:
         if (update){
             String name=jTextFieldName.getText();
-            String city=jTextFieldCity.getText();
-            String region=jTextFieldRegion.getText();
-            String state=jTextFieldState.getText();
+            String city=jComboBoxCity.getSelectedItem().toString();
+            String region=jComboBoxRegion.getSelectedItem().toString();
+            String state=jComboBoxState.getSelectedItem().toString();
+            
+            
             Boolean status=dbCon.updateEnterprise(fetchId,name, city, state, region,"OPO");
+            
             if (status){
                 populateTable(dbCon.fetchOpo());
             JOptionPane.showMessageDialog(this, "Record Updated");
             jTextFieldName.setText("");
-            jTextFieldCity.setText("");
-            jTextFieldRegion.setText("");
-            jTextFieldState.setText("");
+           
             this.update=false;
             this.fetchId=-1;
+              jComboBoxCity.setEnabled(true);
+                jComboBoxRegion.setEnabled(true);
+                jComboBoxState.setEnabled(true);
             return;
             }
             else{
@@ -368,57 +450,53 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
             }
         }
         JOptionPane.showMessageDialog(this, "Please fetch a row to update");
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonUpdateOPOActionPerformed
 void populateTable(OpoDirectory od){
         ArrayList<OpoEnterprise> opoDirectory=od.getOpoDirectory();
         DefaultTableModel model=(DefaultTableModel) jTableOPO.getModel();
-=======
-        dbCon.createEnterprise(name, city, state, region,"NGO");
-        populateTable(dbCon.fetchNGO());
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-void populateTable(NgoDirectory hd){
-        ArrayList<NgoEnterprise> ngoDirectory=hd.getNgoDirectory();
-        DefaultTableModel model=(DefaultTableModel) jTableNgo.getModel();
->>>>>>> Stashed changes
         model.setRowCount(0);
-        for (NgoEnterprise n: ngoDirectory)
+        for (OpoEnterprise o: opoDirectory)
         {
             Object[] row =new Object[7];
-<<<<<<< Updated upstream
             row[0]=o.getId();
             row[1]=o.getName();
             row[2]=o.getRegion();
             row[3]=o.getCity();
             row[4]=o.getState();
-=======
-            row[0]=n.getName();
-            row[1]=n.getRegion();
-            row[2]=n.getCity();
-            row[3]=n.getState();
->>>>>>> Stashed changes
             model.addRow(row);
         }
     }
 
+ private void addDropdown(ArrayList <Network> networkList) {
+        for (Network n: networkList){
+            jComboBoxCity.addItem(n.getCity());
+            jComboBoxRegion.addItem(n.getRegion());
+            jComboBoxState.addItem(n.getState());
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonCreateOPO;
+    private javax.swing.JButton jButtonDeleteOPO;
+    private javax.swing.JButton jButtonOPOAdminCreate;
+    private javax.swing.JButton jButtonUpdateOPO;
+    private javax.swing.JButton jButtonViewOPO;
+    private javax.swing.JComboBox<String> jComboBoxCity;
+    private javax.swing.JComboBox<String> jComboBoxRegion;
+    private javax.swing.JComboBox<String> jComboBoxState;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableNgo;
+    private javax.swing.JTable jTableOPO;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextFieldCity;
     private javax.swing.JTextField jTextFieldName;
-    private javax.swing.JTextField jTextFieldRegion;
-    private javax.swing.JTextField jTextFieldState;
+    private javax.swing.JTextField jTextOGOAdminName;
+    private javax.swing.JTextField jTextOGOAdminPassword;
+    private javax.swing.JTextField jTextOGOAdminUsername;
     // End of variables declaration//GEN-END:variables
 }
