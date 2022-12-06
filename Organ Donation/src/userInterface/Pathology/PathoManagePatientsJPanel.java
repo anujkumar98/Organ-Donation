@@ -24,17 +24,16 @@ public class PathoManagePatientsJPanel extends javax.swing.JPanel {
      * Creates new form DoctorManagePatientsJPanel
      */
     Employee emp;
-    int doctorId;
+    int pathoId;
     Boolean rowSelected=false;
     PatientVisitDirectory pvd = new PatientVisitDirectory();
     DatabaseHandleHospitalRoles dbCon;
     public PathoManagePatientsJPanel(Employee e) {
         initComponents();
         this.emp=e;
-        this.doctorId=emp.getId();
+        this.pathoId=emp.getId();
         dbCon=new DatabaseHandleHospitalRoles();
-        System.out.println(doctorId);
-        populatePatients(dbCon.fetchPatients(doctorId)); 
+        populatePatients(dbCon.fetchPatientsPatho(pathoId)); 
         jTextNamePatient.setEditable(false);
         jTextPatientType.setEditable(false);
     }
@@ -209,7 +208,7 @@ public class PathoManagePatientsJPanel extends javax.swing.JPanel {
 //                jTextPatientBP.setText("");
 //                jTextRespirationRate.setText("");
 //                rowSelected=false;
-//                populatePatients(dbCon.fetchPatients(doctorId));
+//                populatePatients(dbCon.fetchPatientsDoctor(doctorId));
 //            }
 //            else{
 //            JOptionPane.showMessageDialog(this, "Error in creating vitals");

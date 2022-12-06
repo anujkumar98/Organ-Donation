@@ -405,6 +405,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="CREATE ADMIN"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonNGOAdminCreateActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboBoxCity">
       <Properties>
