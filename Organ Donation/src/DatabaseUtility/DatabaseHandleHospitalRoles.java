@@ -6,6 +6,8 @@ package DatabaseUtility;
 
 import Business.Employee.Employee;
 import Business.Employee.EmployeeDirectory;
+import Business.Patient.PatientVisit;
+import Business.Patient.PatientVisitDirectory;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -26,7 +28,7 @@ public class DatabaseHandleHospitalRoles {
         Connection con=null;
         final String DB_URL ="jdbc:mysql://localhost:3306/OrganDonation";
         final String DB_USER = "root";
-        final String DB_PASSWD = "anujkumar";
+        final String DB_PASSWD = "root";
         try { 
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
@@ -162,12 +164,13 @@ public Boolean createPerson(String name,int age,String email,String gender,Strin
             Connection con=createConnection();
             Statement statement=con.createStatement();
             hospitalId=fetchHosplitalId(id);
+            //System.out.println(query);
+            
             String query="INSERT INTO `OrganDonation`.`HOSPITAL_PATIENT` (`HOSPITAL_PATIENT_NAME`,"
                     + "`HOSPITAL_PATIENT_AGE`, `HOSPITAL_PATIENT_EMAIL`, `HOSPITAL_PATIENT_GENDER`, "
                     + "`HOSPITAL_PATIENT_CONTACT`, `HOSPITAL_PATIENT_ADDRESS`, `HOSPITAL_PATIENT_TYPE`,`HOSPITAL_ID`) "
                     + "VALUES ('"+name+"', '"+age+"', '"+email+"', '"+gender+"', '"+contact+"' , '"+address+"',"
                     + "'"+type+"', '"+hospitalId+"');";
-            //System.out.println(query);
             statement.executeUpdate(query);
             status=true;
         }
@@ -194,7 +197,7 @@ public int fetchHosplitalId(int id){
     }
     return hospitalId;
 }
-public ArrayList <Employee> fetchPatient(int id ){
+public ArrayList <Employee> fetchPatient(int id){
     EmployeeDirectory ed=new EmployeeDirectory();
     ArrayList <Employee> employeeList = new ArrayList<> ();
     int hospitalId=0;
@@ -259,13 +262,29 @@ public ArrayList <Employee> fetchDoctor(int id ){
 
 public Boolean creatVisit(int patientId,int doctorId){
     Boolean status=false;
+    int reportId=0;
+    int vitalId=0;
     try{
         Connection con=createConnection();
         Statement statement=con.createStatement();
+        String queryVitals="INSERT INTO `OrganDonation`.`PATIENTS_VITALS` (`PATIENTS_VITALS_TEMPERATURE`) VALUES (-1);";
+            String vitalsID="SELECT MAX(PATIENTS_VITALS_ID) AS ID FROM `OrganDonation`.`PATIENTS_VITALS`;";
+            statement.executeUpdate(queryVitals);
+            String queryReport="INSERT INTO `OrganDonation`.`PATIENT_REPORT` (`PATIENT_REPORT_BLOOD_TYPE`) VALUES ('No');";
+            String reportID="SELECT MAX(PATIENTS_VITALS_ID) AS ID FROM `OrganDonation`.`PATIENTS_VITALS`;";
+            statement.executeUpdate(queryReport);
+            ResultSet resultSet=statement.executeQuery(vitalsID);
+            while(resultSet.next()){
+             vitalId=resultSet.getInt("ID");
+            }
+            resultSet=statement.executeQuery(reportID);
+            while(resultSet.next()){
+             reportId=resultSet.getInt("ID");
+            }
         String query="INSERT INTO `OrganDonation`.`PATIENTS_VISIT` (`"
-                + "PATIENTS_VISIT_DOCTOR_ID`, `PATIENTS_VISIT_PATIENT_ID`) VALUES "
-                + "('"+doctorId+"', '"+patientId+"')";
-
+                + "HOSPITAL_DOCTOR_ID`, `HOSPITAL_PATIENT_ID`,`PATIENTS_REPORT_ID`,`PATIENTS_VITALS_ID`) VALUES "
+                + "('"+doctorId+"', '"+patientId+"' ,'"+reportId+"','"+vitalId+"');";
+        System.out.println(query);
         statement.executeUpdate(query);
         status=true;
     }
@@ -274,4 +293,68 @@ public Boolean creatVisit(int patientId,int doctorId){
     }
     return status;
 }
+public ArrayList <PatientVisit> fetchPatients(int doctorId){
+    ArrayList <PatientVisit> patientVisitList= new ArrayList();
+    PatientVisitDirectory pvd=new PatientVisitDirectory(); 
+    try{
+        Connection con=createConnection();
+        Statement statement=con.createStatement();
+        String query="SELECT *\n" +
+            "FROM HOSPITAL_PATIENT AS HP\n" +
+            "JOIN PATIENTS_VISIT AS PV ON \n" +
+            "HP.HOSPITAL_PATIENT_ID = PV.HOSPITAL_PATIENT_ID\n" +
+            "JOIN HOSPITAL_DOCTOR AS HD ON \n" +
+            "HD.HOSPITAL_DOCTOR_ID = PV.HOSPITAL_DOCTOR_ID WHERE HD.HOSPITAL_DOCTOR_ID = '" + doctorId+"';";
+        ResultSet resultSet=statement.executeQuery(query);
+        while(resultSet.next()){
+            PatientVisit pv=new PatientVisit();
+            pv.setPatientId(resultSet.getInt("HOSPITAL_PATIENT_ID"));
+            pv.setName(resultSet.getString("HOSPITAL_PATIENT_NAME"));
+            pv.setAge(resultSet.getInt("HOSPITAL_PATIENT_AGE"));
+            pv.setGender(resultSet.getString("HOSPITAL_PATIENT_GENDER"));
+            pv.setType(resultSet.getString("HOSPITAL_PATIENT_TYPE"));
+            pv.setId(resultSet.getInt("PATIENTS_VISIT_ID"));
+            pv.setDoctorId(resultSet.getInt("HOSPITAL_DOCTOR_ID"));
+            pv.setReportId(resultSet.getInt("PATIENTS_REPORT_ID"));
+            pv.setReportId(resultSet.getInt("PATIENTS_VITALS_ID"));
+            pv.setReportStatus(resultSet.getString("PATIENTS_REPORT_STATUS"));
+            pv.setVitalStatus(resultSet.getString("PATIENTS_VITALS_STATUS"));
+            patientVisitList=pvd.addPatientsVisits(pv);
+        }
+    }
+    catch(Exception e) {
+        System.out.println("fetchPatients : " +e);
+    }
+    return patientVisitList;
+}
+public Boolean creatVitals(int visitId,float weight,float height,float temp,int pulse,int bp, int respRate){
+    Boolean status=false;
+    int vitalId=0;
+    try{
+           Connection con=createConnection();
+           Statement statement=con.createStatement();
+           String queryVitalId="SELECT PATIENTS_VITALS_ID FROM PATIENTS_VISIT;";
+           ResultSet resultSet=statement.executeQuery(queryVitalId);
+           while(resultSet.next()){
+               vitalId=resultSet.getInt("PATIENTS_VITALS_ID");
+           }
+           String queryVitalUpdate="UPDATE `OrganDonation`.`PATIENTS_VITALS` "
+                   + "SET `PATIENTS_VITALS_TEMPERATURE` = '"+temp+"', `PATIENTS_VITALS_HEIGHT` = '"+height+"', "
+                   + "`PATIENTS_VITALS_WEIGHT` = '"+weight+"', `PATIENTS_VITALS_PULSE` = '"+pulse+"', "
+                   + "`PATIENTS_VITALS_BP` = '"+bp+"',"
+                   + " `PATIENTS_VITALS_RESPIRATORY_RATE` = '"+respRate+"' WHERE (`PATIENTS_VITALS_ID` = '"+vitalId+"');";
+           statement.executeUpdate(queryVitalUpdate);
+           status=true;
+           String updateVitalsStatus="UPDATE `OrganDonation`.`PATIENTS_VISIT` SET "
+                   + "`PATIENTS_VITALS_STATUS` = 'Filled by Doctor' WHERE (`PATIENTS_VISIT_ID` = '"+visitId+"');";
+           statement.executeUpdate(updateVitalsStatus);
+           String updateReportStatus="UPDATE `OrganDonation`.`PATIENTS_VISIT` SET "
+                   + "`PATIENTS_REPORT_STATUS` = 'Requested to Patho' WHERE (`PATIENTS_VISIT_ID` = '"+visitId+"');";
+           statement.executeUpdate(updateVitalsStatus);
+    }
+    catch(Exception e) {
+           System.out.println("fetchPatients : " +e);
+       }
+    return status;
+   }
 }

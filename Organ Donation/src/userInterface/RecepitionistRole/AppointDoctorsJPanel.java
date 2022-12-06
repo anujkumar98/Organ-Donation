@@ -213,6 +213,7 @@ public class AppointDoctorsJPanel extends javax.swing.JPanel {
         int patientId= Integer.parseInt(jTablePatients.getValueAt(selectedIndex,0).toString());
         int docIndex=jComboBoxDoctorName.getSelectedIndex();
             int docID=docList.get(docIndex).getId();
+            System.out.println(docID);
             Boolean status = dbo.creatVisit(patientId,docID);
             if (status){
                 JOptionPane.showMessageDialog(this, "Visit created");
