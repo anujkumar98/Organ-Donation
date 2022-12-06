@@ -21,7 +21,6 @@ public class HospitalDirectory {
         hospitalDirectory=new ArrayList<>();
     }
 
-   
     public void addHospital(HospitalEnterprise hospital){
         hospitalDirectory.add(hospital);
     }
