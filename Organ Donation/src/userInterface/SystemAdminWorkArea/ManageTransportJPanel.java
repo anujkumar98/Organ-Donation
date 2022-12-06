@@ -333,6 +333,11 @@ public class ManageTransportJPanel extends javax.swing.JPanel {
             row[2]=t.getRegion();
             row[3]=t.getCity();
             row[4]=t.getState();
+            if (t.getAdminName() == null){
+                row[5]="No Admin";
+            }else{
+            row[5]=t.getAdminName();
+            }
             model.addRow(row);
         }
     }

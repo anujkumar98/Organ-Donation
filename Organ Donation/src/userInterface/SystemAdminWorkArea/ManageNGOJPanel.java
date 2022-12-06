@@ -190,6 +190,11 @@ public class ManageNGOJPanel extends javax.swing.JPanel {
         jLabel7.setText("ADMIN PASSWORD");
 
         jButtonNGOAdminCreate.setText("CREATE ADMIN");
+        jButtonNGOAdminCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNGOAdminCreateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -465,6 +470,11 @@ public class ManageNGOJPanel extends javax.swing.JPanel {
         
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButtonNGOAdminCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNGOAdminCreateActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButtonNGOAdminCreateActionPerformed
 void populateTable(NgoDirectory hd){
         ArrayList<NgoEnterprise> ngoDirectory=hd.getNgoDirectory();
         DefaultTableModel model=(DefaultTableModel) jTableNgo.getModel();
@@ -477,6 +487,11 @@ void populateTable(NgoDirectory hd){
             row[2]=n.getRegion();
             row[3]=n.getCity();
             row[4]=n.getState();
+            if (n.getAdminName() == null){
+                row[5]="No Admin";
+            }else{
+            row[5]=n.getAdminName();
+            }
             model.addRow(row);
         }
     }

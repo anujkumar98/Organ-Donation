@@ -195,7 +195,9 @@ public NgoDirectory fetchNGO(){
     
         Connection con=createConnection();
         Statement statement=con.createStatement();
-        ResultSet resultSet=statement.executeQuery("SELECT * FROM NGO");
+        ResultSet resultSet=statement.executeQuery("SELECT * FROM `OrganDonation`.`NGO` AS N\n" +
+"                                                   LEFT JOIN `OrganDonation`.`NGO_ADMIN` AS NA\n" +
+"                                                   ON N.NGO_ID=NA.NGO_ID;");
         while(resultSet.next()){
             NgoEnterprise n=new NgoEnterprise();
             n.setId(resultSet.getInt("NGO_ID"));
@@ -203,6 +205,7 @@ public NgoDirectory fetchNGO(){
             n.setCity(resultSet.getString("NGO_CITY"));
             n.setState(resultSet.getString("NGO_STATE"));
             n.setRegion(resultSet.getString("NGO_REGION"));
+            n.setAdminName(resultSet.getString("NGO_ADMIN_NAME"));
             ne.addNgo(n);
         }
     }
@@ -219,7 +222,9 @@ public OpoDirectory fetchOpo(){
     
         Connection con=createConnection();
         Statement statement=con.createStatement();
-        ResultSet resultSet=statement.executeQuery("SELECT * FROM OPO");
+        ResultSet resultSet=statement.executeQuery("SELECT * FROM `OrganDonation`.`OPO` AS O\n" +
+"                                                   LEFT JOIN `OrganDonation`.`OPO_ADMIN` AS OA\n" +
+"                                                   ON O.OPO_ID=OA.OPO_ID;");
         while(resultSet.next()){
             OpoEnterprise o=new OpoEnterprise();
             o.setId(resultSet.getInt("OPO_ID"));
@@ -227,6 +232,7 @@ public OpoDirectory fetchOpo(){
             o.setCity(resultSet.getString("OPO_CITY"));
             o.setState(resultSet.getString("OPO_STATE"));
             o.setRegion(resultSet.getString("OPO_REGION"));
+            o.setAdminName(resultSet.getString("OPO_ADMIN_NAME"));
             od.addOpo(o);
         }
     }
@@ -243,7 +249,9 @@ public TransportDirectory fetchTransport(){
     
         Connection con=createConnection();
         Statement statement=con.createStatement();
-        ResultSet resultSet=statement.executeQuery("SELECT * FROM TRANSPORT");
+        ResultSet resultSet=statement.executeQuery("SELECT * FROM `OrganDonation`.`TRANSPORT` AS T\n" +
+"                                                   LEFT JOIN `OrganDonation`.`TRANSPORT_ADMIN` AS TA\n" +
+"                                                   ON T.TRANSPORT_ID=TA.TRANSPORT_ID;");
         while(resultSet.next()){
             TransportEnterprise t=new TransportEnterprise();
             t.setId(resultSet.getInt("TRANSPORT_ID"));
@@ -251,6 +259,7 @@ public TransportDirectory fetchTransport(){
             t.setCity(resultSet.getString("TRANSPORT_CITY"));
             t.setState(resultSet.getString("TRANSPORT_STATE"));
             t.setRegion(resultSet.getString("TRANSPORT_REGION"));
+            t.setAdminName(resultSet.getString("TRANSPORT_ADMIN_NAME"));
             td.addTransport(t);
         }
     }

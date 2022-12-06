@@ -463,6 +463,11 @@ void populateTable(OpoDirectory od){
             row[2]=o.getRegion();
             row[3]=o.getCity();
             row[4]=o.getState();
+            if (o.getAdminName() == null){
+                row[5]="No Admin";
+            }else{
+            row[5]=o.getAdminName();
+            }
             model.addRow(row);
         }
     }
