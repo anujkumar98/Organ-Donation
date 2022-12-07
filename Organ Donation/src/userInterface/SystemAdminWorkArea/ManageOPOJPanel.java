@@ -195,6 +195,11 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
         jLabel8.setText("ADMIN PASSWORD");
 
         jButtonOPOAdminCreate.setText("CREATE ADMIN");
+        jButtonOPOAdminCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOPOAdminCreateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -263,7 +268,7 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(33, 33, 33)
@@ -274,8 +279,7 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jButtonDeleteOPO, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButtonUpdateOPO, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBoxCity, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(jComboBoxCity, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -451,6 +455,49 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
         }
         JOptionPane.showMessageDialog(this, "Please fetch a row to update");
     }//GEN-LAST:event_jButtonUpdateOPOActionPerformed
+
+    private void jButtonOPOAdminCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOPOAdminCreateActionPerformed
+        // TODO add your handling code here:
+        
+        
+        
+        if (update){
+            String name=jTextOGOAdminName.getText();
+            String username=jTextOGOAdminUsername.getText();
+            String password=jTextOGOAdminPassword.getText();
+           
+            System.out.println(dbCon.checkUniqueUserName(username,"OPO"));
+            if(dbCon.checkUniqueUserName(username,"OPO")==true){
+                boolean status=dbCon.createEnterpriseAdmin(fetchId,name,username,password,"OPO");
+                if (status){
+                    populateTable(dbCon.fetchOpo());
+                    JOptionPane.showMessageDialog(this, "Admin Created");
+                    jTextOGOAdminName.setText("");
+                    jTextOGOAdminUsername.setText("");
+                    jTextOGOAdminPassword.setText("");
+                    this.update=false;
+                    this.fetchId=-1;
+                    jTextFieldName.setText("");
+                    jComboBoxCity.setEnabled(true);
+                    jComboBoxRegion.setEnabled(true);
+                    jComboBoxState.setEnabled(true);
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Error in creating admin");
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Username already exists");
+            }
+          
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Please fetch a row to update");
+        
+        
+        
+        
+    }//GEN-LAST:event_jButtonOPOAdminCreateActionPerformed
 void populateTable(OpoDirectory od){
         ArrayList<OpoEnterprise> opoDirectory=od.getOpoDirectory();
         DefaultTableModel model=(DefaultTableModel) jTableOPO.getModel();

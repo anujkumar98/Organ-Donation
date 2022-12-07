@@ -474,6 +474,42 @@ public class ManageNGOJPanel extends javax.swing.JPanel {
     private void jButtonNGOAdminCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNGOAdminCreateActionPerformed
         // TODO add your handling code here:
         
+        
+        
+        if (update){
+            String name=jTextNGOAdminName.getText();
+            String username=jTextNGOAdminUsername.getText();
+            String password=jTextNGOAdminPassword.getText();
+           
+            System.out.println(dbCon.checkUniqueUserName(username,"NGO"));
+            if(dbCon.checkUniqueUserName(username,"NGO")==true){
+                boolean status=dbCon.createEnterpriseAdmin(fetchId,name,username,password,"NGO");
+                if (status){
+                    populateTable(dbCon.fetchNGO());
+                    JOptionPane.showMessageDialog(this, "Admin Created");
+                    jTextNGOAdminName.setText("");
+                    jTextNGOAdminUsername.setText("");
+                    jTextNGOAdminPassword.setText("");
+                    this.update=false;
+                    this.fetchId=-1;
+                    jTextFieldName.setText("");
+                    jComboBoxCity.setEnabled(true);
+                    jComboBoxRegion.setEnabled(true);
+                    jComboBoxState.setEnabled(true);
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Error in creating admin");
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Username already exists");
+            }
+          
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Please fetch a row to update");
+        
+        
     }//GEN-LAST:event_jButtonNGOAdminCreateActionPerformed
 void populateTable(NgoDirectory hd){
         ArrayList<NgoEnterprise> ngoDirectory=hd.getNgoDirectory();
