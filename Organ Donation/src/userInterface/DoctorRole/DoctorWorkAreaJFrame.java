@@ -4,8 +4,7 @@
  */
 package userInterface.DoctorRole;
 
-import userInterface.HospitalAdminWorkArea.HospitalAdminManageReceiverJPanel;
-import userInterface.HospitalAdminWorkArea.HospitalAdminManageDonorJPanel;
+
 import Business.Employee.Employee;
 import userInterface.RecepitionistRole.RecepionistProfileUpdateJPanel;
 
