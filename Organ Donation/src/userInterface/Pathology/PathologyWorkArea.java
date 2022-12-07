@@ -6,7 +6,6 @@ package userInterface.Pathology;
 
 import Business.Employee.Employee;
 import userInterface.Transport.*;
-import userInterface.NgoAdmin.*;
 import userInterface.SystemAdminWorkArea.*;
 
 /**

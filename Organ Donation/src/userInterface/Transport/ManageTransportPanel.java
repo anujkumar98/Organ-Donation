@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package userInterface.Transport;
-import userInterface.NgoAdmin.*;
+
 import userInterface.SystemAdminWorkArea.*;
 import Business.Enterprise.NgoDirectory;
 import Business.Enterprise.NgoEnterprise;

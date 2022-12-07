@@ -4,7 +4,6 @@
  */
 package userInterface.OPO;
 import userInterface.Transport.*;
-import userInterface.NgoAdmin.*;
 import userInterface.SystemAdminWorkArea.*;
 import Business.Enterprise.NgoDirectory;
 import Business.Enterprise.NgoEnterprise;
