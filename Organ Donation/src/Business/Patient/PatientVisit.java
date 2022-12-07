@@ -23,6 +23,16 @@ public class PatientVisit {
     String vitalStatus;
     String bloodType;
     String tissueCondition;
+    String address;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    
 
     public String getBloodType() {
         return bloodType;

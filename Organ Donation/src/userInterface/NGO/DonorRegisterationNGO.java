@@ -4,6 +4,9 @@
  */
 package userInterface.NGO;
 
+import Business.Employee.Employee;
+import DatabaseUtility.DatabaseHandleNgoRole;
+import javax.swing.JOptionPane;
 import userInterface.Pathology.*;
 import userInterface.Transport.*;
 import userInterface.RecepitionistRole.*;
@@ -17,8 +20,13 @@ public class DonorRegisterationNGO extends javax.swing.JPanel {
     /**
      * Creates new form RecepionistWorkAreaJPanel
      */
-    public DonorRegisterationNGO() {
+    Employee emp;
+    int adminId;
+    DatabaseHandleNgoRole dbCon=new DatabaseHandleNgoRole();
+    public DonorRegisterationNGO(Employee e) {
         initComponents();
+        this.emp=e;
+        this.adminId=emp.getId();
     }
 
     /**
@@ -199,6 +207,26 @@ public class DonorRegisterationNGO extends javax.swing.JPanel {
 
     private void jButtonDonorRegistrationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDonorRegistrationActionPerformed
         // TODO add your handling code here:
+        
+        String name=jTextDonorName.getText();
+        String email=jTextDonorEmail.getText();
+        int age = Integer.parseInt(jTextDonorAge.getText().toString());
+        String gender = jComboBoxGenderNGODonor.getSelectedItem().toString();
+        String contact=jTextNGODonorContact.getText();
+        String address=jTextNGODonorAdress.getText();
+        
+        Boolean status=dbCon.createDonorList(name,gender,age,contact,address,email,adminId);
+        if (status){
+            JOptionPane.showMessageDialog(this, "Donor registered");
+            jTextDonorName.setText("");
+            jTextDonorEmail.setText("");
+            jTextDonorAge.setText("");
+            jTextNGODonorContact.setText("");
+            jTextNGODonorAdress.setText("");
+        }else{
+            JOptionPane.showMessageDialog(this, "Error in registoring patient ");
+            
+        }
     }//GEN-LAST:event_jButtonDonorRegistrationActionPerformed
 
 
