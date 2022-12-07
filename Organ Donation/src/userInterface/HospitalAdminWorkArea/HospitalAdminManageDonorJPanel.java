@@ -25,7 +25,7 @@ public class HospitalAdminManageDonorJPanel extends javax.swing.JPanel {
         initComponents();
         this.emp=e;
         int adminId=emp.getId();
-        populateTable(dbCon.fetchAdminDonorRevicerList(adminId,"Donor"));
+        //populateTable(dbCon.fetchAdminDonorRevicerList(adminId,"Donor"));
     }
 
     /**
@@ -195,8 +195,7 @@ public class HospitalAdminManageDonorJPanel extends javax.swing.JPanel {
             row[0]=pv.getId();
             row[1]=pv.getName();
             row[2]=pv.getAge();
-            row[3]=pv.getDate();
-            row[4]=pv.getOrgan();
+            
             
             model.addRow(row);
         }
