@@ -4,6 +4,7 @@
  */
 package userInterface.HospitalAdminWorkArea;
 
+import userInterface.DoctorRole.DoctorManagePatientsJPanel;
 import Business.Employee.Employee;
 
 /**
@@ -63,6 +64,11 @@ public class HospitalAdminWorkAreaJFrame extends javax.swing.JFrame {
 
         jButton5.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         jButton5.setText("MANAGE RECEIVERS");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("LOGOUT");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -143,13 +149,20 @@ public class HospitalAdminWorkAreaJFrame extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        HospitalAdminManageDonorJPanel dmpJP = new HospitalAdminManageDonorJPanel(emp);
+        hospitalAdminSplitPane.setRightComponent(dmpJP);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        HospitalAdminManageReceiverJPanel reci=new HospitalAdminManageReceiverJPanel(emp);
+        hospitalAdminSplitPane.setRightComponent(reci);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments

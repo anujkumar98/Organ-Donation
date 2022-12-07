@@ -125,7 +125,7 @@ public class PathoManagePatientsJPanel extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addComponent(jButtonViewPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                         .addComponent(jButtonSavePatients, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,9 +138,9 @@ public class PathoManagePatientsJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextNamePatient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -151,12 +151,10 @@ public class PathoManagePatientsJPanel extends javax.swing.JPanel {
                                 .addComponent(jTextPatientType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel11)
                                 .addComponent(jTextPatientTissueType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(jTextPatientBloodType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel10)
+                        .addComponent(jTextPatientBloodType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSavePatients, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonUpdateStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -167,11 +165,11 @@ public class PathoManagePatientsJPanel extends javax.swing.JPanel {
 
     private void jButtonViewPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViewPatientActionPerformed
         // TODO add your handling code here:
-        int selsctedIndex=jTableManagePateints.getSelectedRow();
-        if (selsctedIndex != -1){
+        int selectedIndex=jTableManagePateints.getSelectedRow();
+        if (selectedIndex != -1){
             rowSelected=true;
-            jTextNamePatient.setText(jTableManagePateints.getValueAt(selsctedIndex, 1).toString());
-            jTextPatientType.setText(jTableManagePateints.getValueAt(selsctedIndex, 2).toString()); 
+            jTextNamePatient.setText(jTableManagePateints.getValueAt(selectedIndex, 1).toString());
+            jTextPatientType.setText(jTableManagePateints.getValueAt(selectedIndex, 2).toString()); 
             
         }
         else{
@@ -183,41 +181,29 @@ public class PathoManagePatientsJPanel extends javax.swing.JPanel {
     private void jButtonSavePatientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSavePatientsActionPerformed
         // TODO add your handling code here:
         //Validation 
-//        if (rowSelected){
-//            int selsctedIndex=jTableManagePateints.getSelectedRow();
-//            if (selsctedIndex != -1){
-//            int visitId=Integer.parseInt(jTableManagePateints.getValueAt(selsctedIndex, 0).toString());
-//            jTextNamePatient.setText(jTableManagePateints.getValueAt(selsctedIndex, 1).toString());
-//            jTextPatientType.setText(jTableManagePateints.getValueAt(selsctedIndex, 2).toString());
-//            float weight=Float.parseFloat(jTextPatientWeight.getText());
-//            float height=Float.parseFloat(jTextPatientHeight.getText());
-//            float temp=Float.parseFloat(jTextPatientTemperature.getText());
-//            int pulse=Integer.parseInt(jTextPatientPulse.getText());
-//            int bp=Integer.parseInt(jTextPatientBP.getText());
-//            int respRate=Integer.parseInt(jTextRespirationRate.getText());
-             
-//            Boolean status=dbCon.creatVitals(visitId, weight, height, temp, pulse, bp, respRate);
-//            if (status){
-//                JOptionPane.showMessageDialog(this, "Vitals Created.");
-//                jTextNamePatient.setText("");
-//                jTextPatientType.setText("");
-//                jTextPatientWeight.setText("");
-//                jTextPatientHeight.setText("");
-//                jTextPatientTemperature.setText("");
-//                jTextPatientPulse.setText("");
-//                jTextPatientBP.setText("");
-//                jTextRespirationRate.setText("");
-//                rowSelected=false;
-//                populatePatients(dbCon.fetchPatientsDoctor(doctorId));
-//            }
-//            else{
-//            JOptionPane.showMessageDialog(this, "Error in creating vitals");
-//            }
-//        }
-//        else{
-//            JOptionPane.showMessageDialog(this, "Please select a row to fetch.");
-//        }
-//        }
+        
+        if (rowSelected){
+            int selectedIndex=jTableManagePateints.getSelectedRow();
+            if (selectedIndex != -1){
+            int visitId=Integer.parseInt(jTableManagePateints.getValueAt(selectedIndex, 0).toString());
+            jTextNamePatient.setText(jTableManagePateints.getValueAt(selectedIndex, 1).toString());
+            jTextPatientType.setText(jTableManagePateints.getValueAt(selectedIndex, 2).toString()); 
+            String bloodType=jTextPatientBloodType.getText();
+            String tissueCondition=jTextPatientTissueType.getText();
+            Boolean status= dbCon.createPathoReport(visitId,bloodType,tissueCondition);
+            if(status){
+                JOptionPane.showMessageDialog(this, "Report Created.");
+                jTextNamePatient.setText("");
+                jTextPatientType.setText("");
+                jTextPatientBloodType.setText("");
+                jTextPatientTissueType.setText("");
+                populatePatients(dbCon.fetchPatientsPatho(pathoId)); 
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Error in creating vitals");
+            }
+        }
+        }
     }//GEN-LAST:event_jButtonSavePatientsActionPerformed
 
 

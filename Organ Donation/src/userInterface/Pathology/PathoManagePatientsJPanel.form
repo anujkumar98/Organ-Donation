@@ -85,7 +85,7 @@
                       <Component id="jTextPatientBloodType" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="99" max="32767" attributes="0"/>
+              <EmptySpace pref="91" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButtonSavePatients" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                   <Component id="jButtonUpdateStatus" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>

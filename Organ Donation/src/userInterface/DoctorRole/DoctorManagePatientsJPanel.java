@@ -33,7 +33,7 @@ public class DoctorManagePatientsJPanel extends javax.swing.JPanel {
         this.emp=e;
         this.doctorId=emp.getId();
         dbCon=new DatabaseHandleHospitalRoles();
-        System.out.println("Doctor Id" + doctorId);
+//        System.out.println("Doctor Id" + doctorId);
         populatePatients(dbCon.fetchPatientsDoctor(doctorId)); 
         jTextNamePatient.setEditable(false);
         jTextPatientType.setEditable(false);
@@ -134,6 +134,11 @@ public class DoctorManagePatientsJPanel extends javax.swing.JPanel {
         jLabel13.setText("HEIGHT");
 
         jButtonUpdateStatus.setText("UPDATE STATUS");
+        jButtonUpdateStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUpdateStatusActionPerformed(evt);
+            }
+        });
 
         jLabel9.setText("ELIGIBILITY STATUS");
 
@@ -351,11 +356,42 @@ public class DoctorManagePatientsJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Error in creating vitals");
             }
         }
+        
+        }else{
+            JOptionPane.showMessageDialog(this, "Please select a row to fetch.");
+        }
+    }//GEN-LAST:event_jButtonSavePatientsActionPerformed
+
+    private void jButtonUpdateStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateStatusActionPerformed
+        // TODO add your handling code here:
+        if (rowSelected){
+            int selectedIndex=jTableManagePateints.getSelectedRow();
+            if (selectedIndex != -1){
+            int visitId=Integer.parseInt(jTableManagePateints.getValueAt(selectedIndex, 0).toString());
+            jTextNamePatient.setText(jTableManagePateints.getValueAt(selectedIndex, 1).toString());
+            jTextPatientType.setText(jTableManagePateints.getValueAt(selectedIndex, 2).toString());
+            String type=jTableManagePateints.getValueAt(selectedIndex, 2).toString();
+            int organStatus=0;
+            String approval=jComboPatientStatus.getSelectedItem().toString();
+            if (approval.equalsIgnoreCase("Yes")){
+                organStatus=1;  
+            }
+                Boolean status = dbCon.updateDoctorApproval(visitId,organStatus,type,doctorId);
+                if (status){
+                    JOptionPane.showMessageDialog(this, "Patient added to the list and sent for admin approval.");
+                     jTextNamePatient.setText("");
+                    jTextPatientType.setText("");
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Error in approval");
+                }
+            }
+        }
         else{
             JOptionPane.showMessageDialog(this, "Please select a row to fetch.");
         }
-        }
-    }//GEN-LAST:event_jButtonSavePatientsActionPerformed
+            
+    }//GEN-LAST:event_jButtonUpdateStatusActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
