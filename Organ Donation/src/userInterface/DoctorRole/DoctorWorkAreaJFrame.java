@@ -137,8 +137,8 @@ public class DoctorWorkAreaJFrame extends javax.swing.JFrame {
 
     private void jButtonDoctorManagePatientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDoctorManagePatientsActionPerformed
         // TODO add your handling code here:
-        
-        
+        DoctorManagePatientsJPanel jp=new DoctorManagePatientsJPanel(emp);
+        DoctorWorkAreaSplitPane.setRightComponent(jp);
     }//GEN-LAST:event_jButtonDoctorManagePatientsActionPerformed
 
     private void jButtonDoctorProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDoctorProfileActionPerformed

@@ -10,6 +10,7 @@ import DatabaseUtility.DatabaseHandelLogin;
 import javax.swing.JOptionPane;
 import userInterface.DoctorRole.DoctorWorkAreaJFrame;
 import userInterface.HospitalAdminWorkArea.HospitalAdminWorkAreaJFrame;
+import userInterface.NGO.NGOAdminWorkArea;
 import userInterface.Pathology.PathologyWorkArea;
 import userInterface.RecepitionistRole.RecepitionistWorkAreaJFrame;
 
@@ -34,7 +35,7 @@ public class LoginJPanel extends javax.swing.JFrame {
         jComboBoxRoles.addItem("DOCTOR");
         jComboBoxRoles.addItem("RECEPTIONIST");
         jComboBoxRoles.addItem("PATHOLOGIST");
-        
+        jComboBoxRoles.addItem("NGO ADMIN");
     }
 
     /**
@@ -187,6 +188,16 @@ public class LoginJPanel extends javax.swing.JFrame {
                 emp=dblogin.loginUser(username,password,"HOSPITAL_PATHOLOGIST","HOSPITAL");
                 if (emp != null){
                    PathologyWorkArea JFrame = new PathologyWorkArea(emp);
+                   JFrame.setVisible(true);  
+                }
+                else{
+                 JOptionPane.showMessageDialog(this, "Please check the username, password and role. ");
+                }
+                break;
+            case "NGO ADMIN":
+                emp=dblogin.loginUser(username,password,"NGO_ADMIN","NGO");
+                if (emp != null){
+                   NGOAdminWorkArea JFrame = new NGOAdminWorkArea(emp);
                    JFrame.setVisible(true);  
                 }
                 else{
