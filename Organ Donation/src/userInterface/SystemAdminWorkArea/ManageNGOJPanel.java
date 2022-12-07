@@ -496,6 +496,13 @@ public class ManageNGOJPanel extends javax.swing.JPanel {
                     jComboBoxCity.setEnabled(true);
                     jComboBoxRegion.setEnabled(true);
                     jComboBoxState.setEnabled(true);
+                    jLabel5.setVisible(false);
+                    jLabel6.setVisible(false);
+                    jLabel7.setVisible(false);
+                    jButtonNGOAdminCreate.setVisible(false);
+                    jTextNGOAdminName.setVisible(false);
+                    jTextNGOAdminUsername.setVisible(false);
+                    jTextNGOAdminPassword.setVisible(false);
                 }
                 else{
                     JOptionPane.showMessageDialog(this, "Error in creating admin");
