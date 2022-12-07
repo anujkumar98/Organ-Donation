@@ -85,11 +85,11 @@ public class HospitalAdminWorkAreaJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonCreateRolesAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(51, 51, 51)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -102,9 +102,9 @@ public class HospitalAdminWorkAreaJFrame extends javax.swing.JFrame {
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 210, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addContainerGap(207, Short.MAX_VALUE))
+                .addGap(57, 57, 57))
         );
 
         hospitalAdminSplitPane.setLeftComponent(jPanel1);
@@ -149,8 +149,7 @@ public class HospitalAdminWorkAreaJFrame extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        HospitalAdminManageDonorJPanel dmpJP = new HospitalAdminManageDonorJPanel(emp);
-        hospitalAdminSplitPane.setRightComponent(dmpJP);
+       
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -160,8 +159,9 @@ public class HospitalAdminWorkAreaJFrame extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        HospitalAdminManageReceiverJPanel reci=new HospitalAdminManageReceiverJPanel(emp);
-        hospitalAdminSplitPane.setRightComponent(reci);
+           AdminManageReceiverList crm = new AdminManageReceiverList();
+        hospitalAdminSplitPane.setRightComponent(crm);
+       
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
