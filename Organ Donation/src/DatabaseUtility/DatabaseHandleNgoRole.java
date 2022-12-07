@@ -69,7 +69,7 @@ public class DatabaseHandleNgoRole {
         }
     return status;
     }
-public ArrayList <Employee> fetchAdminDonorRevicerList(int adminId, String type){
+public ArrayList <Employee> fetchAdminDonorRevicerList(int adminId){
 ArrayList <Employee> donorList= new ArrayList();
 EmployeeDirectory pvd=new EmployeeDirectory();
 int ngoId=0;
