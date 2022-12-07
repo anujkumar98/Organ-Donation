@@ -24,6 +24,26 @@ public class PatientVisit {
     String bloodType;
     String tissueCondition;
     String address;
+    String date;
+    String organ;
+
+    public String getOrgan() {
+        return organ;
+    }
+
+    public void setOrgan(String organ) {
+        this.organ = organ;
+    }
+    
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+    
 
     public String getAddress() {
         return address;
