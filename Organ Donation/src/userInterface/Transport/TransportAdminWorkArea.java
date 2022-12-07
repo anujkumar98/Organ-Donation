@@ -4,7 +4,7 @@
  */
 package userInterface.Transport;
 
-import userInterface.NgoAdmin.*;
+
 import userInterface.SystemAdminWorkArea.*;
 
 /**

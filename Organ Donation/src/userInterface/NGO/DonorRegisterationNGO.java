@@ -6,7 +6,6 @@ package userInterface.NGO;
 
 import userInterface.Pathology.*;
 import userInterface.Transport.*;
-import userInterface.NgoAdmin.*;
 import userInterface.RecepitionistRole.*;
 
 /**
