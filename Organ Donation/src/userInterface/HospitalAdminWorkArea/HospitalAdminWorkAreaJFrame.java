@@ -4,6 +4,9 @@
  */
 package userInterface.HospitalAdminWorkArea;
 
+import userInterface.DoctorRole.DoctorManagePatientsJPanel;
+import Business.Employee.Employee;
+
 /**
  *
  * @author Lenovo
@@ -13,8 +16,11 @@ public class HospitalAdminWorkAreaJFrame extends javax.swing.JFrame {
     /**
      * Creates new form HospitalAdminWorkAreaJFrame
      */
-    public HospitalAdminWorkAreaJFrame() {
+    private static Employee emp;
+    public HospitalAdminWorkAreaJFrame(Employee e) {
         initComponents();
+        this.emp=e;
+        //System.out.println(emp.getId());
     }
 
     /**
@@ -28,9 +34,10 @@ public class HospitalAdminWorkAreaJFrame extends javax.swing.JFrame {
 
         hospitalAdminSplitPane = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
+        jButtonCreateRolesAdmin = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -39,11 +46,11 @@ public class HospitalAdminWorkAreaJFrame extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(196, 6, 44));
 
-        jButton3.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
-        jButton3.setText("CREATE ROLES");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCreateRolesAdmin.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
+        jButtonCreateRolesAdmin.setText("CREATE ROLES");
+        jButtonCreateRolesAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonCreateRolesAdminActionPerformed(evt);
             }
         });
 
@@ -57,6 +64,18 @@ public class HospitalAdminWorkAreaJFrame extends javax.swing.JFrame {
 
         jButton5.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         jButton5.setText("MANAGE RECEIVERS");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("LOGOUT");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -66,20 +85,26 @@ public class HospitalAdminWorkAreaJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                    .addComponent(jButtonCreateRolesAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(139, 139, 139)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonCreateRolesAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(60, 60, 60)
+                .addComponent(jButton1)
+                .addContainerGap(207, Short.MAX_VALUE))
         );
 
         hospitalAdminSplitPane.setLeftComponent(jPanel1);
@@ -113,18 +138,31 @@ public class HospitalAdminWorkAreaJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButtonCreateRolesAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateRolesAdminActionPerformed
         // TODO add your handling code here:
         
-        CreateRolesHospitalJPanel crm = new CreateRolesHospitalJPanel();
+        CreateRolesHospitalJPanel crm = new CreateRolesHospitalJPanel(emp);
         hospitalAdminSplitPane.setRightComponent(crm);
         
         
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButtonCreateRolesAdminActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        HospitalAdminManageDonorJPanel dmpJP = new HospitalAdminManageDonorJPanel(emp);
+        hospitalAdminSplitPane.setRightComponent(dmpJP);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        HospitalAdminManageReceiverJPanel reci=new HospitalAdminManageReceiverJPanel(emp);
+        hospitalAdminSplitPane.setRightComponent(reci);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,16 +194,17 @@ public class HospitalAdminWorkAreaJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HospitalAdminWorkAreaJFrame().setVisible(true);
+                new HospitalAdminWorkAreaJFrame(emp).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSplitPane hospitalAdminSplitPane;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButtonCreateRolesAdmin;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables

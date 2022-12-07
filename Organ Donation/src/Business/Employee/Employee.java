@@ -15,14 +15,42 @@ public class Employee {
     private String username;
     private String password;
     private int id;
-    private int contactNumber;
-    private Date dateOfBirth;
+    private String contactNumber;
+    private String email;
     private String gender;
     private String city;
     private String state;
     private String specialization;
     private String address;
+    private int age;
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
     private String enterprise;
+    private String role;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+    
+    
 
     public String getEnterprise() {
         return enterprise;
@@ -43,6 +71,10 @@ public class Employee {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -52,21 +84,15 @@ public class Employee {
         return name;
     }
 
-    public int getContactNumber() {
+    public String getContactNumber() {
         return contactNumber;
     }
 
-    public void setContactNumber(int contactNumber) {
+    public void setContactNumber(String contactNumber) {
         this.contactNumber = contactNumber;
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
+   
 
     public String getGender() {
         return gender;

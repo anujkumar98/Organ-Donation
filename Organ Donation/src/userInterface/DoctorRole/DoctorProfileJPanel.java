@@ -4,6 +4,9 @@
  */
 package userInterface.DoctorRole;
 
+import Business.Employee.Employee;
+import DatabaseUtility.DatabaseHandleHospitalRoles;
+import javax.swing.JOptionPane;
 import userInterface.HospitalAdminWorkArea.*;
 
 /**
@@ -15,10 +18,26 @@ public class DoctorProfileJPanel extends javax.swing.JPanel {
     /**
      * Creates new form DoctorProfileJPanel
      */
-    public DoctorProfileJPanel() {
+    Employee emp;
+    DatabaseHandleHospitalRoles dbo;
+    int id;
+    public DoctorProfileJPanel(Employee e) {
         initComponents();
+        dbo=new DatabaseHandleHospitalRoles();
+        this.emp=e;
+        this.id=e.getId();
+        populateTextBox(emp);
+        jTextUsername.setEditable(false);
     }
-
+    void populateTextBox(Employee emp){
+        jTextFirstNameDoctor.setText(emp.getName() == null ? "" : emp.getName());
+        jTextUsername.setText(emp.getUsername() == null ? "" : emp.getUsername());
+        jTextEmailDoctor.setText(emp.getEmail() == null ? "" : emp.getEmail());
+        jTextAgeDoctor.setText(emp.getAge() == 0 ? "" : Integer.toString(emp.getAge()));
+        jTextContactDoctor.setText(emp.getContactNumber() == null ? "" : emp.getContactNumber());
+        System.out.println(emp.getAddress());
+        jTextAdressDoctor.setText(emp.getAddress() == null ? "" : emp.getAddress());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,7 +58,7 @@ public class DoctorProfileJPanel extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jTextFirstNameDoctor = new javax.swing.JTextField();
-        jTextLastNameDoctor = new javax.swing.JTextField();
+        jTextUsername = new javax.swing.JTextField();
         jTextEmailDoctor = new javax.swing.JTextField();
         jTextAgeDoctor = new javax.swing.JTextField();
         jTextContactDoctor = new javax.swing.JTextField();
@@ -76,7 +95,7 @@ public class DoctorProfileJPanel extends javax.swing.JPanel {
         jLabel2.setText("FIRST NAME:");
 
         jLabel3.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
-        jLabel3.setText("LAST NAME:");
+        jLabel3.setText("USERNAME");
 
         jLabel4.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         jLabel4.setText("EMAIL");
@@ -98,7 +117,11 @@ public class DoctorProfileJPanel extends javax.swing.JPanel {
         jButtonUpdateProfile.setBackground(new java.awt.Color(255, 51, 51));
         jButtonUpdateProfile.setFont(new java.awt.Font("Microsoft YaHei", 1, 18)); // NOI18N
         jButtonUpdateProfile.setText("UPDATE PROFILE");
-        jButtonUpdateProfile.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 51, 102), 1, true));
+        jButtonUpdateProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUpdateProfileActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -112,7 +135,7 @@ public class DoctorProfileJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(307, 307, 307)
+                                .addGap(294, 294, 294)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3)
@@ -128,7 +151,7 @@ public class DoctorProfileJPanel extends javax.swing.JPanel {
                         .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonUpdateProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextLastNameDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFirstNameDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextAgeDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextEmailDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -154,7 +177,7 @@ public class DoctorProfileJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jTextLastNameDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
@@ -189,6 +212,37 @@ public class DoctorProfileJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonUpdateProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateProfileActionPerformed
+        // TODO add your handling code here:
+        //Validation
+        String name=jTextFirstNameDoctor.getText();
+        String email=jTextEmailDoctor.getText();
+        int age=Integer.parseInt(jTextAgeDoctor.getText());
+        String contact=jTextContactDoctor.getText();
+        String address =jTextAdressDoctor.getText();
+        String gender=jComboDoctorGender.getSelectedItem().toString();
+        /*
+        
+        //Import image library
+        
+        */
+        //Validation
+        
+        Boolean status=dbo.updateProfile(name,email,contact,age,address,gender,"HOSPITAL_DOCTOR",id);
+        if (status){
+            emp.setName(name);
+            emp.setEmail(email);
+            emp.setAge(age);
+            emp.setGender(gender);
+            emp.setContactNumber(contact);
+            emp.setAddress(address);
+            populateTextBox(emp);
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Error in updating profile. Please check the inputs.");
+        }
+    }//GEN-LAST:event_jButtonUpdateProfileActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonUpdateProfile;
@@ -208,6 +262,6 @@ public class DoctorProfileJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField jTextContactDoctor;
     private javax.swing.JTextField jTextEmailDoctor;
     private javax.swing.JTextField jTextFirstNameDoctor;
-    private javax.swing.JTextField jTextLastNameDoctor;
+    private javax.swing.JTextField jTextUsername;
     // End of variables declaration//GEN-END:variables
 }

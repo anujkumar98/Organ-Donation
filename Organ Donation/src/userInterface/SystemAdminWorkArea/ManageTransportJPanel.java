@@ -254,12 +254,17 @@ public class ManageTransportJPanel extends javax.swing.JPanel {
         String region=jTextFieldRegion.getText();
         String state=jTextFieldState.getText();
         
-        dbCon.createEnterprise(name, city, state, region,"TRANSPORT");
-        populateTable(dbCon.fetchTransport());
-        jTextFieldName.setText("");
-        jTextFieldCity.setText("");
-        jTextFieldRegion.setText("");
-        jTextFieldState.setText("");
+        Boolean status =dbCon.createEnterprise(name, city, state, region,"TRANSPORT");
+        if (status){
+            populateTable(dbCon.fetchTransport());
+            jTextFieldName.setText("");
+            jTextFieldCity.setText("");
+            jTextFieldRegion.setText("");
+            jTextFieldState.setText("");
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Error in creating transport");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -297,16 +302,21 @@ public class ManageTransportJPanel extends javax.swing.JPanel {
             String city=jTextFieldCity.getText();
             String region=jTextFieldRegion.getText();
             String state=jTextFieldState.getText();
-            dbCon.updateEnterprise(fetchId,name, city, state, region,"TRANSPORT");
-            populateTable(dbCon.fetchTransport());
-            JOptionPane.showMessageDialog(this, "Record Updated");
-            jTextFieldName.setText("");
-            jTextFieldCity.setText("");
-            jTextFieldRegion.setText("");
-            jTextFieldState.setText("");
-            this.update=false;
-            this.fetchId=-1;
-            return;
+            Boolean status=dbCon.updateEnterprise(fetchId,name, city, state, region,"TRANSPORT");
+            if (status){
+              populateTable(dbCon.fetchTransport());
+                JOptionPane.showMessageDialog(this, "Record Updated");
+                jTextFieldName.setText("");
+                jTextFieldCity.setText("");
+                jTextFieldRegion.setText("");
+                jTextFieldState.setText("");
+                this.update=false;
+                this.fetchId=-1;
+                return;  
+            }
+            else{
+            JOptionPane.showMessageDialog(this, "Error in update. Check the inputs.");
+            }
         }
         JOptionPane.showMessageDialog(this, "Please fetch a row to update");
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -323,6 +333,11 @@ public class ManageTransportJPanel extends javax.swing.JPanel {
             row[2]=t.getRegion();
             row[3]=t.getCity();
             row[4]=t.getState();
+            if (t.getAdminName() == null){
+                row[5]="No Admin";
+            }else{
+            row[5]=t.getAdminName();
+            }
             model.addRow(row);
         }
     }

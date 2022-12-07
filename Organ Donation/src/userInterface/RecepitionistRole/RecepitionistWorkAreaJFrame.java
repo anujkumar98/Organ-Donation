@@ -4,6 +4,8 @@
  */
 package userInterface.RecepitionistRole;
 
+import Business.Employee.Employee;
+
 /**
  *
  * @author Lenovo
@@ -13,8 +15,10 @@ public class RecepitionistWorkAreaJFrame extends javax.swing.JFrame {
     /**
      * Creates new form RecepitionistWorkAreaJFrame
      */
-    public RecepitionistWorkAreaJFrame() {
+    public static Employee emp;
+    public RecepitionistWorkAreaJFrame(Employee e) {
         initComponents();
+        this.emp=e;
     }
 
     /**
@@ -54,11 +58,21 @@ public class RecepitionistWorkAreaJFrame extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("CREATE PATIENT");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(0, 0, 0));
         jButton3.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("APPOINT DOCTORS");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -123,6 +137,18 @@ public class RecepitionistWorkAreaJFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        CreatePatientsJPanel rwaJP = new CreatePatientsJPanel(emp);
+        jSplitReceptionistWorkArea.setRightComponent(rwaJP);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        AppointDoctorsJPanel aDocJP = new AppointDoctorsJPanel(emp);
+        jSplitReceptionistWorkArea.setRightComponent(aDocJP);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -153,7 +179,7 @@ public class RecepitionistWorkAreaJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RecepitionistWorkAreaJFrame().setVisible(true);
+                new RecepitionistWorkAreaJFrame(emp).setVisible(true);
             }
         });
     }

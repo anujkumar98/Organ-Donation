@@ -18,6 +18,17 @@ public class Enterprise extends Network{
     private long contact;
     private String email;
     private int zipcode;
+    private String adminName;
+
+    public String getAdminName() {
+        return adminName;
+    }
+
+    public void setAdminName(String adminName) {
+        this.adminName = adminName;
+    }
+
+    
     
     public int getId() {
         return id;

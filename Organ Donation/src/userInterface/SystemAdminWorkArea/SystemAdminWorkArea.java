@@ -33,11 +33,12 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
         ManageTransportJButton = new javax.swing.JButton();
         ManageNGOJButton = new javax.swing.JButton();
         ManageTransportJButton1 = new javax.swing.JButton();
+        jButtonNetwork = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        ManageHospitalJButton.setBackground(new java.awt.Color(255, 0, 51));
+        ManageHospitalJButton.setBackground(new java.awt.Color(0, 0, 0));
         ManageHospitalJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ManageHospitalJButton.setForeground(new java.awt.Color(255, 255, 255));
         ManageHospitalJButton.setText("MANAGE HOSPITAL");
@@ -47,7 +48,7 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
             }
         });
 
-        ManageOPOJButton.setBackground(new java.awt.Color(255, 0, 51));
+        ManageOPOJButton.setBackground(new java.awt.Color(0, 0, 0));
         ManageOPOJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ManageOPOJButton.setForeground(new java.awt.Color(255, 255, 255));
         ManageOPOJButton.setText("MANAGE OPO");
@@ -57,7 +58,7 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
             }
         });
 
-        ManageTransportJButton.setBackground(new java.awt.Color(255, 0, 51));
+        ManageTransportJButton.setBackground(new java.awt.Color(0, 0, 0));
         ManageTransportJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ManageTransportJButton.setForeground(new java.awt.Color(255, 255, 255));
         ManageTransportJButton.setText("MANAGE TRANSPORT");
@@ -67,7 +68,7 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
             }
         });
 
-        ManageNGOJButton.setBackground(new java.awt.Color(255, 0, 51));
+        ManageNGOJButton.setBackground(new java.awt.Color(0, 0, 0));
         ManageNGOJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ManageNGOJButton.setForeground(new java.awt.Color(255, 255, 255));
         ManageNGOJButton.setText("MANAGE NGO");
@@ -77,7 +78,7 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
             }
         });
 
-        ManageTransportJButton1.setBackground(new java.awt.Color(255, 0, 51));
+        ManageTransportJButton1.setBackground(new java.awt.Color(0, 0, 0));
         ManageTransportJButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ManageTransportJButton1.setForeground(new java.awt.Color(255, 255, 255));
         ManageTransportJButton1.setText("LOGOUT");
@@ -87,13 +88,22 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
             }
         });
 
+        jButtonNetwork.setText("Network");
+        jButtonNetwork.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNetworkActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ManageTransportJButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ManageTransportJButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                    .addComponent(jButtonNetwork, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -109,7 +119,9 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(511, Short.MAX_VALUE)
+                .addGap(83, 83, 83)
+                .addComponent(jButtonNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 373, Short.MAX_VALUE)
                 .addComponent(ManageTransportJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(71, 71, 71))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,9 +192,15 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
 
     private void ManageTransportJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageTransportJButton1ActionPerformed
         // TODO add your handling code here:
-        
+        dispose();
         
     }//GEN-LAST:event_ManageTransportJButton1ActionPerformed
+
+    private void jButtonNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNetworkActionPerformed
+        // TODO add your handling code here:
+        CreateNetworkJPanel createNetwork=new CreateNetworkJPanel();
+        jSplitPaneAdmin.setRightComponent(createNetwork);
+    }//GEN-LAST:event_jButtonNetworkActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,6 +244,7 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
     private javax.swing.JButton ManageOPOJButton;
     private javax.swing.JButton ManageTransportJButton;
     private javax.swing.JButton ManageTransportJButton1;
+    private javax.swing.JButton jButtonNetwork;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPaneAdmin;

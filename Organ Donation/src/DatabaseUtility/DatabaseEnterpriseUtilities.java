@@ -11,6 +11,8 @@ import Business.Enterprise.OpoDirectory;
 import Business.Enterprise.OpoEnterprise;
 import Business.Enterprise.TransportDirectory;
 import Business.Enterprise.TransportEnterprise;
+import Business.Network.Network;
+import Business.Network.NetworkDirectory;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -26,11 +28,11 @@ import java.util.logging.Logger;
  */
 public class DatabaseEnterpriseUtilities {
     public static Connection createConnection(){
-        
+//        jdbc:mysql://localhost:3306/organdonation?zeroDateTimeBehavior=CONVERT_TO_NULL [root on Default schema]
         Connection con=null;
-        final String DB_URL ="jdbc:mysql://localhost:3306/OrganDonation";
+        final String DB_URL ="jdbc:mysql://localhost:3306/organdonation";
         final String DB_USER = "root";
-        final String DB_PASSWD = "anujkumar";
+        final String DB_PASSWD = "root";
         try { 
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
@@ -40,18 +42,52 @@ public class DatabaseEnterpriseUtilities {
          {
             
             con=DriverManager.getConnection(DB_URL,DB_USER,DB_PASSWD);
-            System.out.println("Connection Successful");
+            //System.out.println("Connection Successful");
          }
         catch (Exception e){
             System.out.println(e);
             }
         return con;
     }
-    public static void main(String args[]){
-  
+    
+public Boolean createNetwork(String cityName, String stateName, String regionName){
+    Boolean status=false;
+    try{
+        Connection con=createConnection();
+        Statement statement=con.createStatement();
+        String query="INSERT INTO `OrganDonation`.`NETWORK` (`NETWORK_CITY`, `NETWORK_STATE`,"
+                + " `NETWORK_REGION`) VALUES ('"+cityName+"', '"+stateName+"', '"+regionName+"')";
+        statement.executeUpdate(query);
+        status=true;
+    }
+    catch(Exception e){
+        System.out.println(e);
+    }
+    return status;
 }
 
-public void createEnterprise(String name,String city,String state,String region,String enterprise){
+public NetworkDirectory fetchNetwork(){
+    NetworkDirectory nd=new NetworkDirectory();
+    try{
+        Connection con=createConnection();
+        Statement statement=con.createStatement();
+        String query="SELECT * FROM `OrganDonation`.`NETWORK`;";
+        ResultSet resultSet=statement.executeQuery(query);
+        while(resultSet.next()){
+            Network n =new Network();
+            n.setCity(resultSet.getString("NETWORK_CITY"));
+            n.setRegion(resultSet.getString("NETWORK_REGION"));
+            n.setState(resultSet.getString("NETWORK_STATE"));
+            nd.addNetwork(n);
+        }
+    }
+    catch(Exception e){
+        System.out.println("fetchNetwork:"+e);
+    }
+    return nd;
+}
+public Boolean createEnterprise(String name,String city,String state,String region,String enterprise){
+    Boolean status=false;
     try{
     Connection con=createConnection();
     Statement statement=con.createStatement();
@@ -60,14 +96,16 @@ public void createEnterprise(String name,String city,String state,String region,
             + "`"+enterprise.toUpperCase()+"_STATE"+"`, `"+enterprise.toUpperCase()+"_REGION"+"`) "
             + "VALUES ('"+name+"', '"+city+"', '"+state+"', '"+region+"')";
     statement.executeUpdate(query);
-
+    status=true;
     }
     catch(Exception e){
         System.out.println(e);
     }
+    return status;
 }
 
-public void updateEnterprise(int id,String name,String city,String state,String region,String enterprise){
+public Boolean updateEnterprise(int id,String name,String city,String state,String region,String enterprise){
+    Boolean status=false;
     try{
     Connection con=createConnection();
     Statement statement=con.createStatement();
@@ -75,13 +113,14 @@ public void updateEnterprise(int id,String name,String city,String state,String 
             + "`"+enterprise.toUpperCase()+"_NAME` = '"+name+"', `"+enterprise.toUpperCase()+"_CITY` = '"+city+"', "
             + "`"+enterprise.toUpperCase()+"_STATE` = '"+state+"', `"+enterprise.toUpperCase()+"_REGION` = '"+region+"' WHERE (`"+
             enterprise.toUpperCase()+"_ID` = '"+Integer.toString(id)+"');";
-    System.out.println(query);
+    //System.out.println(query);
     statement.executeUpdate(query);
-    
+    status = true;
     }
     catch(Exception e){
         System.out.println(e);
     }
+    return status;
 }
 
 
@@ -91,7 +130,10 @@ public HospitalDirectory fetchHospital(){
     
         Connection con=createConnection();
         Statement statement=con.createStatement();
-        ResultSet resultSet=statement.executeQuery("SELECT * FROM HOSPITAL");
+        ResultSet resultSet=statement.executeQuery("""
+                                                   SELECT * FROM `OrganDonation`.`HOSPITAL` AS HA
+                                                   LEFT JOIN `OrganDonation`.`HOSPITAL_ADMIN` AS H
+                                                   ON HA.HOSPITAL_ID=H.HOSPITAL_ID;""");
         while(resultSet.next()){
             HospitalEnterprise h=new HospitalEnterprise();
             h.setId(resultSet.getInt("HOSPITAL_ID"));
@@ -99,6 +141,7 @@ public HospitalDirectory fetchHospital(){
             h.setCity(resultSet.getString("HOSPITAL_CITY"));
             h.setState(resultSet.getString("HOSPITAL_STATE"));
             h.setRegion(resultSet.getString("HOSPITAL_REGION"));
+            h.setAdminName(resultSet.getString("HOSPITAL_ADMIN_NAME"));
             hd.addHospital(h);
         }
     }
@@ -108,14 +151,53 @@ public HospitalDirectory fetchHospital(){
      return hd;
         
     }
+//Code to check unique username in the table
+public Boolean checkUniqueUserName(String uname,String enterprise){
+    Boolean check=true;
+    try {
+        Connection con = createConnection();
+        Statement statement=con.createStatement();
+        String query="SELECT * FROM `"+enterprise.toUpperCase()+"_ADMIN` ";
+        ResultSet resultSet=statement.executeQuery(query);
+        while(resultSet.next()){
+            String usrName=resultSet.getString(enterprise.toUpperCase()+"_ADMIN_USERNAME");
+            if (usrName.equals(uname))
+                check=false;
+        }
+    }   
+    catch(Exception e){
+        System.out.println(e);
+    }
+    return check;
+}
+public Boolean createEnterpriseAdmin(int hospitalId,String name,String username,String password,String enterprise){
+    Boolean status=false;
+    try{
+    
+        Connection con=createConnection();
+        Statement statement=con.createStatement();
 
+        String query="INSERT INTO `OrganDonation`.`"+enterprise.toUpperCase()+"_ADMIN` "
+            + "( `"+enterprise.toUpperCase()+"_ADMIN_USERNAME"+"`, `"+enterprise.toUpperCase()+"_ADMIN_NAME"+"`, "
+            + "`"+enterprise.toUpperCase()+"_ID"+"`, `"+enterprise.toUpperCase()+"_ADMIN_PASSWORD"+"`) "
+            + "VALUES ('"+username+"', '"+name+"', '"+hospitalId+"', '"+password+"')";
+        statement.executeUpdate(query);
+        status=true;
+    }
+    catch(Exception e){
+        System.out.println(e);
+    }
+    return status;
+}
 public NgoDirectory fetchNGO(){
     NgoDirectory ne=new NgoDirectory();
     try{
     
         Connection con=createConnection();
         Statement statement=con.createStatement();
-        ResultSet resultSet=statement.executeQuery("SELECT * FROM NGO");
+        ResultSet resultSet=statement.executeQuery("SELECT * FROM `OrganDonation`.`NGO` AS N\n" +
+"                                                   LEFT JOIN `OrganDonation`.`NGO_ADMIN` AS NA\n" +
+"                                                   ON N.NGO_ID=NA.NGO_ID;");
         while(resultSet.next()){
             NgoEnterprise n=new NgoEnterprise();
             n.setId(resultSet.getInt("NGO_ID"));
@@ -123,6 +205,7 @@ public NgoDirectory fetchNGO(){
             n.setCity(resultSet.getString("NGO_CITY"));
             n.setState(resultSet.getString("NGO_STATE"));
             n.setRegion(resultSet.getString("NGO_REGION"));
+            n.setAdminName(resultSet.getString("NGO_ADMIN_NAME"));
             ne.addNgo(n);
         }
     }
@@ -139,7 +222,9 @@ public OpoDirectory fetchOpo(){
     
         Connection con=createConnection();
         Statement statement=con.createStatement();
-        ResultSet resultSet=statement.executeQuery("SELECT * FROM OPO");
+        ResultSet resultSet=statement.executeQuery("SELECT * FROM `OrganDonation`.`OPO` AS O\n" +
+"                                                   LEFT JOIN `OrganDonation`.`OPO_ADMIN` AS OA\n" +
+"                                                   ON O.OPO_ID=OA.OPO_ID;");
         while(resultSet.next()){
             OpoEnterprise o=new OpoEnterprise();
             o.setId(resultSet.getInt("OPO_ID"));
@@ -147,6 +232,7 @@ public OpoDirectory fetchOpo(){
             o.setCity(resultSet.getString("OPO_CITY"));
             o.setState(resultSet.getString("OPO_STATE"));
             o.setRegion(resultSet.getString("OPO_REGION"));
+            o.setAdminName(resultSet.getString("OPO_ADMIN_NAME"));
             od.addOpo(o);
         }
     }
@@ -163,7 +249,9 @@ public TransportDirectory fetchTransport(){
     
         Connection con=createConnection();
         Statement statement=con.createStatement();
-        ResultSet resultSet=statement.executeQuery("SELECT * FROM TRANSPORT");
+        ResultSet resultSet=statement.executeQuery("SELECT * FROM `OrganDonation`.`TRANSPORT` AS T\n" +
+"                                                   LEFT JOIN `OrganDonation`.`TRANSPORT_ADMIN` AS TA\n" +
+"                                                   ON T.TRANSPORT_ID=TA.TRANSPORT_ID;");
         while(resultSet.next()){
             TransportEnterprise t=new TransportEnterprise();
             t.setId(resultSet.getInt("TRANSPORT_ID"));
@@ -171,6 +259,7 @@ public TransportDirectory fetchTransport(){
             t.setCity(resultSet.getString("TRANSPORT_CITY"));
             t.setState(resultSet.getString("TRANSPORT_STATE"));
             t.setRegion(resultSet.getString("TRANSPORT_REGION"));
+            t.setAdminName(resultSet.getString("TRANSPORT_ADMIN_NAME"));
             td.addTransport(t);
         }
     }
@@ -181,16 +270,18 @@ public TransportDirectory fetchTransport(){
         
     }
 
- public void deleteEnterprise(int id,String enterprise){
+ public Boolean deleteEnterprise(int id,String enterprise){
+     Boolean status=false;
      try{
         Connection con=createConnection();
         Statement statement=con.createStatement();
         statement.execute("DELETE FROM `"+enterprise.toUpperCase()+"` where "+enterprise.toUpperCase()+"_ID = '"+Integer.toString(id)+"'");
-        
+        status=true;
      }
     catch(Exception e){
         System.out.println(e);
     }
+     return status;
  }
 }
 
