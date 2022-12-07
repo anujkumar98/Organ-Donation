@@ -43,7 +43,15 @@ public class HospitalAdminManageDonorJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextFieldDonorName = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jButtonSaveDonors = new javax.swing.JButton();
         jButtonDonorReportToAdmin = new javax.swing.JButton();
+        jCheckBoxLiverD = new javax.swing.JCheckBox();
+        jCheckBoxPancreasD = new javax.swing.JCheckBox();
+        jCheckBoxHeartD = new javax.swing.JCheckBox();
+        jCheckBoxIntestineD = new javax.swing.JCheckBox();
+        jCheckBoxLungD = new javax.swing.JCheckBox();
+        jCheckBoxKidneyD = new javax.swing.JCheckBox();
 
         jTableDonorDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -62,7 +70,23 @@ public class HospitalAdminManageDonorJPanel extends javax.swing.JPanel {
 
         jLabel1.setText("DONOR NAME");
 
-        jButtonDonorReportToAdmin.setText("Send to OPO");
+        jLabel3.setText("SELECT ORGAN:");
+
+        jButtonSaveDonors.setText("SAVE");
+
+        jButtonDonorReportToAdmin.setText("SEND TO ADMIN");
+
+        jCheckBoxLiverD.setText("LIVER");
+
+        jCheckBoxPancreasD.setText("PANCREAS");
+
+        jCheckBoxHeartD.setText("HEART");
+
+        jCheckBoxIntestineD.setText("INTESTINES");
+
+        jCheckBoxLungD.setText("LUNG");
+
+        jCheckBoxKidneyD.setText("KIDNEY");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -80,15 +104,30 @@ public class HospitalAdminManageDonorJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(102, 102, 102)
-                .addComponent(jTextFieldDonorName, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(323, 323, 323))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(343, 343, 343)
+                .addComponent(jButtonSaveDonors, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(88, 88, 88)
                 .addComponent(jButtonDonorReportToAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(228, 228, 228))
+                .addGap(415, 415, 415))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3))
+                .addGap(88, 88, 88)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldDonorName, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBoxIntestineD)
+                            .addComponent(jCheckBoxLiverD)
+                            .addComponent(jCheckBoxKidneyD))
+                        .addGap(57, 57, 57)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBoxLungD)
+                            .addComponent(jCheckBoxPancreasD)
+                            .addComponent(jCheckBoxHeartD))))
+                .addGap(323, 323, 323))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,9 +146,25 @@ public class HospitalAdminManageDonorJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextFieldDonorName, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(131, 131, 131)
-                .addComponent(jButtonDonorReportToAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(146, 146, 146))
+                .addGap(50, 50, 50)
+                .addComponent(jLabel3)
+                .addGap(1, 1, 1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBoxKidneyD)
+                    .addComponent(jCheckBoxLungD))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBoxIntestineD)
+                    .addComponent(jCheckBoxHeartD))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBoxPancreasD)
+                    .addComponent(jCheckBoxLiverD))
+                .addGap(81, 81, 81)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonSaveDonors, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                    .addComponent(jButtonDonorReportToAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -117,8 +172,16 @@ public class HospitalAdminManageDonorJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDonorInfo;
     private javax.swing.JButton jButtonDonorReportToAdmin;
+    private javax.swing.JButton jButtonSaveDonors;
+    private javax.swing.JCheckBox jCheckBoxHeartD;
+    private javax.swing.JCheckBox jCheckBoxIntestineD;
+    private javax.swing.JCheckBox jCheckBoxKidneyD;
+    private javax.swing.JCheckBox jCheckBoxLiverD;
+    private javax.swing.JCheckBox jCheckBoxLungD;
+    private javax.swing.JCheckBox jCheckBoxPancreasD;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableDonorDetails;
     private javax.swing.JTextField jTextFieldDonorName;
