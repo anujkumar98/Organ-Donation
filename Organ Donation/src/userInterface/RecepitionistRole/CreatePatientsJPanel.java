@@ -216,6 +216,7 @@ public class CreatePatientsJPanel extends javax.swing.JPanel {
             jTextFieldEmail.setText("");
             jTextFieldContact.setText("");
             jTextFieldAddress.setText("");
+            JOptionPane.showMessageDialog(this, "Patient registered.");
         }
         else{
             JOptionPane.showMessageDialog(this, "Error in creating patient. Check input fields");

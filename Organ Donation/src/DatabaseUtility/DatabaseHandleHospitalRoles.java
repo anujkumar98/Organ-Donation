@@ -13,6 +13,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -354,6 +355,7 @@ public ArrayList <PatientVisit> fetchPatientsDoctor(int doctorId){
             pv.setReportId(resultSet.getInt("PATIENTS_VITALS_ID"));
             pv.setReportStatus(resultSet.getString("PATIENTS_REPORT_STATUS"));
             pv.setVitalStatus(resultSet.getString("PATIENTS_VITALS_STATUS"));
+            pv.setDate(resultSet.getString("PATIENTS_VISIT_DATE"));
             patientVisitList=pvd.addPatientsVisits(pv);
         }
     }
@@ -453,14 +455,15 @@ Boolean status=false;
        }
     return status;
 }
-public Boolean updateDoctorApproval(int visitId,int approvalStatus,String patientType,int doctorId){
+public Boolean updateDoctorApproval(int visitId,int approvalStatus,String patientType,int doctorId,String date){
 Boolean status=false;
 int hospitalId=0;
     try{
            Connection con=createConnection();
            Statement statement=con.createStatement();
            String updateStatus="UPDATE `OrganDonation`.`PATIENTS_VISIT` SET "
-                   + "`PATIENTS_VISIT_ORGAN_STATUS` = "+approvalStatus+" WHERE (`PATIENTS_VISIT_ID` = '"+visitId+"');";
+                   + "`PATIENTS_VISIT_ORGAN_STATUS` = "+approvalStatus+" , `PATIENTS_VISIT_DATE` ='"
+                   +date+"' WHERE (`PATIENTS_VISIT_ID` = '"+visitId+"');";
            statement.executeUpdate(updateStatus);
            String queryHospitalId="SELECT HOSPITAL_ID FROM `OrganDonation`.`HOSPITAL_DOCTOR`"
                     + "where HOSPITAL_DOCTOR_ID = "+doctorId+";";
@@ -481,6 +484,102 @@ int hospitalId=0;
        }
     return status;
 }
+public ArrayList <PatientVisit> fetchDoctorDonorRevicerList(int doctorId, String type){
+ArrayList <PatientVisit> patientVisitList= new ArrayList();
+PatientVisitDirectory pvd=new PatientVisitDirectory();
+int hospitalId=0;
+    try{
+           Connection con=createConnection();
+           Statement statement=con.createStatement();
+           String queryHospitalId="SELECT HOSPITAL_ID FROM `OrganDonation`.`HOSPITAL_DOCTOR`"
+                    + "where HOSPITAL_DOCTOR_ID = "+doctorId+";";
+            ResultSet resultSet=statement.executeQuery(queryHospitalId);
+            while(resultSet.next()){
+                hospitalId=Integer.parseInt(resultSet.getString("HOSPITAL_ID"));
+            }
+            String getDonorList="SELECT * FROM ORGAN_DONOR_RECEIVER_LIST AS ODRL "
+                    + "JOIN PATIENTS_VISIT AS PV ON  ODRL.VISIT_ID= PV.PATIENTS_VISIT_ID "
+                    + "JOIN  HOSPITAL_PATIENT AS HP ON PV.HOSPITAL_PATIENT_ID = HP.HOSPITAL_PATIENT_ID WHERE "
+                    + "ODRL.HOSPITAL_ID = "+hospitalId + " AND ODRL.ORGAN_DONOR_RECEIVER_LIST_TYPE= '"+type+"' "
+                    + "AND HOSPITAL_DOCTOR_ID = "+ doctorId;
+            resultSet=statement.executeQuery(getDonorList);
+            while(resultSet.next()){
+            PatientVisit pv=new PatientVisit();
+            pv.setId(resultSet.getInt("ORGAN_DONOR_RECEIVER_LIST_ID"));
+            pv.setPatientId(resultSet.getInt("HOSPITAL_PATIENT_ID"));
+            pv.setName(resultSet.getString("HOSPITAL_PATIENT_NAME"));
+            pv.setAge(resultSet.getInt("HOSPITAL_PATIENT_AGE"));
+            pv.setGender(resultSet.getString("HOSPITAL_PATIENT_GENDER"));
+            pv.setType(resultSet.getString("HOSPITAL_PATIENT_TYPE"));
+            pv.setDoctorId(resultSet.getInt("HOSPITAL_DOCTOR_ID"));
+            pv.setReportId(resultSet.getInt("PATIENTS_REPORT_ID"));
+            pv.setVitalId(resultSet.getInt("PATIENTS_VITALS_ID"));
+            pv.setReportStatus(resultSet.getString("PATIENTS_REPORT_STATUS"));
+            pv.setVitalStatus(resultSet.getString("PATIENTS_VITALS_STATUS"));
+            pv.setDate(resultSet.getString("PATIENTS_VISIT_DATE"));
+            pv.setOrgan(resultSet.getString("ORGAN_DONOR_RECEIVER_LIST_ORGAN_NAME"));
+            patientVisitList=pvd.addPatientsVisits(pv);
+            }
+            
+    }
+    catch(Exception e) {
+           System.out.println("populateAdminDonorList : " +e);
+       }
+    return patientVisitList;
+}
+
+
+public Boolean updateReciverDonorList(int id,String organ){
+    Boolean status=false;
+    int visitId=0;
+    int hospitalId=0;
+    try{
+           Connection con=createConnection();
+           Statement statement=con.createStatement();
+           String creatQuery="UPDATE `OrganDonation`.`ORGAN_DONOR_RECEIVER_LIST` SET "
+                   + "`ORGAN_DONOR_RECEIVER_LIST_ORGAN_NAME` = '"+organ+"'  WHERE (`ORGAN_DONOR_RECEIVER_LIST_ID` = '"+id+"');";
+           statement.executeUpdate(creatQuery);
+           status=true;
+    }
+    catch(Exception e){
+        System.out.println("updateReciverDonorList : " +e);
+
+    }
+    return status;
+}
+
+public Boolean populateReciverDonorList(int id,String organ,String type){
+    Boolean status=false;
+    int visitId=0;
+    int hospitalId=0;
+    try{
+           Connection con=createConnection();
+           Statement statement=con.createStatement();
+           String queryVisitID="SELECT VISIT_ID FROM ORGAN_DONOR_RECEIVER_LIST WHERE ORGAN_DONOR_RECEIVER_LIST_ID = "+id;
+           ResultSet resultSet=statement.executeQuery(queryVisitID);
+           while(resultSet.next()){
+              visitId= resultSet.getInt("VISIT_ID");
+           }
+           String hospitalQuery="SELECT HOSPITAL_ID FROM ORGAN_DONOR_RECEIVER_LIST WHERE ORGAN_DONOR_RECEIVER_LIST_ID = "+id;
+           resultSet=statement.executeQuery(hospitalQuery);
+           while(resultSet.next()){
+              hospitalId= resultSet.getInt("HOSPITAL_ID");
+           }
+           String creatQuery="INSERT INTO `OrganDonation`.`ORGAN_DONOR_RECEIVER_LIST` (`HOSPITAL_ID`, `VISIT_ID`, "
+                   + "`ORGAN_DONOR_RECEIVER_LIST_ORGAN_NAME`, `ORGAN_DONOR_RECEIVER_LIST_TYPE`) VALUES "
+                   + "('"+hospitalId+"', '"+visitId+"',"
+                   + " '"+organ+"', '"+type+"');";
+           System.out.println(creatQuery);
+           statement.executeUpdate(creatQuery);
+           status=true;
+    }
+    catch(Exception e){
+        System.out.println("populateReciverDonorList : " +e);
+
+    }
+    return status;
+}
+
 public ArrayList <PatientVisit> fetchAdminDonorRevicerList(int adminId, String type){
 ArrayList <PatientVisit> patientVisitList= new ArrayList();
 PatientVisitDirectory pvd=new PatientVisitDirectory();
@@ -500,26 +599,27 @@ int hospitalId=0;
                     + "ODRL.HOSPITAL_ID = "+hospitalId + " AND ODRL.ORGAN_DONOR_RECEIVER_LIST_TYPE= '"+type+"'";
             resultSet=statement.executeQuery(getDonorList);
             while(resultSet.next()){
-                PatientVisit pv=new PatientVisit();
+            PatientVisit pv=new PatientVisit();
+            pv.setId(resultSet.getInt("ORGAN_DONOR_RECEIVER_LIST_ID"));
             pv.setPatientId(resultSet.getInt("HOSPITAL_PATIENT_ID"));
             pv.setName(resultSet.getString("HOSPITAL_PATIENT_NAME"));
             pv.setAge(resultSet.getInt("HOSPITAL_PATIENT_AGE"));
             pv.setGender(resultSet.getString("HOSPITAL_PATIENT_GENDER"));
             pv.setType(resultSet.getString("HOSPITAL_PATIENT_TYPE"));
-            pv.setId(resultSet.getInt("PATIENTS_VISIT_ID"));
             pv.setDoctorId(resultSet.getInt("HOSPITAL_DOCTOR_ID"));
             pv.setReportId(resultSet.getInt("PATIENTS_REPORT_ID"));
-            pv.setReportId(resultSet.getInt("PATIENTS_VITALS_ID"));
+            pv.setVitalId(resultSet.getInt("PATIENTS_VITALS_ID"));
             pv.setReportStatus(resultSet.getString("PATIENTS_REPORT_STATUS"));
             pv.setVitalStatus(resultSet.getString("PATIENTS_VITALS_STATUS"));
+            pv.setDate(resultSet.getString("PATIENTS_VISIT_DATE"));
+            pv.setOrgan(resultSet.getString("ORGAN_DONOR_RECEIVER_LIST_ORGAN_NAME"));
             patientVisitList=pvd.addPatientsVisits(pv);
             }
             
     }
     catch(Exception e) {
-           System.out.println("populateAdminDonorList : " +e);
+           System.out.println("fetchAdminDonorRevicerList : " +e);
        }
     return patientVisitList;
 }
-
 }

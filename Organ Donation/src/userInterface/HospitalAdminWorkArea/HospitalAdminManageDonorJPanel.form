@@ -32,36 +32,16 @@
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="343" max="-2" attributes="0"/>
-              <Component id="jButtonSaveDonors" min="-2" pref="166" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
-              <Component id="jButtonDonorReportToAdmin" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="415" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jTextFieldDonorName" min="-2" pref="309" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jCheckBoxIntestineD" min="-2" max="-2" attributes="0"/>
-                          <Component id="jCheckBoxLiverD" min="-2" max="-2" attributes="0"/>
-                          <Component id="jCheckBoxKidneyD" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jCheckBoxLungD" min="-2" max="-2" attributes="0"/>
-                          <Component id="jCheckBoxPancreasD" min="-2" max="-2" attributes="0"/>
-                          <Component id="jCheckBoxHeartD" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+              <Component id="jTextFieldDonorName" min="-2" pref="309" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="323" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jButtonDonorReportToAdmin" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="228" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -86,29 +66,9 @@
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextFieldDonorName" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jCheckBoxKidneyD" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jCheckBoxLungD" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jCheckBoxIntestineD" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jCheckBoxHeartD" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jCheckBoxPancreasD" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jCheckBoxLiverD" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jButtonSaveDonors" pref="43" max="32767" attributes="0"/>
-                  <Component id="jButtonDonorReportToAdmin" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
+              <Component id="jButtonDonorReportToAdmin" min="-2" pref="43" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -182,49 +142,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldDonorName">
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="SELECT ORGAN:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButtonSaveDonors">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="SAVE"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="jButtonDonorReportToAdmin">
       <Properties>
-        <Property name="text" type="java.lang.String" value="SEND TO ADMIN"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBoxLiverD">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="LIVER"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBoxPancreasD">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="PANCREAS"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBoxHeartD">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="HEART"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBoxIntestineD">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="INTESTINES"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBoxLungD">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="LUNG"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBoxKidneyD">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="KIDNEY"/>
+        <Property name="text" type="java.lang.String" value="Send to OPO"/>
       </Properties>
     </Component>
   </SubComponents>

@@ -25,7 +25,7 @@ public class HospitalAdminManageReceiverJPanel extends javax.swing.JPanel {
         initComponents();
         this.emp=e;
         int adminId=emp.getId();
-        populateTable(dbCon.fetchAdminDonorRevicerList(adminId,"Reciver"));
+        populateTable(dbCon.fetchDoctorDonorRevicerList(adminId,"Reciver"));
     }
 
     /**
@@ -196,7 +196,8 @@ private void populateTable(ArrayList <PatientVisit> patientList) {
             row[0]=pv.getId();
             row[1]=pv.getName();
             row[2]=pv.getAge();
-            
+            row[3]=pv.getDate();
+            row[4]=pv.getOrgan();
             
             model.addRow(row);
         }

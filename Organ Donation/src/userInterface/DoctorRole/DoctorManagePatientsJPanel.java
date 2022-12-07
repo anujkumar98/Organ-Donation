@@ -9,7 +9,10 @@ import Business.Enterprise.HospitalEnterprise;
 import Business.Patient.PatientVisit;
 import Business.Patient.PatientVisitDirectory;
 import DatabaseUtility.DatabaseHandleHospitalRoles;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -376,7 +379,10 @@ public class DoctorManagePatientsJPanel extends javax.swing.JPanel {
             if (approval.equalsIgnoreCase("Yes")){
                 organStatus=1;  
             }
-                Boolean status = dbCon.updateDoctorApproval(visitId,organStatus,type,doctorId);
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu/MM/dd");
+            LocalDate localDate = LocalDate.now();
+            String date=dtf.format(localDate);
+                Boolean status = dbCon.updateDoctorApproval(visitId,organStatus,type,doctorId,date);
                 if (status){
                     JOptionPane.showMessageDialog(this, "Patient added to the list and sent for admin approval.");
                      jTextNamePatient.setText("");
@@ -436,8 +442,9 @@ public class DoctorManagePatientsJPanel extends javax.swing.JPanel {
             row[0]=v.getId();
             row[1]=v.getName();
             row[2]=v.getType();
-            row[3]=v.getReportStatus();
-            row[4]=v.getVitalStatus();
+            row[3]=v.getDate();
+            row[4]=v.getReportStatus();
+            row[5]=v.getVitalStatus();
             
             model.addRow(row);
         }
