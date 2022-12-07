@@ -423,10 +423,6 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (update){
             String name=jTextFieldName.getText();
-            
-            //String city=jTextFieldCity.getText();
-            //String region=jTextFieldRegion.getText();
-            //String state=jTextFieldState.getText();
             String city=jComboBoxCity.getSelectedItem().toString();
             String region=jComboBoxRegion.getSelectedItem().toString();
             String state=jComboBoxState.getSelectedItem().toString();
@@ -458,11 +454,7 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
             String name=jTextFieldAdminName.getText();
             String username=jTextFieldAdminId.getText();
             String password=jTextFieldAdminPassword.getText();
-            //Check username for unique values
-//            if (!name.equals("No Admin")){
-//                JOptionPane.showMessageDialog(this, "Admin already exists");
-//                return;
-//            }
+           
             System.out.println(dbCon.checkUniqueUserName(username,"HOSPITAL"));
             if(dbCon.checkUniqueUserName(username,"HOSPITAL")==true){
                 boolean status=dbCon.createEnterpriseAdmin(fetchId,name,username,password,"HOSPITAL");
