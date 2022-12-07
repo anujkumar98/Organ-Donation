@@ -4,6 +4,8 @@
  */
 package userInterface.DoctorRole;
 
+import userInterface.HospitalAdminWorkArea.HospitalAdminManageReceiverJPanel;
+import userInterface.HospitalAdminWorkArea.HospitalAdminManageDonorJPanel;
 import Business.Employee.Employee;
 import userInterface.RecepitionistRole.RecepionistProfileUpdateJPanel;
 
@@ -35,8 +37,7 @@ public class DoctorWorkAreaJFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButtonDoctorProfile = new javax.swing.JButton();
         jButtonDoctorManagePatients = new javax.swing.JButton();
-        jButtonDoctorManageDonor = new javax.swing.JButton();
-        jButtonDoctorManageReceiver = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,23 +67,10 @@ public class DoctorWorkAreaJFrame extends javax.swing.JFrame {
             }
         });
 
-        jButtonDoctorManageDonor.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonDoctorManageDonor.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
-        jButtonDoctorManageDonor.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonDoctorManageDonor.setText("MANAGE DONOR");
-        jButtonDoctorManageDonor.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Logout");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDoctorManageDonorActionPerformed(evt);
-            }
-        });
-
-        jButtonDoctorManageReceiver.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonDoctorManageReceiver.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
-        jButtonDoctorManageReceiver.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonDoctorManageReceiver.setText("MANAGE RECIEVERS");
-        jButtonDoctorManageReceiver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDoctorManageReceiverActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -90,13 +78,15 @@ public class DoctorWorkAreaJFrame extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButtonDoctorManageReceiver, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButtonDoctorManageDonor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonDoctorManagePatients, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
                     .addComponent(jButtonDoctorProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,11 +95,9 @@ public class DoctorWorkAreaJFrame extends javax.swing.JFrame {
                 .addComponent(jButtonDoctorProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonDoctorManagePatients, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonDoctorManageDonor, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonDoctorManageReceiver, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(jButton1)
+                .addContainerGap(235, Short.MAX_VALUE))
         );
 
         DoctorWorkAreaSplitPane.setLeftComponent(jPanel1);
@@ -149,32 +137,21 @@ public class DoctorWorkAreaJFrame extends javax.swing.JFrame {
 
     private void jButtonDoctorManagePatientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDoctorManagePatientsActionPerformed
         // TODO add your handling code here:
-        DoctorManagePatientsJPanel dmpJP = new DoctorManagePatientsJPanel(emp);
-        DoctorWorkAreaSplitPane.setRightComponent(dmpJP);
         
         
     }//GEN-LAST:event_jButtonDoctorManagePatientsActionPerformed
 
     private void jButtonDoctorProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDoctorProfileActionPerformed
         // TODO add your handling code here:
-          DoctorProfileJPanel rwaJP = new DoctorProfileJPanel(emp);
+        DoctorProfileJPanel rwaJP = new DoctorProfileJPanel(emp);
         DoctorWorkAreaSplitPane.setRightComponent(rwaJP);
         
     }//GEN-LAST:event_jButtonDoctorProfileActionPerformed
 
-    private void jButtonDoctorManageDonorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDoctorManageDonorActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-         DoctorManageDonorJPanel dmdJP = new DoctorManageDonorJPanel();
-        DoctorWorkAreaSplitPane.setRightComponent(dmdJP);
-        
-    }//GEN-LAST:event_jButtonDoctorManageDonorActionPerformed
-
-    private void jButtonDoctorManageReceiverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDoctorManageReceiverActionPerformed
-        // TODO add your handling code here:
-        DoctorManageReceiverJPanel dmrJP = new DoctorManageReceiverJPanel();
-        DoctorWorkAreaSplitPane.setRightComponent(dmrJP);
-    }//GEN-LAST:event_jButtonDoctorManageReceiverActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,9 +190,8 @@ public class DoctorWorkAreaJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSplitPane DoctorWorkAreaSplitPane;
-    private javax.swing.JButton jButtonDoctorManageDonor;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonDoctorManagePatients;
-    private javax.swing.JButton jButtonDoctorManageReceiver;
     private javax.swing.JButton jButtonDoctorProfile;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

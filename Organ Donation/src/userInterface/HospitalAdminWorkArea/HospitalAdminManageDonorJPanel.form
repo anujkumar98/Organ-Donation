@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -19,17 +19,24 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="1186" max="-2" attributes="0"/>
-                      <EmptySpace pref="7" max="32767" attributes="0"/>
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="470" max="-2" attributes="0"/>
+                      <Component id="jButtonDonorInfo" min="-2" pref="181" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="477" max="-2" attributes="0"/>
-                      <Component id="jButtonViewReceiverInfo" min="-2" pref="181" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="1188" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="7" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="343" max="-2" attributes="0"/>
+              <Component id="jButtonSaveDonors" min="-2" pref="166" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+              <Component id="jButtonDonorReportToAdmin" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="415" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -39,34 +46,22 @@
               </Group>
               <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jTextReceviersName" min="-2" pref="309" max="-2" attributes="0"/>
-                  <Component id="jCheckBoxLiverR" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jCheckBoxHeartR" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jCheckBoxLungR" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="323" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jCheckPancreasR" min="-2" pref="102" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jTextFieldDonorName" min="-2" pref="309" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="355" max="-2" attributes="0"/>
-                      <Component id="jButtonReceiverSave" min="-2" pref="166" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
-                      <Component id="jButtonReceiverReportToAdmin" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jCheckBoxkKidneyR" min="-2" max="-2" attributes="0"/>
-                          <Component id="jCheckBoxIntestinesR" min="-2" pref="102" max="-2" attributes="0"/>
+                          <Component id="jCheckBoxIntestineD" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCheckBoxLiverD" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCheckBoxKidneyD" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jCheckBoxLungD" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCheckBoxPancreasD" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCheckBoxHeartD" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="415" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="323" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -74,45 +69,46 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="277" max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="57" max="32767" attributes="0"/>
-                  </Group>
                   <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="287" max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="31" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="204" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <Component id="jButtonViewReceiverInfo" min="-2" pref="39" max="-2" attributes="0"/>
+              <Component id="jButtonDonorInfo" min="-2" pref="39" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextReceviersName" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextFieldDonorName" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jCheckBoxLiverR" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jCheckPancreasR" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jCheckBoxHeartR" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jCheckBoxIntestinesR" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jCheckBoxKidneyD" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jCheckBoxLungD" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jCheckBoxLungR" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jCheckBoxkKidneyR" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jCheckBoxIntestineD" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jCheckBoxHeartD" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jCheckBoxPancreasD" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jCheckBoxLiverD" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jButtonReceiverSave" pref="43" max="32767" attributes="0"/>
-                  <Component id="jButtonReceiverReportToAdmin" max="32767" attributes="0"/>
+                  <Component id="jButtonSaveDonors" pref="43" max="32767" attributes="0"/>
+                  <Component id="jButtonDonorReportToAdmin" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -125,13 +121,13 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTableReceiverDetails">
+        <Component class="javax.swing.JTable" name="jTableDonorDetails">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="5" rowCount="4">
-                <Column editable="true" title="RECIEVER ID" type="java.lang.Object"/>
-                <Column editable="true" title="RECEIVER NAME" type="java.lang.Object"/>
-                <Column editable="true" title="RECEIVER AGE" type="java.lang.Object"/>
+                <Column editable="true" title="PATIENT_DONOR ID" type="java.lang.Object"/>
+                <Column editable="true" title="DONOR NAME" type="java.lang.Object"/>
+                <Column editable="true" title="DONOR AGE" type="java.lang.Object"/>
                 <Column editable="true" title="DATE" type="java.lang.Object"/>
                 <Column editable="true" title="ORGAN NAME" type="java.lang.Object"/>
               </Table>
@@ -172,61 +168,61 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jButtonViewReceiverInfo">
+    <Component class="javax.swing.JButton" name="jButtonDonorInfo">
       <Properties>
-        <Property name="text" type="java.lang.String" value="VIEW RECEIVER"/>
+        <Property name="text" type="java.lang.String" value="VIEW DONOR"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="RECEIVER NAME"/>
+        <Property name="text" type="java.lang.String" value="DONOR NAME"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextReceviersName">
+    <Component class="javax.swing.JTextField" name="jTextFieldDonorName">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="text" type="java.lang.String" value="SELECT ORGAN:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonReceiverSave">
+    <Component class="javax.swing.JButton" name="jButtonSaveDonors">
       <Properties>
         <Property name="text" type="java.lang.String" value="SAVE"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonReceiverReportToAdmin">
+    <Component class="javax.swing.JButton" name="jButtonDonorReportToAdmin">
       <Properties>
-        <Property name="text" type="java.lang.String" value="SEND REPORT TO ADMIN"/>
+        <Property name="text" type="java.lang.String" value="SEND TO ADMIN"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBoxLiverR">
+    <Component class="javax.swing.JCheckBox" name="jCheckBoxLiverD">
       <Properties>
         <Property name="text" type="java.lang.String" value="LIVER"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckPancreasR">
+    <Component class="javax.swing.JCheckBox" name="jCheckBoxPancreasD">
       <Properties>
         <Property name="text" type="java.lang.String" value="PANCREAS"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBoxHeartR">
+    <Component class="javax.swing.JCheckBox" name="jCheckBoxHeartD">
       <Properties>
         <Property name="text" type="java.lang.String" value="HEART"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBoxIntestinesR">
+    <Component class="javax.swing.JCheckBox" name="jCheckBoxIntestineD">
       <Properties>
         <Property name="text" type="java.lang.String" value="INTESTINES"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBoxLungR">
+    <Component class="javax.swing.JCheckBox" name="jCheckBoxLungD">
       <Properties>
         <Property name="text" type="java.lang.String" value="LUNG"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBoxkKidneyR">
+    <Component class="javax.swing.JCheckBox" name="jCheckBoxKidneyD">
       <Properties>
         <Property name="text" type="java.lang.String" value="KIDNEY"/>
       </Properties>

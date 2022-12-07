@@ -2,19 +2,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package userInterface.DoctorRole;
+package userInterface.HospitalAdminWorkArea;
+
+import Business.Employee.Employee;
+import Business.Patient.PatientVisit;
+import DatabaseUtility.DatabaseHandleHospitalRoles;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Lenovo
  */
-public class DoctorManageDonorJPanel extends javax.swing.JPanel {
+public class HospitalAdminManageDonorJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ManageDonorJPAnel
      */
-    public DoctorManageDonorJPanel() {
+    private static Employee emp;
+    DatabaseHandleHospitalRoles dbCon=new DatabaseHandleHospitalRoles();
+    public HospitalAdminManageDonorJPanel(Employee e) {
         initComponents();
+        this.emp=e;
+        int adminId=emp.getId();
+        populateTable(dbCon.fetchAdminDonorRevicerList(adminId,"Donor"));
     }
 
     /**
@@ -50,7 +61,7 @@ public class DoctorManageDonorJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "DONOR ID", "DONOR NAME", "DONOR AGE", "DATE", "ORGAN NAME"
+                "PATIENT_DONOR ID", "DONOR NAME", "DONOR AGE", "DATE", "ORGAN NAME"
             }
         ));
         jScrollPane1.setViewportView(jTableDonorDetails);
@@ -84,7 +95,7 @@ public class DoctorManageDonorJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(473, 473, 473)
+                        .addGap(470, 470, 470)
                         .addComponent(jButtonDonorInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -175,4 +186,18 @@ public class DoctorManageDonorJPanel extends javax.swing.JPanel {
     private javax.swing.JTable jTableDonorDetails;
     private javax.swing.JTextField jTextFieldDonorName;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTable(ArrayList <PatientVisit> patientList) {
+        DefaultTableModel model=(DefaultTableModel) jTableDonorDetails.getModel();
+        model.setRowCount(0);
+        for (PatientVisit pv:patientList){
+            Object[] row =new Object[7];
+            row[0]=pv.getId();
+            row[1]=pv.getName();
+            row[2]=pv.getAge();
+            
+            
+            model.addRow(row);
+        }
+    }
 }

@@ -21,6 +21,24 @@ public class PatientVisit {
     String type;
     String reportStatus;
     String vitalStatus;
+    String bloodType;
+    String tissueCondition;
+
+    public String getBloodType() {
+        return bloodType;
+    }
+
+    public void setBloodType(String bloodType) {
+        this.bloodType = bloodType;
+    }
+
+    public String getTissueCondition() {
+        return tissueCondition;
+    }
+
+    public void setTissueCondition(String tissueCondition) {
+        this.tissueCondition = tissueCondition;
+    }
 
     public String getReportStatus() {
         return reportStatus;

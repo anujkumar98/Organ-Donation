@@ -2,19 +2,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package userInterface.DoctorRole;
+package userInterface.HospitalAdminWorkArea;
+
+import Business.Employee.Employee;
+import Business.Patient.PatientVisit;
+import DatabaseUtility.DatabaseHandleHospitalRoles;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Lenovo
  */
-public class DoctorManageReceiverJPanel extends javax.swing.JPanel {
+public class HospitalAdminManageReceiverJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form DoctorManageReceiverJPanel
      */
-    public DoctorManageReceiverJPanel() {
+    private static Employee emp;
+    DatabaseHandleHospitalRoles dbCon=new DatabaseHandleHospitalRoles();
+    public HospitalAdminManageReceiverJPanel(Employee e) {
         initComponents();
+        this.emp=e;
+        int adminId=emp.getId();
+        populateTable(dbCon.fetchAdminDonorRevicerList(adminId,"Reciver"));
     }
 
     /**
@@ -50,7 +61,7 @@ public class DoctorManageReceiverJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "RECIEVER ID", "RECEIVER NAME", "RECEIVER AGE", "DATE", "ORGAN NAME"
+                "PATIENT_RECIEVER ID", "RECEIVER NAME", "RECEIVER AGE", "DATE", "ORGAN NAME"
             }
         ));
         jScrollPane1.setViewportView(jTableReceiverDetails);
@@ -177,4 +188,17 @@ public class DoctorManageReceiverJPanel extends javax.swing.JPanel {
     private javax.swing.JTable jTableReceiverDetails;
     private javax.swing.JTextField jTextReceviersName;
     // End of variables declaration//GEN-END:variables
+private void populateTable(ArrayList <PatientVisit> patientList) {
+        DefaultTableModel model=(DefaultTableModel) jTableReceiverDetails.getModel();
+        model.setRowCount(0);
+        for (PatientVisit pv:patientList){
+            Object[] row =new Object[7];
+            row[0]=pv.getId();
+            row[1]=pv.getName();
+            row[2]=pv.getAge();
+            
+            
+            model.addRow(row);
+        }
+    }
 }
