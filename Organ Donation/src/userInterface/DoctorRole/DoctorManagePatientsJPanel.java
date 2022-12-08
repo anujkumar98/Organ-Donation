@@ -307,21 +307,47 @@ public class DoctorManagePatientsJPanel extends javax.swing.JPanel {
                         .addGap(150, 150, 150))))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private void changefieldStatus(Boolean status){
+        jTextNamePatient.setEditable(status);
+        jTextPatientType.setEditable(status);
+        jTextNamePatient.setEditable(status);
+        jTextPatientType.setEditable(status);
+        jTextPatientWeight.setEditable(status);
+        jTextPatientHeight.setEditable(status);
+        jTextPatientTemperature.setEditable(status);
+        jTextPatientPulse.setEditable(status);
+        jTextPatientBP.setEditable(status);
+        jTextRespirationRate.setEditable(status);
+        jTextPatientBloodType.setEditable(false);
+        jTextPatientTissueType.setEditable(false);
+    }
     private void jButtonViewPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViewPatientActionPerformed
         // TODO add your handling code here:
-        int selsctedIndex=jTableManagePateints.getSelectedRow();
-        if (selsctedIndex != -1){
+        int selectedIndex=jTableManagePateints.getSelectedRow();
+        if (selectedIndex != -1){
             rowSelected=true;
-            jTextNamePatient.setText(jTableManagePateints.getValueAt(selsctedIndex, 1).toString());
-            jTextPatientType.setText(jTableManagePateints.getValueAt(selsctedIndex, 2).toString()); 
+            int visitId=Integer.parseInt(jTableManagePateints.getValueAt(selectedIndex, 0).toString());
+            jTextNamePatient.setText(jTableManagePateints.getValueAt(selectedIndex, 1).toString());
+            jTextPatientType.setText(jTableManagePateints.getValueAt(selectedIndex, 2).toString()); 
             //Set value if set by doctor
-            
+            if (jTableManagePateints.getValueAt(selectedIndex, 4).toString().equalsIgnoreCase("Filled by Doctor")){
+                //Fetch Vital details for that id.
+                //Set fields to non editing
+                changefieldStatus(false);
+                
+            }
+            if (jTableManagePateints.getValueAt(selectedIndex, 4).toString().equalsIgnoreCase("Filled by Patho")){
+                //Fetch report details for that id.
+                //Set fields to non editing
+                changefieldStatus(false);
+            }
         }
         else{
             JOptionPane.showMessageDialog(this, "Please select a row to fetch.");
         }
-        
+        //Set fields to inactive
+        changefieldStatus(true);
     }//GEN-LAST:event_jButtonViewPatientActionPerformed
 
     private void jButtonSavePatientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSavePatientsActionPerformed
@@ -443,9 +469,8 @@ public class DoctorManagePatientsJPanel extends javax.swing.JPanel {
             row[1]=v.getName();
             row[2]=v.getType();
             row[3]=v.getDate();
-            row[4]=v.getReportStatus();
-            row[5]=v.getVitalStatus();
-            
+            row[4]=v.getVitalStatus();
+            row[5]=v.getReportStatus();
             model.addRow(row);
         }
     }
