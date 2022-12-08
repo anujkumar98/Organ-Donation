@@ -26,7 +26,16 @@ public class PatientVisit {
     String address;
     String date;
     String organ;
+    String organStatus;
 
+    public String getOrganStatus() {
+        return organStatus;
+    }
+
+    public void setOrganStatus(String organStatus) {
+        this.organStatus = organStatus;
+    }
+    
     public String getOrgan() {
         return organ;
     }

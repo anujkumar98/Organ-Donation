@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Lenovo
  */
-public class AdminManageReceiverList extends javax.swing.JPanel {
+public class AdminManageDonorList extends javax.swing.JPanel {
 
     /**
      * Creates new form AdminManageReceiverList
@@ -22,11 +22,11 @@ public class AdminManageReceiverList extends javax.swing.JPanel {
     Employee emp;
     int id;
     DatabaseHandleHospitalRoles dbCon=new DatabaseHandleHospitalRoles();
-    public AdminManageReceiverList(Employee e) {
+    public AdminManageDonorList(Employee e) {
         initComponents();
         this.emp=e;
         id=emp.getId();
-        populateTable(dbCon.fetchAdminDonorRevicerList(emp.getId(),"Reciver"));
+        populateTable(dbCon.fetchAdminDonorRevicerList(emp.getId(),"Donor"));
     }
 
     /**
@@ -54,7 +54,7 @@ public class AdminManageReceiverList extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "RECEIVER ID", "RECEIVER NAME", "ORGAN", "LIST UPDATE STATUS"
+                "DONOR ID", "DONOR NAME", "ORGAN", "LIST UPDATE STATUS"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

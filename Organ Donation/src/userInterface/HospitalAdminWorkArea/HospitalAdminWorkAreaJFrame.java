@@ -159,7 +159,7 @@ public class HospitalAdminWorkAreaJFrame extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-           AdminManageReceiverList crm = new AdminManageReceiverList();
+        AdminManageReceiverList crm = new AdminManageReceiverList(emp);
         hospitalAdminSplitPane.setRightComponent(crm);
        
     }//GEN-LAST:event_jButton5ActionPerformed
