@@ -8,6 +8,7 @@ import Business.Employee.Employee;
 import Business.Patient.PatientVisit;
 import DatabaseUtility.DatabaseHandleHospitalRoles;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,12 +22,13 @@ public class AdminManageReceiverList extends javax.swing.JPanel {
      */
     Employee emp;
     int id;
+    Boolean selected=false;
     DatabaseHandleHospitalRoles dbCon=new DatabaseHandleHospitalRoles();
     public AdminManageReceiverList(Employee e) {
         initComponents();
         this.emp=e;
         id=emp.getId();
-        populateTable(dbCon.fetchAdminDonorRevicerList(emp.getId(),"Reciver"));
+        populateTable(dbCon.fetchAdminDonorRevicerList(emp.getId(),"Reciver","Sent to Admin"));
     }
 
     /**
@@ -69,8 +71,18 @@ public class AdminManageReceiverList extends javax.swing.JPanel {
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton2.setText("REFRESH TABLE");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("VIEW Patient");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Name");
 
@@ -123,7 +135,48 @@ public class AdminManageReceiverList extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+         int selectedIndex=jTable1.getSelectedRow();
+        if(selectedIndex != -1){
+            int ogandReciveId=Integer.parseInt(jTable1.getValueAt(selectedIndex, 0).toString());
+            jTextFieldName.setText(jTable1.getValueAt(selectedIndex, 1).toString());
+            jTextFieldName.setEditable(false);
+            selected=true;
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Select a row to fetch");
+        }
+        jTextFieldName.setEditable(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        populateTable(dbCon.fetchAdminDonorRevicerList(emp.getId(),"Reciver","Sent to Admin"));
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex=jTable1.getSelectedRow();
+        if(selectedIndex != -1 && selected){
+            int ogandReciveId=Integer.parseInt(jTable1.getValueAt(selectedIndex, 0).toString());
+            jTextFieldName.setText(jTable1.getValueAt(selectedIndex, 1).toString());
+            jTextFieldName.setEditable(false);
+            Boolean status=dbCon.sendListToOPO(ogandReciveId);
+            if (status){
+                JOptionPane.showMessageDialog(this, "Request sent to OPO");
+                jTextFieldName.setText("");
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Error in sending to OPO");
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Select a row to fetch");
+        }
+        jTextFieldName.setEditable(false);
+        selected=false;
+        populateTable(dbCon.fetchAdminDonorRevicerList(emp.getId(),"Reciver","Sent to Admin"));
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

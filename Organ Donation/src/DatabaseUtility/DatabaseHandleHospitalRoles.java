@@ -582,7 +582,7 @@ public Boolean populateReciverDonorList(int id,String organ,String type){
     return status;
 }
 
-public ArrayList <PatientVisit> fetchAdminDonorRevicerList(int adminId, String type){
+public ArrayList <PatientVisit> fetchAdminDonorRevicerList(int adminId, String type,String state){
 ArrayList <PatientVisit> patientVisitList= new ArrayList();
 PatientVisitDirectory pvd=new PatientVisitDirectory();
 int hospitalId=0;
@@ -599,7 +599,7 @@ int hospitalId=0;
                     + "JOIN PATIENTS_VISIT AS PV ON  ODRL.VISIT_ID= PV.PATIENTS_VISIT_ID "
                     + "JOIN  HOSPITAL_PATIENT AS HP ON PV.HOSPITAL_PATIENT_ID = HP.HOSPITAL_PATIENT_ID WHERE "
                     + "ODRL.HOSPITAL_ID = "+hospitalId + " AND ODRL.ORGAN_DONOR_RECEIVER_LIST_TYPE= '"+type+"' "
-                    + "AND `ORGAN_DONOR_RECEIVER_LIST_STATUS` = 'Sent to Admin'";
+                    + "AND `ORGAN_DONOR_RECEIVER_LIST_STATUS` = '"+state+"'";
             resultSet=statement.executeQuery(getDonorList);
             while(resultSet.next()){
             PatientVisit pv=new PatientVisit();
@@ -626,4 +626,36 @@ int hospitalId=0;
     return patientVisitList;
 }
 
+public Boolean sendListToOPO(int organDonationId){
+    Boolean status=false;
+    try{
+        Connection con=createConnection();
+        Statement statement=con.createStatement();
+        String updateQuery="UPDATE `OrganDonation`.`ORGAN_DONOR_RECEIVER_LIST` SET "
+                   +  "`ORGAN_DONOR_RECEIVER_LIST_STATUS` "
+                   + "= 'Sent to OPO'  WHERE (`ORGAN_DONOR_RECEIVER_LIST_ID` = '"+organDonationId+"');";
+        statement.executeUpdate(updateQuery);
+        status=true;
+    }
+    
+    catch(Exception e){
+        System.out.println("sendListToOPO :"+e);
+    }
+    return status;
+}
+public Boolean fetchVitals(int vitalId){
+    Boolean status=false;
+    try{
+        Connection con=createConnection();
+        Statement statement=con.createStatement();
+        String updateQuery="";
+        statement.executeUpdate(updateQuery);
+        status=true;
+    }
+    
+    catch(Exception e){
+        System.out.println("sendListToOPO :"+e);
+    }
+    return status;
+}
 }
