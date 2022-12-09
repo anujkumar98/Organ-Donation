@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import userInterface.DoctorRole.DoctorWorkAreaJFrame;
 import userInterface.HospitalAdminWorkArea.HospitalAdminWorkAreaJFrame;
 import userInterface.NGO.NGOAdminWorkArea;
+import userInterface.OPO.OPOAdminWorkArea;
 import userInterface.Pathology.PathologyWorkArea;
 import userInterface.RecepitionistRole.RecepitionistWorkAreaJFrame;
 import userInterface.Transport.TransportAdminWorkArea;
@@ -38,6 +39,7 @@ public class LoginJPanel extends javax.swing.JFrame {
         jComboBoxRoles.addItem("PATHOLOGIST");
         jComboBoxRoles.addItem("NGO ADMIN");
         jComboBoxRoles.addItem("TRANSPORT ADMIN");
+        jComboBoxRoles.addItem("OPO ADMIN");
     }
 
     /**
@@ -210,6 +212,16 @@ public class LoginJPanel extends javax.swing.JFrame {
                 emp=dblogin.loginUser(username,password,"TRANSPORT_ADMIN","TRANSPORT");
                 if (emp != null){
                     TransportAdminWorkArea JFrame = new TransportAdminWorkArea(emp);
+                    JFrame.setVisible(true);  
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Please check the username, password and role. ");
+                }
+            }
+            case "OPO ADMIN" -> {
+                emp=dblogin.loginUser(username,password,"OPO_ADMIN","OPO");
+                if (emp != null){
+                    OPOAdminWorkArea JFrame = new OPOAdminWorkArea(emp);
                     JFrame.setVisible(true);  
                 }
                 else{

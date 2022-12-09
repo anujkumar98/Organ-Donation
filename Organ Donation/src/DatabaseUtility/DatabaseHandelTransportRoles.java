@@ -44,16 +44,23 @@ public class DatabaseHandelTransportRoles {
         return con;
     }
     
- public static Boolean createLogin(String name,String username,String email, String password,int transportID,String tableName){
+ public static Boolean createLogin(String name,String username,String email, String password,int adminId,String tableName){
+    int transportId=-1;
     Boolean status=false;    
     try{
             Connection con=createConnection();
             Statement statement=con.createStatement();
+            String queryHospitalId="SELECT TRANSPORT_ID FROM  `OrganDonation`.`TRANSPORT_ADMIN`"
+                    + "where TRANSPORT_ADMIN_ID = "+adminId+";";
+            ResultSet resultSet=statement.executeQuery(queryHospitalId);
+            while(resultSet.next()){
+                transportId=Integer.parseInt(resultSet.getString("HOSPITAL_ID"));
+            }
             String query="INSERT INTO `OrganDonation`.`"+tableName+"` "
             + "( `"+tableName.toUpperCase()+"_NAME"+"`, `"+tableName.toUpperCase()+"_USERNAME"+"`, "
             + "`"+tableName.toUpperCase()+"_PASSWORD"+"`, `"+"TRANSPORT_ID"+"` ,`"+tableName.toUpperCase()+"_EMAIL"+"` "
                     + "`,`"+tableName.toUpperCase()+"_EMAIL`)"
-            + "VALUES ('"+name+"', '"+username+"', '"+password+"', '"+transportID+"' , ' "+email+", 'Free')";
+            + "VALUES ('"+name+"', '"+username+"', '"+password+"', '"+transportId+"' , ' "+email+", 'Free')";
     statement.executeUpdate(query);
     EmailUtil.sendEmail(email,username,password);
     status=true;
@@ -82,14 +89,21 @@ public Boolean checkUniqueUserName(String uname,String tableName){
     }
     return check;
 }
-public ArrayList <Employee> employeeList(){
+public ArrayList <Employee> employeeList(int adminId){
     EmployeeDirectory ed=new EmployeeDirectory();
+    int transportId=-1;
     ArrayList <Employee> employeeList = new ArrayList<> ();
     try {
         Connection con = createConnection();
         Statement statement=con.createStatement();
-        String query="SELECT * FROM `TRANSPORT_DRIVER`";
-        ResultSet resultSet=statement.executeQuery(query);
+        String queryHospitalId="SELECT TRANSPORT_ID FROM  `OrganDonation`.`TRANSPORT_ADMIN`"
+                    + "where TRANSPORT_ADMIN_ID = "+adminId+";";
+            ResultSet resultSet=statement.executeQuery(queryHospitalId);
+            while(resultSet.next()){
+                transportId=Integer.parseInt(resultSet.getString("HOSPITAL_ID"));
+            }
+        String query="SELECT * FROM `TRANSPORT_DRIVER` WHERE TRANSPORT_ID = "+transportId;
+        resultSet=statement.executeQuery(query);
         while(resultSet.next()){
             Employee emp= new Employee();
             emp.setId(resultSet.getInt("TRANSPORT_DRIVER_ID"));

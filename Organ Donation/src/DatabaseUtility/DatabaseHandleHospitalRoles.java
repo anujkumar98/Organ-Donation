@@ -50,15 +50,22 @@ public class DatabaseHandleHospitalRoles {
         return con;
     }
     
-public static Boolean createLogin(String name,String username,String email, String password,String role,int hospitalID,String tableName){
-    Boolean status=false;    
+public static Boolean createLogin(String name,String username,String email, String password,String role,int adminId,String tableName){
+    Boolean status=false; 
+    int hospitalId=0;
     try{
             Connection con=createConnection();
             Statement statement=con.createStatement();
+            String queryHospitalId="SELECT HOSPITAL_ID FROM  `OrganDonation`.`HOSPITAL_ADMIN`"
+                    + "where HOSPITAL_ADMIN_ID = "+adminId+";";
+            ResultSet resultSet=statement.executeQuery(queryHospitalId);
+            while(resultSet.next()){
+                hospitalId=Integer.parseInt(resultSet.getString("HOSPITAL_ID"));
+            }
             String query="INSERT INTO `OrganDonation`.`"+tableName+"` "
             + "( `"+tableName.toUpperCase()+"_NAME"+"`, `"+tableName.toUpperCase()+"_USERNAME"+"`, "
             + "`"+tableName.toUpperCase()+"_PASSWORD"+"`, `"+"HOSPITAL_ID"+"` ,`"+tableName.toUpperCase()+"_EMAIL"+"`) "
-            + "VALUES ('"+name+"', '"+username+"', '"+password+"', '"+hospitalID+"' , ' "+email+")";
+            + "VALUES ('"+name+"', '"+username+"', '"+password+"', '"+hospitalId+"' , ' "+email+"')";
     statement.executeUpdate(query);
     EmailUtil.sendEmail(email,username,password);
     status=true;
@@ -88,13 +95,28 @@ public Boolean checkUniqueUserName(String uname,String tableName){
     return check;
 }
 
-public ArrayList <Employee> employeeList(){
+public ArrayList <Employee> employeeList(int adminId){
     EmployeeDirectory ed=new EmployeeDirectory();
     ArrayList <Employee> employeeList = new ArrayList<> ();
+    int hospitalId=0;
+    try{
+            Connection con=createConnection();
+            Statement statement=con.createStatement();
+            String queryHospitalId="SELECT HOSPITAL_ID FROM  `OrganDonation`.`HOSPITAL_ADMIN`"
+                    + "where HOSPITAL_ADMIN_ID = "+adminId+";";
+            ResultSet resultSet=statement.executeQuery(queryHospitalId);
+            while(resultSet.next()){
+                hospitalId=Integer.parseInt(resultSet.getString("HOSPITAL_ID"));
+            }  
+        
+    }
+    catch(Exception e){
+        System.out.println("employeeList fetch Hospital id: "+e);
+    }
     try {
         Connection con = createConnection();
         Statement statement=con.createStatement();
-        String query="SELECT * FROM `HOSPITAL_RECEPTIONIST`";
+        String query="SELECT * FROM `HOSPITAL_RECEPTIONIST` WHERE HOSPITAL_ID = "+ hospitalId;
         ResultSet resultSet=statement.executeQuery(query);
         while(resultSet.next()){
             Employee emp= new Employee();
@@ -110,7 +132,7 @@ public ArrayList <Employee> employeeList(){
     try {
         Connection con = createConnection();
         Statement statement=con.createStatement();
-        String query="SELECT * FROM `HOSPITAL_DOCTOR`";
+        String query="SELECT * FROM `HOSPITAL_DOCTOR`WHERE HOSPITAL_ID = "+ hospitalId;
         ResultSet resultSet=statement.executeQuery(query);
         while(resultSet.next()){
             Employee emp= new Employee();
@@ -127,7 +149,7 @@ public ArrayList <Employee> employeeList(){
     try {
         Connection con = createConnection();
         Statement statement=con.createStatement();
-        String query="SELECT * FROM `HOSPITAL_PATHOLOGIST`";
+        String query="SELECT * FROM `HOSPITAL_PATHOLOGIST` WHERE HOSPITAL_ID = "+ hospitalId;
         ResultSet resultSet=statement.executeQuery(query);
         while(resultSet.next()){
             Employee emp= new Employee();
@@ -653,7 +675,7 @@ public PatientVitals fetchVitals(int visitId){
     try{
         Connection con=createConnection();
         Statement statement=con.createStatement();
-        String getVitalId="SELCT PATIENTS_VITALS_ID FROM PATIENTS_VISIT WHERE PATIENTS_VISIT_ID = "+visitId;
+        String getVitalId="SELECT PATIENTS_VITALS_ID FROM PATIENTS_VISIT WHERE PATIENTS_VISIT_ID = "+visitId;
         ResultSet resultSet=statement.executeQuery(getVitalId);
         while(resultSet.next()){
             vitalId=resultSet.getInt("PATIENTS_VITALS_ID");
@@ -670,7 +692,7 @@ public PatientVitals fetchVitals(int visitId){
         }
     }
     catch(Exception e){
-        System.out.println("sendListToOPO :"+e);
+        System.out.println("fetchVitals :"+e);
     }
     return pv;
 }
@@ -680,12 +702,12 @@ public PatientReport fetchReports(int visitId){
     try{
         Connection con=createConnection();
         Statement statement=con.createStatement();
-        String getVitalId="SELCT PATIENTS_REPORT_ID FROM PATIENTS_VISIT WHERE PATIENTS_VISIT_ID = "+visitId;
+        String getVitalId="SELECT PATIENTS_REPORT_ID FROM PATIENTS_VISIT WHERE PATIENTS_VISIT_ID = "+visitId;
         ResultSet resultSet=statement.executeQuery(getVitalId);
         while(resultSet.next()){
             reportId=resultSet.getInt("PATIENTS_REPORT_ID");
         }
-        String vitalsQuery="Select * from PATIENTS_VITALS WHERE PATIENTS_VITALS_ID = "+reportId;
+        String vitalsQuery="Select * from PATIENT_REPORT WHERE PATIENT_REPORT_ID = "+reportId;
         resultSet=statement.executeQuery(vitalsQuery);
         while(resultSet.next()){
             pr.setBloodType(resultSet.getString("PATIENT_REPORT_BLOOD_TYPE"));
@@ -693,7 +715,7 @@ public PatientReport fetchReports(int visitId){
         }
     }
     catch(Exception e){
-        System.out.println("sendListToOPO :"+e);
+        System.out.println("fetchReports :"+e);
     }
     return pr;
 }
