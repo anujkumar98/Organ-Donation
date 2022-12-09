@@ -28,6 +28,7 @@ public class DoctorProfileJPanel extends javax.swing.JPanel {
         this.id=e.getId();
         populateTextBox(emp);
         jTextUsername.setEditable(false);
+        jTextEmailDoctor.setEditable(false);
     }
     void populateTextBox(Employee emp){
         jTextFirstNameDoctor.setText(emp.getName() == null ? "" : emp.getName());

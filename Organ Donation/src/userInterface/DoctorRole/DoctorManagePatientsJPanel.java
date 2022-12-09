@@ -6,8 +6,10 @@ package userInterface.DoctorRole;
 
 import Business.Employee.Employee;
 import Business.Enterprise.HospitalEnterprise;
+import Business.Patient.PatientReport;
 import Business.Patient.PatientVisit;
 import Business.Patient.PatientVisitDirectory;
+import Business.Patient.PatientVitals;
 import DatabaseUtility.DatabaseHandleHospitalRoles;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -335,12 +337,22 @@ public class DoctorManagePatientsJPanel extends javax.swing.JPanel {
                 //Fetch Vital details for that id.
                 //Set fields to non editing
                 changefieldStatus(false);
+                PatientVitals pv = dbCon.fetchVitals(visitId);
+                jTextPatientWeight.setText(Double.toString(pv.getWeight()));
+                jTextPatientHeight.setText(Double.toString(pv.getHeight()));
+                jTextPatientTemperature.setText(Double.toString(pv.getTemp()));
+                jTextPatientPulse.setText(Integer.toString(pv.getPulse()));
+                jTextPatientBP.setText(Double.toString(pv.getBp()));
+                jTextRespirationRate.setText(Integer.toString(pv.getRepiratoryRate()));
                 
             }
-            if (jTableManagePateints.getValueAt(selectedIndex, 4).toString().equalsIgnoreCase("Filled by Patho")){
+            if (jTableManagePateints.getValueAt(selectedIndex, 5).toString().equalsIgnoreCase("Filled by Patho")){
                 //Fetch report details for that id.
                 //Set fields to non editing
                 changefieldStatus(false);
+                PatientReport pr = dbCon.fetchReports(visitId);
+                jTextPatientBloodType.setText(pr.getBloodType());
+                jTextPatientTissueType.setText(pr.getTissueConditon());
             }
         }
         else{

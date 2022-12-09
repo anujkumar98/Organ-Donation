@@ -170,7 +170,7 @@ public Boolean checkUniqueUserName(String uname,String enterprise){
     }
     return check;
 }
-public Boolean createEnterpriseAdmin(int hospitalId,String name,String username,String password,String enterprise){
+public Boolean createEnterpriseAdmin(int hospitalId,String name,String username,String password,String enterprise,String email){
     Boolean status=false;
     try{
     
@@ -179,8 +179,9 @@ public Boolean createEnterpriseAdmin(int hospitalId,String name,String username,
 
         String query="INSERT INTO `OrganDonation`.`"+enterprise.toUpperCase()+"_ADMIN` "
             + "( `"+enterprise.toUpperCase()+"_ADMIN_USERNAME"+"`, `"+enterprise.toUpperCase()+"_ADMIN_NAME"+"`, "
-            + "`"+enterprise.toUpperCase()+"_ID"+"`, `"+enterprise.toUpperCase()+"_ADMIN_PASSWORD"+"`) "
-            + "VALUES ('"+username+"', '"+name+"', '"+hospitalId+"', '"+password+"')";
+            + "`"+enterprise.toUpperCase()+"_ID"+"`, `"+enterprise.toUpperCase()+
+                "_ADMIN_PASSWORD"+"` , `"+enterprise.toUpperCase()+"_EMAIL"+"`) "
+            + "VALUES ('"+username+"', '"+name+"', '"+hospitalId+"', '"+password+"','"+email+")";
         statement.executeUpdate(query);
         status=true;
     }
