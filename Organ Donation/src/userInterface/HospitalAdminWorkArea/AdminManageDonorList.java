@@ -15,20 +15,20 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Lenovo
  */
-public class AdminManageReceiverList extends javax.swing.JPanel {
+public class AdminManageDonorList extends javax.swing.JPanel {
 
     /**
      * Creates new form AdminManageReceiverList
      */
     Employee emp;
     int id;
-    Boolean selected=false;
+    Boolean selected= false;
     DatabaseHandleHospitalRoles dbCon=new DatabaseHandleHospitalRoles();
-    public AdminManageReceiverList(Employee e) {
+    public AdminManageDonorList(Employee e) {
         initComponents();
         this.emp=e;
         id=emp.getId();
-        populateTable(dbCon.fetchAdminDonorRevicerList(emp.getId(),"Reciver","Sent to Admin"));
+        populateTable(dbCon.fetchAdminDonorRevicerList(emp.getId(),"Donor","Sent to Admin"));
     }
 
     /**
@@ -56,7 +56,7 @@ public class AdminManageReceiverList extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "RECEIVER ID", "RECEIVER NAME", "ORGAN", "LIST UPDATE STATUS"
+                "DONOR ID", "DONOR NAME", "ORGAN", "LIST UPDATE STATUS"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -152,21 +152,20 @@ public class AdminManageReceiverList extends javax.swing.JPanel {
         else{
             JOptionPane.showMessageDialog(this, "Select a row to fetch");
         }
+        
         jTextFieldName.setEditable(false);
         selected=false;
-        populateTable(dbCon.fetchAdminDonorRevicerList(emp.getId(),"Reciver","Sent to Admin"));
-        
-         
+        populateTable(dbCon.fetchAdminDonorRevicerList(emp.getId(),"Donor","Sent to Admin"));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        populateTable(dbCon.fetchAdminDonorRevicerList(emp.getId(),"Reciver","Sent to Admin"));
+        populateTable(dbCon.fetchAdminDonorRevicerList(emp.getId(),"Donor","Sent to Admin"));
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-     int selectedIndex=jTable1.getSelectedRow();
+        int selectedIndex=jTable1.getSelectedRow();
         if(selectedIndex != -1){
             int ogandReciveId=Integer.parseInt(jTable1.getValueAt(selectedIndex, 0).toString());
             jTextFieldName.setText(jTable1.getValueAt(selectedIndex, 1).toString());
