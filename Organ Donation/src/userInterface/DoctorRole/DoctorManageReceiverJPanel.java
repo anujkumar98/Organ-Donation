@@ -186,6 +186,7 @@ public class DoctorManageReceiverJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int selectedIndex=jTableReceiverDetails.getSelectedRow();
             if (selectedIndex != -1){
+            selected=true;
             int id=Integer.parseInt(jTableReceiverDetails.getValueAt(selectedIndex, 0).toString());
             jTextReceviersName.setText(jTableReceiverDetails.getValueAt(selectedIndex, 1).toString());
             jTextReceviersName.setEditable(false);

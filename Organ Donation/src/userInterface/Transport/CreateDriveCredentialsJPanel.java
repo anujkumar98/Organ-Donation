@@ -4,6 +4,12 @@
  */
 package userInterface.Transport;
 
+import Business.Employee.Employee;
+import DatabaseUtility.DatabaseHandelTransportRoles;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author anujkumar
@@ -13,9 +19,17 @@ public class CreateDriveCredentialsJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CreateDriveCredentialsJPanel
      */
-    public CreateDriveCredentialsJPanel() {
+    Employee emp;
+    int adminId;
+    ArrayList <Employee> employeeList;
+    DatabaseHandelTransportRoles dbCon=new DatabaseHandelTransportRoles();
+    public CreateDriveCredentialsJPanel(Employee e) {
         initComponents();
+        this.emp=e;
+        this.adminId=emp.getId();
+        populateTable(dbCon.employeeList(adminId));
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,6 +49,8 @@ public class CreateDriveCredentialsJPanel extends javax.swing.JPanel {
         jTextDriverName = new javax.swing.JTextField();
         jTextDriverID = new javax.swing.JTextField();
         jTextDriverPassword = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jTextDriverEmail = new javax.swing.JTextField();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -56,6 +72,11 @@ public class CreateDriveCredentialsJPanel extends javax.swing.JPanel {
         jLabel3.setText("DRIVER PASSWORD");
 
         jButton1.setText("CREATE DRIVER");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jTextDriverName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,6 +87,14 @@ public class CreateDriveCredentialsJPanel extends javax.swing.JPanel {
         jTextDriverPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextDriverPasswordActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("DRIVER Email");
+
+        jTextDriverEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextDriverEmailActionPerformed(evt);
             }
         });
 
@@ -81,17 +110,25 @@ public class CreateDriveCredentialsJPanel extends javax.swing.JPanel {
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(266, 266, 266)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel4)))
                         .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextDriverName)
-                                .addComponent(jTextDriverID, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))
-                            .addComponent(jTextDriverPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(299, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jTextDriverEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextDriverName)
+                                    .addComponent(jTextDriverID, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))
+                                .addComponent(jTextDriverPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(293, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,7 +147,11 @@ public class CreateDriveCredentialsJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextDriverPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextDriverEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addGap(36, 36, 36))
         );
@@ -124,14 +165,56 @@ public class CreateDriveCredentialsJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextDriverPasswordActionPerformed
 
+    private void jTextDriverEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextDriverEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextDriverEmailActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String name = jTextDriverName.getText();
+        String username=jTextDriverID.getText();
+        String password=jTextDriverPassword.getText();
+        String email=jTextDriverEmail.getText();
+        Boolean status=false;
+        
+        if(dbCon.checkUniqueUserName(username,"HOSPITAL_DOCTOR")){
+                        status=dbCon.createLogin(name,username,email,password,adminId,"TRANSPORT_DRIVER");
+                        if(status){
+                            JOptionPane.showMessageDialog(this, "Doctor Created");
+                            
+                        }else{
+                            JOptionPane.showMessageDialog(this, "Error in creating doctor");
+                        }
+                        
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "Username already exists");
+                    }
+        populateTable(dbCon.employeeList(adminId));
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+void populateTable(ArrayList<Employee> emp){
+        DefaultTableModel model=(DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        for (Employee e: emp)
+        {
+            Object[] row =new Object[7];
+            row[0]=e.getId();
+            row[1]=e.getName();
+            row[2]=e.getUsername();
+            row[3]=e.getRole();
+            model.addRow(row);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextDriverEmail;
     private javax.swing.JTextField jTextDriverID;
     private javax.swing.JTextField jTextDriverName;
     private javax.swing.JTextField jTextDriverPassword;

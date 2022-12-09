@@ -157,7 +157,7 @@ public class TransportAdminWorkArea extends javax.swing.JFrame {
 
     private void ManageDriverJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageDriverJButtonActionPerformed
         // TODO add your handling code here:
-        CreateDriveCredentialsJPanel createDriver=new CreateDriveCredentialsJPanel();
+        CreateDriveCredentialsJPanel createDriver=new CreateDriveCredentialsJPanel(emp);
         jSplitPaneAdmin.setRightComponent(createDriver);
     }//GEN-LAST:event_ManageDriverJButtonActionPerformed
 
@@ -179,7 +179,7 @@ public class TransportAdminWorkArea extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
-         DriverStatusJPanel DriverStatus=new DriverStatusJPanel();
+         DriverStatusJPanel DriverStatus=new DriverStatusJPanel(emp);
         jSplitPaneAdmin.setRightComponent(DriverStatus);
     }//GEN-LAST:event_jButton2ActionPerformed
 
