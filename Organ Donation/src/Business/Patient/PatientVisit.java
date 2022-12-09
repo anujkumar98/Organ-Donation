@@ -21,6 +21,63 @@ public class PatientVisit {
     String type;
     String reportStatus;
     String vitalStatus;
+    String bloodType;
+    String tissueCondition;
+    String address;
+    String date;
+    String organ;
+    String organStatus;
+
+    public String getOrganStatus() {
+        return organStatus;
+    }
+
+    public void setOrganStatus(String organStatus) {
+        this.organStatus = organStatus;
+    }
+    
+    public String getOrgan() {
+        return organ;
+    }
+
+    public void setOrgan(String organ) {
+        this.organ = organ;
+    }
+    
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+    
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    
+
+    public String getBloodType() {
+        return bloodType;
+    }
+
+    public void setBloodType(String bloodType) {
+        this.bloodType = bloodType;
+    }
+
+    public String getTissueCondition() {
+        return tissueCondition;
+    }
+
+    public void setTissueCondition(String tissueCondition) {
+        this.tissueCondition = tissueCondition;
+    }
 
     public String getReportStatus() {
         return reportStatus;

@@ -2,21 +2,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package userInterface.NgoAdmin;
+package userInterface.Pathology;
 
+import Business.Employee.Employee;
+import userInterface.Transport.*;
 import userInterface.SystemAdminWorkArea.*;
 
 /**
  *
  * @author anujkumar
  */
-public class SystemNGOAdminWorkArea extends javax.swing.JFrame {
+public class PathologyWorkArea extends javax.swing.JFrame {
 
     /**
      * Creates new form SystemAdminWorkArea
      */
-    public SystemNGOAdminWorkArea() {
+    private static Employee emp;
+    public PathologyWorkArea(Employee e) {
         initComponents();
+        this.emp=e;
     }
 
     /**
@@ -30,20 +34,20 @@ public class SystemNGOAdminWorkArea extends javax.swing.JFrame {
 
         jSplitPaneAdmin = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
-        ManageNGOJButton = new javax.swing.JButton();
+        ManageReportsJButton = new javax.swing.JButton();
         LogoutJButton = new javax.swing.JButton();
-        ManageVolunteerJButton = new javax.swing.JButton();
+        ManageProfileJButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        ManageNGOJButton.setBackground(new java.awt.Color(0, 0, 0));
-        ManageNGOJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        ManageNGOJButton.setForeground(new java.awt.Color(255, 255, 255));
-        ManageNGOJButton.setText("MANAGE NGO");
-        ManageNGOJButton.addActionListener(new java.awt.event.ActionListener() {
+        ManageReportsJButton.setBackground(new java.awt.Color(0, 0, 0));
+        ManageReportsJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ManageReportsJButton.setForeground(new java.awt.Color(255, 255, 255));
+        ManageReportsJButton.setText("MANAGE REPORTS");
+        ManageReportsJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ManageNGOJButtonActionPerformed(evt);
+                ManageReportsJButtonActionPerformed(evt);
             }
         });
 
@@ -57,13 +61,13 @@ public class SystemNGOAdminWorkArea extends javax.swing.JFrame {
             }
         });
 
-        ManageVolunteerJButton.setBackground(new java.awt.Color(0, 0, 0));
-        ManageVolunteerJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        ManageVolunteerJButton.setForeground(new java.awt.Color(255, 255, 255));
-        ManageVolunteerJButton.setText("MANAGE VOUNTEER");
-        ManageVolunteerJButton.addActionListener(new java.awt.event.ActionListener() {
+        ManageProfileJButton.setBackground(new java.awt.Color(0, 0, 0));
+        ManageProfileJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ManageProfileJButton.setForeground(new java.awt.Color(255, 255, 255));
+        ManageProfileJButton.setText("MANAGE PROFILE");
+        ManageProfileJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ManageVolunteerJButtonActionPerformed(evt);
+                ManageProfileJButtonActionPerformed(evt);
             }
         });
 
@@ -77,21 +81,21 @@ public class SystemNGOAdminWorkArea extends javax.swing.JFrame {
                     .addComponent(LogoutJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ManageNGOJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ManageVolunteerJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ManageProfileJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ManageReportsJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(113, 113, 113)
-                .addComponent(ManageNGOJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(ManageVolunteerJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
+                .addGap(112, 112, 112)
+                .addComponent(ManageReportsJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(ManageProfileJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
                 .addComponent(LogoutJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(235, Short.MAX_VALUE))
+                .addContainerGap(245, Short.MAX_VALUE))
         );
 
         jSplitPaneAdmin.setLeftComponent(jPanel1);
@@ -123,11 +127,11 @@ public class SystemNGOAdminWorkArea extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ManageNGOJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageNGOJButtonActionPerformed
+    private void ManageReportsJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageReportsJButtonActionPerformed
         // TODO add your handling code here:
-        ManageAdminNGOPanel manageNGO=new ManageAdminNGOPanel();
-        jSplitPaneAdmin.setRightComponent(manageNGO);
-    }//GEN-LAST:event_ManageNGOJButtonActionPerformed
+         PathoManagePatientsJPanel manageRep=new PathoManagePatientsJPanel(emp);
+        jSplitPaneAdmin.setRightComponent(manageRep);
+    }//GEN-LAST:event_ManageReportsJButtonActionPerformed
 
     private void LogoutJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutJButtonActionPerformed
         // TODO add your handling code here:
@@ -135,12 +139,12 @@ public class SystemNGOAdminWorkArea extends javax.swing.JFrame {
         
     }//GEN-LAST:event_LogoutJButtonActionPerformed
 
-    private void ManageVolunteerJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageVolunteerJButtonActionPerformed
+    private void ManageProfileJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageProfileJButtonActionPerformed
         // TODO add your handling code here:
-       ManageNGOVolunteerJPanel manageVolunteer=new ManageNGOVolunteerJPanel();
-        jSplitPaneAdmin.setRightComponent(manageVolunteer);
+       ManagePathoProfileJPanel managePro =new ManagePathoProfileJPanel();
+        jSplitPaneAdmin.setRightComponent(managePro);
         
-    }//GEN-LAST:event_ManageVolunteerJButtonActionPerformed
+    }//GEN-LAST:event_ManageProfileJButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,14 +163,28 @@ public class SystemNGOAdminWorkArea extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SystemNGOAdminWorkArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PathologyWorkArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SystemNGOAdminWorkArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PathologyWorkArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SystemNGOAdminWorkArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PathologyWorkArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SystemNGOAdminWorkArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PathologyWorkArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         
@@ -174,15 +192,15 @@ public class SystemNGOAdminWorkArea extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             
             public void run() {
-                new SystemNGOAdminWorkArea().setVisible(true);  
+                new PathologyWorkArea(emp).setVisible(true);  
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LogoutJButton;
-    private javax.swing.JButton ManageNGOJButton;
-    private javax.swing.JButton ManageVolunteerJButton;
+    private javax.swing.JButton ManageProfileJButton;
+    private javax.swing.JButton ManageReportsJButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPaneAdmin;

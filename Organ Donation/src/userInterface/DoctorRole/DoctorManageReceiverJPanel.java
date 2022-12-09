@@ -4,6 +4,17 @@
  */
 package userInterface.DoctorRole;
 
+import userInterface.HospitalAdminWorkArea.*;
+import Business.Employee.Employee;
+import Business.Patient.PatientVisit;
+import DatabaseUtility.DatabaseHandleHospitalRoles;
+import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.Hashtable;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Lenovo
@@ -13,8 +24,16 @@ public class DoctorManageReceiverJPanel extends javax.swing.JPanel {
     /**
      * Creates new form DoctorManageReceiverJPanel
      */
-    public DoctorManageReceiverJPanel() {
+    private static Employee emp;
+    Boolean selected;
+    int adminId;
+    DatabaseHandleHospitalRoles dbCon=new DatabaseHandleHospitalRoles();
+    public DoctorManageReceiverJPanel(Employee e) {
         initComponents();
+        this.emp=e;
+        selected=false;
+        adminId=emp.getId();
+        populateTable(dbCon.fetchDoctorDonorRevicerList(adminId,"Reciver"));
     }
 
     /**
@@ -33,14 +52,13 @@ public class DoctorManageReceiverJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jTextReceviersName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jButtonReceiverSave = new javax.swing.JButton();
         jButtonReceiverReportToAdmin = new javax.swing.JButton();
-        jCheckBoxLiverR = new javax.swing.JCheckBox();
-        jCheckPancreasR = new javax.swing.JCheckBox();
-        jCheckBoxHeartR = new javax.swing.JCheckBox();
-        jCheckBoxIntestinesR = new javax.swing.JCheckBox();
-        jCheckBoxLungR = new javax.swing.JCheckBox();
-        jCheckBoxkKidneyR = new javax.swing.JCheckBox();
+        jCheckBoxIntestineD = new javax.swing.JCheckBox();
+        jCheckBoxHeartD = new javax.swing.JCheckBox();
+        jCheckBoxPancreasD = new javax.swing.JCheckBox();
+        jCheckBoxLiverD = new javax.swing.JCheckBox();
+        jCheckBoxKidneyD = new javax.swing.JCheckBox();
+        jCheckBoxLungD = new javax.swing.JCheckBox();
 
         jTableReceiverDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -50,32 +68,40 @@ public class DoctorManageReceiverJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "RECIEVER ID", "RECEIVER NAME", "RECEIVER AGE", "DATE", "ORGAN NAME"
+                "PATIENT_RECIEVER ID", "RECEIVER NAME", "RECEIVER AGE", "DATE", "ORGAN NAME"
             }
         ));
         jScrollPane1.setViewportView(jTableReceiverDetails);
 
         jButtonViewReceiverInfo.setText("VIEW RECEIVER");
+        jButtonViewReceiverInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonViewReceiverInfoActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("RECEIVER NAME");
 
         jLabel3.setText("SELECT ORGAN:");
 
-        jButtonReceiverSave.setText("SAVE");
-
         jButtonReceiverReportToAdmin.setText("SEND REPORT TO ADMIN");
+        jButtonReceiverReportToAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReceiverReportToAdminActionPerformed(evt);
+            }
+        });
 
-        jCheckBoxLiverR.setText("LIVER");
+        jCheckBoxIntestineD.setText("INTESTINES");
 
-        jCheckPancreasR.setText("PANCREAS");
+        jCheckBoxHeartD.setText("HEART");
 
-        jCheckBoxHeartR.setText("HEART");
+        jCheckBoxPancreasD.setText("PANCREAS");
 
-        jCheckBoxIntestinesR.setText("INTESTINES");
+        jCheckBoxLiverD.setText("LIVER");
 
-        jCheckBoxLungR.setText("LUNG");
+        jCheckBoxKidneyD.setText("KIDNEY");
 
-        jCheckBoxkKidneyR.setText("KIDNEY");
+        jCheckBoxLungD.setText("LUNG");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -97,28 +123,25 @@ public class DoctorManageReceiverJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel3))
-                .addGap(88, 88, 88)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextReceviersName, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBoxLiverR)
-                    .addComponent(jCheckBoxHeartR)
-                    .addComponent(jCheckBoxLungR))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(jTextReceviersName, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(96, 96, 96)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBoxIntestineD)
+                            .addComponent(jCheckBoxLiverD)
+                            .addComponent(jCheckBoxKidneyD))
+                        .addGap(57, 57, 57)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBoxLungD)
+                            .addComponent(jCheckBoxPancreasD)
+                            .addComponent(jCheckBoxHeartD))))
                 .addGap(323, 323, 323))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jCheckPancreasR, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(355, 355, 355)
-                        .addComponent(jButtonReceiverSave, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(82, 82, 82)
-                        .addComponent(jButtonReceiverReportToAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBoxkKidneyR)
-                            .addComponent(jCheckBoxIntestinesR, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(603, 603, 603)
+                .addComponent(jButtonReceiverReportToAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(415, 415, 415))
         );
         layout.setVerticalGroup(
@@ -138,38 +161,138 @@ public class DoctorManageReceiverJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextReceviersName, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(46, 46, 46)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jCheckBoxLiverR)
-                    .addComponent(jCheckPancreasR))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBoxHeartR)
-                    .addComponent(jCheckBoxIntestinesR))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBoxLungR)
-                    .addComponent(jCheckBoxkKidneyR))
-                .addGap(62, 62, 62)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonReceiverSave, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
-                    .addComponent(jButtonReceiverReportToAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBoxLungD)
+                            .addComponent(jCheckBoxKidneyD, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jCheckBoxIntestineD)
+                            .addComponent(jCheckBoxHeartD))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jCheckBoxPancreasD)
+                            .addComponent(jCheckBoxLiverD))))
+                .addGap(46, 46, 46)
+                .addComponent(jButtonReceiverReportToAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonViewReceiverInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViewReceiverInfoActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex=jTableReceiverDetails.getSelectedRow();
+            if (selectedIndex != -1){
+            int id=Integer.parseInt(jTableReceiverDetails.getValueAt(selectedIndex, 0).toString());
+            jTextReceviersName.setText(jTableReceiverDetails.getValueAt(selectedIndex, 1).toString());
+            jTextReceviersName.setEditable(false);
+        }
+            else{
+                JOptionPane.showMessageDialog(this, "Please select the row");
+            }
+    }//GEN-LAST:event_jButtonViewReceiverInfoActionPerformed
+
+    private void jButtonReceiverReportToAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReceiverReportToAdminActionPerformed
+        // TODO add your handling code here:
+        if (selected){
+          int selectedIndex=jTableReceiverDetails.getSelectedRow();
+            if(selectedIndex != -1){
+                int id=Integer.parseInt(jTableReceiverDetails.getValueAt(selectedIndex, 0).toString());
+                jTextReceviersName.setText(jTableReceiverDetails.getValueAt(selectedIndex, 1).toString());
+                jTextReceviersName.setEditable(false);
+                int [] organList = new int [6];
+                Dictionary organdict = new Hashtable();
+                if(jCheckBoxKidneyD.isSelected())
+                    organdict.put("Kidney","Kidney");
+                if(jCheckBoxIntestineD.isSelected())
+                    organdict.put("Intestine","Intestine");
+                if(jCheckBoxLiverD.isSelected())
+                    organdict.put("Liver","Liver");
+                if(jCheckBoxLungD.isSelected())
+                    organdict.put("Lungs","Lungs");
+                if(jCheckBoxHeartD.isSelected())
+                   organdict.put("Heart","Heart");
+                if(jCheckBoxPancreasD.isSelected())
+                    organdict.put("Pancreas","Pancreas");
+                int count =organdict.size();
+                if (count ==0 ){
+                    JOptionPane.showMessageDialog(this, "Please select atleast one organ");
+                    return;
+                }
+                for (Enumeration i = organdict.elements(); i.hasMoreElements();)
+                {
+                    System.out.println("Value in Dictionary : " + i.nextElement());
+                }
+                if (count==1){ 
+                    String organ="";
+                    for (Enumeration i = organdict.elements(); i.hasMoreElements();)
+                    {
+                        organ=i.nextElement().toString();
+                    }
+                   Boolean status = dbCon.updateReciverDonorList(id, organ);
+                   if(status){
+                       JOptionPane.showMessageDialog(this, "Sent to admin");
+                       clearFields();
+                       populateTable(dbCon.fetchDoctorDonorRevicerList(adminId,"Reciver"));
+                       return;
+                   }
+                }
+                else{
+                    Boolean status=false;
+                    String organ="";
+                    for (Enumeration i = organdict.elements(); i.hasMoreElements();){
+                        organ=i.nextElement().toString();
+                        status=dbCon.updateReciverDonorList(id, organ);
+                        break;
+                                
+                    }
+                    organdict.remove(organ);
+                    for (Enumeration i = organdict.elements(); i.hasMoreElements();){
+                        organ=i.nextElement().toString();
+                        status=dbCon.populateReciverDonorList(id, organ,"Reciver");        
+                    }
+                    if (status){
+                        JOptionPane.showMessageDialog(this, "Sent to admin");
+                        clearFields();
+                        populateTable(dbCon.fetchDoctorDonorRevicerList(adminId,"Reciver"));
+                       return;
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "Error in adding to list");
+                    }
+                }
+                
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Please select the row");
+            }  
+        }
+        clearFields();
+        selected=false;
+        
+    }//GEN-LAST:event_jButtonReceiverReportToAdminActionPerformed
+void clearFields(){
+    jTextReceviersName.setText("");
+    jCheckBoxKidneyD.setSelected(false);
+    jCheckBoxIntestineD.setSelected(false);
+    jCheckBoxLiverD.setSelected(false);
+    jCheckBoxLungD.setSelected(false);
+    jCheckBoxHeartD.setSelected(false);
+    jCheckBoxPancreasD.setSelected(false);
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonReceiverReportToAdmin;
-    private javax.swing.JButton jButtonReceiverSave;
     private javax.swing.JButton jButtonViewReceiverInfo;
-    private javax.swing.JCheckBox jCheckBoxHeartR;
-    private javax.swing.JCheckBox jCheckBoxIntestinesR;
-    private javax.swing.JCheckBox jCheckBoxLiverR;
-    private javax.swing.JCheckBox jCheckBoxLungR;
-    private javax.swing.JCheckBox jCheckBoxkKidneyR;
-    private javax.swing.JCheckBox jCheckPancreasR;
+    private javax.swing.JCheckBox jCheckBoxHeartD;
+    private javax.swing.JCheckBox jCheckBoxIntestineD;
+    private javax.swing.JCheckBox jCheckBoxKidneyD;
+    private javax.swing.JCheckBox jCheckBoxLiverD;
+    private javax.swing.JCheckBox jCheckBoxLungD;
+    private javax.swing.JCheckBox jCheckBoxPancreasD;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -177,4 +300,22 @@ public class DoctorManageReceiverJPanel extends javax.swing.JPanel {
     private javax.swing.JTable jTableReceiverDetails;
     private javax.swing.JTextField jTextReceviersName;
     // End of variables declaration//GEN-END:variables
+private void populateTable(ArrayList <PatientVisit> patientList) {
+        DefaultTableModel model=(DefaultTableModel) jTableReceiverDetails.getModel();
+        model.setRowCount(0);
+        for (PatientVisit pv:patientList){
+            Object[] row =new Object[7];
+            row[0]=pv.getId();
+            row[1]=pv.getName();
+            row[2]=pv.getAge();
+            row[3]=pv.getDate();
+            if (pv.getOrgan() == null){
+                row[4]="Select Organ";
+            }
+            else{
+                row[4]=pv.getOrgan();
+            }
+            model.addRow(row);
+        }
+    }
 }

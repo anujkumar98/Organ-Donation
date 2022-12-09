@@ -4,6 +4,17 @@
  */
 package userInterface.DoctorRole;
 
+import userInterface.HospitalAdminWorkArea.*;
+import Business.Employee.Employee;
+import Business.Patient.PatientVisit;
+import DatabaseUtility.DatabaseHandleHospitalRoles;
+import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.Hashtable;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Lenovo
@@ -13,8 +24,16 @@ public class DoctorManageDonorJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageDonorJPAnel
      */
-    public DoctorManageDonorJPanel() {
+    private static Employee emp;
+    Boolean selected;
+    int adminId;
+    DatabaseHandleHospitalRoles dbCon=new DatabaseHandleHospitalRoles();
+    public DoctorManageDonorJPanel(Employee e) {
         initComponents();
+        this.emp=e;
+        selected=false;
+        adminId=emp.getId();
+        populateTable(dbCon.fetchDoctorDonorRevicerList(adminId,"Donor"));
     }
 
     /**
@@ -33,7 +52,6 @@ public class DoctorManageDonorJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jTextFieldDonorName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jButtonSaveDonors = new javax.swing.JButton();
         jButtonDonorReportToAdmin = new javax.swing.JButton();
         jCheckBoxLiverD = new javax.swing.JCheckBox();
         jCheckBoxPancreasD = new javax.swing.JCheckBox();
@@ -50,20 +68,28 @@ public class DoctorManageDonorJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "DONOR ID", "DONOR NAME", "DONOR AGE", "DATE", "ORGAN NAME"
+                "PATIENT_DONOR ID", "DONOR NAME", "DONOR AGE", "DATE", "ORGAN NAME"
             }
         ));
         jScrollPane1.setViewportView(jTableDonorDetails);
 
         jButtonDonorInfo.setText("VIEW DONOR");
+        jButtonDonorInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDonorInfoActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("DONOR NAME");
 
         jLabel3.setText("SELECT ORGAN:");
 
-        jButtonSaveDonors.setText("SAVE");
-
         jButtonDonorReportToAdmin.setText("SEND TO ADMIN");
+        jButtonDonorReportToAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDonorReportToAdminActionPerformed(evt);
+            }
+        });
 
         jCheckBoxLiverD.setText("LIVER");
 
@@ -84,7 +110,7 @@ public class DoctorManageDonorJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(473, 473, 473)
+                        .addGap(470, 470, 470)
                         .addComponent(jButtonDonorInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -93,9 +119,7 @@ public class DoctorManageDonorJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(343, 343, 343)
-                .addComponent(jButtonSaveDonors, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88)
+                .addGap(597, 597, 597)
                 .addComponent(jButtonDonorReportToAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(415, 415, 415))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -138,9 +162,9 @@ public class DoctorManageDonorJPanel extends javax.swing.JPanel {
                 .addGap(50, 50, 50)
                 .addComponent(jLabel3)
                 .addGap(1, 1, 1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBoxKidneyD)
-                    .addComponent(jCheckBoxLungD))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBoxLungD)
+                    .addComponent(jCheckBoxKidneyD, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckBoxIntestineD)
@@ -150,18 +174,117 @@ public class DoctorManageDonorJPanel extends javax.swing.JPanel {
                     .addComponent(jCheckBoxPancreasD)
                     .addComponent(jCheckBoxLiverD))
                 .addGap(81, 81, 81)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonSaveDonors, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
-                    .addComponent(jButtonDonorReportToAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jButtonDonorReportToAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonDonorInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDonorInfoActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex=jTableDonorDetails.getSelectedRow();
+        if(selectedIndex != -1){
+            selected=true;
+            int id=Integer.parseInt(jTableDonorDetails.getValueAt(selectedIndex, 0).toString());
+            jTextFieldDonorName.setText(jTableDonorDetails.getValueAt(selectedIndex, 1).toString());
+            jTextFieldDonorName.setEditable(false);
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Please select the row");
+        }
+    }//GEN-LAST:event_jButtonDonorInfoActionPerformed
 
+    private void jButtonDonorReportToAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDonorReportToAdminActionPerformed
+        // TODO add your handling code here:
+        if (selected){
+          int selectedIndex=jTableDonorDetails.getSelectedRow();
+            if(selectedIndex != -1){
+                int id=Integer.parseInt(jTableDonorDetails.getValueAt(selectedIndex, 0).toString());
+                jTextFieldDonorName.setText(jTableDonorDetails.getValueAt(selectedIndex, 1).toString());
+                jTextFieldDonorName.setEditable(false);
+                int [] organList = new int [6];
+                Dictionary organdict = new Hashtable();
+                if(jCheckBoxKidneyD.isSelected())
+                    organdict.put("Kidney","Kidney");
+                if(jCheckBoxIntestineD.isSelected())
+                    organdict.put("Intestine","Intestine");
+                if(jCheckBoxLiverD.isSelected())
+                    organdict.put("Liver","Liver");
+                if(jCheckBoxLungD.isSelected())
+                    organdict.put("Lungs","Lungs");
+                if(jCheckBoxHeartD.isSelected())
+                   organdict.put("Heart","Heart");
+                if(jCheckBoxPancreasD.isSelected())
+                    organdict.put("Pancreas","Pancreas");
+                int count =organdict.size();
+                if (count ==0 ){
+                    JOptionPane.showMessageDialog(this, "Please select atleast one organ");
+                    return;
+                }
+                for (Enumeration i = organdict.elements(); i.hasMoreElements();)
+                {
+                    System.out.println("Value in Dictionary : " + i.nextElement());
+                }
+                if (count==1){ 
+                    String organ="";
+                    for (Enumeration i = organdict.elements(); i.hasMoreElements();)
+                    {
+                        organ=i.nextElement().toString();
+                    }
+                   Boolean status = dbCon.updateReciverDonorList(id, organ);
+                   if(status){
+                       JOptionPane.showMessageDialog(this, "Sent to admin");
+                       clearFields();
+                       populateTable(dbCon.fetchDoctorDonorRevicerList(adminId,"Donor"));
+                       return;
+                   }
+                }
+                else{
+                    Boolean status=false;
+                    String organ="";
+                    for (Enumeration i = organdict.elements(); i.hasMoreElements();){
+                        organ=i.nextElement().toString();
+                        status=dbCon.updateReciverDonorList(id, organ);
+                        break;
+                                
+                    }
+                    organdict.remove(organ);
+                    for (Enumeration i = organdict.elements(); i.hasMoreElements();){
+                        organ=i.nextElement().toString();
+                        status=dbCon.populateReciverDonorList(id, organ,"Donor");        
+                    }
+                    if (status){
+                        JOptionPane.showMessageDialog(this, "Sent to admin");
+                        clearFields();
+                        populateTable(dbCon.fetchDoctorDonorRevicerList(adminId,"Donor"));
+                       return;
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "Error in adding to list");
+                    }
+                }
+                
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Please select the row");
+            }  
+        }
+        clearFields();
+        selected=false;
+        
+    }//GEN-LAST:event_jButtonDonorReportToAdminActionPerformed
+
+void clearFields(){
+    jTextFieldDonorName.setText("");
+    jCheckBoxKidneyD.setSelected(false);
+    jCheckBoxIntestineD.setSelected(false);
+    jCheckBoxLiverD.setSelected(false);
+    jCheckBoxLungD.setSelected(false);
+    jCheckBoxHeartD.setSelected(false);
+    jCheckBoxPancreasD.setSelected(false);
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDonorInfo;
     private javax.swing.JButton jButtonDonorReportToAdmin;
-    private javax.swing.JButton jButtonSaveDonors;
     private javax.swing.JCheckBox jCheckBoxHeartD;
     private javax.swing.JCheckBox jCheckBoxIntestineD;
     private javax.swing.JCheckBox jCheckBoxKidneyD;
@@ -175,4 +298,24 @@ public class DoctorManageDonorJPanel extends javax.swing.JPanel {
     private javax.swing.JTable jTableDonorDetails;
     private javax.swing.JTextField jTextFieldDonorName;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTable(ArrayList <PatientVisit> patientList) {
+        DefaultTableModel model=(DefaultTableModel) jTableDonorDetails.getModel();
+        model.setRowCount(0);
+        for (PatientVisit pv:patientList){
+            Object[] row =new Object[7];
+            row[0]=pv.getId();
+            row[1]=pv.getName();
+            row[2]=pv.getAge();
+            row[3]=pv.getDate();
+            if (pv.getOrgan() == null){
+                row[4]="Select Organ";
+            }
+            else{
+                row[4]=pv.getOrgan();
+            }
+            
+            model.addRow(row);
+        }
+    }
 }

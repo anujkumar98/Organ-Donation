@@ -4,7 +4,7 @@
  */
 package userInterface.Transport;
 
-import userInterface.NgoAdmin.*;
+
 import userInterface.SystemAdminWorkArea.*;
 
 /**
@@ -34,6 +34,10 @@ public class TransportAdminWorkArea extends javax.swing.JFrame {
         ManageDriverJButton = new javax.swing.JButton();
         LogoutJButton = new javax.swing.JButton();
         ManageRosterJButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+
+        jButton2 = new javax.swing.JButton();
+
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -68,12 +72,30 @@ public class TransportAdminWorkArea extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("MNAGE REQUEST");
+
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+
+        jButton2.setText("DRIVER STATUS");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+
                 .addComponent(LogoutJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -81,17 +103,22 @@ public class TransportAdminWorkArea extends javax.swing.JFrame {
                     .addComponent(ManageDriverJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ManageRosterJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 12, Short.MAX_VALUE))
+
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+
                 .addGap(39, 39, 39)
+
                 .addComponent(ManageDriverJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
                 .addComponent(ManageRosterJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+
                 .addGap(115, 115, 115)
+
                 .addComponent(LogoutJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(235, Short.MAX_VALUE))
+                .addGap(35, 35, 35))
         );
 
         jSplitPaneAdmin.setLeftComponent(jPanel1);
@@ -140,6 +167,23 @@ public class TransportAdminWorkArea extends javax.swing.JFrame {
         
     }//GEN-LAST:event_ManageRosterJButtonActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+
+        
+        
+        ManageTransportRequestJPanel manageTransportRequest=new ManageTransportRequestJPanel();
+        jSplitPaneAdmin.setRightComponent(manageTransportRequest);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+         DriverStatusJPanel DriverStatus=new DriverStatusJPanel();
+        jSplitPaneAdmin.setRightComponent(DriverStatus);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+
     /**
      * @param args the command line arguments
      */
@@ -183,6 +227,10 @@ public class TransportAdminWorkArea extends javax.swing.JFrame {
     private javax.swing.JButton LogoutJButton;
     private javax.swing.JButton ManageDriverJButton;
     private javax.swing.JButton ManageRosterJButton;
+    private javax.swing.JButton jButton1;
+
+    private javax.swing.JButton jButton2;
+
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPaneAdmin;

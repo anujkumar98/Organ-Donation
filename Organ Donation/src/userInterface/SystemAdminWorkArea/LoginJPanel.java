@@ -10,6 +10,8 @@ import DatabaseUtility.DatabaseHandelLogin;
 import javax.swing.JOptionPane;
 import userInterface.DoctorRole.DoctorWorkAreaJFrame;
 import userInterface.HospitalAdminWorkArea.HospitalAdminWorkAreaJFrame;
+import userInterface.NGO.NGOAdminWorkArea;
+import userInterface.Pathology.PathologyWorkArea;
 import userInterface.RecepitionistRole.RecepitionistWorkAreaJFrame;
 
 /**
@@ -33,7 +35,7 @@ public class LoginJPanel extends javax.swing.JFrame {
         jComboBoxRoles.addItem("DOCTOR");
         jComboBoxRoles.addItem("RECEPTIONIST");
         jComboBoxRoles.addItem("PATHOLOGIST");
-        
+        jComboBoxRoles.addItem("NGO ADMIN");
     }
 
     /**
@@ -143,58 +145,71 @@ public class LoginJPanel extends javax.swing.JFrame {
         String role=jComboBoxRoles.getSelectedItem().toString();
         Employee emp;
         switch (role){
-            case "SYSTEM ADMIN":
+            case "SYSTEM ADMIN" -> {
                 if ((username.equals("root") && password.equals("root"))){
-                SystemAdminWorkArea JFrame = new SystemAdminWorkArea();
-                JFrame.setVisible(true);
+                    SystemAdminWorkArea JFrame = new SystemAdminWorkArea();
+                    JFrame.setVisible(true);
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Please check the password");
+                }
             }
-            else{
-            JOptionPane.showMessageDialog(this, "Please check the password");
-            }
-                break;
-            case "DOCTOR":
+            case "DOCTOR" -> {
                 emp=dblogin.loginUser(username,password,"HOSPITAL_DOCTOR","HOSPITAL");
                 if (emp != null){
-                   DoctorWorkAreaJFrame JFrame = new DoctorWorkAreaJFrame(emp);
-                   JFrame.setVisible(true);  
+                    DoctorWorkAreaJFrame JFrame = new DoctorWorkAreaJFrame(emp);
+                    JFrame.setVisible(true);  
                 }
                 else{
-                 JOptionPane.showMessageDialog(this, "Please check the username, password and role. ");
+                    JOptionPane.showMessageDialog(this, "Please check the username, password and role. ");
                 }
-                break;
-            case "HOSPITAL ADMIN":
+            }
+            case "HOSPITAL ADMIN" -> {
                 emp=dblogin.loginUser(username,password,"HOSPITAL_ADMIN","HOSPITAL");
                 if (emp != null){
-                   HospitalAdminWorkAreaJFrame JFrame = new HospitalAdminWorkAreaJFrame(emp);
-                   JFrame.setVisible(true);  
+                    HospitalAdminWorkAreaJFrame JFrame = new HospitalAdminWorkAreaJFrame(emp);
+                    JFrame.setVisible(true);  
                 }
                 else{
-                 JOptionPane.showMessageDialog(this, "Please check the username, password and role. ");
+                    JOptionPane.showMessageDialog(this, "Please check the username, password and role. ");
                 }
-                break;
-            case "RECEPTIONIST":
+            }
+            case "RECEPTIONIST" -> {
                 emp=dblogin.loginUser(username,password,"HOSPITAL_RECEPTIONIST","HOSPITAL");
                 if (emp != null){
-                   RecepitionistWorkAreaJFrame JFrame = new RecepitionistWorkAreaJFrame(emp);
-                   JFrame.setVisible(true);  
+                    RecepitionistWorkAreaJFrame JFrame = new RecepitionistWorkAreaJFrame(emp);
+                    JFrame.setVisible(true);  
                 }
                 else{
-                 JOptionPane.showMessageDialog(this, "Please check the username, password and role. ");
+                    JOptionPane.showMessageDialog(this, "Please check the username, password and role. ");
                 }
-                break;
+            }
+            case "PATHOLOGIST" -> {
+                emp=dblogin.loginUser(username,password,"HOSPITAL_PATHOLOGIST","HOSPITAL");
+                if (emp != null){
+                    PathologyWorkArea JFrame = new PathologyWorkArea(emp);
+                    JFrame.setVisible(true);  
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Please check the username, password and role. ");
+                }
+            }
+            case "NGO ADMIN" -> {
+                emp=dblogin.loginUser(username,password,"NGO_ADMIN","NGO");
+                if (emp != null){
+                    NGOAdminWorkArea JFrame = new NGOAdminWorkArea(emp);
+                    JFrame.setVisible(true);  
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Please check the username, password and role. ");
+                }
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextFieldUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUserNameActionPerformed
         // TODO add your handling code here:
-        String username=jTextFieldUserName.getText();
-        String password=jTextFieldPassword.getText();
-        String role=jComboBoxRoles.getSelectedItem().toString();
-        if(role.equalsIgnoreCase("SYSAD")){
-            if ((username.equals("root") && password.equals("root"))){
-                
-            }
-        }
+       
     }//GEN-LAST:event_jTextFieldUserNameActionPerformed
 
     private void jTextFieldPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPasswordActionPerformed
