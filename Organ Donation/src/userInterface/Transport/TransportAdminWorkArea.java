@@ -34,6 +34,7 @@ public class TransportAdminWorkArea extends javax.swing.JFrame {
         ManageDriverJButton = new javax.swing.JButton();
         LogoutJButton = new javax.swing.JButton();
         ManageRosterJButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -68,6 +69,13 @@ public class TransportAdminWorkArea extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -82,11 +90,17 @@ public class TransportAdminWorkArea extends javax.swing.JFrame {
                             .addComponent(ManageRosterJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(113, 113, 113)
+                .addGap(63, 63, 63)
+                .addComponent(jButton1)
+                .addGap(27, 27, 27)
                 .addComponent(ManageDriverJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(ManageRosterJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -143,6 +157,12 @@ public class TransportAdminWorkArea extends javax.swing.JFrame {
         
     }//GEN-LAST:event_ManageRosterJButtonActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        ManageDriverJPanel jPanel=new ManageDriverJPanel();
+        jSplitPaneAdmin.setRightComponent(jPanel);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -186,6 +206,7 @@ public class TransportAdminWorkArea extends javax.swing.JFrame {
     private javax.swing.JButton LogoutJButton;
     private javax.swing.JButton ManageDriverJButton;
     private javax.swing.JButton ManageRosterJButton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPaneAdmin;

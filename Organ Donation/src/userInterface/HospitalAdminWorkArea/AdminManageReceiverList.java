@@ -135,27 +135,6 @@ public class AdminManageReceiverList extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-         int selectedIndex=jTable1.getSelectedRow();
-        if(selectedIndex != -1){
-            int ogandReciveId=Integer.parseInt(jTable1.getValueAt(selectedIndex, 0).toString());
-            jTextFieldName.setText(jTable1.getValueAt(selectedIndex, 1).toString());
-            jTextFieldName.setEditable(false);
-            selected=true;
-        }
-        else{
-            JOptionPane.showMessageDialog(this, "Select a row to fetch");
-        }
-        jTextFieldName.setEditable(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        populateTable(dbCon.fetchAdminDonorRevicerList(emp.getId(),"Reciver","Sent to Admin"));
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
         int selectedIndex=jTable1.getSelectedRow();
         if(selectedIndex != -1 && selected){
             int ogandReciveId=Integer.parseInt(jTable1.getValueAt(selectedIndex, 0).toString());
@@ -176,6 +155,28 @@ public class AdminManageReceiverList extends javax.swing.JPanel {
         jTextFieldName.setEditable(false);
         selected=false;
         populateTable(dbCon.fetchAdminDonorRevicerList(emp.getId(),"Reciver","Sent to Admin"));
+        
+         
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        populateTable(dbCon.fetchAdminDonorRevicerList(emp.getId(),"Reciver","Sent to Admin"));
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+     int selectedIndex=jTable1.getSelectedRow();
+        if(selectedIndex != -1){
+            int ogandReciveId=Integer.parseInt(jTable1.getValueAt(selectedIndex, 0).toString());
+            jTextFieldName.setText(jTable1.getValueAt(selectedIndex, 1).toString());
+            jTextFieldName.setEditable(false);
+            selected=true;
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Select a row to fetch");
+        }
+        jTextFieldName.setEditable(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
 

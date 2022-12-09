@@ -6,8 +6,11 @@ package DatabaseUtility;
 
 import Business.Employee.Employee;
 import Business.Employee.EmployeeDirectory;
+import Business.Patient.PatientReport;
 import Business.Patient.PatientVisit;
 import Business.Patient.PatientVisitDirectory;
+import Business.Patient.PatientVitals;
+import email.util.EmailUtil;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -47,16 +50,17 @@ public class DatabaseHandleHospitalRoles {
         return con;
     }
     
-public static Boolean createLogin(String name,String username, String password,String role,int hospitalID,String tableName){
+public static Boolean createLogin(String name,String username,String email, String password,String role,int hospitalID,String tableName){
     Boolean status=false;    
     try{
             Connection con=createConnection();
             Statement statement=con.createStatement();
             String query="INSERT INTO `OrganDonation`.`"+tableName+"` "
             + "( `"+tableName.toUpperCase()+"_NAME"+"`, `"+tableName.toUpperCase()+"_USERNAME"+"`, "
-            + "`"+tableName.toUpperCase()+"_PASSWORD"+"`, `"+"HOSPITAL_ID"+"`) "
-            + "VALUES ('"+name+"', '"+username+"', '"+password+"', '"+hospitalID+"')";
+            + "`"+tableName.toUpperCase()+"_PASSWORD"+"`, `"+"HOSPITAL_ID"+"` ,`"+tableName.toUpperCase()+"_EMAIL"+"`) "
+            + "VALUES ('"+name+"', '"+username+"', '"+password+"', '"+hospitalID+"' , ' "+email+")";
     statement.executeUpdate(query);
+    EmailUtil.sendEmail(email,username,password);
     status=true;
         }
         catch(Exception e){
@@ -643,19 +647,54 @@ public Boolean sendListToOPO(int organDonationId){
     }
     return status;
 }
-public Boolean fetchVitals(int vitalId){
-    Boolean status=false;
+public PatientVitals fetchVitals(int visitId){
+    PatientVitals pv=new PatientVitals();
+    int vitalId=0;
     try{
         Connection con=createConnection();
         Statement statement=con.createStatement();
-        String updateQuery="";
-        statement.executeUpdate(updateQuery);
-        status=true;
+        String getVitalId="SELCT PATIENTS_VITALS_ID FROM PATIENTS_VISIT WHERE PATIENTS_VISIT_ID = "+visitId;
+        ResultSet resultSet=statement.executeQuery(getVitalId);
+        while(resultSet.next()){
+            vitalId=resultSet.getInt("PATIENTS_VITALS_ID");
+        }
+        String vitalsQuery="Select * from PATIENTS_VITALS WHERE PATIENTS_VITALS_ID = "+vitalId;
+        resultSet=statement.executeQuery(vitalsQuery);
+        while(resultSet.next()){
+            pv.setWeight(resultSet.getFloat("PATIENTS_VITALS_WEIGHT"));
+            pv.setTemp(resultSet.getFloat("PATIENTS_VITALS_TEMPERATURE"));
+            pv.setHeight(resultSet.getFloat("PATIENTS_VITALS_HEIGHT"));
+            pv.setBp(resultSet.getFloat("PATIENTS_VITALS_BP"));
+            pv.setPulse(resultSet.getInt("PATIENTS_VITALS_PULSE"));
+            pv.setRepiratoryRate(resultSet.getInt("PATIENTS_VITALS_RESPIRATORY_RATE"));    
+        }
     }
-    
     catch(Exception e){
         System.out.println("sendListToOPO :"+e);
     }
-    return status;
+    return pv;
+}
+public PatientReport fetchReports(int visitId){
+    PatientReport pr=new PatientReport();
+    int reportId=0;
+    try{
+        Connection con=createConnection();
+        Statement statement=con.createStatement();
+        String getVitalId="SELCT PATIENTS_REPORT_ID FROM PATIENTS_VISIT WHERE PATIENTS_VISIT_ID = "+visitId;
+        ResultSet resultSet=statement.executeQuery(getVitalId);
+        while(resultSet.next()){
+            reportId=resultSet.getInt("PATIENTS_REPORT_ID");
+        }
+        String vitalsQuery="Select * from PATIENTS_VITALS WHERE PATIENTS_VITALS_ID = "+reportId;
+        resultSet=statement.executeQuery(vitalsQuery);
+        while(resultSet.next()){
+            pr.setBloodType(resultSet.getString("PATIENT_REPORT_BLOOD_TYPE"));
+            pr.setTissueConditon(resultSet.getString("PATIENT_REPORT_TISSUE_CONDITION"));    
+        }
+    }
+    catch(Exception e){
+        System.out.println("sendListToOPO :"+e);
+    }
+    return pr;
 }
 }

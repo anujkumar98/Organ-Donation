@@ -11,7 +11,7 @@ package email.util;
 public class Test {
  
     public static void main(String[] args) throws Exception {
-        EmailUtil.sendEmail("bhoyarkunal61@gmail.com");
+        EmailUtil.sendEmail("bhoyarkunal61@gmail.com","abc","pqr");
         
         
     }
