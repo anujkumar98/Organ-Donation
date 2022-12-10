@@ -46,7 +46,7 @@ public class DoctorWorkAreaJFrame extends javax.swing.JFrame {
         DoctorWorkAreaSplitPane.setBackground(new java.awt.Color(255, 255, 255));
         DoctorWorkAreaSplitPane.setDividerLocation(250);
 
-        jPanel1.setBackground(new java.awt.Color(196, 6, 44));
+        jPanel1.setBackground(new java.awt.Color(150, 21, 53));
 
         jButtonDoctorProfile.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         jButtonDoctorProfile.setText("PROFILE");
@@ -131,7 +131,6 @@ public class DoctorWorkAreaJFrame extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Lenovo\\Desktop\\AED images\\org14_3.png")); // NOI18N
         jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
