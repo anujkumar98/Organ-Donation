@@ -9,6 +9,8 @@ import Business.Network.Network;
 import Business.Network.NetworkDirectory;
 import DatabaseUtility.DatabaseEnterpriseUtilities;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -351,6 +353,10 @@ public class ManageTransportJPanel extends javax.swing.JPanel {
         String city=jComboCity.getSelectedItem().toString();
         String region=jComboBoxRegion.getSelectedItem().toString();
         String state=jComboBoxState.getSelectedItem().toString();
+        if(name == null || name.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Name cannot be empty.");
+            return;
+        }
         Boolean statusUnique=dbCon.checkUniqueTransport(region);
         if(statusUnique){
         Boolean status =dbCon.createEnterprise(name, city, state, region,"TRANSPORT");
@@ -474,7 +480,35 @@ public class ManageTransportJPanel extends javax.swing.JPanel {
 
  
     }//GEN-LAST:event_jButton2ActionPerformed
-
+private Boolean validateInputFields(String useraname,String name,String password,String email) {
+        //Function to validate the input fields
+        Pattern patternEmail = Pattern.compile("^[a-z0-9]+@[a-z]+.[a-z]+$");
+        Matcher matcher = patternEmail.matcher(email);
+        Boolean validated=true;
+        if(name == null || name.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Name cannot be empty.");
+            validated=false;
+        }
+        else if(useraname == null || useraname.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Username cannot be empty.");
+            validated=false;
+        }
+        else if(password == null || password.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Password cannot be empty.");
+            validated=false;
+        }
+        else if(password.length()<8){
+            JOptionPane.showMessageDialog(this,"Password must be atleast 8 characters.");
+            validated=false;
+        }
+        else if (!matcher.matches()){
+            JOptionPane.showMessageDialog(this,"Email should be valid.");
+            validated=false;
+        }
+        
+        
+        return validated;
+    }
     private void jButtonTransportCreateAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTransportCreateAdminActionPerformed
         // TODO add your handling code here:
         
@@ -483,7 +517,9 @@ public class ManageTransportJPanel extends javax.swing.JPanel {
             String username=jTextTransportAdminUsername.getText();
             String password=jTextTransportAdminPassword.getText();
             String email=jTextFieldAdminEmail.getText();
-            System.out.println(dbCon.checkUniqueUserName(username,"TRANSPORT"));
+            //System.out.println(dbCon.checkUniqueUserName(username,"TRANSPORT"));
+            Boolean validated=validateInputFields(name,username,password,email);
+            if(validated){
             if(dbCon.checkUniqueUserName(username,"TRANSPORT")==true){
                 boolean status=dbCon.createEnterpriseAdmin(fetchId,name,username,password,"TRANSPORT",email);
                 if (status){
@@ -505,7 +541,7 @@ public class ManageTransportJPanel extends javax.swing.JPanel {
             }
             else{
                 JOptionPane.showMessageDialog(this, "Username already exists");
-            }
+            }}
           
             return;
         }

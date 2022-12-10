@@ -10,6 +10,8 @@ import Business.Network.Network;
 import Business.Network.NetworkDirectory;
 import DatabaseUtility.DatabaseEnterpriseUtilities;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -295,9 +297,9 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBoxCity, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxCity, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -357,7 +359,10 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
          String city=jComboBoxCity.getSelectedItem().toString();
         String region=jComboBoxRegion.getSelectedItem().toString();
         String state=jComboBoxState.getSelectedItem().toString();
-       
+       if(name == null || name.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Name cannot be empty.");
+            return;
+        }
         Boolean statusUnique=dbCon.checkUniqueOPO(region);
         if(statusUnique){
             Boolean status=dbCon.createEnterprise(name, city, state, region,"OPO");
@@ -495,7 +500,9 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
             String username=jTextOGOAdminUsername.getText();
             String password=jTextOGOAdminPassword.getText();
             String email=jTextFieldAdminEmail.getText();
-            System.out.println(dbCon.checkUniqueUserName(username,"OPO"));
+            //System.out.println(dbCon.checkUniqueUserName(username,"OPO"));
+            Boolean validated=validateInputFields(name,username,password,email);
+            if(validated){
             if(dbCon.checkUniqueUserName(username,"OPO")==true){
                 boolean status=dbCon.createEnterpriseAdmin(fetchId,name,username,password,"OPO",email);
                 if (status){
@@ -518,6 +525,7 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
             else{
                 JOptionPane.showMessageDialog(this, "Username already exists");
             }
+            }
           
             return;
         }
@@ -527,7 +535,37 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
         
         
     }//GEN-LAST:event_jButtonOPOAdminCreateActionPerformed
-void populateTable(OpoDirectory od){
+
+    private Boolean validateInputFields(String useraname,String name,String password,String email) {
+        //Function to validate the input fields
+        Pattern patternEmail = Pattern.compile("^[a-z0-9]+@[a-z]+.[a-z]+$");
+        Matcher matcher = patternEmail.matcher(email);
+        Boolean validated=true;
+        if(name == null || name.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Name cannot be empty.");
+            validated=false;
+        }
+        else if(useraname == null || useraname.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Username cannot be empty.");
+            validated=false;
+        }
+        else if(password == null || password.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Password cannot be empty.");
+            validated=false;
+        }
+        else if(password.length()<8){
+            JOptionPane.showMessageDialog(this,"Password must be atleast 8 characters.");
+            validated=false;
+        }
+        else if (!matcher.matches()){
+            JOptionPane.showMessageDialog(this,"Email should be valid.");
+            validated=false;
+        }
+        
+        
+        return validated;
+    }
+    void populateTable(OpoDirectory od){
         ArrayList<OpoEnterprise> opoDirectory=od.getOpoDirectory();
         DefaultTableModel model=(DefaultTableModel) jTableOPO.getModel();
         model.setRowCount(0);
