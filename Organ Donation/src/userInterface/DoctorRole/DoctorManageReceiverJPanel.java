@@ -60,6 +60,8 @@ public class DoctorManageReceiverJPanel extends javax.swing.JPanel {
         jCheckBoxKidneyD = new javax.swing.JCheckBox();
         jCheckBoxLungD = new javax.swing.JCheckBox();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jTableReceiverDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -73,34 +75,52 @@ public class DoctorManageReceiverJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTableReceiverDetails);
 
+        jButtonViewReceiverInfo.setBackground(new java.awt.Color(204, 0, 51));
+        jButtonViewReceiverInfo.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
+        jButtonViewReceiverInfo.setForeground(new java.awt.Color(255, 255, 255));
         jButtonViewReceiverInfo.setText("VIEW RECEIVER");
+        jButtonViewReceiverInfo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButtonViewReceiverInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonViewReceiverInfoActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("RECEIVER NAME");
+        jLabel1.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
+        jLabel1.setText("RECEIVER NAME :");
 
-        jLabel3.setText("SELECT ORGAN:");
+        jTextReceviersName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51)));
 
-        jButtonReceiverReportToAdmin.setText("SEND REPORT TO ADMIN");
+        jLabel3.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
+        jLabel3.setText("SELECT ORGAN :");
+
+        jButtonReceiverReportToAdmin.setBackground(new java.awt.Color(204, 0, 51));
+        jButtonReceiverReportToAdmin.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
+        jButtonReceiverReportToAdmin.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonReceiverReportToAdmin.setText("SEND  TO ADMIN");
+        jButtonReceiverReportToAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButtonReceiverReportToAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReceiverReportToAdminActionPerformed(evt);
             }
         });
 
+        jCheckBoxIntestineD.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jCheckBoxIntestineD.setText("INTESTINES");
 
+        jCheckBoxHeartD.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jCheckBoxHeartD.setText("HEART");
 
+        jCheckBoxPancreasD.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jCheckBoxPancreasD.setText("PANCREAS");
 
+        jCheckBoxLiverD.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jCheckBoxLiverD.setText("LIVER");
 
+        jCheckBoxKidneyD.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jCheckBoxKidneyD.setText("KIDNEY");
 
+        jCheckBoxLungD.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jCheckBoxLungD.setText("LUNG");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -110,75 +130,73 @@ public class DoctorManageReceiverJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(322, 322, 322)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel3))
+                                .addGap(126, 126, 126)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jCheckBoxKidneyD)
+                                            .addComponent(jCheckBoxIntestineD)
+                                            .addComponent(jCheckBoxLiverD))
+                                        .addGap(108, 108, 108)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jCheckBoxHeartD)
+                                            .addComponent(jCheckBoxLungD)
+                                            .addComponent(jCheckBoxPancreasD)))
+                                    .addComponent(jTextReceviersName, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(467, 467, 467)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButtonViewReceiverInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(500, 500, 500)
+                                        .addComponent(jLabel2))
+                                    .addComponent(jButtonReceiverReportToAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(477, 477, 477)
-                        .addComponent(jButtonViewReceiverInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(7, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(jTextReceviersName, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBoxIntestineD)
-                            .addComponent(jCheckBoxLiverD)
-                            .addComponent(jCheckBoxKidneyD))
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBoxLungD)
-                            .addComponent(jCheckBoxPancreasD)
-                            .addComponent(jCheckBoxHeartD))))
-                .addGap(323, 323, 323))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(603, 603, 603)
-                .addComponent(jButtonReceiverReportToAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(415, 415, 415))
+                        .addComponent(jScrollPane1)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(277, 277, 277)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
-                .addComponent(jButtonViewReceiverInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextReceviersName, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonViewReceiverInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBoxLungD)
-                            .addComponent(jCheckBoxKidneyD, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCheckBoxIntestineD)
-                            .addComponent(jCheckBoxHeartD))
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCheckBoxPancreasD)
-                            .addComponent(jCheckBoxLiverD))))
-                .addGap(46, 46, 46)
-                .addComponent(jButtonReceiverReportToAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTextReceviersName, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1))
+                                .addGap(32, 32, 32)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jCheckBoxKidneyD, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jCheckBoxIntestineD)
+                                    .addComponent(jCheckBoxHeartD))
+                                .addGap(32, 32, 32)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jCheckBoxLiverD)
+                                    .addComponent(jCheckBoxPancreasD))
+                                .addGap(34, 34, 34)
+                                .addComponent(jButtonReceiverReportToAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(98, 98, 98)
+                                .addComponent(jCheckBoxLungD)))))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

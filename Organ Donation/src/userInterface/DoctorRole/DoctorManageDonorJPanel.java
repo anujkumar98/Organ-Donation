@@ -3,39 +3,54 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package userInterface.DoctorRole;
-
+ import javax.swing.table.JTableHeader;
 import userInterface.HospitalAdminWorkArea.*;
 import Business.Employee.Employee;
 import Business.Patient.PatientVisit;
 import DatabaseUtility.DatabaseHandleHospitalRoles;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 /**
  *
  * @author Lenovo
  */
+
+
+
 public class DoctorManageDonorJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ManageDonorJPAnel
      */
+    
+  
     private static Employee emp;
     Boolean selected;
     int adminId;
     DatabaseHandleHospitalRoles dbCon=new DatabaseHandleHospitalRoles();
+    
+    
+    
     public DoctorManageDonorJPanel(Employee e) {
+        
+//          jTableDonorDetails.setBackground(Color.LIGHT_GRAY);
+//          jTableDonorDetails.setForeground(Color.BLUE); 
+//          jTableDonorDetails.getTableHeader().setBackground(Color.MAGENTA);
+ 
         initComponents();
         this.emp=e;
         selected=false;
         adminId=emp.getId();
         populateTable(dbCon.fetchDoctorDonorRevicerList(adminId,"Donor"));
     }
-
+//jTableDonorDetails.getTableHeader().setBackground(Color.MAGENTA);
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,6 +75,12 @@ public class DoctorManageDonorJPanel extends javax.swing.JPanel {
         jCheckBoxLungD = new javax.swing.JCheckBox();
         jCheckBoxKidneyD = new javax.swing.JCheckBox();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setForeground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTableDonorDetails.setBackground(new java.awt.Color(250, 231, 250));
+        jTableDonorDetails.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTableDonorDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -71,112 +92,76 @@ public class DoctorManageDonorJPanel extends javax.swing.JPanel {
                 "PATIENT_DONOR ID", "DONOR NAME", "DONOR AGE", "DATE", "ORGAN NAME"
             }
         ));
+        jTableDonorDetails.setShowGrid(false);
         jScrollPane1.setViewportView(jTableDonorDetails);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 1230, 204));
+
+        jButtonDonorInfo.setBackground(new java.awt.Color(196, 6, 44));
+        jButtonDonorInfo.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
+        jButtonDonorInfo.setForeground(new java.awt.Color(255, 255, 255));
         jButtonDonorInfo.setText("VIEW DONOR");
+        jButtonDonorInfo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButtonDonorInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDonorInfoActionPerformed(evt);
             }
         });
+        add(jButtonDonorInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 290, 270, 39));
 
+        jLabel1.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         jLabel1.setText("DONOR NAME");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1212, 287, -1, -1));
 
+        jTextFieldDonorName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51)));
+        add(jTextFieldDonorName, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 350, 309, 43));
+
+        jLabel3.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         jLabel3.setText("SELECT ORGAN:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 450, -1, -1));
 
+        jButtonDonorReportToAdmin.setBackground(new java.awt.Color(196, 6, 44));
+        jButtonDonorReportToAdmin.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
+        jButtonDonorReportToAdmin.setForeground(new java.awt.Color(255, 255, 255));
         jButtonDonorReportToAdmin.setText("SEND TO ADMIN");
+        jButtonDonorReportToAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButtonDonorReportToAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDonorReportToAdminActionPerformed(evt);
             }
         });
+        add(jButtonDonorReportToAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 620, 260, 43));
 
+        jCheckBoxLiverD.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jCheckBoxLiverD.setText("LIVER");
+        jCheckBoxLiverD.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51)));
+        add(jCheckBoxLiverD, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 560, -1, -1));
 
+        jCheckBoxPancreasD.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jCheckBoxPancreasD.setText("PANCREAS");
+        jCheckBoxPancreasD.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51)));
+        add(jCheckBoxPancreasD, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 560, -1, -1));
 
+        jCheckBoxHeartD.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jCheckBoxHeartD.setText("HEART");
+        jCheckBoxHeartD.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51)));
+        add(jCheckBoxHeartD, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 510, -1, -1));
 
+        jCheckBoxIntestineD.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jCheckBoxIntestineD.setText("INTESTINES");
+        jCheckBoxIntestineD.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51)));
+        add(jCheckBoxIntestineD, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 510, -1, -1));
 
+        jCheckBoxLungD.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jCheckBoxLungD.setText("LUNG");
+        jCheckBoxLungD.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51)));
+        add(jCheckBoxLungD, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 450, -1, -1));
 
+        jCheckBoxKidneyD.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jCheckBoxKidneyD.setText("KIDNEY");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(470, 470, 470)
-                        .addComponent(jButtonDonorInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(597, 597, 597)
-                .addComponent(jButtonDonorReportToAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(415, 415, 415))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3))
-                .addGap(88, 88, 88)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldDonorName, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBoxIntestineD)
-                            .addComponent(jCheckBoxLiverD)
-                            .addComponent(jCheckBoxKidneyD))
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBoxLungD)
-                            .addComponent(jCheckBoxPancreasD)
-                            .addComponent(jCheckBoxHeartD))))
-                .addGap(323, 323, 323))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(287, 287, 287)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
-                .addComponent(jButtonDonorInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextFieldDonorName, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
-                .addComponent(jLabel3)
-                .addGap(1, 1, 1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBoxLungD)
-                    .addComponent(jCheckBoxKidneyD, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBoxIntestineD)
-                    .addComponent(jCheckBoxHeartD))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBoxPancreasD)
-                    .addComponent(jCheckBoxLiverD))
-                .addGap(81, 81, 81)
-                .addComponent(jButtonDonorReportToAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
-        );
+        jCheckBoxKidneyD.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51)));
+        add(jCheckBoxKidneyD, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 450, -1, 21));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonDonorInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDonorInfoActionPerformed
@@ -282,6 +267,8 @@ void clearFields(){
     jCheckBoxHeartD.setSelected(false);
     jCheckBoxPancreasD.setSelected(false);
 }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDonorInfo;
     private javax.swing.JButton jButtonDonorReportToAdmin;
