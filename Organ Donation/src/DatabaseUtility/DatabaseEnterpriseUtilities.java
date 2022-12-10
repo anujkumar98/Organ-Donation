@@ -245,6 +245,27 @@ public OpoDirectory fetchOpo(){
         
     }
 
+public Boolean checkUniqueOPO(String region){
+    Boolean status=true;
+    OpoDirectory od=fetchOpo();
+    for (OpoEnterprise o: od.getOpoDirectory()){
+        if(o.getRegion().equalsIgnoreCase(region)){
+            status=false;
+        }
+    }
+    return status;
+}
+public Boolean checkUniqueTransport(String region){
+    Boolean status=true;
+    TransportDirectory od=fetchTransport();
+    for (TransportEnterprise o: od.getTransportDirectory()){
+        if(o.getRegion().equalsIgnoreCase(region)){
+            status=false;
+        }
+    }
+    return status;
+}
+
 public TransportDirectory fetchTransport(){
     TransportDirectory td=new TransportDirectory();
     try{

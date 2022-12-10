@@ -4,10 +4,8 @@
  */
 package DatabaseUtility;
 
-import Business.Employee.Employee;
 import Business.Patient.PatientVisit;
 import Business.Patient.PatientVisitDirectory;
-import static DatabaseUtility.DatabaseEnterpriseUtilities.createConnection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -44,7 +42,7 @@ public class DatabaseHandelOPORoles {
         return con;
     }
     
-    public ArrayList <PatientVisit> fetchDonorReciverList(int adminId,String type){
+    public ArrayList <PatientVisit> fetchDonorReciverList(int adminId,String type,int orderBy){
         ArrayList <PatientVisit> patientVisitList= new ArrayList();
         PatientVisitDirectory pvd=new PatientVisitDirectory();
         try{
@@ -58,7 +56,9 @@ public class DatabaseHandelOPORoles {
                 + " AS OPO_REG ON OPO_REG.OPO_REGION = H.HOSPITAL_REGION WHERE "
                 + " ODRL.ORGAN_DONOR_RECEIVER_LIST_STATUS = 'Sent to OPO' AND ODRL.ORGAN_DONOR_RECEIVER_LIST_TYPE='"+type+"'"
                 + " AND OPO_REG.OPO_ADMIN_ID ="+ adminId;
-        
+        if (orderBy ==1){
+            query+=" ORDER BY PATIENTS_VISIT_DATE;";
+        }
         ResultSet resultSet=statement.executeQuery(query);
         while(resultSet.next()){
             PatientVisit pv=new PatientVisit();
@@ -67,7 +67,7 @@ public class DatabaseHandelOPORoles {
             pv.setName(resultSet.getString("HOSPITAL_PATIENT_NAME"));
             pv.setAge(resultSet.getInt("HOSPITAL_PATIENT_AGE"));
             pv.setGender(resultSet.getString("HOSPITAL_PATIENT_GENDER"));
-            pv.setType(resultSet.getString("HOSPITAL_PATIENT_TYPE"));
+            pv.setType(resultSet.getString("HOSPITAL_NAME"));//Used to store hospital name
             pv.setDoctorId(resultSet.getInt("HOSPITAL_DOCTOR_ID"));
             pv.setReportId(resultSet.getInt("PATIENTS_REPORT_ID"));
             pv.setVitalId(resultSet.getInt("PATIENTS_VITALS_ID"));
@@ -83,5 +83,60 @@ public class DatabaseHandelOPORoles {
         System.out.println("fetchReciverList: "+ e);
     }
     return patientVisitList;
+    }
+    
+    public ArrayList <PatientVisit> findMatches(int adminId, String organName){
+        ArrayList <PatientVisit> patientVisitList= fetchDonorReciverList(adminId,"Reciver",1);  
+        ArrayList <PatientVisit> matchedPatientList=new ArrayList();
+        for (PatientVisit pv : patientVisitList){
+            
+            if(pv.getOrgan().equalsIgnoreCase(organName)){
+                matchedPatientList.add(pv);
+            }
+        }
+        System.out.println(matchedPatientList.size());
+        return matchedPatientList;
+    }
+    
+    public Boolean updateDonorReviciverStatus(int donorId,int reciverID,String organ){
+        Boolean status=false;
+        try{
+            Connection con=createConnection();
+            Statement statement=con.createStatement();
+            String updateDonorQuery="UPDATE `OrganDonation`.`ORGAN_DONOR_RECEIVER_LIST` SET "
+                   + "`ORGAN_DONOR_RECEIVER_LIST_STATUS` "
+                   + "= 'Organ Used',`ORGAN_DONOR_RECEIVER_LIST_DONOR_RECIVER_ID` = '"+reciverID+"'  WHERE (`ORGAN_DONOR_RECEIVER_LIST_ID` = '"+donorId+"');";
+            System.out.println(updateDonorQuery);
+            statement.executeUpdate(updateDonorQuery);
+            String updateRciverQuery="UPDATE `OrganDonation`.`ORGAN_DONOR_RECEIVER_LIST` SET "
+                   + "`ORGAN_DONOR_RECEIVER_LIST_STATUS` "
+                   + "= 'Organ Recived' ,`ORGAN_DONOR_RECEIVER_LIST_DONOR_RECIVER_ID` = '"+donorId+"' WHERE (`ORGAN_DONOR_RECEIVER_LIST_ID` = '"+reciverID+"');";
+            System.out.println(updateRciverQuery);
+            statement.executeUpdate(updateRciverQuery);
+           
+            
+            int donorHospitalId=0;
+            String fetchDonorHospitalId="SELECT HOSPITAL_ID FROM ORGAN_DONOR_RECEIVER_LIST WHERE ORGAN_DONOR_RECEIVER_LIST_ID = "+donorId;
+            ResultSet resultSet=statement.executeQuery(fetchDonorHospitalId);
+            while(resultSet.next()){
+                donorHospitalId=resultSet.getInt("HOSPITAL_ID");
+            }
+            int reciverHospitalId=0;
+            String fetchReciverHospitalId="SELECT HOSPITAL_ID FROM ORGAN_DONOR_RECEIVER_LIST WHERE ORGAN_DONOR_RECEIVER_LIST_ID = "+donorId;
+            resultSet=statement.executeQuery(fetchReciverHospitalId);
+            while(resultSet.next()){
+                reciverHospitalId=resultSet.getInt("HOSPITAL_ID");
+            }
+            String createTransportDetails="INSERT INTO `OrganDonation`.`TRANSPORT_DETAILS` "
+                    + "(`TRANSPORT_DETAILS_SOURCE_HOSPITAL_ID`, `TRANSPORT_DETAILS_DESTINATION_HOSPITAL_ID`,"
+                    + " `TRANSPORT_DETAILS_STATUS`,`TRANSPORT_DETAILS_ORGAN_NAME`)"
+                    + " VALUES ('"+donorHospitalId+"', '"+reciverHospitalId+"', 'Sent to Driver Admins','"+organ+"');";
+            statement.executeUpdate(createTransportDetails);
+            status=true;
+        }
+        catch(Exception e){
+        System.out.println("updateDonorReviciverStatus: "+ e);
+    }
+        return status;
     }
 }

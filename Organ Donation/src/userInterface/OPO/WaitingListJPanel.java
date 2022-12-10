@@ -26,7 +26,7 @@ public class WaitingListJPanel extends javax.swing.JPanel {
         initComponents();
         this.emp=e;
         this.adminId=emp.getId();
-        populateTable(dbCon.fetchDonorReciverList(adminId,"Reciver"));
+        populateTable(dbCon.fetchDonorReciverList(adminId,"Reciver",0));
     }
 
     /**
@@ -44,13 +44,13 @@ public class WaitingListJPanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Donor Name", "Hospital Name", "Date", "Organ", "Status"
+                "ID", "Donor Name", "Hospital Name", "Date", "Organ", "Status"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -87,7 +87,8 @@ private void populateTable(ArrayList<PatientVisit> patientVisits) {
             row[1]=v.getName();
             row[2]=v.getType();
             row[3]=v.getDate();
-            row[4]=v.getOrganStatus();
+            row[4]=v.getOrgan();
+            row[5]=v.getOrganStatus();
             model.addRow(row);
         }
     }
