@@ -8,6 +8,7 @@ import Business.Employee.Employee;
 import Business.Patient.PatientVisit;
 import DatabaseUtility.DatabaseHandelOPORoles;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,12 +22,14 @@ public class DonorJPanel extends javax.swing.JPanel {
      */
     Employee emp;
     int adminId;
+    Boolean rowSelected=false;
+    int donorListingID=-1;
     DatabaseHandelOPORoles dbCon=new DatabaseHandelOPORoles();
     public DonorJPanel(Employee e) {
         initComponents();
         this.emp=e;
         this.adminId=emp.getId();
-        populateTable(dbCon.fetchDonorReciverList(adminId,"Donor"));
+        populateTable(dbCon.fetchDonorReciverList(adminId,"Donor",0));
     }
 
     /**
@@ -52,13 +55,13 @@ public class DonorJPanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Donor Name", "Hospital Name", "Date", "Organ", "Status"
+                "ID", "Donor Name", "Hospital Name", "Date", "Organ", "Status"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -71,6 +74,11 @@ public class DonorJPanel extends javax.swing.JPanel {
         });
 
         jButton2.setText("View Matches");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Name");
 
@@ -78,18 +86,23 @@ public class DonorJPanel extends javax.swing.JPanel {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Reciver Name", "Hospital Name", "Date", "Organ", "Status"
+                "ID", "Reciver Name", "Hospital Name", "Date", "Organ", "Status"
             }
         ));
         jScrollPane2.setViewportView(jTable2);
 
         jButton3.setText("Assign");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -150,8 +163,51 @@ public class DonorJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        populateTable(dbCon.fetchDonorReciverList(adminId,"Donor"));
+        populateTable(dbCon.fetchDonorReciverList(adminId,"Donor",0));
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex=jTable1.getSelectedRow();
+        if (selectedIndex != -1){
+            rowSelected=true;
+            donorListingID=Integer.parseInt(jTable1.getValueAt(selectedIndex, 0).toString());
+            jTextField1.setText(jTable1.getValueAt(selectedIndex, 1).toString());
+            jTextField2.setText(jTable1.getValueAt(selectedIndex, 2).toString()); 
+            String organName=jTable1.getValueAt(selectedIndex, 4).toString();
+            populateReciverList(dbCon.findMatches(adminId,organName));
+            
+        }
+        else{
+            
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex=jTable2.getSelectedRow();
+        if(selectedIndex != -1){
+            if (donorListingID != -1){
+                int revicerId=Integer.parseInt(jTable2.getValueAt(selectedIndex, 0).toString());
+                String organ=jTable2.getValueAt(selectedIndex, 4).toString();
+                Boolean status=dbCon.updateDonorReviciverStatus(donorListingID,revicerId,organ);
+                if(status){
+                    jTextField1.setText("");
+                    jTextField2.setText("");
+                    populateTable(dbCon.fetchDonorReciverList(adminId,"Donor",0));
+                    ArrayList<PatientVisit> patientNew = new ArrayList();
+                    populateReciverList(patientNew);
+                    JOptionPane.showMessageDialog(this, "Organ assigned");
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Error in assigning organ");
+                }
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Please select a row to assign");
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void populateTable(ArrayList<PatientVisit> patientVisits) {
         DefaultTableModel model=(DefaultTableModel) jTable1.getModel();
@@ -163,7 +219,8 @@ public class DonorJPanel extends javax.swing.JPanel {
             row[1]=v.getName();
             row[2]=v.getType();
             row[3]=v.getDate();
-            row[4]=v.getOrganStatus();
+            row[4]=v.getOrgan();
+            row[5]=v.getOrganStatus();
             model.addRow(row);
         }
     }
@@ -180,4 +237,20 @@ public class DonorJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
+
+    private void populateReciverList(ArrayList<PatientVisit> patientVisits) {
+        DefaultTableModel model=(DefaultTableModel) jTable2.getModel();
+        model.setRowCount(0);
+        for (PatientVisit v: patientVisits)
+        {
+            Object[] row =new Object[7];
+            row[0]=v.getId();
+            row[1]=v.getName();
+            row[2]=v.getType();
+            row[3]=v.getDate();
+            row[4]=v.getOrgan();
+            row[5]=v.getOrganStatus();
+            model.addRow(row);
+        }
+    }
 }

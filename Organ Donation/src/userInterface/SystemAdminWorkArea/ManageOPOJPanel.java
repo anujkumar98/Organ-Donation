@@ -341,8 +341,9 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
         String region=jComboBoxRegion.getSelectedItem().toString();
         String state=jComboBoxState.getSelectedItem().toString();
        
-        
-        Boolean status=dbCon.createEnterprise(name, city, state, region,"OPO");
+        Boolean statusUnique=dbCon.checkUniqueOPO(region);
+        if(statusUnique){
+            Boolean status=dbCon.createEnterprise(name, city, state, region,"OPO");
         if (status){
             populateTable(dbCon.fetchOpo());
             jTextFieldName.setText("");
@@ -353,7 +354,12 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
         else{
             JOptionPane.showMessageDialog(this, "Error in creating OPO");
         }
-
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "OPO already exists in the selected region");
+        }
+        
+        
 
     }//GEN-LAST:event_jButtonCreateOPOActionPerformed
 
@@ -385,13 +391,6 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
         }
         JOptionPane.showMessageDialog(this, "Please select a row to delete");
         
-        
-        
-        
-//        ====================================================
-
-
-  
     }//GEN-LAST:event_jButtonDeleteOPOActionPerformed
 
     private void jButtonViewOPOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViewOPOActionPerformed
@@ -407,7 +406,7 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
             
             
             
-              jComboBoxCity.setSelectedItem(jTableOPO.getValueAt(selectedIndex,3));
+            jComboBoxCity.setSelectedItem(jTableOPO.getValueAt(selectedIndex,3));
             jComboBoxRegion.setSelectedItem(jTableOPO.getValueAt(selectedIndex,2));
             jComboBoxState.setSelectedItem(jTableOPO.getValueAt(selectedIndex,4));
             
