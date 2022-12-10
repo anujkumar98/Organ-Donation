@@ -4,6 +4,11 @@
  */
 package userInterface.Transport;
 
+import Business.Employee.Employee;
+import DatabaseUtility.DatabaseHandelTransportRoles;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Lenovo
@@ -13,8 +18,15 @@ public class DriverStatusJPanel extends javax.swing.JPanel {
     /**
      * Creates new form DriverStatusJPanel
      */
-    public DriverStatusJPanel() {
+    Employee emp;
+    int adminId;
+    ArrayList <Employee> employeeList;
+    DatabaseHandelTransportRoles dbCon=new DatabaseHandelTransportRoles();
+    public DriverStatusJPanel(Employee e) {
         initComponents();
+        this.emp=e;
+        this.adminId=emp.getId();
+        populateTable(dbCon.employeeList(adminId));
     }
 
     /**
@@ -44,6 +56,11 @@ public class DriverStatusJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTableDriverAvailibilityStatus);
 
         jButtonRefreshDriver.setText("REFERESH");
+        jButtonRefreshDriver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRefreshDriverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -69,6 +86,22 @@ public class DriverStatusJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonRefreshDriverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshDriverActionPerformed
+        // TODO add your handling code here:
+        populateTable(dbCon.employeeList(adminId));
+    }//GEN-LAST:event_jButtonRefreshDriverActionPerformed
+void populateTable(ArrayList<Employee> emp){
+        DefaultTableModel model=(DefaultTableModel) jTableDriverAvailibilityStatus.getModel();
+        model.setRowCount(0);
+        for (Employee e: emp)
+        {
+            Object[] row =new Object[7];
+            row[0]=e.getId();
+            row[1]=e.getName();
+            row[2]=e.getRole();
+            model.addRow(row);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonRefreshDriver;

@@ -4,6 +4,14 @@
  */
 package userInterface.Transport;
 
+import Business.Employee.Employee;
+import Business.Patient.PatientVisit;
+import Business.Transport.TransportRequest;
+import DatabaseUtility.DatabaseHandelTransportRoles;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Lenovo
@@ -13,8 +21,17 @@ public class ManageTransportRequestJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageTransportRequestJPanel
      */
-    public ManageTransportRequestJPanel() {
+    DatabaseHandelTransportRoles dbCon=new DatabaseHandelTransportRoles();
+    int adminId;
+    Employee emp;
+    ArrayList<Employee> driverlist;
+    Boolean selected=false;
+    int id=-1;
+    public ManageTransportRequestJPanel(Employee e) {
         initComponents();
+        this.emp=e;
+        this.adminId=emp.getId();
+        populateTable(dbCon.fetchTransportRequests(adminId));
     }
 
     /**
@@ -34,39 +51,55 @@ public class ManageTransportRequestJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextRequestedHospitalName = new javax.swing.JTextField();
-        jTextRequestedHospitalAddress = new javax.swing.JTextField();
-        jTextReceiverHospitalName = new javax.swing.JTextField();
-        jTextReceiverHospitalAddress = new javax.swing.JTextField();
+        jTextrecivername = new javax.swing.JTextField();
+        jTextreciveraddress = new javax.swing.JTextField();
+        jTextReceiveraddress = new javax.swing.JTextField();
+        jTextrequesterHospitalName = new javax.swing.JTextField();
         jButtonAssignDriver = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
 
         jTableTransportRequest.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Requested Hospital Name", "Requested Hospital Address", "Receiver Hospital Name", "Receiver Hospital Address", "Requested Status"
+                "ID", "Sender Hospital Name", "Sender Hospital Address", "Requested Hospital Name", "Requested Hospital Address", "Requested Status"
             }
         ));
         jScrollPane1.setViewportView(jTableTransportRequest);
 
         jButtonViewTransportRequest.setText("VIEW REQUESTS");
+        jButtonViewTransportRequest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonViewTransportRequestActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setText("Requested HospitAl Name");
+        jLabel1.setText("Reciver Hospital Name");
 
-        jLabel2.setText("Requested Hospital Address");
+        jLabel2.setText("Reciver Hospital Address");
 
-        jLabel3.setText("Receiver Hospital Name");
+        jLabel3.setText("Requester Hospital Address");
 
-        jLabel4.setText("Requested Hospital Address");
+        jLabel4.setText("Requested Hospital Name");
 
         jLabel5.setText("Requested Driver");
 
+        jTextreciveraddress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextreciveraddressActionPerformed(evt);
+            }
+        });
+
         jButtonAssignDriver.setText("ASSIGN DRIVERS");
+        jButtonAssignDriver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAssignDriverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -78,59 +111,127 @@ public class ManageTransportRequestJPanel extends javax.swing.JPanel {
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonViewTransportRequest)
-                        .addGap(86, 86, 86)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3))
-                        .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextReceiverHospitalName, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextRequestedHospitalAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextRequestedHospitalName, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(60, 60, 60)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(61, 61, 61)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonViewTransportRequest)
+                                .addGap(64, 64, 64)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1))
+                                .addGap(36, 36, 36)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jTextreciveraddress, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextrecivername, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(61, 61, 61)
+                                        .addComponent(jTextrequesterHospitalName, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(64, 64, 64)
+                                        .addComponent(jTextReceiveraddress, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextReceiverHospitalAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 100, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(86, 86, 86)
+                                .addComponent(jLabel5)
+                                .addGap(61, 61, 61)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(155, 155, 155)
+                                .addComponent(jButtonAssignDriver)))
+                        .addGap(0, 205, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(507, 507, 507)
-                .addComponent(jButtonAssignDriver)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(77, 77, 77)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonViewTransportRequest)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextRequestedHospitalName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextReceiverHospitalAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextRequestedHospitalAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextReceiverHospitalName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addComponent(jButtonAssignDriver)
-                .addContainerGap(420, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonViewTransportRequest))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(70, 70, 70)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jTextrecivername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jTextreciveraddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(jButtonAssignDriver))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jTextrequesterHospitalName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jTextReceiveraddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(421, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonViewTransportRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViewTransportRequestActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex=jTableTransportRequest.getSelectedRow();
+        if (selectedIndex != -1){
+        selected=true;
+        id=Integer.parseInt(jTableTransportRequest.getValueAt(selectedIndex, 0).toString());
+        jTextrecivername.setText(jTableTransportRequest.getValueAt(selectedIndex, 1).toString());
+        jTextreciveraddress.setText(jTableTransportRequest.getValueAt(selectedIndex, 2).toString());
+        jTextrequesterHospitalName.setText(jTableTransportRequest.getValueAt(selectedIndex, 3).toString());
+        jTextReceiveraddress.setText(jTableTransportRequest.getValueAt(selectedIndex, 4).toString());
+        driverlist=dbCon.fetchDrivers(adminId);
+        populateDriverList(driverlist);
+        }
+        else{
+        JOptionPane.showMessageDialog(this, "Please select a row to fetch.");
+        }
+        
+        
+    }//GEN-LAST:event_jButtonViewTransportRequestActionPerformed
+
+    private void jTextreciveraddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextreciveraddressActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextreciveraddressActionPerformed
+
+    private void jButtonAssignDriverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAssignDriverActionPerformed
+        // TODO add your handling code here:
+        if(selected){
+        Boolean status=dbCon.updateTransportDetails(adminId,id);
+        if(status){
+            jTextrecivername.setText("");
+            jTextreciveraddress.setText("");
+            jTextrequesterHospitalName.setText("");
+            jTextReceiveraddress.setText("");
+            status=false;
+            JOptionPane.showMessageDialog(this, "Assigned to driver");
+        }else{
+            JOptionPane.showMessageDialog(this, "Error in assigning the driver.");
+        }
+        
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Please fetch a row to assign driver");
+        }
+        populateTable(dbCon.fetchTransportRequests(adminId));
+    }//GEN-LAST:event_jButtonAssignDriverActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -144,9 +245,31 @@ public class ManageTransportRequestJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableTransportRequest;
-    private javax.swing.JTextField jTextReceiverHospitalAddress;
-    private javax.swing.JTextField jTextReceiverHospitalName;
-    private javax.swing.JTextField jTextRequestedHospitalAddress;
-    private javax.swing.JTextField jTextRequestedHospitalName;
+    private javax.swing.JTextField jTextReceiveraddress;
+    private javax.swing.JTextField jTextreciveraddress;
+    private javax.swing.JTextField jTextrecivername;
+    private javax.swing.JTextField jTextrequesterHospitalName;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTable(ArrayList<TransportRequest> transportList) {
+       DefaultTableModel model=(DefaultTableModel) jTableTransportRequest.getModel();
+        model.setRowCount(0);
+        for (TransportRequest tr: transportList)
+        {
+            Object[] row =new Object[7];
+            row[0]=tr.getId();
+            row[1]=tr.getSrcHospitalName();
+            row[2]=tr.getSrcHospitalAddress();
+            row[3]=tr.getDestHospitalName();
+            row[4]=tr.getDestHospitalAddress();
+            row[5]=tr.getRequestStatus();
+            row[6]=tr.getOrganName();
+            model.addRow(row);
+        }
+    }
+
+    private void populateDriverList(ArrayList<Employee> driverlist) {
+        for (Employee e:driverlist)
+            jComboBox1.addItem(e.getName());
+    }
 }

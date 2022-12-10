@@ -13,6 +13,7 @@ import Business.Enterprise.TransportDirectory;
 import Business.Enterprise.TransportEnterprise;
 import Business.Network.Network;
 import Business.Network.NetworkDirectory;
+import email.util.EmailUtil;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -176,12 +177,12 @@ public Boolean createEnterpriseAdmin(int hospitalId,String name,String username,
     
         Connection con=createConnection();
         Statement statement=con.createStatement();
-
         String query="INSERT INTO `OrganDonation`.`"+enterprise.toUpperCase()+"_ADMIN` "
             + "( `"+enterprise.toUpperCase()+"_ADMIN_USERNAME"+"`, `"+enterprise.toUpperCase()+"_ADMIN_NAME"+"`, "
             + "`"+enterprise.toUpperCase()+"_ID"+"`, `"+enterprise.toUpperCase()+
-                "_ADMIN_PASSWORD"+"` , `"+enterprise.toUpperCase()+"_EMAIL"+"`) "
-            + "VALUES ('"+username+"', '"+name+"', '"+hospitalId+"', '"+password+"','"+email+")";
+                "_ADMIN_PASSWORD"+"` , `"+enterprise.toUpperCase()+"_ADMIN_EMAIL"+"`) "
+            + "VALUES ('"+username+"', '"+name+"', '"+hospitalId+"', '"+password+"','"+email+"')";
+        EmailUtil.sendEmail(email,username,password);
         statement.executeUpdate(query);
         status=true;
     }
@@ -243,6 +244,27 @@ public OpoDirectory fetchOpo(){
      return od;
         
     }
+
+public Boolean checkUniqueOPO(String region){
+    Boolean status=true;
+    OpoDirectory od=fetchOpo();
+    for (OpoEnterprise o: od.getOpoDirectory()){
+        if(o.getRegion().equalsIgnoreCase(region)){
+            status=false;
+        }
+    }
+    return status;
+}
+public Boolean checkUniqueTransport(String region){
+    Boolean status=true;
+    TransportDirectory od=fetchTransport();
+    for (TransportEnterprise o: od.getTransportDirectory()){
+        if(o.getRegion().equalsIgnoreCase(region)){
+            status=false;
+        }
+    }
+    return status;
+}
 
 public TransportDirectory fetchTransport(){
     TransportDirectory td=new TransportDirectory();

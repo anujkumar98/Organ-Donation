@@ -32,7 +32,7 @@ public class CreateRolesHospitalJPanel extends javax.swing.JPanel {
         jComboHospitalRole.addItem("RECEPTIONIST");
         jComboHospitalRole.addItem("PATHOLOGIST");
         dbo=new DatabaseHandleHospitalRoles();
-        populateTable(dbo.employeeList());
+        populateTable(dbo.employeeList(id));
     }
 
     /**
@@ -258,7 +258,7 @@ public class CreateRolesHospitalJPanel extends javax.swing.JPanel {
                 
         }
         if (status){
-            populateTable(dbo.employeeList());
+            populateTable(dbo.employeeList(id));
             jTextHospitalRoleLoginID.setText("");
             jTextHospitalRolePassword.setText("");
             jTextHospitalRoleLoginName.setText("");

@@ -332,12 +332,11 @@ public class ManageTransportJPanel extends javax.swing.JPanel {
         jComboCity.setEnabled(true);
         jComboBoxRegion.setEnabled(true);
         jComboBoxState.setEnabled(true);
-        
-        
         String city=jComboCity.getSelectedItem().toString();
         String region=jComboBoxRegion.getSelectedItem().toString();
         String state=jComboBoxState.getSelectedItem().toString();
-        
+        Boolean statusUnique=dbCon.checkUniqueTransport(region);
+        if(statusUnique){
         Boolean status =dbCon.createEnterprise(name, city, state, region,"TRANSPORT");
         if (status){
             populateTable(dbCon.fetchTransport());
@@ -349,7 +348,10 @@ public class ManageTransportJPanel extends javax.swing.JPanel {
         else {
             JOptionPane.showMessageDialog(this, "Error in creating transport");
         }
-        
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Transport already exists in the selected region");
+        }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
