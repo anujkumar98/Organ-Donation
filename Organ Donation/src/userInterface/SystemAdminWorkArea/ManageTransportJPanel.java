@@ -335,9 +335,9 @@ public class ManageTransportJPanel extends javax.swing.JPanel {
         String city=jComboCity.getSelectedItem().toString();
         String region=jComboBoxRegion.getSelectedItem().toString();
         String state=jComboBoxState.getSelectedItem().toString();
-        Boolean statusUnique=dbCon.checkUniqueOPO(region);
+        Boolean statusUnique=dbCon.checkUniqueTransport(region);
         if(statusUnique){
-            Boolean status =dbCon.createEnterprise(name, city, state, region,"TRANSPORT");
+        Boolean status =dbCon.createEnterprise(name, city, state, region,"TRANSPORT");
         if (status){
             populateTable(dbCon.fetchTransport());
             jTextFieldName.setText("");
