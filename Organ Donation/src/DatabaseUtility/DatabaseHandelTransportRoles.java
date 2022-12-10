@@ -7,7 +7,6 @@ package DatabaseUtility;
 import Business.Employee.Employee;
 import Business.Employee.EmployeeDirectory;
 import Business.Transport.TransportRequest;
-import static DatabaseUtility.DatabaseHandleHospitalRoles.createConnection;
 import email.util.EmailUtil;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -148,6 +147,7 @@ public ArrayList<TransportRequest> fetchTransportRequests(int adminId){
                 + " JOIN (SELECT TRANSPORT_REGION,TRANSPORT_ADMIN_ID FROM TRANSPORT AS T JOIN  TRANSPORT_ADMIN AS TA ON T.TRANSPORT_ID=TA.TRANSPORT_ID) AS T_REG "
                 + "ON H_SRC.HOSPITAL_REGION=T_REG.TRANSPORT_REGION "
                 + "WHERE T_REG.TRANSPORT_ADMIN_ID="+adminId+"; ";
+        
         ResultSet resultSet=statement.executeQuery(queryfetechRequests);
         while(resultSet.next()){
             int srcHospitalId=Integer.parseInt(resultSet.getString("TRANSPORT_DETAILS_SOURCE_HOSPITAL_ID"));
@@ -209,6 +209,54 @@ public Boolean updateTransportDetails(int id,int driverId){
         String updateDriver="UPDATE `OrganDonation`.`TRANSPORT_DRIVER` "
                 + "SET `TRANSPORT_DRIVER_STATUS` = 'Occupied' WHERE (`TRANSPORT_DRIVER_ID` = '"+driverId+"');";
         statement.executeUpdate(updateDriver);
+        status=true;
+    }
+    catch(Exception e){
+        System.out.println("updateTransportDetails :"+e);
+    }
+    return status;
+}
+
+public ArrayList<TransportRequest> fetchDriverDetails(int driverId){
+    ArrayList<TransportRequest> transportList=new ArrayList();
+    try{
+        Connection con = createConnection();
+        Statement statement=con.createStatement();
+        String updateDriver="SELECT * FROM TRANSPORT_DETAILS AS TD JOIN HOSPITAL "
+                + "AS H_SRC ON TD.TRANSPORT_DETAILS_SOURCE_HOSPITAL_ID =H_SRC.HOSPITAL_ID \n" +
+                " JOIN HOSPITAL AS H_DEST ON TD.TRANSPORT_DETAILS_DESTINATION_HOSPITAL_ID =H_DEST.HOSPITAL_ID \n" +
+                    " WHERE DRIVER_ID= "+driverId+"  AND TRANSPORT_DETAILS_STATUS='Sent to driver';";
+        ResultSet resultSet=statement.executeQuery(updateDriver);
+        while(resultSet.next()){
+                TransportRequest tr=new TransportRequest();
+                tr.setId(Integer.parseInt(resultSet.getString("TRANSPORT_DETAILS_ID")));
+                tr.setSrcHopitalId(Integer.parseInt(resultSet.getString("TRANSPORT_DETAILS_SOURCE_HOSPITAL_ID")));
+                tr.setDestHopitalId(Integer.parseInt(resultSet.getString("TRANSPORT_DETAILS_DESTINATION_HOSPITAL_ID")));
+                String srcAdd=resultSet.getString("H_SRC.HOSPITAL_CITY")+", "+resultSet.getString("H_SRC.HOSPITAL_STATE")+" ,"+resultSet.getString("H_SRC.HOSPITAL_REGION");
+                String desAdd=resultSet.getString("H_DEST.HOSPITAL_CITY")+", "+resultSet.getString("H_DEST.HOSPITAL_STATE")+" ,"+resultSet.getString("H_DEST.HOSPITAL_REGION");
+                tr.setSrcHospitalAddress(srcAdd);
+                tr.setDestHospitalAddress(desAdd);
+                tr.setDestHospitalName(resultSet.getString("H_DEST.HOSPITAL_NAME"));
+                tr.setSrcHospitalName(resultSet.getString("H_SRC.HOSPITAL_NAME"));
+                tr.setRequestStatus(resultSet.getString("TRANSPORT_DETAILS_STATUS"));
+                tr.setOrganName(resultSet.getString("TRANSPORT_DETAILS_ORGAN_NAME"));
+                transportList.add(tr);
+    }
+    }
+    catch(Exception e){
+        System.out.println("updateTransportDetails :"+e);
+    }
+    return transportList;
+}
+
+public Boolean updateTransportDetails(int id){
+    Boolean status=false;
+    try{
+        Connection con = createConnection();
+        Statement statement=con.createStatement();
+        String query="UPDATE `OrganDonation`.`TRANSPORT_DETAILS` "
+                + "SET `TRANSPORT_DETAILS_STATUS` = 'Delivered' WHERE (`TRANSPORT_DETAILS_ID` = '"+id+"');";
+        statement.executeUpdate(query);
         status=true;
     }
     catch(Exception e){
