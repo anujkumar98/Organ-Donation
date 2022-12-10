@@ -49,6 +49,8 @@ public class CreateNetworkJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableNetwork = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("REGION");
 
@@ -58,8 +60,17 @@ public class CreateNetworkJPanel extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("CITY");
 
+        jTextRegionName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51)));
+
+        jTextStateName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51)));
+
+        jTextCityName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51)));
+
+        jButtonCreateNetwork.setBackground(new java.awt.Color(171, 30, 64));
         jButtonCreateNetwork.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButtonCreateNetwork.setForeground(new java.awt.Color(255, 255, 255));
         jButtonCreateNetwork.setText("CREATE NETWORK");
+        jButtonCreateNetwork.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButtonCreateNetwork.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCreateNetworkActionPerformed(evt);

@@ -42,11 +42,14 @@ public class ManageDonorsJPanel extends javax.swing.JPanel {
                 "PATIENT ID", "PATIENT NAME", "ORGAN NAME ", "STATUS"
             }
         ));
+        jTable1.setSelectionBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setBackground(new java.awt.Color(255, 51, 51));
+        jButton1.setBackground(new java.awt.Color(161, 37, 68));
         jButton1.setFont(new java.awt.Font("Microsoft YaHei", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("SEND TO OPO");
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 

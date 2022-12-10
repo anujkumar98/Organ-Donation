@@ -75,7 +75,7 @@ public class DoctorManageReceiverJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTableReceiverDetails);
 
-        jButtonViewReceiverInfo.setBackground(new java.awt.Color(204, 0, 51));
+        jButtonViewReceiverInfo.setBackground(new java.awt.Color(150, 21, 53));
         jButtonViewReceiverInfo.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         jButtonViewReceiverInfo.setForeground(new java.awt.Color(255, 255, 255));
         jButtonViewReceiverInfo.setText("VIEW RECEIVER");
@@ -94,7 +94,7 @@ public class DoctorManageReceiverJPanel extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         jLabel3.setText("SELECT ORGAN :");
 
-        jButtonReceiverReportToAdmin.setBackground(new java.awt.Color(204, 0, 51));
+        jButtonReceiverReportToAdmin.setBackground(new java.awt.Color(150, 21, 53));
         jButtonReceiverReportToAdmin.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         jButtonReceiverReportToAdmin.setForeground(new java.awt.Color(255, 255, 255));
         jButtonReceiverReportToAdmin.setText("SEND  TO ADMIN");

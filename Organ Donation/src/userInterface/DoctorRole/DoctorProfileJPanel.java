@@ -115,8 +115,9 @@ public class DoctorProfileJPanel extends javax.swing.JPanel {
 
         jComboDoctorGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Pefer Not To Say" }));
 
-        jButtonUpdateProfile.setBackground(new java.awt.Color(255, 51, 51));
+        jButtonUpdateProfile.setBackground(new java.awt.Color(150, 21, 53));
         jButtonUpdateProfile.setFont(new java.awt.Font("Microsoft YaHei", 1, 18)); // NOI18N
+        jButtonUpdateProfile.setForeground(new java.awt.Color(255, 255, 255));
         jButtonUpdateProfile.setText("UPDATE PROFILE");
         jButtonUpdateProfile.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 51, 102), 1, true));
         jButtonUpdateProfile.addActionListener(new java.awt.event.ActionListener() {

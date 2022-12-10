@@ -111,7 +111,7 @@ public class DoctorManagePatientsJPanel extends javax.swing.JPanel {
             jTableManagePateints.getColumnModel().getColumn(5).setHeaderValue("ELIGIBILITY STATUS");
         }
 
-        jButtonViewPatient.setBackground(new java.awt.Color(196, 6, 44));
+        jButtonViewPatient.setBackground(new java.awt.Color(150, 21, 53));
         jButtonViewPatient.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         jButtonViewPatient.setForeground(new java.awt.Color(255, 255, 255));
         jButtonViewPatient.setText("VIEW PATIENT");
@@ -152,7 +152,7 @@ public class DoctorManagePatientsJPanel extends javax.swing.JPanel {
 
         jTextRespirationRate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51)));
 
-        jButtonSavePatients.setBackground(new java.awt.Color(196, 6, 44));
+        jButtonSavePatients.setBackground(new java.awt.Color(150, 21, 53));
         jButtonSavePatients.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         jButtonSavePatients.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSavePatients.setText("SAVE DETAILS AND REQUEST PATHO REPORT");
@@ -185,7 +185,7 @@ public class DoctorManagePatientsJPanel extends javax.swing.JPanel {
 
         jTextPatientWeight.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51)));
 
-        jButtonUpdateStatus.setBackground(new java.awt.Color(196, 6, 44));
+        jButtonUpdateStatus.setBackground(new java.awt.Color(150, 21, 53));
         jButtonUpdateStatus.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         jButtonUpdateStatus.setForeground(new java.awt.Color(255, 255, 255));
         jButtonUpdateStatus.setText("UPDATE STATUS");
@@ -294,18 +294,16 @@ public class DoctorManagePatientsJPanel extends javax.swing.JPanel {
                         .addComponent(jButtonFetchPathoReport, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextNamePatient, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jTextNamePatient, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextPatientTemperature, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTextPatientBloodType, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextPatientBloodType, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel10)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -323,12 +321,13 @@ public class DoctorManagePatientsJPanel extends javax.swing.JPanel {
                                     .addGap(18, 18, 18)
                                     .addComponent(jLabel11))))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel9)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextPatientWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboPatientStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel12)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel9)
+                                .addComponent(jComboPatientStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextPatientHeight, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)

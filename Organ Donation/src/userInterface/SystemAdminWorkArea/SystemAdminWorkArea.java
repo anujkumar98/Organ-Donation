@@ -38,57 +38,56 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        ManageHospitalJButton.setBackground(new java.awt.Color(0, 0, 0));
-        ManageHospitalJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        ManageHospitalJButton.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(175, 38, 72));
+
+        ManageHospitalJButton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
         ManageHospitalJButton.setText("MANAGE HOSPITAL");
+        ManageHospitalJButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         ManageHospitalJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ManageHospitalJButtonActionPerformed(evt);
             }
         });
 
-        ManageOPOJButton.setBackground(new java.awt.Color(0, 0, 0));
-        ManageOPOJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        ManageOPOJButton.setForeground(new java.awt.Color(255, 255, 255));
+        ManageOPOJButton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
         ManageOPOJButton.setText("MANAGE OPO");
+        ManageOPOJButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         ManageOPOJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ManageOPOJButtonActionPerformed(evt);
             }
         });
 
-        ManageTransportJButton.setBackground(new java.awt.Color(0, 0, 0));
-        ManageTransportJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        ManageTransportJButton.setForeground(new java.awt.Color(255, 255, 255));
+        ManageTransportJButton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
         ManageTransportJButton.setText("MANAGE TRANSPORT");
+        ManageTransportJButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         ManageTransportJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ManageTransportJButtonActionPerformed(evt);
             }
         });
 
-        ManageNGOJButton.setBackground(new java.awt.Color(0, 0, 0));
-        ManageNGOJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        ManageNGOJButton.setForeground(new java.awt.Color(255, 255, 255));
+        ManageNGOJButton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
         ManageNGOJButton.setText("MANAGE NGO");
+        ManageNGOJButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         ManageNGOJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ManageNGOJButtonActionPerformed(evt);
             }
         });
 
-        ManageTransportJButton1.setBackground(new java.awt.Color(0, 0, 0));
-        ManageTransportJButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        ManageTransportJButton1.setForeground(new java.awt.Color(255, 255, 255));
+        ManageTransportJButton1.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
         ManageTransportJButton1.setText("LOGOUT");
+        ManageTransportJButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         ManageTransportJButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ManageTransportJButton1ActionPerformed(evt);
             }
         });
 
-        jButtonNetwork.setText("Network");
+        jButtonNetwork.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
+        jButtonNetwork.setText("NETWORK");
+        jButtonNetwork.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButtonNetwork.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNetworkActionPerformed(evt);
@@ -109,12 +108,11 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(ManageTransportJButton)
-                        .addComponent(ManageNGOJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(ManageOPOJButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ManageHospitalJButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(ManageHospitalJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ManageOPOJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ManageNGOJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ManageTransportJButton, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
+                    .addContainerGap()))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
