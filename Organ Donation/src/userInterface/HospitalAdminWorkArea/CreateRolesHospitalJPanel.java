@@ -82,6 +82,7 @@ public class CreateRolesHospitalJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTableHospitalStaff.setSelectionForeground(new java.awt.Color(255, 255, 0));
         jScrollPane1.setViewportView(jTableHospitalStaff);
 
         jLabelHospitalCreateRole.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
@@ -115,16 +116,16 @@ public class CreateRolesHospitalJPanel extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(396, 396, 396)
+                .addGap(400, 400, 400)
                 .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(33, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
         );
 
         jLabelHospitalRoleLoginID1.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
@@ -144,7 +145,7 @@ public class CreateRolesHospitalJPanel extends javax.swing.JPanel {
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(129, 412, Short.MAX_VALUE)
+                .addGap(147, 412, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelHospitalRolePassword1)
