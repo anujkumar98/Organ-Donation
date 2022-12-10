@@ -8,6 +8,8 @@ import Business.Employee.Employee;
 import Business.Patient.PatientVisit;
 import DatabaseUtility.DatabaseHandleNgoRole;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import userInterface.Pathology.*;
@@ -234,8 +236,9 @@ public class DonorRegisterationNGO extends javax.swing.JPanel {
         String gender = jComboBoxGenderNGODonor.getSelectedItem().toString();
         String contact=jTextNGODonorContact.getText();
         String address=jTextNGODonorAdress.getText();
-        
-        Boolean status=dbCon.createDonorList(name,gender,age,contact,address,email,adminId);
+        Boolean validated =validateInputFields( name,age,contact,address,email,gender);
+        if (validated){
+            Boolean status=dbCon.createDonorList(name,gender,age,contact,address,email,adminId);
         if (status){
             JOptionPane.showMessageDialog(this, "Donor registered");
             jTextDonorName.setText("");
@@ -248,8 +251,48 @@ public class DonorRegisterationNGO extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Error in registoring patient ");
             
         }
+        }
+        
     }//GEN-LAST:event_jButtonDonorRegistrationActionPerformed
-
+private Boolean validateInputFields(String name,int age,String contactno,String address,String email,String gender) {
+        //Function to validate the input fields
+        Pattern patternCellNumber = Pattern.compile("^[+\\d](\\d{11})$");
+        Matcher matcherCell = patternCellNumber.matcher(contactno);
+        Pattern patternEmail = Pattern.compile("^[a-z0-9]+@[a-z]+.[a-z]+$");
+        Matcher matcher = patternEmail.matcher(email);
+        Boolean validated=true;
+        
+        if(name == null || name.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Name cannot be empty.");
+            validated=false;
+        }
+        else if(address == null || address.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Address cannot be empty.");
+            validated=false;
+        }
+        else if(contactno == null || contactno.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Contact no cannot be empty.");
+            validated=false;
+        }
+        else if (!matcherCell.matches()){
+            JOptionPane.showMessageDialog(this,"Contact number should be valid. Must start with +1.");
+            validated=false;
+        }
+        else if(age < 0 || age > 99){
+            JOptionPane.showMessageDialog(this,"Age cannot be less than 0");
+            validated=false;
+        }
+        else if(gender == null || gender.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Please select gender");
+            validated=false;
+        }
+        else if (!matcher.matches()){
+            JOptionPane.showMessageDialog(this,"Email should be valid.");
+            validated=false;
+        }
+        
+        return validated;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDonorRegistration;

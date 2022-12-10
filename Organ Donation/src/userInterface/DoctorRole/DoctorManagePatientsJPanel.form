@@ -44,74 +44,58 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jComboBoxPatho" pref="220" max="32767" attributes="0"/>
+                          <Component id="jTextNamePatient" max="32767" attributes="0"/>
+                          <Component id="jTextPatientType" max="32767" attributes="0"/>
+                          <Component id="jTextPatientWeight" max="32767" attributes="0"/>
+                          <Component id="jTextPatientHeight" max="32767" attributes="0"/>
+                          <Component id="jButtonViewPatient" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jButtonSavePatients" min="-2" pref="358" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel6" min="-2" pref="56" max="-2" attributes="0"/>
+                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="jTextPatientBP" alignment="0" pref="235" max="32767" attributes="0"/>
+                          <Component id="jTextPatientPulse" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jTextPatientTemperature" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jTextRespirationRate" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="27" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel9" alignment="0" min="-2" pref="159" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jComboBoxPatho" pref="220" max="32767" attributes="0"/>
-                                          <Component id="jTextNamePatient" max="32767" attributes="0"/>
-                                          <Component id="jTextPatientType" max="32767" attributes="0"/>
-                                          <Component id="jTextPatientWeight" max="32767" attributes="0"/>
-                                          <Component id="jTextPatientHeight" max="32767" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel6" min="-2" pref="56" max="-2" attributes="0"/>
-                                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Component id="jButtonViewPatient" alignment="0" min="-2" pref="271" max="-2" attributes="0"/>
+                                  <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="jButtonFetchPathoReport" min="-2" pref="255" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="jTextPatientBP" alignment="0" pref="235" max="32767" attributes="0"/>
-                                          <Component id="jTextPatientPulse" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jTextPatientTemperature" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jTextRespirationRate" max="32767" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace pref="16" max="32767" attributes="0"/>
+                                  <Component id="jTextPatientBloodType" min="-2" pref="222" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel9" alignment="0" min="-2" pref="159" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jTextPatientBloodType" min="-2" pref="222" max="-2" attributes="0"/>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="jComboPatientStatus" min="-2" pref="222" max="-2" attributes="0"/>
-                                                          <Component id="jButtonUpdateStatus" min="-2" pref="228" max="-2" attributes="0"/>
-                                                      </Group>
-                                                  </Group>
-                                                  <Component id="jTextPatientTissueType" min="-2" pref="222" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
+                                          <Component id="jComboPatientStatus" min="-2" pref="222" max="-2" attributes="0"/>
+                                          <Component id="jButtonUpdateStatus" min="-2" pref="228" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="0" pref="86" max="32767" attributes="0"/>
                                   </Group>
+                                  <Component id="jTextPatientTissueType" min="-2" pref="222" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace pref="32" max="32767" attributes="0"/>
                   </Group>
               </Group>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="277" max="-2" attributes="0"/>
+              <Component id="jButtonSavePatients" min="-2" pref="365" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -120,17 +104,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="227" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                      <Component id="jButtonViewPatient" min="-2" pref="48" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButtonFetchPathoReport" min="-2" pref="48" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <Component id="jButtonViewPatient" min="-2" pref="48" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel1" alignment="0" min="-2" pref="36" max="-2" attributes="0"/>
@@ -190,36 +166,31 @@
                           <Component id="jComboBoxPatho" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                           <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButtonSavePatients" min="-2" pref="51" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="156" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                                      <Component id="jTextPatientPulse" min="-2" pref="33" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                                      <Component id="jTextPatientBP" min="-2" pref="31" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                      <Component id="jTextPatientTissueType" min="-2" pref="37" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                              <Component id="jButtonUpdateStatus" min="-2" pref="43" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                              <Component id="jTextPatientPulse" min="-2" pref="33" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                              <Component id="jTextPatientBP" min="-2" pref="31" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
-                              <Component id="jTextRespirationRate" min="-2" pref="31" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                              <Component id="jTextPatientTissueType" min="-2" pref="37" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="jButtonUpdateStatus" min="-2" pref="43" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
+                      <Component id="jTextRespirationRate" min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jButtonSavePatients" min="-2" pref="51" max="-2" attributes="0"/>
+              <EmptySpace pref="156" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -448,11 +419,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSavePatientsActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButtonFetchPathoReport">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="FETCH PATHO DETAILS"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>

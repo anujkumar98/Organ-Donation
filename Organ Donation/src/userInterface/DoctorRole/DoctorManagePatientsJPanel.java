@@ -15,6 +15,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -71,7 +73,6 @@ public class DoctorManagePatientsJPanel extends javax.swing.JPanel {
         jTextPatientBP = new javax.swing.JTextField();
         jTextRespirationRate = new javax.swing.JTextField();
         jButtonSavePatients = new javax.swing.JButton();
-        jButtonFetchPathoReport = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jTextPatientBloodType = new javax.swing.JTextField();
@@ -163,8 +164,6 @@ public class DoctorManagePatientsJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButtonFetchPathoReport.setText("FETCH PATHO DETAILS");
-
         jLabel10.setFont(new java.awt.Font("Microsoft YaHei", 1, 12)); // NOI18N
         jLabel10.setText("BLOOD TYPE");
 
@@ -230,69 +229,55 @@ public class DoctorManagePatientsJPanel extends javax.swing.JPanel {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel14)
                                 .addGap(18, 18, 18)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboBoxPatho, 0, 220, Short.MAX_VALUE)
+                            .addComponent(jTextNamePatient)
+                            .addComponent(jTextPatientType)
+                            .addComponent(jTextPatientWeight)
+                            .addComponent(jTextPatientHeight)
+                            .addComponent(jButtonViewPatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonSavePatients, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextPatientBP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                            .addComponent(jTextPatientPulse, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextPatientTemperature, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextRespirationRate))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jComboBoxPatho, 0, 220, Short.MAX_VALUE)
-                                            .addComponent(jTextNamePatient)
-                                            .addComponent(jTextPatientType)
-                                            .addComponent(jTextPatientWeight)
-                                            .addComponent(jTextPatientHeight))
-                                        .addGap(28, 28, 28)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel7)
-                                            .addComponent(jLabel8)))
-                                    .addComponent(jButtonViewPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(32, 32, 32)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel11))
+                                .addGap(45, 45, 45)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextPatientBloodType, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButtonFetchPathoReport, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jTextPatientBP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                                            .addComponent(jTextPatientPulse, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextPatientTemperature, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextRespirationRate))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                                        .addGap(6, 6, 6)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel10)
-                                                    .addComponent(jLabel11))
-                                                .addGap(45, 45, 45)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jTextPatientBloodType, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addGap(6, 6, 6)
-                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                            .addComponent(jComboPatientStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(jButtonUpdateStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                    .addComponent(jTextPatientTissueType, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                        .addGap(0, 86, Short.MAX_VALUE)))
-                                .addContainerGap())))))
+                                            .addComponent(jComboPatientStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jButtonUpdateStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jTextPatientTissueType, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(32, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(277, 277, 277)
+                .addComponent(jButtonSavePatients, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(75, 75, 75)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jButtonViewPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonFetchPathoReport, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)))
+                .addGap(27, 27, 27)
+                .addComponent(jButtonViewPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -336,28 +321,25 @@ public class DoctorManagePatientsJPanel extends javax.swing.JPanel {
                         .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBoxPatho, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonSavePatients, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 156, Short.MAX_VALUE))
+                            .addComponent(jLabel14)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(16, 16, 16)
-                                        .addComponent(jTextPatientPulse, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(13, 13, 13)
-                                        .addComponent(jTextPatientBP, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(12, 12, 12)
-                                        .addComponent(jTextPatientTissueType, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(34, 34, 34)
-                                .addComponent(jButtonUpdateStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(16, 16, 16)
+                                .addComponent(jTextPatientPulse, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(13, 13, 13)
+                                .addComponent(jTextPatientBP, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(111, 111, 111)
-                                .addComponent(jTextRespirationRate, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(12, 12, 12)
+                                .addComponent(jTextPatientTissueType, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(34, 34, 34)
+                        .addComponent(jButtonUpdateStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addComponent(jTextRespirationRate, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonSavePatients, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(156, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     
@@ -430,7 +412,10 @@ public class DoctorManagePatientsJPanel extends javax.swing.JPanel {
             int respRate=Integer.parseInt(jTextRespirationRate.getText());
             int pathoIndex=jComboBoxPatho.getSelectedIndex();
             int pathoId=pathoList.get(pathoIndex).getId();
-            Boolean status=dbCon.creatVitals(visitId, weight, height, temp, pulse, bp, respRate,pathoId);
+            
+            Boolean validated=validateInputFields(weight,height,temp,pulse,bp,respRate);
+            if (validated){
+               Boolean status=dbCon.creatVitals(visitId, weight, height, temp, pulse, bp, respRate,pathoId);
             if (status){
                 JOptionPane.showMessageDialog(this, "Vitals Created.");
                 jTextNamePatient.setText("");
@@ -446,7 +431,8 @@ public class DoctorManagePatientsJPanel extends javax.swing.JPanel {
             }
             else{
             JOptionPane.showMessageDialog(this, "Error in creating vitals");
-            }
+            } 
+            }  
         }
         
         }else{
@@ -487,10 +473,40 @@ public class DoctorManagePatientsJPanel extends javax.swing.JPanel {
         }
             
     }//GEN-LAST:event_jButtonUpdateStatusActionPerformed
-
+private Boolean validateInputFields(float weight,float height,float temp,int pulse,int bp,int respRate) {
+        //Function to validate the input fields
+        
+        Boolean validated=true;
+        
+        if(weight < 0){
+            JOptionPane.showMessageDialog(this,"Weight cannot be negative");
+            validated=false;
+        }
+        else if(height<0){
+            JOptionPane.showMessageDialog(this,"Height cannot be negative");
+            validated=false;
+        }
+        else if(temp<-10){
+            JOptionPane.showMessageDialog(this,"Check the temperature entered");
+            validated=false;
+        }
+        else if(pulse<0){
+            JOptionPane.showMessageDialog(this,"Pulse cannot be negative");
+            validated=false;
+        }
+        else if(bp<0){
+            JOptionPane.showMessageDialog(this,"BP cannot be negative");
+            validated=false;
+        }
+        else if(respRate<0){
+            JOptionPane.showMessageDialog(this,"respRate cannot be negative");
+            validated=false;
+        }
+        return validated;
+    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonFetchPathoReport;
     private javax.swing.JButton jButtonSavePatients;
     private javax.swing.JButton jButtonUpdateStatus;
     private javax.swing.JButton jButtonViewPatient;

@@ -7,6 +7,8 @@ package userInterface.RecepitionistRole;
 import Business.Employee.Employee;
 import DatabaseUtility.DatabaseHandleHospitalRoles;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -54,7 +56,6 @@ public class CreatePatientsJPanel extends javax.swing.JPanel {
         jTextFieldAddress = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablePatients = new javax.swing.JTable();
-        jButtonWebCam = new javax.swing.JButton();
         jComboBoxGender = new javax.swing.JComboBox<>();
         jComboBoxType = new javax.swing.JComboBox<>();
 
@@ -102,13 +103,6 @@ public class CreatePatientsJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTablePatients);
 
-        jButtonWebCam.setText("Web Cam");
-        jButtonWebCam.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonWebCamActionPerformed(evt);
-            }
-        });
-
         jComboBoxGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male","Female" }));
 
         jComboBoxType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Donor","Reciver"}));
@@ -142,8 +136,6 @@ public class CreatePatientsJPanel extends javax.swing.JPanel {
                     .addComponent(jTextFieldAddress)
                     .addComponent(jComboBoxGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jComboBoxType, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(41, 41, 41)
-                .addComponent(jButtonWebCam)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -163,16 +155,11 @@ public class CreatePatientsJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldAge, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jButtonWebCam)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jComboBoxGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -207,8 +194,9 @@ public class CreatePatientsJPanel extends javax.swing.JPanel {
         String type=jComboBoxType.getSelectedItem().toString();
         String contact=jTextFieldContact.getText();
         String address=jTextFieldAddress.getText();
-        //Validate
-        Boolean status=dbo.createPerson(name, age, email, gender, contact, address, type,receptionistId);
+        Boolean validation=validateInputFields(name,age,email,gender,contact,address);
+        if (validation){
+            Boolean status=dbo.createPerson(name, age, email, gender, contact, address, type,receptionistId);
         if (status){
             populateTable(dbo.fetchPatient(receptionistId));
             jTextFieldName.setText("");
@@ -220,41 +208,9 @@ public class CreatePatientsJPanel extends javax.swing.JPanel {
         else{
             JOptionPane.showMessageDialog(this, "Error in creating patient. Check input fields");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButtonWebCamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonWebCamActionPerformed
-        // TODO add your handling code here:
-        //Default webcam = 0
-//        OpenCVFrameConverter.ToIplImage converter = new OpenCVFrameConverter.ToIplImage();
-//        try {
-//            OpenCVFrameGrabber grabber=new OpenCVFrameGrabber(0);
-//            grabber.start();
-//            Frame frame = grabber.grab();
-//            IplImage img=converter.convert(frame);
-//            if (img != null){
-//                cvSaveImage("aa.jpg", img);
-//            }
-//        }
-//        catch(Exception e){
-//            System.out.println("Camera Connection :"+ e);
-//        }
-//        BufferedImage image;
-//        
-//        Webcam webcam = Webcam.getDefault();
-//        webcam.setViewSize(new Dimension(1024,768));
-//        if(webcam != null){
-//            System.out.println("Webcam present");
-//        }
-//        webcam.open(false);
-//        image = webcam.getImage();
-//        
-//        try {
-//            ImageIO.write(image, "JPG", new File("test.jpg"));
-//        } catch (IOException ex) {
-//            System.out.println("File writing:"+ex);
-//        }
+        }
         
-    }//GEN-LAST:event_jButtonWebCamActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
     private void populateTable(ArrayList<Employee> emp){
         DefaultTableModel model=(DefaultTableModel) jTablePatients.getModel();
         model.setRowCount(0);
@@ -272,10 +228,50 @@ public class CreatePatientsJPanel extends javax.swing.JPanel {
             model.addRow(row);
         }
     }
+    private Boolean validateInputFields(String name,int age,String email,String gender,String contact,String address) {
+        //Function to validate the input fields
+        Pattern patternCellNumber = Pattern.compile("^[+\\d](\\d{11})$");
+        Matcher matcherCell = patternCellNumber.matcher(contact);
+         Pattern patternEmail = Pattern.compile("^[a-z0-9]+@[a-z]+.[a-z]+$");
+        Matcher matcher = patternEmail.matcher(email);
+        Boolean validated=true;
+        
+        if(name == null || name.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Name cannot be empty.");
+            validated=false;
+        }
+        else if(age < 0 || age > 99){
+            JOptionPane.showMessageDialog(this,"Age cannot be less than 0");
+            validated=false;
+        }
+        else if (!matcher.matches()){
+            JOptionPane.showMessageDialog(this,"Email should be valid.");
+            validated=false;
+        }
+        else if(gender == null || gender.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Please select gender");
+            validated=false;
+        }
+        else if(contact == null || contact.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Contact no cannot be empty.");
+            validated=false;
+        }
+        else if (!matcherCell.matches()){
+            JOptionPane.showMessageDialog(this,"Contact number should be valid. Must start with +1.");
+            validated=false;
+        }
+        else if(address == null || address.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Address cannot be empty.");
+            validated=false;
+        }
+        
+        
+        
+        return validated;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButtonWebCam;
     private javax.swing.JComboBox<String> jComboBoxGender;
     private javax.swing.JComboBox<String> jComboBoxType;
     private javax.swing.JLabel jLabel1;

@@ -9,6 +9,8 @@ import Business.Network.Network;
 import Business.Network.NetworkDirectory;
 import DatabaseUtility.DatabaseEnterpriseUtilities;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -142,22 +144,38 @@ public class CreateNetworkJPanel extends javax.swing.JPanel {
         String stateName=jTextStateName.getText();
         String cityName=jTextCityName.getText();
                 
-        //Validation
-        
-        Boolean status=dbCon.createNetwork(cityName, stateName, regionName);
-        if (status){
-            jTextRegionName.setText("");
-            jTextStateName.setText("");
-            jTextCityName.setText("");
-            JOptionPane.showMessageDialog(this, "Network Created.");
-            populateTable(dbCon.fetchNetwork());
+        Boolean validation =validateInputFields(regionName,stateName,cityName);
+        if(validation){
+            Boolean status=dbCon.createNetwork(cityName, stateName, regionName);
+            if (status){
+                jTextRegionName.setText("");
+                jTextStateName.setText("");
+                jTextCityName.setText("");
+                JOptionPane.showMessageDialog(this, "Network Created.");
+                populateTable(dbCon.fetchNetwork());
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Error in creating network.");
+            }
         }
-        else{
-            JOptionPane.showMessageDialog(this, "Error in creating network.");
-        }
-        
     }//GEN-LAST:event_jButtonCreateNetworkActionPerformed
-
+private Boolean validateInputFields(String regionName,String stateName,String cityName) {
+        //Function to validate the input fields
+        Boolean validated=true;
+        if(regionName == null || regionName.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Region name cannot be empty.");
+            validated=false;
+        }
+        else if(stateName == null || stateName.isEmpty()){
+            JOptionPane.showMessageDialog(this,"State name cannot be empty.");
+            validated=false;
+        }
+        else if(cityName == null || cityName.isEmpty()){
+            JOptionPane.showMessageDialog(this,"City name cannot be empty.");
+            validated=false;
+        }
+        return validated;
+    }
 void populateTable(NetworkDirectory nd){
     ArrayList <Network> networkList= nd.getNetworkList();
     DefaultTableModel model=(DefaultTableModel) jTableNetwork.getModel();

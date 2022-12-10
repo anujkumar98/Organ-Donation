@@ -8,6 +8,8 @@ import Business.Employee.Employee;
 import Business.Enterprise.HospitalEnterprise;
 import DatabaseUtility.DatabaseHandleHospitalRoles;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -220,52 +222,54 @@ public class CreateRolesHospitalJPanel extends javax.swing.JPanel {
         String password=jTextHospitalRolePassword.getText();
         String name=jTextHospitalRoleLoginName.getText();
         String email=jTextHospitalRoleEmail.getText();
+        Boolean validation=validateInputFields(username,password,name,email);
         Boolean status=false;
-        //Validations
+        if (validation){  
         switch (role){
-            case "DOCTOR":
-                    if(dbo.checkUniqueUserName(username,"HOSPITAL_DOCTOR")){
-                        status=dbo.createLogin(name,username,email,password,"DOCTOR",id,"HOSPITAL_DOCTOR");
-                        if(status){
-                            JOptionPane.showMessageDialog(this, "Doctor Created");
-                            
-                        }else{
-                            JOptionPane.showMessageDialog(this, "Error in creating doctor");
-                        }
+            case "DOCTOR" -> {
+                if(dbo.checkUniqueUserName(username,"HOSPITAL_DOCTOR")){
+                    status=dbo.createLogin(name,username,email,password,"DOCTOR",id,"HOSPITAL_DOCTOR");
+                    if(status){
+                        JOptionPane.showMessageDialog(this, "Doctor Created");
                         
+                    }else{
+                        JOptionPane.showMessageDialog(this, "Error in creating doctor");
                     }
-                    else{
-                        JOptionPane.showMessageDialog(this, "Username already exists");
+                    
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Username already exists");
+                }
+                }
+            case "RECEPTIONIST" -> {
+                if(dbo.checkUniqueUserName(username,"HOSPITAL_RECEPTIONIST")){
+                    status=dbo.createLogin(name,username,email,password,"RECEPTIONIST",id,"HOSPITAL_RECEPTIONIST");
+                    if (status){
+                        JOptionPane.showMessageDialog(this, "Receptionist Created");
+                    }else{
+                        JOptionPane.showMessageDialog(this, "Error in creating receptionist");
                     }
-                   break; 
-            case "RECEPTIONIST":
-                    if(dbo.checkUniqueUserName(username,"HOSPITAL_RECEPTIONIST")){
-                        status=dbo.createLogin(name,username,email,password,"RECEPTIONIST",id,"HOSPITAL_RECEPTIONIST");
-                        if (status){
-                            JOptionPane.showMessageDialog(this, "Receptionist Created");
-                        }else{
-                            JOptionPane.showMessageDialog(this, "Error in creating receptionist");
-                        }
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Username already exists");
+                }
+                }
+            case "PATHOLOGIST" -> {
+                if(dbo.checkUniqueUserName(username,"HOSPITAL_PATHOLOGIST")){
+                    status=dbo.createLogin(name,username,email,password,"PATHOLOGIST",id,"HOSPITAL_PATHOLOGIST");
+                    if (status){
+                        JOptionPane.showMessageDialog(this, "Pathologist Created");
+                    }else{
+                        JOptionPane.showMessageDialog(this, "Error in creating pathologist");
                     }
-                    else{
-                        JOptionPane.showMessageDialog(this, "Username already exists");
-                    }
-                    break;
-            case "PATHOLOGIST":
-                    if(dbo.checkUniqueUserName(username,"HOSPITAL_PATHOLOGIST")){
-                        status=dbo.createLogin(name,username,email,password,"PATHOLOGIST",id,"HOSPITAL_PATHOLOGIST");
-                        if (status){
-                            JOptionPane.showMessageDialog(this, "Pathologist Created");
-                        }else{
-                             JOptionPane.showMessageDialog(this, "Error in creating pathologist");
-                        }
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(this, "Username already exists");
-                    }
-                    break;
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Username already exists");
+                }
+                }
            
                 
+        }
         }
         if (status){
             populateTable(dbo.employeeList(id));
@@ -290,6 +294,36 @@ public class CreateRolesHospitalJPanel extends javax.swing.JPanel {
             model.addRow(row);
         }
     }
+    
+private Boolean validateInputFields(String useraname,String name,String password,String email) {
+        //Function to validate the input fields
+        Pattern patternEmail = Pattern.compile("^[a-z0-9]+@[a-z]+.[a-z]+$");
+        Matcher matcher = patternEmail.matcher(email);
+        Boolean validated=true;
+        if(name == null || name.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Name cannot be empty.");
+            validated=false;
+        }
+        else if(useraname == null || useraname.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Username cannot be empty.");
+            validated=false;
+        }
+        else if(password == null || password.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Password cannot be empty.");
+            validated=false;
+        }
+        else if(password.length()<8){
+            JOptionPane.showMessageDialog(this,"Password must be atleast 8 characters.");
+            validated=false;
+        }
+        else if (!matcher.matches()){
+            JOptionPane.showMessageDialog(this,"Email should be valid.");
+            validated=false;
+        }
+        
+        
+        return validated;
+    }    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboHospitalRole;
