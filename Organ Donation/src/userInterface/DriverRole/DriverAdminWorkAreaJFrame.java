@@ -4,6 +4,8 @@
  */
 package userInterface.DriverRole;
 
+import Business.Employee.Employee;
+
 /**
  *
  * @author kb282
@@ -13,8 +15,10 @@ public class DriverAdminWorkAreaJFrame extends javax.swing.JFrame {
     /**
      * Creates new form DriverAdminWorkAreaJFrame
      */
-    public DriverAdminWorkAreaJFrame() {
+    private static Employee emp;
+    public DriverAdminWorkAreaJFrame(Employee e) {
         initComponents();
+        this.emp=e;
     }
 
     /**
@@ -39,6 +43,11 @@ public class DriverAdminWorkAreaJFrame extends javax.swing.JFrame {
         jButtonDriverProfileUpdate.setText("PROFILE UPDATE");
 
         jButtonDriverManageRequest.setText("MANGE REQUEST");
+        jButtonDriverManageRequest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDriverManageRequestActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -82,7 +91,7 @@ public class DriverAdminWorkAreaJFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE))
+                .addComponent(jSplitPane1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,6 +100,12 @@ public class DriverAdminWorkAreaJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonDriverManageRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDriverManageRequestActionPerformed
+        // TODO add your handling code here:
+        ManageRequestDriver jFrame= new ManageRequestDriver(emp);
+        jSplitPane1.setRightComponent(jFrame);
+    }//GEN-LAST:event_jButtonDriverManageRequestActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,7 +137,7 @@ public class DriverAdminWorkAreaJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DriverAdminWorkAreaJFrame().setVisible(true);
+                new DriverAdminWorkAreaJFrame(emp).setVisible(true);
             }
         });
     }
