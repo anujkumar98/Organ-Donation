@@ -9,6 +9,8 @@ import Business.Network.Network;
 import Business.Network.NetworkDirectory;
 import DatabaseUtility.DatabaseEnterpriseUtilities;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -358,7 +360,10 @@ public class ManageNGOJPanel extends javax.swing.JPanel {
         jComboBoxState.setEnabled(true);
        
         String name=jTextFieldName.getText();
-        
+        if(name == null || name.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Name cannot be empty.");
+            return;
+        }
         String city=jComboBoxCity.getSelectedItem().toString();
         String region=jComboBoxRegion.getSelectedItem().toString();
         String state=jComboBoxState.getSelectedItem().toString();
@@ -461,6 +466,35 @@ public class ManageNGOJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private Boolean validateInputFields(String useraname,String name,String password,String email) {
+        //Function to validate the input fields
+        Pattern patternEmail = Pattern.compile("^[a-z0-9]+@[a-z]+.[a-z]+$");
+        Matcher matcher = patternEmail.matcher(email);
+        Boolean validated=true;
+        if(name == null || name.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Name cannot be empty.");
+            validated=false;
+        }
+        else if(useraname == null || useraname.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Username cannot be empty.");
+            validated=false;
+        }
+        else if(password == null || password.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Password cannot be empty.");
+            validated=false;
+        }
+        else if(password.length()<8){
+            JOptionPane.showMessageDialog(this,"Password must be atleast 8 characters.");
+            validated=false;
+        }
+        else if (!matcher.matches()){
+            JOptionPane.showMessageDialog(this,"Email should be valid.");
+            validated=false;
+        }
+        
+        
+        return validated;
+    }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
 //        if (update){
@@ -534,6 +568,8 @@ public class ManageNGOJPanel extends javax.swing.JPanel {
             String password=jTextNGOAdminPassword.getText();
            String email=jTextFieldAdminEmail.getText();
             //System.out.println(dbCon.checkUniqueUserName(username,"NGO"));
+            Boolean validated=validateInputFields(name,username,password,email);
+            if(validated){
             if(dbCon.checkUniqueUserName(username,"NGO")==true){
                 boolean status=dbCon.createEnterpriseAdmin(fetchId,name,username,password,"NGO",email);
                 if (status){
@@ -562,6 +598,7 @@ public class ManageNGOJPanel extends javax.swing.JPanel {
             }
             else{
                 JOptionPane.showMessageDialog(this, "Username already exists");
+            }
             }
           
             return;

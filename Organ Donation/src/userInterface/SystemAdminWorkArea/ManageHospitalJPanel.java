@@ -12,6 +12,8 @@ import Business.Network.Network;
 import Business.Network.NetworkDirectory;
 import DatabaseUtility.DatabaseEnterpriseUtilities;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -371,7 +373,10 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
         String region=jComboBoxRegion.getSelectedItem().toString();
         String state=jComboBoxState.getSelectedItem().toString();
         
-        
+        if(name == null || name.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Name cannot be empty.");
+            return;
+        }
         Boolean status =dbCon.createEnterprise(name, city, state, region,"HOSPITAL");
         if (status){
             populateTable(dbCon.fetchHospital());
@@ -380,12 +385,6 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
             jTextFieldAdminId.setText("");
             jTextFieldAdminPassword.setText(""); 
         JOptionPane.showMessageDialog(this, "Hospital Created.");
-        
-        
-        
-        
-        
-        
         }
         else{
             JOptionPane.showMessageDialog(this, "Error in creating hospital");
@@ -497,8 +496,9 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
             String username=jTextFieldAdminId.getText();
             String password=jTextFieldAdminPassword.getText();
             String email=jTextFieldAdminEmail.getText();
-            System.out.println(dbCon.checkUniqueUserName(username,"HOSPITAL"));
-            if(dbCon.checkUniqueUserName(username,"HOSPITAL")==true){
+            Boolean validated=validateInputFields(name,username,password,email);
+            if(validated){
+               if(dbCon.checkUniqueUserName(username,"HOSPITAL")==true){
                 boolean status=dbCon.createEnterpriseAdmin(fetchId,name,username,password,"HOSPITAL",email);
                 if (status){
                     populateTable(dbCon.fetchHospital());
@@ -516,17 +516,48 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
                 else{
                     JOptionPane.showMessageDialog(this, "Error in creating admin");
                 }
-            }
-            else{
+            } 
+             else{
                 JOptionPane.showMessageDialog(this, "Username already exists");
             }
+            }
+            //System.out.println(dbCon.checkUniqueUserName(username,"HOSPITAL"));
+            
           
             return;
         }
         JOptionPane.showMessageDialog(this, "Please fetch a row to update");
         
     }//GEN-LAST:event_jButtonCreateHospitalAdminsActionPerformed
-
+private Boolean validateInputFields(String useraname,String name,String password,String email) {
+        //Function to validate the input fields
+        Pattern patternEmail = Pattern.compile("^[a-z0-9]+@[a-z]+.[a-z]+$");
+        Matcher matcher = patternEmail.matcher(email);
+        Boolean validated=true;
+        if(name == null || name.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Name cannot be empty.");
+            validated=false;
+        }
+        else if(useraname == null || useraname.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Username cannot be empty.");
+            validated=false;
+        }
+        else if(password == null || password.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Password cannot be empty.");
+            validated=false;
+        }
+        else if(password.length()<8){
+            JOptionPane.showMessageDialog(this,"Password must be atleast 8 characters.");
+            validated=false;
+        }
+        else if (!matcher.matches()){
+            JOptionPane.showMessageDialog(this,"Email should be valid.");
+            validated=false;
+        }
+        
+        
+        return validated;
+    }
     private void jComboBoxCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCityActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxCityActionPerformed
