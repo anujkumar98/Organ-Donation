@@ -34,11 +34,12 @@ public class HospitalAdminWorkAreaJFrame extends javax.swing.JFrame {
 
         hospitalAdminSplitPane = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
-        jButtonCreateRolesAdmin = new javax.swing.JButton();
+        jButtonProfile = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButtonOpoRequest = new javax.swing.JButton();
+        jButtonCreateRolesAdmin1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -48,12 +49,12 @@ public class HospitalAdminWorkAreaJFrame extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(175, 38, 72));
 
-        jButtonCreateRolesAdmin.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
-        jButtonCreateRolesAdmin.setText("CREATE ROLES");
-        jButtonCreateRolesAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        jButtonCreateRolesAdmin.addActionListener(new java.awt.event.ActionListener() {
+        jButtonProfile.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
+        jButtonProfile.setText("PROFILE");
+        jButtonProfile.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jButtonProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCreateRolesAdminActionPerformed(evt);
+                jButtonProfileActionPerformed(evt);
             }
         });
 
@@ -94,29 +95,45 @@ public class HospitalAdminWorkAreaJFrame extends javax.swing.JFrame {
             }
         });
 
+        jButtonCreateRolesAdmin1.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
+        jButtonCreateRolesAdmin1.setText("CREATE ROLES");
+        jButtonCreateRolesAdmin1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jButtonCreateRolesAdmin1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCreateRolesAdmin1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
-                    .addComponent(jButtonCreateRolesAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonOpoRequest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                            .addComponent(jButtonProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonOpoRequest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 42, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jButtonCreateRolesAdmin1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(139, 139, 139)
-                .addComponent(jButtonCreateRolesAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(68, 68, 68)
+                .addComponent(jButtonProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(89, 89, 89)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -125,13 +142,17 @@ public class HospitalAdminWorkAreaJFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(66, 66, 66))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(149, 149, 149)
+                    .addComponent(jButtonCreateRolesAdmin1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(505, Short.MAX_VALUE)))
         );
 
         hospitalAdminSplitPane.setLeftComponent(jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Lenovo\\Desktop\\AED images\\organ5.jpg")); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -165,14 +186,14 @@ public class HospitalAdminWorkAreaJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonCreateRolesAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateRolesAdminActionPerformed
+    private void jButtonProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProfileActionPerformed
         // TODO add your handling code here:
         
-        CreateRolesHospitalJPanel crm = new CreateRolesHospitalJPanel(emp);
-        hospitalAdminSplitPane.setRightComponent(crm);
+        HospitalAdminUpdateProfileJPanel jPanel=new HospitalAdminUpdateProfileJPanel(emp);
         
+        hospitalAdminSplitPane.setRightComponent(jPanel);
         
-    }//GEN-LAST:event_jButtonCreateRolesAdminActionPerformed
+    }//GEN-LAST:event_jButtonProfileActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -198,6 +219,12 @@ public class HospitalAdminWorkAreaJFrame extends javax.swing.JFrame {
         AdminManageOPOList jPanel=new AdminManageOPOList(emp);
         hospitalAdminSplitPane.setRightComponent(jPanel);
     }//GEN-LAST:event_jButtonOpoRequestActionPerformed
+
+    private void jButtonCreateRolesAdmin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateRolesAdmin1ActionPerformed
+        // TODO add your handling code here:
+        CreateRolesHospitalJPanel crm = new CreateRolesHospitalJPanel(emp);
+        hospitalAdminSplitPane.setRightComponent(crm);
+    }//GEN-LAST:event_jButtonCreateRolesAdmin1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,8 +266,9 @@ public class HospitalAdminWorkAreaJFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButtonCreateRolesAdmin;
+    private javax.swing.JButton jButtonCreateRolesAdmin1;
     private javax.swing.JButton jButtonOpoRequest;
+    private javax.swing.JButton jButtonProfile;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

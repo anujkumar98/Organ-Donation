@@ -7,6 +7,7 @@ package DatabaseUtility;
 import Business.Employee.Employee;
 import Business.Employee.EmployeeDirectory;
 import Business.Transport.TransportRequest;
+import static DatabaseUtility.DatabaseHandleHospitalRoles.createConnection;
 import email.util.EmailUtil;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -261,6 +262,25 @@ public Boolean updateTransportDetails(int id){
     }
     catch(Exception e){
         System.out.println("updateTransportDetails :"+e);
+    }
+    return status;
+}
+public Boolean updateProfile(String name,String contact,int age,String address,String gender,String tableName,int id){
+    Boolean status=false;
+    try {
+        Connection con = createConnection();
+        Statement statement=con.createStatement();
+        String query="UPDATE `OrganDonation`.`"+tableName.toUpperCase()+"` SET "
+            + "`"+tableName.toUpperCase()+"_NAME` = '"+name+"', `"+tableName.toUpperCase()+"_AGE` = '"+Integer.toString(age)+"', "
+            + "`"+tableName.toUpperCase()+"_CONTACT` = '"+contact+"',"+
+             "`"+tableName.toUpperCase()+"_GENDER` = '"+gender+"',`"+tableName.toUpperCase()+"_ADDRESS` = '"+address+"' WHERE (`"+
+            tableName.toUpperCase()+"_ID` = '"+Integer.toString(id)+"');";
+        //System.out.println(query);
+        statement.executeUpdate(query);
+        status=true;
+    } 
+    catch(Exception e){
+        System.out.println("updateProfile :"+e);
     }
     return status;
 }

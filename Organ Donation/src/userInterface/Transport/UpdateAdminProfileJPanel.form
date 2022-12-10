@@ -178,7 +178,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Microsoft YaHei" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="FIRST NAME:"/>
+        <Property name="text" type="java.lang.String" value="NAME:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -186,7 +186,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Microsoft YaHei" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="LAST NAME:"/>
+        <Property name="text" type="java.lang.String" value="USERNAME"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">

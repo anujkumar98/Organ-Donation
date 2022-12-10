@@ -5,7 +5,6 @@
 package userInterface.NGO;
 
 import Business.Employee.Employee;
-import userInterface.RecepitionistRole.RecepionistProfileUpdateJPanel;
 
 /**
  *
@@ -124,7 +123,7 @@ public class NGOAdminWorkArea extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         
-          CreateNGOProfile rwaJP = new CreateNGOProfile();
+          CreateNGOProfile rwaJP = new CreateNGOProfile(emp);
         jSplitAdminSplit.setRightComponent(rwaJP);
     }//GEN-LAST:event_jButton1ActionPerformed
 

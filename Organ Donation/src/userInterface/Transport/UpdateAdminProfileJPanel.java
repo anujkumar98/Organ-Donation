@@ -5,6 +5,9 @@
 package userInterface.Transport;
 
 
+import Business.Employee.Employee;
+import DatabaseUtility.DatabaseHandelTransportRoles;
+import DatabaseUtility.DatabaseHandleHospitalRoles;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -19,10 +22,26 @@ public class UpdateAdminProfileJPanel extends javax.swing.JPanel {
     /**
      * Creates new form RecepionistWorkAreaJPanel
      */
-    public UpdateAdminProfileJPanel() {
+    Employee emp;
+    int id;
+    DatabaseHandelTransportRoles dbCon=new DatabaseHandelTransportRoles();
+    public UpdateAdminProfileJPanel(Employee e) {
         initComponents();
+        this.emp=e;
+        this.id=e.getId();
+        populateTextBox(emp);
+        jTextField2.setEditable(false);
+        jTextField3.setEditable(false);
     }
-
+    void populateTextBox(Employee emp){
+            jTextField1.setText(emp.getName() == null ? "" : emp.getName());
+            jTextField2.setText(emp.getUsername() == null ? "" : emp.getUsername());
+            jTextField3.setText(emp.getEmail() == null ? "" : emp.getEmail());
+            jTextField4.setText(emp.getAge() == 0 ? "" : Integer.toString(emp.getAge()));
+            jTextField6.setText(emp.getContactNumber() == null ? "" : emp.getContactNumber());
+            
+            jTextField7.setText(emp.getAddress() == null ? "" : emp.getAddress());
+        }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -77,10 +96,10 @@ public class UpdateAdminProfileJPanel extends javax.swing.JPanel {
         );
 
         jLabel2.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
-        jLabel2.setText("FIRST NAME:");
+        jLabel2.setText("NAME:");
 
         jLabel3.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
-        jLabel3.setText("LAST NAME:");
+        jLabel3.setText("USERNAME");
 
         jLabel4.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         jLabel4.setText("EMAIL");
@@ -212,6 +231,30 @@ public class UpdateAdminProfileJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String name=jTextField1.getText();
+        String email=jTextField3.getText();
+        int age=Integer.parseInt(jTextField4.getText());
+        String contact=jTextField6.getText();
+        String address =jTextField7.getText();
+        String gender=jComboBox1.getSelectedItem().toString();
+        
+        Boolean validated= validateInputFields(name,age,contact,address,gender);
+        if (validated){
+        Boolean status=dbCon.updateProfile(name,contact,age,address,gender,"TRANSPORT_ADMIN",id);
+        if (status){
+            emp.setName(name);
+            emp.setEmail(email);
+            emp.setAge(age);
+            emp.setGender(gender);
+            emp.setContactNumber(contact);
+            emp.setAddress(address);
+            populateTextBox(emp);
+            JOptionPane.showMessageDialog(this, "Profile updated");
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Error in updating profile. Please check the inputs.");
+        }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 private Boolean validateInputFields(String name,int age,String contactno,String address,String gender) {

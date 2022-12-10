@@ -41,6 +41,11 @@ public class DriverAdminWorkAreaJFrame extends javax.swing.JFrame {
         jSplitPane1.setDividerLocation(180);
 
         jButtonDriverProfileUpdate.setText("PROFILE UPDATE");
+        jButtonDriverProfileUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDriverProfileUpdateActionPerformed(evt);
+            }
+        });
 
         jButtonDriverManageRequest.setText("MANGE REQUEST");
         jButtonDriverManageRequest.addActionListener(new java.awt.event.ActionListener() {
@@ -106,6 +111,12 @@ public class DriverAdminWorkAreaJFrame extends javax.swing.JFrame {
         ManageRequestDriver jFrame= new ManageRequestDriver(emp);
         jSplitPane1.setRightComponent(jFrame);
     }//GEN-LAST:event_jButtonDriverManageRequestActionPerformed
+
+    private void jButtonDriverProfileUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDriverProfileUpdateActionPerformed
+        // TODO add your handling code here:
+        DriverUpdateProfileJPanel jFrame= new DriverUpdateProfileJPanel(emp);
+         jSplitPane1.setRightComponent(jFrame);
+    }//GEN-LAST:event_jButtonDriverProfileUpdateActionPerformed
 
     /**
      * @param args the command line arguments
