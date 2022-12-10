@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package userInterface.DoctorRole;
+package userInterface.RecepitionistRole;
 
+import userInterface.DoctorRole.*;
 import Business.Employee.Employee;
 import DatabaseUtility.DatabaseHandleHospitalRoles;
 import java.util.regex.Matcher;
@@ -15,7 +16,7 @@ import userInterface.HospitalAdminWorkArea.*;
  *
  * @author Lenovo
  */
-public class DoctorProfileJPanel extends javax.swing.JPanel {
+public class ReceptionistProfileJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form DoctorProfileJPanel
@@ -23,7 +24,7 @@ public class DoctorProfileJPanel extends javax.swing.JPanel {
     Employee emp;
     DatabaseHandleHospitalRoles dbo;
     int id;
-    public DoctorProfileJPanel(Employee e) {
+    public ReceptionistProfileJPanel(Employee e) {
         initComponents();
         dbo=new DatabaseHandleHospitalRoles();
         this.emp=e;

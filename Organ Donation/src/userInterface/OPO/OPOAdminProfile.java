@@ -2,9 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package userInterface.NGO;
+package userInterface.OPO;
 
+import userInterface.NGO.*;
 import Business.Employee.Employee;
+import DatabaseUtility.DatabaseHandelOPORoles;
 import DatabaseUtility.DatabaseHandleNgoRole;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,15 +17,15 @@ import userInterface.RecepitionistRole.*;
  *
  * @author Lenovo
  */
-public class CreateNGOProfile extends javax.swing.JPanel {
+public class OPOAdminProfile extends javax.swing.JPanel {
 
     /**
      * Creates new form RecepionistWorkAreaJPanel
      */
     Employee emp;
     int id;
-    DatabaseHandleNgoRole dbCon=new DatabaseHandleNgoRole();
-    public CreateNGOProfile(Employee e) {
+    DatabaseHandelOPORoles dbCon=new DatabaseHandelOPORoles();
+    public OPOAdminProfile(Employee e) {
         initComponents();
         this.emp=e;
         this.id=emp.getId();
@@ -66,7 +68,7 @@ public class CreateNGOProfile extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("UPADTE NGO PROFILE");
+        jLabel1.setText("UPADTE OPO PROFILE");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -140,11 +142,9 @@ public class CreateNGOProfile extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(178, 178, 178)
                         .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 279, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(273, 273, 273)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel6)

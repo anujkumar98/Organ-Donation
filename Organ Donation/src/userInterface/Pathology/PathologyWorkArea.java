@@ -141,7 +141,7 @@ public class PathologyWorkArea extends javax.swing.JFrame {
 
     private void ManageProfileJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageProfileJButtonActionPerformed
         // TODO add your handling code here:
-       ManagePathoProfileJPanel managePro =new ManagePathoProfileJPanel();
+       ManagePathoProfileJPanel managePro =new ManagePathoProfileJPanel(emp);
         jSplitPaneAdmin.setRightComponent(managePro);
         
     }//GEN-LAST:event_ManageProfileJButtonActionPerformed

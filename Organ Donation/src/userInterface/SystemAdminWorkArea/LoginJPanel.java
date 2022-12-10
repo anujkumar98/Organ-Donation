@@ -41,6 +41,7 @@ public class LoginJPanel extends javax.swing.JFrame {
         jComboBoxRoles.addItem("NGO ADMIN");
         jComboBoxRoles.addItem("TRANSPORT ADMIN");
         jComboBoxRoles.addItem("OPO ADMIN");
+        jComboBoxRoles.addItem("DRIVER");
     }
 
     /**

@@ -165,14 +165,14 @@ public ArrayList <Employee> employeeList(int adminId){
     }
     return employeeList;
 }
-public Boolean updateProfile(String name,String email,String contact,int age,String address,String gender,String tableName,int id){
+public Boolean updateProfile(String name,String contact,int age,String address,String gender,String tableName,int id){
     Boolean status=false;
     try {
         Connection con = createConnection();
         Statement statement=con.createStatement();
         String query="UPDATE `OrganDonation`.`"+tableName.toUpperCase()+"` SET "
             + "`"+tableName.toUpperCase()+"_NAME` = '"+name+"', `"+tableName.toUpperCase()+"_AGE` = '"+Integer.toString(age)+"', "
-            + "`"+tableName.toUpperCase()+"_CONTACT` = '"+contact+"', `"+tableName.toUpperCase()+"_EMAIL` = '"+email+"',"+
+            + "`"+tableName.toUpperCase()+"_CONTACT` = '"+contact+"',"+
              "`"+tableName.toUpperCase()+"_GENDER` = '"+gender+"',`"+tableName.toUpperCase()+"_ADDRESS` = '"+address+"' WHERE (`"+
             tableName.toUpperCase()+"_ID` = '"+Integer.toString(id)+"');";
         //System.out.println(query);

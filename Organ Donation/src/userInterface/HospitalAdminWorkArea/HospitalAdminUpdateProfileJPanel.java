@@ -2,10 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package userInterface.DriverRole;
+package userInterface.HospitalAdminWorkArea;
 
+import userInterface.DriverRole.*;
 import Business.Employee.Employee;
 import DatabaseUtility.DatabaseHandelTransportRoles;
+import DatabaseUtility.DatabaseHandleHospitalRoles;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -14,15 +16,15 @@ import javax.swing.JOptionPane;
  *
  * @author kb282
  */
-public class DriverUpdateProfileJPanel extends javax.swing.JPanel {
+public class HospitalAdminUpdateProfileJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form DriverUpdateProfileJPanel
      */
     Employee emp;
     int id;
-    DatabaseHandelTransportRoles dbCon=new DatabaseHandelTransportRoles();
-    public DriverUpdateProfileJPanel(Employee e) {
+    DatabaseHandleHospitalRoles dbCon=new DatabaseHandleHospitalRoles();
+    public HospitalAdminUpdateProfileJPanel(Employee e) {
         initComponents();
         this.emp=e;
         this.id=emp.getId();
@@ -119,42 +121,51 @@ public class DriverUpdateProfileJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(221, 221, 221)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addGap(65, 65, 65)
+                                    .addComponent(jComboBoxGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel6)
+                                    .addGap(60, 60, 60)
+                                    .addComponent(jTextDriverNaAddress)
+                                    .addGap(20, 20, 20)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextDriverName))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addGap(92, 92, 92)
+                                        .addComponent(jTextDriverUsername)
+                                        .addGap(36, 36, 36)))
+                                .addGap(29, 29, 29)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(58, 58, 58)
+                        .addComponent(jTextDriverEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(265, 265, 265))))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(232, 232, 232)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel2)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel4)
-                                            .addGap(65, 65, 65)
-                                            .addComponent(jComboBoxGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel6)
-                                            .addGap(60, 60, 60)
-                                            .addComponent(jTextDriverNaAddress)
-                                            .addGap(20, 20, 20)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTextDriverName)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(jLabel7)
-                                                .addGap(75, 75, 75)
-                                                .addComponent(jTextDriverUsername)))
-                                        .addGap(29, 29, 29)))
-                                .addComponent(jTextDriverEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(87, 87, 87)
-                                .addComponent(jTextDriverAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextDriverAge, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(55, 55, 55)
-                                .addComponent(jTextDriverContact, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jTextDriverContact, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(272, 272, 272)
                         .addComponent(jTextDriverUpdateProfile))
@@ -238,7 +249,7 @@ public class DriverUpdateProfileJPanel extends javax.swing.JPanel {
         String gender=jComboBoxGender.getSelectedItem().toString();
         Boolean validated= validateInputFields(name,age,contact,address,gender);
         if(validated){
-            Boolean status=dbCon.updateProfile(name,contact,age,address,gender,"TRANSPORT_DRIVER",id);
+        Boolean status=dbCon.updateProfile(name,contact,age,address,gender,"HOSPITAL_ADMIN",id);
         if (status){
             emp.setName(name);
             emp.setAge(age);

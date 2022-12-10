@@ -4,6 +4,8 @@
  */
 package userInterface.Pathology;
 
+import Business.Employee.Employee;
+import DatabaseUtility.DatabaseHandleHospitalRoles;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -19,8 +21,17 @@ public class ManagePathoProfileJPanel extends javax.swing.JPanel {
     /**
      * Creates new form RecepionistWorkAreaJPanel
      */
-    public ManagePathoProfileJPanel() {
+    Employee emp;
+    int id;
+    DatabaseHandleHospitalRoles dbo;
+    public ManagePathoProfileJPanel(Employee e) {
         initComponents();
+        this.emp=e;
+        this.id=emp.getId();
+         dbo=new DatabaseHandleHospitalRoles();
+        jTextField3.setEditable(false);
+        jTextFieldUsername.setEditable(false);
+        populateField(emp);
     }
 
     /**
@@ -43,7 +54,7 @@ public class ManagePathoProfileJPanel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jTextFieldUsername = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
@@ -77,10 +88,10 @@ public class ManagePathoProfileJPanel extends javax.swing.JPanel {
         );
 
         jLabel2.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
-        jLabel2.setText("FIRST NAME:");
+        jLabel2.setText("NAME:");
 
         jLabel3.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
-        jLabel3.setText("LAST NAME:");
+        jLabel3.setText("USERNAME");
 
         jLabel4.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         jLabel4.setText("EMAIL");
@@ -99,7 +110,7 @@ public class ManagePathoProfileJPanel extends javax.swing.JPanel {
 
         jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 102)));
 
-        jTextField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 102)));
+        jTextFieldUsername.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 102)));
 
         jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 102)));
 
@@ -151,7 +162,7 @@ public class ManagePathoProfileJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(78, 78, 78)
@@ -177,7 +188,7 @@ public class ManagePathoProfileJPanel extends javax.swing.JPanel {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -212,8 +223,40 @@ public class ManagePathoProfileJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        // TODO add your handling code here:
+        String name=jTextField1.getText();
+        int age=Integer.parseInt(jTextField4.getText());
+        String contact=jTextField6.getText();
+        String address=jTextField7.getText();
+        String gender=jComboBox1.getSelectedItem().toString();
+        Boolean validated= validateInputFields(name,age,contact,address,gender);
+        
+        if(validated){
+            Boolean status=dbo.updateProfile(name,contact,age,address,gender,"HOSPITAL_PATHOLOGIST",id);
+        if (status){
+            emp.setName(name);
+            emp.setAge(age);
+            emp.setGender(gender);
+            emp.setContactNumber(contact);
+            emp.setAddress(address);
+            populateField(emp);
+            JOptionPane.showMessageDialog(this, "Profile updated");
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Error in updating profile. Please check the inputs.");
+        }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
-
+void populateField(Employee emp){
+        jTextField1.setText(emp.getName() == null ? "" : emp.getName());
+        jTextFieldUsername.setText(emp.getUsername() == null ? "" : emp.getUsername());
+        jTextField3.setText(emp.getEmail() == null ? "" : emp.getEmail());
+        jTextField4.setText(emp.getAge() == 0 ? "" : Integer.toString(emp.getAge()));
+        jTextField6.setText(emp.getContactNumber() == null ? "" : emp.getContactNumber());
+        jTextField7.setText(emp.getAddress() == null ? "" : emp.getAddress());
+        
+    }
     private Boolean validateInputFields(String name,int age,String contactno,String address,String gender) {
         //Function to validate the input fields
         Pattern patternCellNumber = Pattern.compile("^[+\\d](\\d{11})$");
@@ -262,10 +305,10 @@ public class ManagePathoProfileJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextFieldUsername;
     // End of variables declaration//GEN-END:variables
 }
