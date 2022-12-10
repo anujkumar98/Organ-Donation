@@ -148,7 +148,9 @@ public class LoginJPanel extends javax.swing.JFrame {
         String username=jTextFieldUserName.getText();
         String password=jTextFieldPassword.getText();
         String role=jComboBoxRoles.getSelectedItem().toString();
-        Employee emp;
+        Boolean validation =validateInputFields(username,password);
+        if (validation){
+            Employee emp;
         switch (role){
             case "SYSTEM ADMIN" -> {
                 if ((username.equals("root") && password.equals("root"))){
@@ -240,6 +242,8 @@ public class LoginJPanel extends javax.swing.JFrame {
                 }
             }
         }
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextFieldUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUserNameActionPerformed
@@ -254,6 +258,20 @@ public class LoginJPanel extends javax.swing.JFrame {
     private void jComboBoxRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxRolesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxRolesActionPerformed
+private Boolean validateInputFields(String userName,String password) {
+        //Function to validate the input fields
+        Boolean validated=true;
+        if(userName == null || userName.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Username cannot be empty");
+            validated=false;
+        }
+        else if(password == null || password.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Password cannot be empty.");
+            validated=false;
+        }
+        return validated;
+    }
+
 
     /**
      * @param args the command line arguments

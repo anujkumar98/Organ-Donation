@@ -6,6 +6,8 @@ package userInterface.DoctorRole;
 
 import Business.Employee.Employee;
 import DatabaseUtility.DatabaseHandleHospitalRoles;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import userInterface.HospitalAdminWorkArea.*;
 
@@ -214,21 +216,17 @@ public class DoctorProfileJPanel extends javax.swing.JPanel {
 
     private void jButtonUpdateProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateProfileActionPerformed
         // TODO add your handling code here:
-        //Validation
+        
         String name=jTextFirstNameDoctor.getText();
         String email=jTextEmailDoctor.getText();
         int age=Integer.parseInt(jTextAgeDoctor.getText());
         String contact=jTextContactDoctor.getText();
         String address =jTextAdressDoctor.getText();
         String gender=jComboDoctorGender.getSelectedItem().toString();
-        /*
         
-        //Import image library
-        
-        */
-        //Validation
-        
-        Boolean status=dbo.updateProfile(name,email,contact,age,address,gender,"HOSPITAL_DOCTOR",id);
+        Boolean validated= validateInputFields(name,age,contact,address,gender);
+        if (validated){
+            Boolean status=dbo.updateProfile(name,email,contact,age,address,gender,"HOSPITAL_DOCTOR",id);
         if (status){
             emp.setName(name);
             emp.setEmail(email);
@@ -241,9 +239,44 @@ public class DoctorProfileJPanel extends javax.swing.JPanel {
         else {
             JOptionPane.showMessageDialog(this, "Error in updating profile. Please check the inputs.");
         }
+        }
+        
     }//GEN-LAST:event_jButtonUpdateProfileActionPerformed
 
-
+private Boolean validateInputFields(String name,int age,String contactno,String address,String gender) {
+        //Function to validate the input fields
+        Pattern patternCellNumber = Pattern.compile("^[+\\d](\\d{11})$");
+        Matcher matcherCell = patternCellNumber.matcher(contactno);
+        Boolean validated=true;
+        
+        if(name == null || name.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Name cannot be empty.");
+            validated=false;
+        }
+        else if(address == null || address.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Address cannot be empty.");
+            validated=false;
+        }
+        else if(contactno == null || contactno.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Contact no cannot be empty.");
+            validated=false;
+        }
+        else if (!matcherCell.matches()){
+            JOptionPane.showMessageDialog(this,"Contact number should be valid. Must start with +1.");
+            validated=false;
+        }
+        else if(age < 0 || age > 99){
+            JOptionPane.showMessageDialog(this,"Age cannot be less than 0");
+            validated=false;
+        }
+        else if(gender == null || gender.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Please select gender");
+            validated=false;
+        }
+        
+        return validated;
+    }
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonUpdateProfile;
     private javax.swing.JComboBox<String> jComboDoctorGender;

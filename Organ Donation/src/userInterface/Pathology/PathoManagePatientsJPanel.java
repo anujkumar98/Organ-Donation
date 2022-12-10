@@ -11,6 +11,8 @@ import Business.Patient.PatientVisit;
 import Business.Patient.PatientVisitDirectory;
 import DatabaseUtility.DatabaseHandleHospitalRoles;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -190,22 +192,39 @@ public class PathoManagePatientsJPanel extends javax.swing.JPanel {
             jTextPatientType.setText(jTableManagePateints.getValueAt(selectedIndex, 2).toString()); 
             String bloodType=jTextPatientBloodType.getText();
             String tissueCondition=jTextPatientTissueType.getText();
-            Boolean status= dbCon.createPathoReport(visitId,bloodType,tissueCondition);
-            if(status){
-                JOptionPane.showMessageDialog(this, "Report Created.");
-                jTextNamePatient.setText("");
-                jTextPatientType.setText("");
-                jTextPatientBloodType.setText("");
-                jTextPatientTissueType.setText("");
-                populatePatients(dbCon.fetchPatientsPatho(pathoId)); 
+            Boolean validated=validateInputFields(bloodType,tissueCondition);
+            if(validated){
+                Boolean status= dbCon.createPathoReport(visitId,bloodType,tissueCondition);
+                if(status){
+                    JOptionPane.showMessageDialog(this, "Report Created.");
+                    jTextNamePatient.setText("");
+                    jTextPatientType.setText("");
+                    jTextPatientBloodType.setText("");
+                    jTextPatientTissueType.setText("");
+                    populatePatients(dbCon.fetchPatientsPatho(pathoId)); 
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Error in creating vitals");
+                }
             }
-            else{
-                JOptionPane.showMessageDialog(this, "Error in creating vitals");
-            }
+            
         }
         }
     }//GEN-LAST:event_jButtonSavePatientsActionPerformed
-
+private Boolean validateInputFields(String bloodType,String tissueType) {
+        //Function to validate the input fields
+        Boolean validated=true;
+        
+        if(bloodType == null || bloodType.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Blood Type cannot be empty.");
+            validated=false;
+        }
+        else if(tissueType == null || tissueType.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Tissue type cannot be empty.");
+            validated=false;
+        }
+        return validated;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSavePatients;

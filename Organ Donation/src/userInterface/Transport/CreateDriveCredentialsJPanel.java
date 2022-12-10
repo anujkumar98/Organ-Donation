@@ -7,6 +7,8 @@ package userInterface.Transport;
 import Business.Employee.Employee;
 import DatabaseUtility.DatabaseHandelTransportRoles;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -176,8 +178,9 @@ public class CreateDriveCredentialsJPanel extends javax.swing.JPanel {
         String password=jTextDriverPassword.getText();
         String email=jTextDriverEmail.getText();
         Boolean status=false;
-        
-        if(dbCon.checkUniqueUserName(username,"TRANSPORT_DRIVER")){
+        Boolean validation =validateInputFields(name,username,password,email);
+        if (validation){
+            if(dbCon.checkUniqueUserName(username,"TRANSPORT_DRIVER")){
                         status=dbCon.createLogin(name,username,email,password,adminId,"TRANSPORT_DRIVER");
                         if(status){
                             JOptionPane.showMessageDialog(this, "Doctor Created");
@@ -191,7 +194,37 @@ public class CreateDriveCredentialsJPanel extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "Username already exists");
                     }
         populateTable(dbCon.employeeList(adminId));
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+private Boolean validateInputFields(String useraname,String name,String password,String email) {
+        //Function to validate the input fields
+        Pattern patternEmail = Pattern.compile("^[a-z0-9]+@[a-z]+.[a-z]+$");
+        Matcher matcher = patternEmail.matcher(email);
+        Boolean validated=true;
+        if(name == null || name.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Name cannot be empty.");
+            validated=false;
+        }
+        else if(useraname == null || useraname.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Username cannot be empty.");
+            validated=false;
+        }
+        else if(password == null || password.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Password cannot be empty.");
+            validated=false;
+        }
+        else if(password.length()<8){
+            JOptionPane.showMessageDialog(this,"Password must be atleast 8 characters.");
+            validated=false;
+        }
+        else if (!matcher.matches()){
+            JOptionPane.showMessageDialog(this,"Email should be valid.");
+            validated=false;
+        }
+        return validated;
+    }    
 
 void populateTable(ArrayList<Employee> emp){
         DefaultTableModel model=(DefaultTableModel) jTable1.getModel();

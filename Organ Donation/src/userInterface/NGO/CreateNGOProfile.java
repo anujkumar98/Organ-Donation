@@ -4,6 +4,9 @@
  */
 package userInterface.NGO;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import userInterface.RecepitionistRole.*;
 
 /**
@@ -186,7 +189,39 @@ public class CreateNGOProfile extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
+private Boolean validateInputFields(String name,int age,String contactno,String address,String gender) {
+        //Function to validate the input fields
+        Pattern patternCellNumber = Pattern.compile("^[+\\d](\\d{11})$");
+        Matcher matcherCell = patternCellNumber.matcher(contactno);
+        Boolean validated=true;
+        
+        if(name == null || name.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Name cannot be empty.");
+            validated=false;
+        }
+        else if(address == null || address.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Address cannot be empty.");
+            validated=false;
+        }
+        else if(contactno == null || contactno.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Contact no cannot be empty.");
+            validated=false;
+        }
+        else if (!matcherCell.matches()){
+            JOptionPane.showMessageDialog(this,"Contact number should be valid. Must start with +1.");
+            validated=false;
+        }
+        else if(age < 0 || age > 99){
+            JOptionPane.showMessageDialog(this,"Age cannot be less than 0");
+            validated=false;
+        }
+        else if(gender == null || gender.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Please select gender");
+            validated=false;
+        }
+        
+        return validated;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBoxNGOGender;
