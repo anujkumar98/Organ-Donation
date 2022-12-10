@@ -172,7 +172,7 @@ public class TransportAdminWorkArea extends javax.swing.JFrame {
 
         
         
-        ManageTransportRequestJPanel manageTransportRequest=new ManageTransportRequestJPanel();
+        ManageTransportRequestJPanel manageTransportRequest=new ManageTransportRequestJPanel(emp);
         jSplitPaneAdmin.setRightComponent(manageTransportRequest);
     }//GEN-LAST:event_jButton1ActionPerformed
 
