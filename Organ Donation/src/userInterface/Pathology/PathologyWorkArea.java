@@ -45,16 +45,18 @@ public class PathologyWorkArea extends javax.swing.JFrame {
 
         ManageReportsJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ManageReportsJButton.setText("MANAGE REPORTS");
-        ManageReportsJButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        ManageReportsJButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         ManageReportsJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ManageReportsJButtonActionPerformed(evt);
             }
         });
 
+        LogoutJButton.setBackground(new java.awt.Color(0, 0, 0));
         LogoutJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        LogoutJButton.setForeground(new java.awt.Color(255, 255, 255));
         LogoutJButton.setText("LOGOUT");
-        LogoutJButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        LogoutJButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         LogoutJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LogoutJButtonActionPerformed(evt);
@@ -63,7 +65,7 @@ public class PathologyWorkArea extends javax.swing.JFrame {
 
         ManageProfileJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ManageProfileJButton.setText("MANAGE PROFILE");
-        ManageProfileJButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        ManageProfileJButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         ManageProfileJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ManageProfileJButtonActionPerformed(evt);

@@ -45,11 +45,11 @@ public class DoctorWorkAreaJFrame extends javax.swing.JFrame {
         DoctorWorkAreaSplitPane.setBackground(new java.awt.Color(255, 255, 255));
         DoctorWorkAreaSplitPane.setDividerLocation(250);
 
-        jPanel1.setBackground(new java.awt.Color(150, 21, 53));
+        jPanel1.setBackground(new java.awt.Color(175, 38, 72));
 
         jButtonDoctorProfile.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         jButtonDoctorProfile.setText("PROFILE");
-        jButtonDoctorProfile.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButtonDoctorProfile.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButtonDoctorProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDoctorProfileActionPerformed(evt);
@@ -58,7 +58,7 @@ public class DoctorWorkAreaJFrame extends javax.swing.JFrame {
 
         jButtonDoctorManagePatients.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         jButtonDoctorManagePatients.setText("MANAGE PATIENTS");
-        jButtonDoctorManagePatients.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButtonDoctorManagePatients.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButtonDoctorManagePatients.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDoctorManagePatientsActionPerformed(evt);
@@ -77,7 +77,7 @@ public class DoctorWorkAreaJFrame extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         jButton2.setText("MANAGE DONORS");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -86,7 +86,7 @@ public class DoctorWorkAreaJFrame extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         jButton3.setText("MANAGE RECEIVERS");
-        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
