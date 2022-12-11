@@ -127,7 +127,7 @@ public class DoctorManageReceiverJPanel extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("MANAGE RECEIVER");
 
@@ -143,7 +143,7 @@ public class DoctorManageReceiverJPanel extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(31, 31, 31))
         );
@@ -199,7 +199,7 @@ public class DoctorManageReceiverJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(32, 32, 32)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -236,7 +236,7 @@ public class DoctorManageReceiverJPanel extends javax.swing.JPanel {
                     .addComponent(jCheckBoxLiverD))
                 .addGap(28, 28, 28)
                 .addComponent(jButtonReceiverReportToAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

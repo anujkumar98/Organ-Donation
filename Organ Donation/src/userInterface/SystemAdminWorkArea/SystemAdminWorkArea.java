@@ -42,7 +42,7 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
 
         ManageHospitalJButton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
         ManageHospitalJButton.setText("MANAGE HOSPITAL");
-        ManageHospitalJButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        ManageHospitalJButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         ManageHospitalJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ManageHospitalJButtonActionPerformed(evt);
@@ -51,7 +51,7 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
 
         ManageOPOJButton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
         ManageOPOJButton.setText("MANAGE OPO");
-        ManageOPOJButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        ManageOPOJButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         ManageOPOJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ManageOPOJButtonActionPerformed(evt);
@@ -60,7 +60,7 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
 
         ManageTransportJButton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
         ManageTransportJButton.setText("MANAGE TRANSPORT");
-        ManageTransportJButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        ManageTransportJButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         ManageTransportJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ManageTransportJButtonActionPerformed(evt);
@@ -69,14 +69,16 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
 
         ManageNGOJButton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
         ManageNGOJButton.setText("MANAGE NGO");
-        ManageNGOJButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        ManageNGOJButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         ManageNGOJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ManageNGOJButtonActionPerformed(evt);
             }
         });
 
+        ManageTransportJButton1.setBackground(new java.awt.Color(0, 0, 0));
         ManageTransportJButton1.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
+        ManageTransportJButton1.setForeground(new java.awt.Color(255, 255, 255));
         ManageTransportJButton1.setText("LOGOUT");
         ManageTransportJButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         ManageTransportJButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -87,7 +89,7 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
 
         jButtonNetwork.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
         jButtonNetwork.setText("NETWORK");
-        jButtonNetwork.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButtonNetwork.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButtonNetwork.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNetworkActionPerformed(evt);
@@ -101,7 +103,7 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ManageTransportJButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                    .addComponent(ManageTransportJButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
                     .addComponent(jButtonNetwork, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,7 +113,7 @@ public class SystemAdminWorkArea extends javax.swing.JFrame {
                         .addComponent(ManageHospitalJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(ManageOPOJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(ManageNGOJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ManageTransportJButton, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
+                        .addComponent(ManageTransportJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addContainerGap()))
         );
         jPanel1Layout.setVerticalGroup(

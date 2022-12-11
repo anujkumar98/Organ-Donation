@@ -81,6 +81,7 @@ public class PathoManagePatientsJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTableManagePateints);
 
         jButtonViewPatient.setBackground(new java.awt.Color(175, 38, 72));
+        jButtonViewPatient.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jButtonViewPatient.setForeground(new java.awt.Color(255, 255, 255));
         jButtonViewPatient.setText("VIEW PATIENT");
         jButtonViewPatient.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -99,6 +100,7 @@ public class PathoManagePatientsJPanel extends javax.swing.JPanel {
         jTextPatientType.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 51, 0)));
 
         jButtonSavePatients.setBackground(new java.awt.Color(175, 38, 72));
+        jButtonSavePatients.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jButtonSavePatients.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSavePatients.setText("SAVE  PATHO REPORT");
         jButtonSavePatients.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));

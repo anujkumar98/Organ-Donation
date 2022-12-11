@@ -122,7 +122,7 @@ public class DriverUpdateProfileJPanel extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel8.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("UPDATE PROFILE");
 
@@ -131,16 +131,16 @@ public class DriverUpdateProfileJPanel extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(629, 629, 629)
+                .addGap(619, 619, 619)
                 .addComponent(jLabel8)
-                .addContainerGap(769, Short.MAX_VALUE))
+                .addContainerGap(779, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addComponent(jLabel8)
-                .addGap(22, 22, 22))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -215,7 +215,7 @@ public class DriverUpdateProfileJPanel extends javax.swing.JPanel {
                                 .addComponent(jTextDriverUpdateProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel3)))
                     .addComponent(jLabel1))
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

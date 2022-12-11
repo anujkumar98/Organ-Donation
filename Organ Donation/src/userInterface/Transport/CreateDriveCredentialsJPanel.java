@@ -225,7 +225,7 @@ public class CreateDriveCredentialsJPanel extends javax.swing.JPanel {
             if(dbCon.checkUniqueUserName(username,"TRANSPORT_DRIVER")){
                         status=dbCon.createLogin(name,username,email,password,adminId,"TRANSPORT_DRIVER");
                         if(status){
-                            JOptionPane.showMessageDialog(this, "Doctor Created");
+                            JOptionPane.showMessageDialog(this, "Driver Created");
                             
                         }else{
                             JOptionPane.showMessageDialog(this, "Error in creating doctor");

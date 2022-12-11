@@ -120,9 +120,6 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="jTableDonorDetails">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="fa" green="e7" red="fa" type="rgb"/>
-            </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder/>
@@ -177,7 +174,7 @@
     <Component class="javax.swing.JButton" name="jButtonDonorInfo">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="2c" green="6" red="c4" type="rgb"/>
+          <Color blue="35" green="15" red="96" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Microsoft YaHei" size="14" style="1"/>
@@ -188,7 +185,7 @@
         <Property name="text" type="java.lang.String" value="VIEW DONOR"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-            <LineBorder/>
+            <LineBorder thickness="2"/>
           </Border>
         </Property>
       </Properties>
@@ -228,7 +225,7 @@
     <Component class="javax.swing.JButton" name="jButtonDonorReportToAdmin">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="2c" green="6" red="c4" type="rgb"/>
+          <Color blue="35" green="15" red="96" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Microsoft YaHei" size="14" style="1"/>
@@ -239,7 +236,7 @@
         <Property name="text" type="java.lang.String" value="SEND TO ADMIN"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-            <LineBorder/>
+            <LineBorder thickness="2"/>
           </Border>
         </Property>
       </Properties>
@@ -353,6 +350,15 @@
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField1">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Helvetica Neue" size="24" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="MANAGE DONOR"/>
           </Properties>
         </Component>
