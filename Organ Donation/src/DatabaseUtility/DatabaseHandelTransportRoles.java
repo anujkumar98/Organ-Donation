@@ -60,7 +60,7 @@ public class DatabaseHandelTransportRoles {
             String query="INSERT INTO `OrganDonation`.`TRANSPORT_DRIVER` \n" +
                 "( `TRANSPORT_DRIVER_NAME`, `TRANSPORT_DRIVER_USERNAME`,\n" +
                 " `TRANSPORT_DRIVER_PASSWORD`, `TRANSPORT_ID`  ,`TRANSPORT_DRIVER_EMAIL`,`TRANSPORT_DRIVER_STATUS`)\n" +
-                " VALUES ('"+name+"','"+username+"','"+password+"','"+transportId+"','"+email+"','Avaliable')";
+                " VALUES ('"+name+"','"+username+"','"+password+"','"+transportId+"','"+email+"','Available')";
             System.out.println(query);
     statement.executeUpdate(query);
     String text="Your username is " + username + ". \nYour password is "+password+ "\n "
@@ -200,14 +200,14 @@ public ArrayList<Employee> fetchDrivers(int adminId){
     return driverlist;
 }
 
-public Boolean updateTransportDetails(int id,int driverId){
+public Boolean updateTransportDetails(int adminId,int driverId,int id){
     Boolean status=false;
     try{
         Connection con = createConnection();
         Statement statement=con.createStatement();
         String updateQuery="UPDATE `OrganDonation`.`TRANSPORT_DETAILS` SET "
                 + "`TRANSPORT_DETAILS_STATUS` = 'Sent to driver',"
-                + " `DRIVER_ID` = '2' WHERE (`TRANSPORT_DETAILS_ID` = '"+id+"');";
+                + " `DRIVER_ID` = '"+driverId+"' WHERE (`TRANSPORT_DETAILS_ID` = '"+id+"');";
         statement.executeUpdate(updateQuery);
         String updateDriver="UPDATE `OrganDonation`.`TRANSPORT_DRIVER` "
                 + "SET `TRANSPORT_DRIVER_STATUS` = 'Occupied' WHERE (`TRANSPORT_DRIVER_ID` = '"+driverId+"');";
@@ -252,7 +252,7 @@ public ArrayList<TransportRequest> fetchDriverDetails(int driverId){
     return transportList;
 }
 
-public Boolean updateTransportDetails(int id){
+public Boolean updateTransportDetails(int id,int driverId){
     Boolean status=false;
     try{
         Connection con = createConnection();
@@ -260,11 +260,14 @@ public Boolean updateTransportDetails(int id){
         String query="UPDATE `OrganDonation`.`TRANSPORT_DETAILS` "
                 + "SET `TRANSPORT_DETAILS_STATUS` = 'Delivered' WHERE (`TRANSPORT_DETAILS_ID` = '"+id+"');";
         statement.executeUpdate(query);
+        String query1="UPDATE `OrganDonation`.`TRANSPORT_DRIVER` "
+                + "SET `TRANSPORT_DRIVER_STATUS` = 'Avaliable' WHERE (`TRANSPORT_DRIVER_ID` = '"+driverId+"');";
+        statement.executeUpdate(query1);
         String srcHospitalIdQuery="Select * from `OrganDonation`.`TRANSPORT_DETAILS` WHERE `TRANSPORT_DETAILS_ID` = "+id;
         int srcHospitalId=0;
         ResultSet resultSet=statement.executeQuery(srcHospitalIdQuery);{
         while(resultSet.next()){
-            srcHospitalId=Integer.parseInt(resultSet.getString("TRANSPORT_DETAILS_SOURCE_HOSPITAL_ID"));
+            srcHospitalId=Integer.parseInt(resultSet.getString("TRANSPORT_DETAILS_DESTINATION_HOSPITAL_ID"));
         }
         String queryHospitalEmail= "SELECT * FROM HOSPITAL_ADMIN WHERE HOSPITAL_ID = "+srcHospitalId;
         String hospitalEmail="";
@@ -272,6 +275,7 @@ public Boolean updateTransportDetails(int id){
         while(resultSet.next()){
             hospitalEmail=resultSet.getString("HOSPITAL_ADMIN_EMAIL"); 
         }
+        System.out.println(hospitalEmail);
         String text="Your requested organ is delivered by driver.";
         EmailUtil.sendEmail(hospitalEmail,text);
         }
