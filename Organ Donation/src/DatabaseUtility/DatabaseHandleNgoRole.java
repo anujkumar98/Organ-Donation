@@ -83,7 +83,7 @@ int ngoId=0;
             while(resultSet.next()){
                 ngoId=Integer.parseInt(resultSet.getString("NGO_ID"));
             }
-            String getDonorList="SELECT * FROM POTENTIAL_DONORS";
+            String getDonorList="SELECT * FROM POTENTIAL_DONORS WHERE POTENTIAL_DONORS_NGO_ID = "+ngoId;
             resultSet=statement.executeQuery(getDonorList);
             while(resultSet.next()){
             Employee pv=new Employee();
