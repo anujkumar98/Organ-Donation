@@ -11,6 +11,7 @@ import DatabaseUtility.DatabaseEnterpriseUtilities;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -597,10 +598,25 @@ private Boolean validateInputFields(String useraname,String name,String password
     }
     
      private void addDropdown(ArrayList <Network> networkList) {
+        ArrayList<String> state = new ArrayList();
+        ArrayList<String> city = new ArrayList();
+        ArrayList<String> region = new ArrayList();
         for (Network n: networkList){
-            jComboCity.addItem(n.getCity());
-            jComboBoxRegion.addItem(n.getRegion());
-            jComboBoxState.addItem(n.getState());
+            state.add(n.getState());
+            city.add(n.getCity());
+            region.add(n.getRegion());
+        }
+        state = (ArrayList<String>) state.stream().distinct().collect(Collectors.toList());
+        city=(ArrayList<String>) city.stream().distinct().collect(Collectors.toList());
+        region=(ArrayList<String>) region.stream().distinct().collect(Collectors.toList());
+        for (int i=0;i<city.size();i++){
+            jComboCity.addItem(city.get(i));
+        }
+        for (int i=0;i<state.size();i++){
+            jComboBoxState.addItem(city.get(i));
+        }
+        for (int i=0;i<region.size();i++){
+            jComboBoxRegion.addItem(city.get(i));
         }
     }
 
