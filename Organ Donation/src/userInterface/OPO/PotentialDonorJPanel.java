@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Lenovo
  */
-public class WaitingListJPanel extends javax.swing.JPanel {
+public class PotentialDonorJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form WaitingListJPanel
@@ -22,11 +22,11 @@ public class WaitingListJPanel extends javax.swing.JPanel {
     Employee emp;
     int adminId;
     DatabaseHandelOPORoles dbCon=new DatabaseHandelOPORoles();
-    public WaitingListJPanel(Employee e) {
+    public PotentialDonorJPanel(Employee e) {
         initComponents();
         this.emp=e;
         this.adminId=emp.getId();
-        populateTable(dbCon.fetchDonorReciverList(adminId,"Reciver",0));
+        populateTable(dbCon.fetchPotentialDonors(adminId));
     }
 
     /**
@@ -44,13 +44,13 @@ public class WaitingListJPanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID", "Donor Name", "Hospital Name", "Date", "Organ", "Status"
+                "ID", "Donor Name", "Age", "Address"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -84,7 +84,7 @@ public class WaitingListJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-         populateTable(dbCon.fetchDonorReciverList(adminId,"Reciver",0));
+        populateTable(dbCon.fetchPotentialDonors(adminId));
     }//GEN-LAST:event_jButton1ActionPerformed
 
 private void populateTable(ArrayList<PatientVisit> patientVisits) {
@@ -95,10 +95,8 @@ private void populateTable(ArrayList<PatientVisit> patientVisits) {
             Object[] row =new Object[7];
             row[0]=v.getId();
             row[1]=v.getName();
-            row[2]=v.getType();
-            row[3]=v.getDate();
-            row[4]=v.getOrgan();
-            row[5]=v.getOrganStatus();
+            row[2]=v.getAge();
+            row[3]=v.getAddress();
             model.addRow(row);
         }
     }

@@ -223,7 +223,7 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
         jLabel6.setText("ADMIN NAME");
 
         jLabel7.setFont(new java.awt.Font("Avenir Next", 0, 14)); // NOI18N
-        jLabel7.setText("ADMIN ID");
+        jLabel7.setText("ADMIN USERNAME");
 
         jTextFieldAdminName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51)));
 

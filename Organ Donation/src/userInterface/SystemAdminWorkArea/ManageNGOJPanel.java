@@ -588,7 +588,7 @@ public class ManageNGOJPanel extends javax.swing.JPanel {
             String name=jTextNGOAdminName.getText();
             String username=jTextNGOAdminUsername.getText();
             String password=jTextNGOAdminPassword.getText();
-           String email=jTextFieldAdminEmail.getText();
+            String email=jTextFieldAdminEmail.getText();
             //System.out.println(dbCon.checkUniqueUserName(username,"NGO"));
             Boolean validated=validateInputFields(name,username,password,email);
             if(validated){

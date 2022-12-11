@@ -160,4 +160,30 @@ public class DatabaseHandelOPORoles {
     }
     return status;
 }
+    
+public ArrayList<PatientVisit> fetchPotentialDonors(int adminId){
+    ArrayList<PatientVisit> potentialDonorList=new ArrayList();
+    try {
+        Connection con = createConnection();
+        Statement statement=con.createStatement();
+        String query="SELECT * FROM POTENTIAL_DONORS AS PD\n" +
+            "JOIN NGO AS N ON PD.POTENTIAL_DONORS_NGO_ID=N.NGO_ID\n" +
+            "JOIN (SELECT OA.OPO_ADMIN_ID,OPO_REGION FROM OPO AS O JOIN OPO_ADMIN AS OA ON OA.OPO_ID=O.OPO_ID) AS OPO_REG\n" +
+            "ON OPO_REG.OPO_REGION=N.NGO_REGION\n" +
+            "WHERE OPO_REG.OPO_ADMIN_ID="+adminId;
+        ResultSet resultSet=statement.executeQuery(query);
+            while(resultSet.next()){
+                PatientVisit pv=new PatientVisit();
+                pv.setId(Integer.parseInt(resultSet.getString("POTENTIAL_DONORS_ID")));
+                pv.setName(resultSet.getString("POTENTIAL_DONORS_NAME"));
+                pv.setAge(Integer.parseInt(resultSet.getString("POTENTIAL_DONORS_AGE")));
+                pv.setAddress(resultSet.getString("POTENTIAL_DONORS_ADDRESS")+","+resultSet.getString("NGO_CITY"));
+                potentialDonorList.add(pv);
+            }
+    }
+    catch(Exception e){
+        System.out.println("updateProfile :"+e);
+    }
+    return potentialDonorList;
+}
 }
