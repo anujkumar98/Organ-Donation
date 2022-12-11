@@ -222,7 +222,7 @@ public class CreateRolesHospitalJPanel extends javax.swing.JPanel {
         String password=jTextHospitalRolePassword.getText();
         String name=jTextHospitalRoleLoginName.getText();
         String email=jTextHospitalRoleEmail.getText();
-        Boolean validation=validateInputFields(username,password,name,email);
+        Boolean validation=validateInputFields(username,name,password,email);
         Boolean status=false;
         if (validation){  
         switch (role){
@@ -276,6 +276,7 @@ public class CreateRolesHospitalJPanel extends javax.swing.JPanel {
             jTextHospitalRoleLoginID.setText("");
             jTextHospitalRolePassword.setText("");
             jTextHospitalRoleLoginName.setText("");
+            jTextHospitalRoleEmail.setText("");
         }
         
                 

@@ -69,13 +69,13 @@ public class PathoManagePatientsJPanel extends javax.swing.JPanel {
         jTableManagePateints.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jTableManagePateints.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "NAME", "TYPE", "DATE", "PATHO STATUS", "ELIGIBILITY STATUS"
+                "ID", "NAME", "TYPE", "PATHO STATUS", "DOCTOR STATUS"
             }
         ));
         jScrollPane1.setViewportView(jTableManagePateints);
@@ -120,7 +120,7 @@ public class PathoManagePatientsJPanel extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("MANGE PATIENT");
+        jLabel3.setText("MANAGE PATIENT");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

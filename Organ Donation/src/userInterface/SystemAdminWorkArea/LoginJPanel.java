@@ -16,6 +16,7 @@ import userInterface.OPO.OPOAdminWorkArea;
 import userInterface.Pathology.PathologyWorkArea;
 import userInterface.RecepitionistRole.RecepitionistWorkAreaJFrame;
 import userInterface.Transport.TransportAdminWorkArea;
+import userInterface.Transport.TransportLandingPageJFrame;
 
 /**
  *
@@ -218,7 +219,7 @@ public class LoginJPanel extends javax.swing.JFrame {
             case "TRANSPORT ADMIN" -> {
                 emp=dblogin.loginUser(username,password,"TRANSPORT_ADMIN","TRANSPORT");
                 if (emp != null){
-                    TransportAdminWorkArea JFrame = new TransportAdminWorkArea(emp);
+                    TransportLandingPageJFrame JFrame = new TransportLandingPageJFrame(emp);
                     JFrame.setVisible(true);  
                 }
                 else{

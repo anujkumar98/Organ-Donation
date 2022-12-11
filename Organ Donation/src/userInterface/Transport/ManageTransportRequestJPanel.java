@@ -31,6 +31,7 @@ public class ManageTransportRequestJPanel extends javax.swing.JPanel {
         initComponents();
         this.emp=e;
         this.adminId=emp.getId();
+           
         populateTable(dbCon.fetchTransportRequests(adminId));
     }
 
@@ -254,7 +255,8 @@ public class ManageTransportRequestJPanel extends javax.swing.JPanel {
     private void populateTable(ArrayList<TransportRequest> transportList) {
        DefaultTableModel model=(DefaultTableModel) jTableTransportRequest.getModel();
         model.setRowCount(0);
-        for (TransportRequest tr: transportList)
+        System.out.println(transportList.size());
+                for (TransportRequest tr: transportList)
         {
             Object[] row =new Object[7];
             row[0]=tr.getId();

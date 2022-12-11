@@ -601,6 +601,8 @@ public class ManageNGOJPanel extends javax.swing.JPanel {
                     jTextNGOAdminUsername.setText("");
                     jTextNGOAdminPassword.setText("");
                     jTextFieldAdminEmail.setText("");
+                    jLabel9.setVisible(false);
+                    jTextFieldAdminEmail.setVisible(false);
                     this.update=false;
                     this.fetchId=-1;
                     jTextFieldName.setText("");
@@ -666,10 +668,10 @@ void populateTable(NgoDirectory hd){
             jComboBoxCity.addItem(city.get(i));
         }
         for (int i=0;i<state.size();i++){
-            jComboBoxState.addItem(city.get(i));
+            jComboBoxState.addItem(state.get(i));
         }
         for (int i=0;i<region.size();i++){
-            jComboBoxRegion.addItem(city.get(i));
+            jComboBoxRegion.addItem(region.get(i));
         }
     }
 

@@ -34,26 +34,39 @@ public class TransportAdminWorkArea extends javax.swing.JFrame {
     private void initComponents() {
 
         jSplitPaneAdmin = new javax.swing.JSplitPane();
-        jPanel1 = new javax.swing.JPanel();
-        ManageDriverJButton = new javax.swing.JButton();
-        LogoutJButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        LogoutJButton = new javax.swing.JButton();
+        ManageDriverJButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        ManageDriverJButton.setBackground(new java.awt.Color(0, 0, 0));
-        ManageDriverJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        ManageDriverJButton.setForeground(new java.awt.Color(255, 255, 255));
-        ManageDriverJButton.setText("CREATE DRIVER CREDENTIALS");
-        ManageDriverJButton.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setText("DRIVER STATUS");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ManageDriverJButtonActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(ManageDriverJButton);
+        jPanel1.add(jButton2);
+
+        jButton1.setText("MNAGE REQUEST");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+
+        jButton3.setText("UPDATE PROFILE");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3);
 
         LogoutJButton.setBackground(new java.awt.Color(0, 0, 0));
         LogoutJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -66,41 +79,31 @@ public class TransportAdminWorkArea extends javax.swing.JFrame {
         });
         jPanel1.add(LogoutJButton);
 
-        jButton1.setText("MNAGE REQUEST");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        ManageDriverJButton.setBackground(new java.awt.Color(0, 0, 0));
+        ManageDriverJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ManageDriverJButton.setForeground(new java.awt.Color(255, 255, 255));
+        ManageDriverJButton.setText("CREATE DRIVER CREDENTIALS");
+        ManageDriverJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ManageDriverJButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
-
-        jButton2.setText("DRIVER STATUS");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton2);
-
-        jButton3.setText("UPDATE PROFILE");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton3);
-
-        jSplitPaneAdmin.setLeftComponent(jPanel1);
+        jPanel1.add(ManageDriverJButton);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 711, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 654, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 203, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jSplitPaneAdmin.setRightComponent(jPanel2);
@@ -109,7 +112,7 @@ public class TransportAdminWorkArea extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPaneAdmin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 816, Short.MAX_VALUE)
+            .addComponent(jSplitPaneAdmin, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,30 +131,28 @@ public class TransportAdminWorkArea extends javax.swing.JFrame {
     private void LogoutJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutJButtonActionPerformed
         // TODO add your handling code here:
         dispose();
-        
+
     }//GEN-LAST:event_LogoutJButtonActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-
-        
-        
-        ManageTransportRequestJPanel manageTransportRequest=new ManageTransportRequestJPanel(emp);
-        jSplitPaneAdmin.setRightComponent(manageTransportRequest);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        
-         DriverStatusJPanel DriverStatus=new DriverStatusJPanel(emp);
-        jSplitPaneAdmin.setRightComponent(DriverStatus);
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         UpdateAdminProfileJPanel adminProfileUpdate=new UpdateAdminProfileJPanel(emp);
         jSplitPaneAdmin.setRightComponent(adminProfileUpdate);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+
+        ManageTransportRequestJPanel manageTransportRequest=new ManageTransportRequestJPanel(emp);
+        jSplitPaneAdmin.setRightComponent(manageTransportRequest);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+
+        DriverStatusJPanel DriverStatus=new DriverStatusJPanel(emp);
+        jSplitPaneAdmin.setRightComponent(DriverStatus);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     /**

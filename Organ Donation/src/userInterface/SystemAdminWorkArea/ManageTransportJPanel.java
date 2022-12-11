@@ -445,8 +445,8 @@ public class ManageTransportJPanel extends javax.swing.JPanel {
             jTextTransportAdminName.setVisible(true);
             jTextTransportAdminUsername.setVisible(true);
             jTextTransportAdminPassword.setVisible(true);
-            jLabel9.setVisible(false);
-            jTextFieldAdminEmail.setVisible(false);
+            jLabel9.setVisible(true);
+            jTextFieldAdminEmail.setVisible(true);
             
              if (!jTableTransport.getValueAt(selectedIndex,5).toString().equals("No Admin")){
                 jLabel6.setVisible(false);
@@ -613,10 +613,10 @@ private Boolean validateInputFields(String useraname,String name,String password
             jComboCity.addItem(city.get(i));
         }
         for (int i=0;i<state.size();i++){
-            jComboBoxState.addItem(city.get(i));
+            jComboBoxState.addItem(state.get(i));
         }
         for (int i=0;i<region.size();i++){
-            jComboBoxRegion.addItem(city.get(i));
+            jComboBoxRegion.addItem(region.get(i));
         }
     }
 

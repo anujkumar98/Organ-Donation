@@ -455,8 +455,8 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
             jTextOGOAdminName.setVisible(true);
             jTextOGOAdminUsername.setVisible(true);
             jTextOGOAdminPassword.setVisible(true);
-            jLabel9.setVisible(false);
-            jTextFieldAdminEmail.setVisible(false);
+            jLabel9.setVisible(true);
+            jTextFieldAdminEmail.setVisible(true);
             
               if (!jTableOPO.getValueAt(selectedIndex,5).toString().equals("No Admin")){
                 jLabel6.setVisible(false);
@@ -624,10 +624,10 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
             jComboBoxCity.addItem(city.get(i));
         }
         for (int i=0;i<state.size();i++){
-            jComboBoxState.addItem(city.get(i));
+            jComboBoxState.addItem(state.get(i));
         }
         for (int i=0;i<region.size();i++){
-            jComboBoxRegion.addItem(city.get(i));
+            jComboBoxRegion.addItem(region.get(i));
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

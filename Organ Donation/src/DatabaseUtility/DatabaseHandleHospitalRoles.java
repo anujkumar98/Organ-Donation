@@ -350,7 +350,7 @@ public Boolean creatVisit(int patientId,int doctorId){
         String timeStamp = new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime());
         String query="INSERT INTO `OrganDonation`.`PATIENTS_VISIT` (`"
                 + "HOSPITAL_DOCTOR_ID`, `HOSPITAL_PATIENT_ID`,`PATIENTS_REPORT_ID`,`PATIENTS_VITALS_ID`,`PATIENTS_VISIT_DATE`) VALUES "
-                + "('"+doctorId+"', '"+patientId+"' ,'"+reportId+"','"+vitalId+"'"+timeStamp+");";
+                + "('"+doctorId+"', '"+patientId+"' ,'"+reportId+"','"+vitalId+"','"+timeStamp+"');";
         System.out.println(query);
         statement.executeUpdate(query);
         status=true;

@@ -655,10 +655,10 @@ void populateTable(HospitalDirectory hd){
             jComboBoxCity.addItem(city.get(i));
         }
         for (int i=0;i<state.size();i++){
-            jComboBoxState.addItem(city.get(i));
+            jComboBoxState.addItem(state.get(i));
         }
         for (int i=0;i<region.size();i++){
-            jComboBoxRegion.addItem(city.get(i));
+            jComboBoxRegion.addItem(region.get(i));
         }
     }
 }
