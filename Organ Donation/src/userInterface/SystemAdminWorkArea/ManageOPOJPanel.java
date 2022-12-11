@@ -10,6 +10,9 @@ import Business.Network.Network;
 import Business.Network.NetworkDirectory;
 import DatabaseUtility.DatabaseEnterpriseUtilities;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -38,13 +41,15 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
         populateTable(dbCon.fetchOpo());
         
         
-         jLabel6.setVisible(false);
+        jLabel6.setVisible(false);
         jLabel7.setVisible(false);
         jLabel8.setVisible(false);
         jButtonOPOAdminCreate.setVisible(false);
         jTextOGOAdminName.setVisible(false);
         jTextOGOAdminUsername.setVisible(false);
         jTextOGOAdminPassword.setVisible(false);
+        jLabel9.setVisible(false);
+        jTextFieldAdminEmail.setVisible(false);
         nd=dbCon.fetchNetwork();
         
         addDropdown(nd.getNetworkList());
@@ -82,6 +87,8 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
         jTextOGOAdminUsername = new javax.swing.JTextField();
         jTextOGOAdminPassword = new javax.swing.JTextField();
         jButtonOPOAdminCreate = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jTextFieldAdminEmail = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -128,8 +135,11 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTableOPO);
 
-        jButtonCreateOPO.setBackground(new java.awt.Color(255, 153, 0));
+        jButtonCreateOPO.setBackground(new java.awt.Color(198, 63, 97));
+        jButtonCreateOPO.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jButtonCreateOPO.setForeground(new java.awt.Color(255, 255, 255));
         jButtonCreateOPO.setText("CREATE OPO");
+        jButtonCreateOPO.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButtonCreateOPO.setMaximumSize(new java.awt.Dimension(100, 40));
         jButtonCreateOPO.setMinimumSize(new java.awt.Dimension(100, 40));
         jButtonCreateOPO.addActionListener(new java.awt.event.ActionListener() {
@@ -138,8 +148,11 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButtonUpdateOPO.setBackground(new java.awt.Color(255, 153, 0));
+        jButtonUpdateOPO.setBackground(new java.awt.Color(198, 63, 97));
+        jButtonUpdateOPO.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jButtonUpdateOPO.setForeground(new java.awt.Color(255, 255, 255));
         jButtonUpdateOPO.setText("UPDATE OPO");
+        jButtonUpdateOPO.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButtonUpdateOPO.setMaximumSize(new java.awt.Dimension(100, 40));
         jButtonUpdateOPO.setMinimumSize(new java.awt.Dimension(100, 40));
         jButtonUpdateOPO.addActionListener(new java.awt.event.ActionListener() {
@@ -148,8 +161,11 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButtonDeleteOPO.setBackground(new java.awt.Color(255, 153, 0));
+        jButtonDeleteOPO.setBackground(new java.awt.Color(198, 63, 97));
+        jButtonDeleteOPO.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jButtonDeleteOPO.setForeground(new java.awt.Color(255, 255, 255));
         jButtonDeleteOPO.setText("DELETE OPO");
+        jButtonDeleteOPO.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButtonDeleteOPO.setMaximumSize(new java.awt.Dimension(100, 40));
         jButtonDeleteOPO.setMinimumSize(new java.awt.Dimension(100, 40));
         jButtonDeleteOPO.addActionListener(new java.awt.event.ActionListener() {
@@ -158,8 +174,11 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButtonViewOPO.setBackground(new java.awt.Color(255, 153, 0));
+        jButtonViewOPO.setBackground(new java.awt.Color(198, 63, 97));
+        jButtonViewOPO.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jButtonViewOPO.setForeground(new java.awt.Color(255, 255, 255));
         jButtonViewOPO.setText("VIEW OPO");
+        jButtonViewOPO.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButtonViewOPO.setMaximumSize(new java.awt.Dimension(100, 40));
         jButtonViewOPO.setMinimumSize(new java.awt.Dimension(100, 40));
         jButtonViewOPO.addActionListener(new java.awt.event.ActionListener() {
@@ -188,13 +207,40 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
         jLabel4.setMaximumSize(new java.awt.Dimension(100, 100));
         jLabel4.setMinimumSize(new java.awt.Dimension(100, 100));
 
+        jTextFieldName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51)));
+
+        jComboBoxRegion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51)));
+
+        jComboBoxCity.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51)));
+
+        jComboBoxState.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51)));
+
         jLabel6.setText("ADMIN NAME");
 
         jLabel7.setText("ADMIN USERNAME");
 
         jLabel8.setText("ADMIN PASSWORD");
 
+        jTextOGOAdminName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51)));
+
+        jTextOGOAdminUsername.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51)));
+
+        jTextOGOAdminPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51)));
+
+        jButtonOPOAdminCreate.setBackground(new java.awt.Color(198, 63, 97));
+        jButtonOPOAdminCreate.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jButtonOPOAdminCreate.setForeground(new java.awt.Color(255, 255, 255));
         jButtonOPOAdminCreate.setText("CREATE ADMIN");
+        jButtonOPOAdminCreate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButtonOPOAdminCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOPOAdminCreateActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("EMAIL");
+
+        jTextFieldAdminEmail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -202,107 +248,101 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 35, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
+                .addGap(161, 161, 161)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(63, 63, 63))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(56, 56, 56)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextOGOAdminPassword)
+                    .addComponent(jTextOGOAdminUsername)
+                    .addComponent(jComboBoxState, 0, 463, Short.MAX_VALUE)
+                    .addComponent(jTextFieldName)
+                    .addComponent(jComboBoxCity, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBoxRegion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextOGOAdminName)
+                    .addComponent(jTextFieldAdminEmail))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextFieldName, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
-                                    .addComponent(jComboBoxRegion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBoxCity, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(62, 62, 62)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButtonCreateOPO, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                                    .addComponent(jButtonDeleteOPO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextOGOAdminPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextOGOAdminUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(71, 71, 71)
-                                .addComponent(jButtonOPOAdminCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonUpdateOPO, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                            .addComponent(jButtonViewOPO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jTextOGOAdminName, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxState, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButtonCreateOPO, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(jButtonViewOPO, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButtonDeleteOPO, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonUpdateOPO, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(170, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(575, 575, 575)
+                .addComponent(jButtonOPOAdminCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(6, 6, 6)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonOPOAdminCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxCity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(33, 33, 33)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jButtonCreateOPO, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButtonViewOPO, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jButtonDeleteOPO, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButtonUpdateOPO, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBoxCity, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(47, 47, 47)
-                                .addComponent(jLabel6))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addComponent(jComboBoxRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(23, 23, 23)
-                                .addComponent(jComboBoxState, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextOGOAdminName, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jTextOGOAdminUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonCreateOPO, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonViewOPO, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(101, 101, 101))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jTextOGOAdminPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(76, 76, 76))))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonDeleteOPO, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonUpdateOPO, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jComboBoxState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(jComboBoxRegion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextOGOAdminName, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextOGOAdminUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextOGOAdminPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldAdminEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addGap(35, 35, 35)
+                .addComponent(jButtonOPOAdminCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(152, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -323,9 +363,13 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
          String city=jComboBoxCity.getSelectedItem().toString();
         String region=jComboBoxRegion.getSelectedItem().toString();
         String state=jComboBoxState.getSelectedItem().toString();
-       
-        
-        Boolean status=dbCon.createEnterprise(name, city, state, region,"OPO");
+       if(name == null || name.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Name cannot be empty.");
+            return;
+        }
+        Boolean statusUnique=dbCon.checkUniqueOPO(region);
+        if(statusUnique){
+            Boolean status=dbCon.createEnterprise(name, city, state, region,"OPO");
         if (status){
             populateTable(dbCon.fetchOpo());
             jTextFieldName.setText("");
@@ -336,7 +380,12 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
         else{
             JOptionPane.showMessageDialog(this, "Error in creating OPO");
         }
-
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "OPO already exists in the selected region");
+        }
+        
+        
 
     }//GEN-LAST:event_jButtonCreateOPOActionPerformed
 
@@ -355,6 +404,15 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
                 jTextOGOAdminUsername.setText("");
                 jTextOGOAdminPassword.setText("");
                 jTextFieldName.setText("");
+                jLabel6.setVisible(false);
+                jLabel7.setVisible(false);
+                jLabel8.setVisible(false);
+                jButtonOPOAdminCreate.setVisible(false);
+                jTextOGOAdminName.setVisible(false);
+                jTextOGOAdminUsername.setVisible(false);
+                jTextOGOAdminPassword.setVisible(false);
+                jLabel9.setVisible(false);
+                jTextFieldAdminEmail.setVisible(false);
           
             }
             else {
@@ -368,13 +426,6 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
         }
         JOptionPane.showMessageDialog(this, "Please select a row to delete");
         
-        
-        
-        
-//        ====================================================
-
-
-  
     }//GEN-LAST:event_jButtonDeleteOPOActionPerformed
 
     private void jButtonViewOPOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViewOPOActionPerformed
@@ -390,7 +441,7 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
             
             
             
-              jComboBoxCity.setSelectedItem(jTableOPO.getValueAt(selectedIndex,3));
+            jComboBoxCity.setSelectedItem(jTableOPO.getValueAt(selectedIndex,3));
             jComboBoxRegion.setSelectedItem(jTableOPO.getValueAt(selectedIndex,2));
             jComboBoxState.setSelectedItem(jTableOPO.getValueAt(selectedIndex,4));
             
@@ -404,7 +455,8 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
             jTextOGOAdminName.setVisible(true);
             jTextOGOAdminUsername.setVisible(true);
             jTextOGOAdminPassword.setVisible(true);
-            
+            jLabel9.setVisible(true);
+            jTextFieldAdminEmail.setVisible(true);
             
               if (!jTableOPO.getValueAt(selectedIndex,5).toString().equals("No Admin")){
                 jLabel6.setVisible(false);
@@ -414,6 +466,8 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
                 jTextOGOAdminName.setVisible(false);
                 jTextOGOAdminUsername.setVisible(false);
                 jTextOGOAdminPassword.setVisible(false);
+                jLabel9.setVisible(false);
+                jTextFieldAdminEmail.setVisible(false);
             }
             
             
@@ -451,7 +505,89 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
         }
         JOptionPane.showMessageDialog(this, "Please fetch a row to update");
     }//GEN-LAST:event_jButtonUpdateOPOActionPerformed
-void populateTable(OpoDirectory od){
+
+    private void jButtonOPOAdminCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOPOAdminCreateActionPerformed
+    if (update){
+            String name=jTextOGOAdminName.getText();
+            String username=jTextOGOAdminUsername.getText();
+            String password=jTextOGOAdminPassword.getText();
+            String email=jTextFieldAdminEmail.getText();
+            //System.out.println(dbCon.checkUniqueUserName(username,"OPO"));
+            Boolean validated=validateInputFields(name,username,password,email);
+            if(validated){
+            if(dbCon.checkUniqueUserName(username,"OPO")==true){
+                boolean status=dbCon.createEnterpriseAdmin(fetchId,name,username,password,"OPO",email);
+                if (status){
+                    populateTable(dbCon.fetchOpo());
+                    JOptionPane.showMessageDialog(this, "Admin Created");
+                    jTextOGOAdminName.setText("");
+                    jTextOGOAdminUsername.setText("");
+                    jTextOGOAdminPassword.setText("");
+                    jTextFieldAdminEmail.setText("");
+                    this.update=false;
+                    this.fetchId=-1;
+                    jTextFieldName.setText("");
+                    jComboBoxCity.setEnabled(true);
+                    jComboBoxRegion.setEnabled(true);
+                    jComboBoxState.setEnabled(true);
+                    jLabel6.setVisible(false);
+                    jLabel7.setVisible(false);
+                    jLabel8.setVisible(false);
+                    jButtonOPOAdminCreate.setVisible(false);
+                    jTextOGOAdminName.setVisible(false);
+                    jTextOGOAdminUsername.setVisible(false);
+                    jTextOGOAdminPassword.setVisible(false);
+                    jLabel9.setVisible(false);
+                    jTextFieldAdminEmail.setVisible(false);
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Error in creating admin");
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Username already exists");
+            }
+            }
+          
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Please fetch a row to update");
+        
+        
+        
+        
+    }//GEN-LAST:event_jButtonOPOAdminCreateActionPerformed
+
+    private Boolean validateInputFields(String useraname,String name,String password,String email) {
+        //Function to validate the input fields
+        Pattern patternEmail = Pattern.compile("^[a-z0-9]+@[a-z]+.[a-z]+$");
+        Matcher matcher = patternEmail.matcher(email);
+        Boolean validated=true;
+        if(name == null || name.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Name cannot be empty.");
+            validated=false;
+        }
+        else if(useraname == null || useraname.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Username cannot be empty.");
+            validated=false;
+        }
+        else if(password == null || password.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Password cannot be empty.");
+            validated=false;
+        }
+        else if(password.length()<8){
+            JOptionPane.showMessageDialog(this,"Password must be atleast 8 characters.");
+            validated=false;
+        }
+        else if (!matcher.matches()){
+            JOptionPane.showMessageDialog(this,"Email should be valid.");
+            validated=false;
+        }
+        
+        
+        return validated;
+    }
+    void populateTable(OpoDirectory od){
         ArrayList<OpoEnterprise> opoDirectory=od.getOpoDirectory();
         DefaultTableModel model=(DefaultTableModel) jTableOPO.getModel();
         model.setRowCount(0);
@@ -473,10 +609,25 @@ void populateTable(OpoDirectory od){
     }
 
  private void addDropdown(ArrayList <Network> networkList) {
+        ArrayList<String> state = new ArrayList();
+        ArrayList<String> city = new ArrayList();
+        ArrayList<String> region = new ArrayList();
         for (Network n: networkList){
-            jComboBoxCity.addItem(n.getCity());
-            jComboBoxRegion.addItem(n.getRegion());
-            jComboBoxState.addItem(n.getState());
+            state.add(n.getState());
+            city.add(n.getCity());
+            region.add(n.getRegion());
+        }
+        state = (ArrayList<String>) state.stream().distinct().collect(Collectors.toList());
+        city=(ArrayList<String>) city.stream().distinct().collect(Collectors.toList());
+        region=(ArrayList<String>) region.stream().distinct().collect(Collectors.toList());
+        for (int i=0;i<city.size();i++){
+            jComboBoxCity.addItem(city.get(i));
+        }
+        for (int i=0;i<state.size();i++){
+            jComboBoxState.addItem(state.get(i));
+        }
+        for (int i=0;i<region.size();i++){
+            jComboBoxRegion.addItem(region.get(i));
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -495,10 +646,12 @@ void populateTable(OpoDirectory od){
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableOPO;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFieldAdminEmail;
     private javax.swing.JTextField jTextFieldName;
     private javax.swing.JTextField jTextOGOAdminName;
     private javax.swing.JTextField jTextOGOAdminPassword;

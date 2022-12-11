@@ -13,6 +13,7 @@ import Business.Enterprise.TransportDirectory;
 import Business.Enterprise.TransportEnterprise;
 import Business.Network.Network;
 import Business.Network.NetworkDirectory;
+import email.util.EmailUtil;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -170,17 +171,20 @@ public Boolean checkUniqueUserName(String uname,String enterprise){
     }
     return check;
 }
-public Boolean createEnterpriseAdmin(int hospitalId,String name,String username,String password,String enterprise){
+public Boolean createEnterpriseAdmin(int hospitalId,String name,String username,String password,String enterprise,String email){
     Boolean status=false;
     try{
     
         Connection con=createConnection();
         Statement statement=con.createStatement();
-
         String query="INSERT INTO `OrganDonation`.`"+enterprise.toUpperCase()+"_ADMIN` "
             + "( `"+enterprise.toUpperCase()+"_ADMIN_USERNAME"+"`, `"+enterprise.toUpperCase()+"_ADMIN_NAME"+"`, "
-            + "`"+enterprise.toUpperCase()+"_ID"+"`, `"+enterprise.toUpperCase()+"_ADMIN_PASSWORD"+"`) "
-            + "VALUES ('"+username+"', '"+name+"', '"+hospitalId+"', '"+password+"')";
+            + "`"+enterprise.toUpperCase()+"_ID"+"`, `"+enterprise.toUpperCase()+
+                "_ADMIN_PASSWORD"+"` , `"+enterprise.toUpperCase()+"_ADMIN_EMAIL"+"`) "
+            + "VALUES ('"+username+"', '"+name+"', '"+hospitalId+"', '"+password+"','"+email+"')";
+        String text="Your username is " + username + ". \nYour password is "+password+ "\n "
+                    + "Thank you for registering.";
+        EmailUtil.sendEmail(email,text);
         statement.executeUpdate(query);
         status=true;
     }
@@ -243,6 +247,27 @@ public OpoDirectory fetchOpo(){
         
     }
 
+public Boolean checkUniqueOPO(String region){
+    Boolean status=true;
+    OpoDirectory od=fetchOpo();
+    for (OpoEnterprise o: od.getOpoDirectory()){
+        if(o.getRegion().equalsIgnoreCase(region)){
+            status=false;
+        }
+    }
+    return status;
+}
+public Boolean checkUniqueTransport(String region){
+    Boolean status=true;
+    TransportDirectory od=fetchTransport();
+    for (TransportEnterprise o: od.getTransportDirectory()){
+        if(o.getRegion().equalsIgnoreCase(region)){
+            status=false;
+        }
+    }
+    return status;
+}
+
 public TransportDirectory fetchTransport(){
     TransportDirectory td=new TransportDirectory();
     try{
@@ -283,6 +308,8 @@ public TransportDirectory fetchTransport(){
     }
      return status;
  }
+ 
+ 
 }
 
 
