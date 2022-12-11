@@ -44,7 +44,7 @@ public class DriverAdminWorkAreaJFrame extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(175, 38, 72));
 
         jButtonDriverProfileUpdate.setText("PROFILE UPDATE");
-        jButtonDriverProfileUpdate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButtonDriverProfileUpdate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButtonDriverProfileUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDriverProfileUpdateActionPerformed(evt);
@@ -52,15 +52,17 @@ public class DriverAdminWorkAreaJFrame extends javax.swing.JFrame {
         });
 
         jButtonDriverManageRequest.setText("MANGE REQUEST");
-        jButtonDriverManageRequest.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButtonDriverManageRequest.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButtonDriverManageRequest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDriverManageRequestActionPerformed(evt);
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("LOGOUT");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

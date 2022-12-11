@@ -5,6 +5,9 @@
 package userInterface.RecepitionistRole;
 
 import Business.Employee.Employee;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -36,112 +39,119 @@ public class RecepitionistWorkAreaJFrame extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel(){
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+            public void paintComponent(Graphics g) {
 
-        jSplitReceptionistWorkArea.setBackground(new java.awt.Color(255, 255, 255));
-        jSplitReceptionistWorkArea.setDividerLocation(185);
+                ImageIcon im = new ImageIcon("\\Users\\anujkumar\\Documents\\Classes\\AED\\Organ-Donation\\Organ Donation\\src\\assets\\BG2.jpg");
 
-        jPanel1.setBackground(new java.awt.Color(196, 6, 44));
+                Image i = im.getImage();
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("UPDATE PROFILE");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+                g.drawImage(i, 0, 0, this.getSize().width,
+                    this.getSize().height, this);
+            }};
 
-        jButton2.setBackground(new java.awt.Color(0, 0, 0));
-        jButton2.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("CREATE PATIENT");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+            setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton3.setBackground(new java.awt.Color(0, 0, 0));
-        jButton3.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("APPOINT DOCTORS");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
+            jSplitReceptionistWorkArea.setBackground(new java.awt.Color(255, 255, 255));
+            jSplitReceptionistWorkArea.setDividerLocation(185);
 
-        jButton4.setBackground(new java.awt.Color(0, 0, 0));
-        jButton4.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("LOGOUT");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
+            jPanel1.setBackground(new java.awt.Color(175, 38, 72));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(127, 127, 127)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(97, Short.MAX_VALUE))
-        );
+            jButton1.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
+            jButton1.setText("UPDATE PROFILE");
+            jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+            jButton1.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButton1ActionPerformed(evt);
+                }
+            });
 
-        jSplitReceptionistWorkArea.setLeftComponent(jPanel1);
+            jButton2.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
+            jButton2.setText("CREATE PATIENT");
+            jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+            jButton2.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButton2ActionPerformed(evt);
+                }
+            });
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+            jButton3.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
+            jButton3.setText("APPOINT DOCTORS");
+            jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+            jButton3.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButton3ActionPerformed(evt);
+                }
+            });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 982, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 603, Short.MAX_VALUE)
-        );
+            jButton4.setBackground(new java.awt.Color(0, 0, 0));
+            jButton4.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
+            jButton4.setForeground(new java.awt.Color(255, 255, 255));
+            jButton4.setText("LOGOUT");
+            jButton4.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButton4ActionPerformed(evt);
+                }
+            });
 
-        jSplitReceptionistWorkArea.setRightComponent(jPanel2);
+            javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+            jPanel1.setLayout(jPanel1Layout);
+            jPanel1Layout.setHorizontalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addContainerGap())
+            );
+            jPanel1Layout.setVerticalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(127, 127, 127)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(48, 48, 48)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(53, 53, 53)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(34, 34, 34)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(97, Short.MAX_VALUE))
+            );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitReceptionistWorkArea)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitReceptionistWorkArea)
-        );
+            jSplitReceptionistWorkArea.setLeftComponent(jPanel1);
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+            jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+            javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+            jPanel2.setLayout(jPanel2Layout);
+            jPanel2Layout.setHorizontalGroup(
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 982, Short.MAX_VALUE)
+            );
+            jPanel2Layout.setVerticalGroup(
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 603, Short.MAX_VALUE)
+            );
+
+            jSplitReceptionistWorkArea.setRightComponent(jPanel2);
+
+            javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+            getContentPane().setLayout(layout);
+            layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jSplitReceptionistWorkArea)
+            );
+            layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jSplitReceptionistWorkArea)
+            );
+
+            pack();
+        }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:

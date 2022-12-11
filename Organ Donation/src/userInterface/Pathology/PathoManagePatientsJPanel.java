@@ -83,7 +83,7 @@ public class PathoManagePatientsJPanel extends javax.swing.JPanel {
         jButtonViewPatient.setBackground(new java.awt.Color(175, 38, 72));
         jButtonViewPatient.setForeground(new java.awt.Color(255, 255, 255));
         jButtonViewPatient.setText("VIEW PATIENT");
-        jButtonViewPatient.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButtonViewPatient.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButtonViewPatient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonViewPatientActionPerformed(evt);
@@ -101,7 +101,7 @@ public class PathoManagePatientsJPanel extends javax.swing.JPanel {
         jButtonSavePatients.setBackground(new java.awt.Color(175, 38, 72));
         jButtonSavePatients.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSavePatients.setText("SAVE  PATHO REPORT");
-        jButtonSavePatients.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButtonSavePatients.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButtonSavePatients.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSavePatientsActionPerformed(evt);
@@ -118,7 +118,7 @@ public class PathoManagePatientsJPanel extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("MANAGE PATIENT");
 
@@ -127,7 +127,7 @@ public class PathoManagePatientsJPanel extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(554, 554, 554)
+                .addGap(630, 630, 630)
                 .addComponent(jLabel3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -169,7 +169,7 @@ public class PathoManagePatientsJPanel extends javax.swing.JPanel {
                             .addComponent(jTextPatientTissueType, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextPatientBloodType, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(560, 560, 560)
+                        .addGap(595, 595, 595)
                         .addComponent(jButtonSavePatients, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 372, Short.MAX_VALUE))
         );
@@ -197,9 +197,9 @@ public class PathoManagePatientsJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextPatientTissueType, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel11)))
-                .addGap(76, 76, 76)
+                .addGap(74, 74, 74)
                 .addComponent(jButtonSavePatients, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(218, Short.MAX_VALUE))
+                .addContainerGap(226, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

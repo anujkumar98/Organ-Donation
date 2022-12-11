@@ -131,9 +131,11 @@ public class UpdateAdminProfileJPanel extends javax.swing.JPanel {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Pefer Not To Say" }));
         jComboBox1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 102)));
 
-        jButton1.setBackground(new java.awt.Color(255, 51, 51));
+        jButton1.setBackground(new java.awt.Color(175, 38, 72));
         jButton1.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("SAVE");
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

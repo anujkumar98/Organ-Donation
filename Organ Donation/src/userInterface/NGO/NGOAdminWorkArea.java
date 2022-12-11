@@ -39,12 +39,13 @@ public class NGOAdminWorkArea extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jSplitAdminSplit.setDividerLocation(200);
+        jSplitAdminSplit.setDividerLocation(250);
 
-        jPanel1.setBackground(new java.awt.Color(165, 4, 36));
+        jPanel1.setBackground(new java.awt.Color(175, 38, 72));
 
         jButton1.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         jButton1.setText("NGO ADMIN PROFILE");
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -53,14 +54,18 @@ public class NGOAdminWorkArea extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         jButton2.setText("REGISTER DONORS");
+        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
+        jButton3.setBackground(new java.awt.Color(0, 0, 0));
         jButton3.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("LOGOUT");
+        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -82,13 +87,13 @@ public class NGOAdminWorkArea extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(115, 115, 115)
+                .addGap(240, 240, 240)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(28, 28, 28)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
+                .addGap(43, 43, 43)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addContainerGap(253, Short.MAX_VALUE))
         );
 
         jSplitAdminSplit.setLeftComponent(jPanel1);
@@ -99,11 +104,11 @@ public class NGOAdminWorkArea extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 946, Short.MAX_VALUE)
+            .addGap(0, 1208, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 590, Short.MAX_VALUE)
+            .addGap(0, 788, Short.MAX_VALUE)
         );
 
         jSplitAdminSplit.setRightComponent(jPanel2);
@@ -114,7 +119,7 @@ public class NGOAdminWorkArea extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSplitAdminSplit))
+                .addComponent(jSplitAdminSplit, javax.swing.GroupLayout.DEFAULT_SIZE, 1463, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
