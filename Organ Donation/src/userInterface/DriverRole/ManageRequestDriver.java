@@ -90,7 +90,7 @@ public class ManageRequestDriver extends javax.swing.JPanel {
             int id=Integer.parseInt(jTable1.getValueAt(selectedIndex, 0).toString());
             Boolean status=dbCon.updateTransportDetails(id);
             if(status){
-                JOptionPane.showMessageDialog(this, "Sent request to Hospital Admin");
+                JOptionPane.showMessageDialog(this, "Update sent to hospital admin");
             }
             else{
                 JOptionPane.showMessageDialog(this, "Error in delivey");

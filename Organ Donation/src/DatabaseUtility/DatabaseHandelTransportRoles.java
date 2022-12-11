@@ -63,7 +63,9 @@ public class DatabaseHandelTransportRoles {
                 " VALUES ('"+name+"','"+username+"','"+password+"','"+transportId+"','"+email+"','Avaliable')";
             System.out.println(query);
     statement.executeUpdate(query);
-    EmailUtil.sendEmail(email,username,password);
+    String text="Your username is " + username + ". \nYour password is "+password+ "\n "
+                    + "Thank you for registering.";
+    EmailUtil.sendEmail(email,text);
     status=true;
         }
         catch(Exception e){
@@ -258,6 +260,21 @@ public Boolean updateTransportDetails(int id){
         String query="UPDATE `OrganDonation`.`TRANSPORT_DETAILS` "
                 + "SET `TRANSPORT_DETAILS_STATUS` = 'Delivered' WHERE (`TRANSPORT_DETAILS_ID` = '"+id+"');";
         statement.executeUpdate(query);
+        String srcHospitalIdQuery="Select * from `OrganDonation`.`TRANSPORT_DETAILS` WHERE `TRANSPORT_DETAILS_ID` = "+id;
+        int srcHospitalId=0;
+        ResultSet resultSet=statement.executeQuery(srcHospitalIdQuery);{
+        while(resultSet.next()){
+            srcHospitalId=Integer.parseInt(resultSet.getString("TRANSPORT_DETAILS_SOURCE_HOSPITAL_ID"));
+        }
+        String queryHospitalEmail= "SELECT * FROM HOSPITAL_ADMIN WHERE HOSPITAL_ID = "+srcHospitalId;
+        String hospitalEmail="";
+        resultSet=statement.executeQuery(queryHospitalEmail);
+        while(resultSet.next()){
+            hospitalEmail=resultSet.getString("HOSPITAL_ADMIN_EMAIL"); 
+        }
+        String text="Your requested organ is delivered by driver.";
+        EmailUtil.sendEmail(hospitalEmail,text);
+        }
         status=true;
     }
     catch(Exception e){

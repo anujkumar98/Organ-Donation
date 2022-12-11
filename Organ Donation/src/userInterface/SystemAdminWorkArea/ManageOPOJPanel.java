@@ -40,13 +40,15 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
         populateTable(dbCon.fetchOpo());
         
         
-         jLabel6.setVisible(false);
+        jLabel6.setVisible(false);
         jLabel7.setVisible(false);
         jLabel8.setVisible(false);
         jButtonOPOAdminCreate.setVisible(false);
         jTextOGOAdminName.setVisible(false);
         jTextOGOAdminUsername.setVisible(false);
         jTextOGOAdminPassword.setVisible(false);
+        jLabel9.setVisible(false);
+        jTextFieldAdminEmail.setVisible(false);
         nd=dbCon.fetchNetwork();
         
         addDropdown(nd.getNetworkList());
@@ -400,6 +402,15 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
                 jTextOGOAdminUsername.setText("");
                 jTextOGOAdminPassword.setText("");
                 jTextFieldName.setText("");
+                jLabel6.setVisible(false);
+                jLabel7.setVisible(false);
+                jLabel8.setVisible(false);
+                jButtonOPOAdminCreate.setVisible(false);
+                jTextOGOAdminName.setVisible(false);
+                jTextOGOAdminUsername.setVisible(false);
+                jTextOGOAdminPassword.setVisible(false);
+                jLabel9.setVisible(false);
+                jTextFieldAdminEmail.setVisible(false);
           
             }
             else {
@@ -442,7 +453,8 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
             jTextOGOAdminName.setVisible(true);
             jTextOGOAdminUsername.setVisible(true);
             jTextOGOAdminPassword.setVisible(true);
-            
+            jLabel9.setVisible(false);
+            jTextFieldAdminEmail.setVisible(false);
             
               if (!jTableOPO.getValueAt(selectedIndex,5).toString().equals("No Admin")){
                 jLabel6.setVisible(false);
@@ -452,6 +464,8 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
                 jTextOGOAdminName.setVisible(false);
                 jTextOGOAdminUsername.setVisible(false);
                 jTextOGOAdminPassword.setVisible(false);
+                jLabel9.setVisible(false);
+                jTextFieldAdminEmail.setVisible(false);
             }
             
             
@@ -517,6 +531,15 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
                     jComboBoxCity.setEnabled(true);
                     jComboBoxRegion.setEnabled(true);
                     jComboBoxState.setEnabled(true);
+                    jLabel6.setVisible(false);
+                    jLabel7.setVisible(false);
+                    jLabel8.setVisible(false);
+                    jButtonOPOAdminCreate.setVisible(false);
+                    jTextOGOAdminName.setVisible(false);
+                    jTextOGOAdminUsername.setVisible(false);
+                    jTextOGOAdminPassword.setVisible(false);
+                    jLabel9.setVisible(false);
+                    jTextFieldAdminEmail.setVisible(false);
                 }
                 else{
                     JOptionPane.showMessageDialog(this, "Error in creating admin");

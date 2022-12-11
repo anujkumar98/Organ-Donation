@@ -43,6 +43,8 @@ public class ManageNGOJPanel extends javax.swing.JPanel {
         jTextNGOAdminName.setVisible(false);
         jTextNGOAdminUsername.setVisible(false);
         jTextNGOAdminPassword.setVisible(false);
+        jLabel9.setVisible(false);
+        jTextFieldAdminEmail.setVisible(false);
         nd=dbCon.fetchNetwork();
         addDropdown(nd.getNetworkList());
     }
@@ -329,11 +331,11 @@ public class ManageNGOJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(jTextNGOAdminPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextFieldAdminEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9))
-                        .addGap(33, 33, 33)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                         .addComponent(jButtonNGOAdminCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(89, 89, 89))
                     .addGroup(layout.createSequentialGroup()
@@ -400,7 +402,15 @@ public class ManageNGOJPanel extends javax.swing.JPanel {
                 jTextNGOAdminUsername.setText("");
                 jTextNGOAdminPassword.setText("");
                 jTextFieldName.setText("");
-                
+                jLabel5.setVisible(false);
+                jLabel6.setVisible(false);
+                jLabel7.setVisible(false);
+                jButtonNGOAdminCreate.setVisible(false);
+                jTextNGOAdminName.setVisible(false);
+                jTextNGOAdminUsername.setVisible(false);
+                jTextNGOAdminPassword.setVisible(false);
+                jLabel9.setVisible(false);
+                jTextFieldAdminEmail.setVisible(false);
             }
             else {
                 JOptionPane.showMessageDialog(this, "Check the delete conditon.");
@@ -441,6 +451,8 @@ public class ManageNGOJPanel extends javax.swing.JPanel {
             jTextNGOAdminName.setVisible(true);
             jTextNGOAdminUsername.setVisible(true);
             jTextNGOAdminPassword.setVisible(true);
+            jLabel9.setVisible(true);
+            jTextFieldAdminEmail.setVisible(true);
             
             if (!jTableNgo.getValueAt(selectedIndex,5).toString().equals("No Admin")){
                 jLabel5.setVisible(false);
@@ -450,6 +462,8 @@ public class ManageNGOJPanel extends javax.swing.JPanel {
                 jTextNGOAdminName.setVisible(false);
                 jTextNGOAdminUsername.setVisible(false);
                 jTextNGOAdminPassword.setVisible(false);
+                jLabel9.setVisible(false);
+                jTextFieldAdminEmail.setVisible(false);
             }
             
             return;
@@ -553,7 +567,15 @@ public class ManageNGOJPanel extends javax.swing.JPanel {
         
         
         
-        
+        jLabel5.setVisible(false);
+        jLabel6.setVisible(false);
+        jLabel7.setVisible(false);
+        jButtonNGOAdminCreate.setVisible(false);
+        jTextNGOAdminName.setVisible(false);
+        jTextNGOAdminUsername.setVisible(false);
+        jTextNGOAdminPassword.setVisible(false);
+        jLabel9.setVisible(false);
+        jTextFieldAdminEmail.setVisible(false);
         
     }//GEN-LAST:event_jButton2ActionPerformed
 

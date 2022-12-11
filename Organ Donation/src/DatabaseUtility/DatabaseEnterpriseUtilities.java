@@ -182,7 +182,9 @@ public Boolean createEnterpriseAdmin(int hospitalId,String name,String username,
             + "`"+enterprise.toUpperCase()+"_ID"+"`, `"+enterprise.toUpperCase()+
                 "_ADMIN_PASSWORD"+"` , `"+enterprise.toUpperCase()+"_ADMIN_EMAIL"+"`) "
             + "VALUES ('"+username+"', '"+name+"', '"+hospitalId+"', '"+password+"','"+email+"')";
-        EmailUtil.sendEmail(email,username,password);
+        String text="Your username is " + username + ". \nYour password is "+password+ "\n "
+                    + "Thank you for registering.";
+        EmailUtil.sendEmail(email,text);
         statement.executeUpdate(query);
         status=true;
     }

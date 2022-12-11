@@ -46,6 +46,8 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
         jTextFieldAdminName.setVisible(false);
         jTextFieldAdminId.setVisible(false);
         jTextFieldAdminPassword.setVisible(false);
+        jLabel9.setVisible(false);
+        jTextFieldAdminEmail.setVisible(false);
         nd=dbCon.fetchNetwork();
         
         addDropdown(nd.getNetworkList());
@@ -406,7 +408,15 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
                 jTextFieldAdminId.setText("");
                 jTextFieldAdminPassword.setText("");
                 jTextFieldName.setText("");
-                
+                jLabel6.setVisible(false);
+                jLabel7.setVisible(false);
+                jLabel8.setVisible(false);
+                jButtonCreateHospitalAdmins.setVisible(false);
+                jTextFieldAdminName.setVisible(false);
+                jTextFieldAdminId.setVisible(false);
+                jTextFieldAdminPassword.setVisible(false);
+                jLabel9.setVisible(false);
+                jTextFieldAdminEmail.setVisible(false);
             }
             else {
                 JOptionPane.showMessageDialog(this, "Check the delete conditon.");
@@ -436,15 +446,7 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
             jComboBoxCity.setSelectedItem(jTableHospital.getValueAt(selectedIndex,3));
             jComboBoxRegion.setSelectedItem(jTableHospital.getValueAt(selectedIndex,2));
             jComboBoxState.setSelectedItem(jTableHospital.getValueAt(selectedIndex,4));
-            
-            jLabel6.setVisible(true);
-            jLabel7.setVisible(true);
-            jLabel8.setVisible(true);
-            jButtonCreateHospitalAdmins.setVisible(true);
-            jTextFieldAdminName.setVisible(true);
-            jTextFieldAdminId.setVisible(true);
-            jTextFieldAdminPassword.setVisible(true);
-            
+
             if (!jTableHospital.getValueAt(selectedIndex,5).toString().equals("No Admin")){
                 jLabel6.setVisible(false);
                 jLabel7.setVisible(false);
@@ -453,6 +455,20 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
                 jTextFieldAdminName.setVisible(false);
                 jTextFieldAdminId.setVisible(false);
                 jTextFieldAdminPassword.setVisible(false);
+                jLabel9.setVisible(false);
+                jTextFieldAdminEmail.setVisible(false);
+                
+            }
+            else{
+                jLabel6.setVisible(true);
+                jLabel7.setVisible(true);
+                jLabel8.setVisible(true);
+                jButtonCreateHospitalAdmins.setVisible(true);
+                jTextFieldAdminName.setVisible(true);
+                jTextFieldAdminId.setVisible(true);
+                jTextFieldAdminPassword.setVisible(true);
+                jLabel9.setVisible(true);
+                jTextFieldAdminEmail.setVisible(true);
             }
             
             return;
@@ -487,6 +503,15 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
             }
         }
         JOptionPane.showMessageDialog(this, "Please fetch a row to update");
+        jLabel6.setVisible(false);
+        jLabel7.setVisible(false);
+        jLabel8.setVisible(false);
+        jButtonCreateHospitalAdmins.setVisible(false);
+        jTextFieldAdminName.setVisible(false);
+        jTextFieldAdminId.setVisible(false);
+        jTextFieldAdminPassword.setVisible(false);
+        jLabel9.setVisible(false);
+        jTextFieldAdminEmail.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButtonCreateHospitalAdminsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateHospitalAdminsActionPerformed
@@ -527,7 +552,15 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
             return;
         }
         JOptionPane.showMessageDialog(this, "Please fetch a row to update");
-        
+        jLabel6.setVisible(false);
+        jLabel7.setVisible(false);
+        jLabel8.setVisible(false);
+        jButtonCreateHospitalAdmins.setVisible(false);
+        jTextFieldAdminName.setVisible(false);
+        jTextFieldAdminId.setVisible(false);
+        jTextFieldAdminPassword.setVisible(false);
+        jLabel9.setVisible(false);
+        jTextFieldAdminEmail.setVisible(false);
     }//GEN-LAST:event_jButtonCreateHospitalAdminsActionPerformed
 private Boolean validateInputFields(String useraname,String name,String password,String email) {
         //Function to validate the input fields
