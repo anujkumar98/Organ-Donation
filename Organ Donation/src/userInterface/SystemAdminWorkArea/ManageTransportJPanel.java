@@ -45,7 +45,8 @@ public class ManageTransportJPanel extends javax.swing.JPanel {
         jTextTransportAdminName.setVisible(false);
         jTextTransportAdminUsername.setVisible(false);
         jTextTransportAdminPassword.setVisible(false);
-        
+        jLabel9.setVisible(false);
+        jTextFieldAdminEmail.setVisible(false);
         nd=dbCon.fetchNetwork();
         
         addDropdown(nd.getNetworkList());
@@ -394,6 +395,16 @@ public class ManageTransportJPanel extends javax.swing.JPanel {
                 jTextTransportAdminUsername.setText("");
                 jTextTransportAdminPassword.setText("");
                 jTextFieldName.setText("");
+                jLabel6.setVisible(false);
+                jLabel7.setVisible(false);
+                jLabel8.setVisible(false);
+
+                jButtonTransportCreateAdmin.setVisible(false);
+                jTextTransportAdminName.setVisible(false);
+                jTextTransportAdminUsername.setVisible(false);
+                jTextTransportAdminPassword.setVisible(false);
+                jLabel9.setVisible(false);
+                jTextFieldAdminEmail.setVisible(false);
                 
             }
             else {
@@ -433,6 +444,8 @@ public class ManageTransportJPanel extends javax.swing.JPanel {
             jTextTransportAdminName.setVisible(true);
             jTextTransportAdminUsername.setVisible(true);
             jTextTransportAdminPassword.setVisible(true);
+            jLabel9.setVisible(false);
+            jTextFieldAdminEmail.setVisible(false);
             
              if (!jTableTransport.getValueAt(selectedIndex,5).toString().equals("No Admin")){
                 jLabel6.setVisible(false);
@@ -442,6 +455,8 @@ public class ManageTransportJPanel extends javax.swing.JPanel {
                 jTextTransportAdminName.setVisible(false);
                 jTextTransportAdminUsername.setVisible(false);
                 jTextTransportAdminPassword.setVisible(false);
+                jLabel9.setVisible(false);
+                jTextFieldAdminEmail.setVisible(false);
             }
             
             
@@ -534,6 +549,17 @@ private Boolean validateInputFields(String useraname,String name,String password
                     jComboCity.setEnabled(true);
                     jComboBoxRegion.setEnabled(true);
                     jComboBoxState.setEnabled(true);
+                    
+                    jLabel6.setVisible(false);
+                    jLabel7.setVisible(false);
+                    jLabel8.setVisible(false);
+
+                    jButtonTransportCreateAdmin.setVisible(false);
+                    jTextTransportAdminName.setVisible(false);
+                    jTextTransportAdminUsername.setVisible(false);
+                    jTextTransportAdminPassword.setVisible(false);
+                    jLabel9.setVisible(false);
+                    jTextFieldAdminEmail.setVisible(false);
                 }
                 else{
                     JOptionPane.showMessageDialog(this, "Error in creating admin");

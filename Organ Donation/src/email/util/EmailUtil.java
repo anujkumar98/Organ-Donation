@@ -22,7 +22,7 @@ import javax.mail.internet.MimeMessage;
  */
 public class EmailUtil {
     
-    public static void sendEmail(String recepient,String uname,String pass) throws Exception{
+    public static void sendEmail(String recepient,String text) throws Exception{
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
@@ -39,21 +39,20 @@ public class EmailUtil {
             }
         });
         
-        Message message = prepareMessage(session, myAccountEmail, recepient,uname,pass);
+        Message message = prepareMessage(session, myAccountEmail, recepient,text.toString());
         
         Transport.send(message);
         System.out.println("Message sent!");
     }
     
-    public static Message prepareMessage(Session session, String myAccountEmail, String recepient,String username,String password) {
+    public static Message prepareMessage(Session session, String myAccountEmail, String recepient,String text) {
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
             message.setSubject("Registration");
-            String text="Your username is " + username + ". \nYour password is "+password+ "\n "
-                    + "Thank you for registering.";
             message.setContent(text, "text/html");
+            
             return message;
         } catch (Exception ex) {
             Logger.getLogger(EmailUtil.class.getName()).log(Level.SEVERE, null, ex);

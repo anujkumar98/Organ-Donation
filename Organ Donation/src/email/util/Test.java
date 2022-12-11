@@ -4,6 +4,10 @@
  */
 package email.util;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author kb282
@@ -11,10 +15,8 @@ package email.util;
 public class Test {
  
     public static void main(String[] args) throws Exception {
-        EmailUtil.sendEmail("anujk492c@gmail.com","abc","pqr");
-        
+        EmailUtil.sendEmail("anujk492c@gmail.com","abc".toLowerCase());
+
         
     }
-    
-    
-}
+    }  

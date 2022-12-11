@@ -67,7 +67,9 @@ public static Boolean createLogin(String name,String username,String email, Stri
             + "`"+tableName.toUpperCase()+"_PASSWORD"+"`, `"+"HOSPITAL_ID"+"` ,`"+tableName.toUpperCase()+"_EMAIL"+"`) "
             + "VALUES ('"+name+"', '"+username+"', '"+password+"', '"+hospitalId+"' , ' "+email+"')";
     statement.executeUpdate(query);
-    EmailUtil.sendEmail(email,username,password);
+    String text="Your username is " + username + ". \nYour password is "+password+ "\n "
+                    + "Thank you for registering.";
+    EmailUtil.sendEmail(email,text);
     status=true;
         }
         catch(Exception e){
