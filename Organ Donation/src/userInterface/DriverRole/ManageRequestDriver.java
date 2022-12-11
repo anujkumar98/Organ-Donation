@@ -122,9 +122,10 @@ public class ManageRequestDriver extends javax.swing.JPanel {
         int selectedIndex=jTable1.getSelectedRow();
         if(selectedIndex != -1){
             int id=Integer.parseInt(jTable1.getValueAt(selectedIndex, 0).toString());
-            Boolean status=dbCon.updateTransportDetails(id);
+            Boolean status=dbCon.updateTransportDetails(id,emp.getId());
             if(status){
                 JOptionPane.showMessageDialog(this, "Update sent to hospital admin");
+                populateTable(dbCon.fetchDriverDetails(emp.getId()));
             }
             else{
                 JOptionPane.showMessageDialog(this, "Error in delivey");

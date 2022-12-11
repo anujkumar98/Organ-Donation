@@ -31,7 +31,7 @@ public class ManageTransportRequestJPanel extends javax.swing.JPanel {
         initComponents();
         this.emp=e;
         this.adminId=emp.getId();
-           
+        populateDriverList(dbCon.fetchDrivers(adminId));
         populateTable(dbCon.fetchTransportRequests(adminId));
     }
 
@@ -238,7 +238,6 @@ public class ManageTransportRequestJPanel extends javax.swing.JPanel {
         jTextrequesterHospitalName.setText(jTableTransportRequest.getValueAt(selectedIndex, 3).toString());
         jTextReceiveraddress.setText(jTableTransportRequest.getValueAt(selectedIndex, 4).toString());
         driverlist=dbCon.fetchDrivers(adminId);
-        populateDriverList(driverlist);
         }
         else{
         JOptionPane.showMessageDialog(this, "Please select a row to fetch.");
@@ -254,13 +253,15 @@ public class ManageTransportRequestJPanel extends javax.swing.JPanel {
     private void jButtonAssignDriverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAssignDriverActionPerformed
         // TODO add your handling code here:
         if(selected){
-        Boolean status=dbCon.updateTransportDetails(adminId,id);
+        int driverId=driverlist.get(jComboBox1.getSelectedIndex()).getId();
+        Boolean status=dbCon.updateTransportDetails(adminId,driverId,id);
         if(status){
             jTextrecivername.setText("");
             jTextreciveraddress.setText("");
             jTextrequesterHospitalName.setText("");
             jTextReceiveraddress.setText("");
             status=false;
+            
             JOptionPane.showMessageDialog(this, "Assigned to driver");
         }else{
             JOptionPane.showMessageDialog(this, "Error in assigning the driver.");
