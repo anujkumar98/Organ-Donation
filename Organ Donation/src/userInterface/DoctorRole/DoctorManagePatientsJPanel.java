@@ -379,6 +379,17 @@ public class DoctorManagePatientsJPanel extends javax.swing.JPanel {
                 jTextRespirationRate.setText(Integer.toString(pv.getRepiratoryRate()));
                 
             }
+            if (jTableManagePateints.getValueAt(selectedIndex, 4).toString().equalsIgnoreCase("Not Requested")){
+                //Fetch Vital details for that id.
+                //Set fields to non editing
+                jTextPatientWeight.setText("");
+                jTextPatientHeight.setText("");
+                jTextPatientTemperature.setText("");
+                jTextPatientPulse.setText("");
+                jTextPatientBP.setText("");
+                jTextRespirationRate.setText("");
+                
+            }
             if (jTableManagePateints.getValueAt(selectedIndex, 5).toString().equalsIgnoreCase("Filled by Patho")){
                 //Fetch report details for that id.
                 //Set fields to non editing
@@ -386,6 +397,12 @@ public class DoctorManagePatientsJPanel extends javax.swing.JPanel {
                 PatientReport pr = dbCon.fetchReports(visitId);
                 jTextPatientBloodType.setText(pr.getBloodType());
                 jTextPatientTissueType.setText(pr.getTissueConditon());
+            }
+            if (jTableManagePateints.getValueAt(selectedIndex, 5).toString().equalsIgnoreCase("Not Requested")){
+                //Fetch report details for that id.
+                //Set fields to non editing
+                jTextPatientBloodType.setText("");
+                jTextPatientTissueType.setText("");
             }
         }
         else{
@@ -458,7 +475,7 @@ public class DoctorManagePatientsJPanel extends javax.swing.JPanel {
             LocalDate localDate = LocalDate.now();
             String date=dtf.format(localDate);
                 Boolean status = dbCon.updateDoctorApproval(visitId,organStatus,type,doctorId,date);
-                if (status){
+                if (status==true && organStatus==1){
                     JOptionPane.showMessageDialog(this, "Patient added to the list and sent for admin approval.");
                      jTextNamePatient.setText("");
                     jTextPatientType.setText("");

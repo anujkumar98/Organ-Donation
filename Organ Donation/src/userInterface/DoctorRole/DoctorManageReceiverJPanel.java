@@ -221,6 +221,8 @@ public class DoctorManageReceiverJPanel extends javax.swing.JPanel {
             if(selectedIndex != -1){
                 int id=Integer.parseInt(jTableReceiverDetails.getValueAt(selectedIndex, 0).toString());
                 jTextReceviersName.setText(jTableReceiverDetails.getValueAt(selectedIndex, 1).toString());
+                String organTable=jTableReceiverDetails.getValueAt(selectedIndex, 4).toString();
+                if(organTable.equalsIgnoreCase("Select Organ")){
                 jTextReceviersName.setEditable(false);
                 int [] organList = new int [6];
                 Dictionary organdict = new Hashtable();
@@ -283,7 +285,10 @@ public class DoctorManageReceiverJPanel extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "Error in adding to list");
                     }
                 }
-                
+                }
+                if(!organTable.equalsIgnoreCase("Select Organ")){
+                    JOptionPane.showMessageDialog(this, "Organ is already selcted.");
+            }
             }
             else{
                 JOptionPane.showMessageDialog(this, "Please select the row");

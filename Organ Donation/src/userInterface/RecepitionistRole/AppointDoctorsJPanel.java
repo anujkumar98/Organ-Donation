@@ -223,7 +223,6 @@ public class AppointDoctorsJPanel extends javax.swing.JPanel {
                 jTextPatientGender.setText("");
                 jTextPatientType.setText("");
                 jTextPatientContact.setText("");
-                jButtonAppointDoctor.setText("");
                 jButtonAppointDoctor.setVisible(false);
             }
             else{

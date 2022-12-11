@@ -186,7 +186,9 @@ public class DoctorManageDonorJPanel extends javax.swing.JPanel {
             if(selectedIndex != -1){
                 int id=Integer.parseInt(jTableDonorDetails.getValueAt(selectedIndex, 0).toString());
                 jTextFieldDonorName.setText(jTableDonorDetails.getValueAt(selectedIndex, 1).toString());
-                jTextFieldDonorName.setEditable(false);
+                String organTable=jTableDonorDetails.getValueAt(selectedIndex, 4).toString();
+                if(organTable.equalsIgnoreCase("Select Organ")){
+                    jTextFieldDonorName.setEditable(false);
                 int [] organList = new int [6];
                 Dictionary organdict = new Hashtable();
                 if(jCheckBoxKidneyD.isSelected())
@@ -206,10 +208,7 @@ public class DoctorManageDonorJPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Please select atleast one organ");
                     return;
                 }
-                for (Enumeration i = organdict.elements(); i.hasMoreElements();)
-                {
-                    System.out.println("Value in Dictionary : " + i.nextElement());
-                }
+                
                 if (count==1){ 
                     String organ="";
                     for (Enumeration i = organdict.elements(); i.hasMoreElements();)
@@ -250,9 +249,15 @@ public class DoctorManageDonorJPanel extends javax.swing.JPanel {
                 }
                 
             }
+            if(!organTable.equalsIgnoreCase("Select Organ")){
+                    JOptionPane.showMessageDialog(this, "Organ is already selcted.");
+            }
+            }
             else{
                 JOptionPane.showMessageDialog(this, "Please select the row");
-            }  
+            }
+                
+                  
         }
         clearFields();
         selected=false;

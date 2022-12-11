@@ -61,7 +61,7 @@ public class CreatePatientsJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setText("First Name");
+        jLabel1.setText("Name");
 
         jLabel2.setText("Age");
 
@@ -198,7 +198,7 @@ public class CreatePatientsJPanel extends javax.swing.JPanel {
         String address=jTextFieldAddress.getText();
         Boolean validation=validateInputFields(name,age,email,gender,contact,address);
         if (validation){
-            Boolean status=dbo.createPerson(name, age, email, gender, contact, address, type,receptionistId);
+        Boolean status=dbo.createPerson(name, age, email, gender, contact, address, type,receptionistId);
         if (status){
             populateTable(dbo.fetchPatient(receptionistId));
             jTextFieldName.setText("");
@@ -237,7 +237,6 @@ public class CreatePatientsJPanel extends javax.swing.JPanel {
          Pattern patternEmail = Pattern.compile("^[a-z0-9]+@[a-z]+.[a-z]+$");
         Matcher matcher = patternEmail.matcher(email);
         Boolean validated=true;
-        
         if(name == null || name.isEmpty()){
             JOptionPane.showMessageDialog(this,"Name cannot be empty.");
             validated=false;
@@ -266,9 +265,6 @@ public class CreatePatientsJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this,"Address cannot be empty.");
             validated=false;
         }
-        
-        
-        
         return validated;
     }
 
