@@ -82,7 +82,6 @@ public class DoctorManageDonorJPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
 
-        jTableDonorDetails.setBackground(new java.awt.Color(250, 231, 250));
         jTableDonorDetails.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTableDonorDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -98,11 +97,11 @@ public class DoctorManageDonorJPanel extends javax.swing.JPanel {
         jTableDonorDetails.setShowGrid(false);
         jScrollPane1.setViewportView(jTableDonorDetails);
 
-        jButtonDonorInfo.setBackground(new java.awt.Color(196, 6, 44));
+        jButtonDonorInfo.setBackground(new java.awt.Color(150, 21, 53));
         jButtonDonorInfo.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         jButtonDonorInfo.setForeground(new java.awt.Color(255, 255, 255));
         jButtonDonorInfo.setText("VIEW DONOR");
-        jButtonDonorInfo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButtonDonorInfo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButtonDonorInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDonorInfoActionPerformed(evt);
@@ -117,11 +116,11 @@ public class DoctorManageDonorJPanel extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         jLabel3.setText("SELECT ORGAN:");
 
-        jButtonDonorReportToAdmin.setBackground(new java.awt.Color(196, 6, 44));
+        jButtonDonorReportToAdmin.setBackground(new java.awt.Color(150, 21, 53));
         jButtonDonorReportToAdmin.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         jButtonDonorReportToAdmin.setForeground(new java.awt.Color(255, 255, 255));
         jButtonDonorReportToAdmin.setText("SEND TO ADMIN");
-        jButtonDonorReportToAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButtonDonorReportToAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButtonDonorReportToAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDonorReportToAdminActionPerformed(evt);
@@ -157,6 +156,9 @@ public class DoctorManageDonorJPanel extends javax.swing.JPanel {
         jLabel4.setText("MANAGE DONORS");
         jPanel1.add(jLabel4);
 
+        jTextField1.setBackground(new java.awt.Color(0, 0, 0));
+        jTextField1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         jTextField1.setText("MANAGE DONOR");
         jPanel1.add(jTextField1);
 
