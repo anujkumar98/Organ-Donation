@@ -505,11 +505,7 @@ public class ManageOPOJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonUpdateOPOActionPerformed
 
     private void jButtonOPOAdminCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOPOAdminCreateActionPerformed
-        // TODO add your handling code here:
-        
-        
-        
-        if (update){
+    if (update){
             String name=jTextOGOAdminName.getText();
             String username=jTextOGOAdminUsername.getText();
             String password=jTextOGOAdminPassword.getText();

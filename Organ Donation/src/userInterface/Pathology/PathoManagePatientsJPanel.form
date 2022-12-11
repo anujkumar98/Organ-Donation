@@ -53,9 +53,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jTextPatientBloodType" min="-2" pref="193" max="-2" attributes="0"/>
                   <Component id="jTextPatientTissueType" min="-2" pref="193" max="-2" attributes="0"/>
-                  <Component id="jButtonUpdateStatus" alignment="0" min="-2" pref="222" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="0" pref="450" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="479" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -85,13 +84,12 @@
                       <Component id="jTextPatientBloodType" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="91" max="32767" attributes="0"/>
+              <EmptySpace pref="94" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButtonSavePatients" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                  <Component id="jButtonUpdateStatus" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                   <Component id="jButtonViewPatient" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -203,11 +201,6 @@
     <Component class="javax.swing.JTextField" name="jTextPatientBloodType">
     </Component>
     <Component class="javax.swing.JTextField" name="jTextPatientTissueType">
-    </Component>
-    <Component class="javax.swing.JButton" name="jButtonUpdateStatus">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="UPDATE STATUS"/>
-      </Properties>
     </Component>
   </SubComponents>
 </Form>
