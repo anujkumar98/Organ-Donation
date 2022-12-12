@@ -23,7 +23,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jSplitPaneAdmin" alignment="1" pref="816" max="32767" attributes="0"/>
+          <Component id="jSplitPaneAdmin" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -55,8 +55,8 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="ManageTransportJButton1" pref="154" max="32767" attributes="0"/>
-                          <Component id="jButtonNetwork" max="32767" attributes="0"/>
+                          <Component id="jButtonNetwork" pref="154" max="32767" attributes="0"/>
+                          <Component id="ManageTransportJButton1" alignment="0" pref="154" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -79,9 +79,9 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
                       <Component id="jButtonNetwork" min="-2" pref="55" max="-2" attributes="0"/>
-                      <EmptySpace pref="373" max="32767" attributes="0"/>
+                      <EmptySpace pref="440" max="32767" attributes="0"/>
                       <Component id="ManageTransportJButton1" min="-2" pref="72" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="295" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
@@ -93,7 +93,7 @@
                           <Component id="ManageNGOJButton" min="-2" pref="72" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="ManageTransportJButton" min="-2" pref="72" max="-2" attributes="0"/>
-                          <EmptySpace pref="166" max="32767" attributes="0"/>
+                          <EmptySpace pref="457" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -214,15 +214,28 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="711" max="32767" attributes="0"/>
+                  <Component id="jLabel1" alignment="0" pref="1242" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="654" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel1" min="-2" pref="911" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="34" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel1">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/assets/SYSTEMADMIN.jpg"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="jLabel1"/>
+              </Properties>
+            </Component>
+          </SubComponents>
         </Container>
       </SubComponents>
     </Container>

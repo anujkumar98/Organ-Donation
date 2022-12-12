@@ -231,7 +231,10 @@ public class ManagePathoProfileJPanel extends javax.swing.JPanel {
         
         // TODO add your handling code here:
         String name=jTextField1.getText();
-        int age=Integer.parseInt(jTextField4.getText());
+        int age=-1;
+        if (jTextField4.getText()!=null && !jTextField4.getText().isEmpty()){
+            age=Integer.parseInt(jTextField4.getText());
+        }
         String contact=jTextField6.getText();
         String address=jTextField7.getText();
         String gender=jComboBox1.getSelectedItem().toString();
@@ -284,8 +287,8 @@ void populateField(Employee emp){
             JOptionPane.showMessageDialog(this,"Contact number should be valid. Must start with +1.");
             validated=false;
         }
-        else if(age < 0 || age > 99){
-            JOptionPane.showMessageDialog(this,"Age cannot be less than 0");
+        else if(age < 0 || age > 99 || age == -1){
+            JOptionPane.showMessageDialog(this,"Check age field");
             validated=false;
         }
         else if(gender == null || gender.isEmpty()){

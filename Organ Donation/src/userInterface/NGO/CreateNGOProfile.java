@@ -216,17 +216,17 @@ public class CreateNGOProfile extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String name=jTextNGOAdminName.getText();
-        int age=Integer.parseInt(jTextNGOAdminAge.getText());
+        String age=jTextNGOAdminAge.getText();
         String contact=jTextNGOAdminContact.getText();
         String address=jTextNGOAdminAdrdess.getText();
         String gender=jComboBoxNGOGender.getSelectedItem().toString();
         Boolean validated= validateInputFields(name,age,contact,address,gender);
         
         if(validated){
-            Boolean status=dbCon.updateProfile(name,contact,age,address,gender,"NGO_ADMIN",id);
+            Boolean status=dbCon.updateProfile(name,contact,Integer.parseInt(age),address,gender,"NGO_ADMIN",id);
         if (status){
             emp.setName(name);
-            emp.setAge(age);
+            emp.setAge(Integer.parseInt(age));
             emp.setGender(gender);
             emp.setContactNumber(contact);
             emp.setAddress(address);
@@ -248,7 +248,7 @@ void populateField(Employee emp){
         jTextNGOAdminAdrdess.setText(emp.getAddress() == null ? "" : emp.getAddress());
         
     }
-private Boolean validateInputFields(String name,int age,String contactno,String address,String gender) {
+private Boolean validateInputFields(String name,String age,String contactno,String address,String gender) {
         //Function to validate the input fields
         Pattern patternCellNumber = Pattern.compile("^[+\\d](\\d{11})$");
         Matcher matcherCell = patternCellNumber.matcher(contactno);
@@ -270,7 +270,11 @@ private Boolean validateInputFields(String name,int age,String contactno,String 
             JOptionPane.showMessageDialog(this,"Contact number should be valid. Must start with +1.");
             validated=false;
         }
-        else if(age < 0 || age > 99){
+        else if(age == null || age.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Age cannot be empty");
+            validated=false;
+        }
+        else if(Integer.parseInt(age) < 0){
             JOptionPane.showMessageDialog(this,"Age cannot be less than 0");
             validated=false;
         }

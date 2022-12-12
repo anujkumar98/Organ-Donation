@@ -223,13 +223,13 @@ public class DonorRegisterationNGO extends javax.swing.JPanel {
         
         String name=jTextDonorName.getText();
         String email=jTextDonorEmail.getText();
-        int age = Integer.parseInt(jTextDonorAge.getText().toString());
+        String age = jTextDonorAge.getText().toString();
         String gender = jComboBoxGenderNGODonor.getSelectedItem().toString();
         String contact=jTextNGODonorContact.getText();
         String address=jTextNGODonorAdress.getText();
         Boolean validated =validateInputFields( name,age,contact,address,email,gender);
         if (validated){
-            Boolean status=dbCon.createDonorList(name,gender,age,contact,address,email,adminId);
+            Boolean status=dbCon.createDonorList(name,gender,Integer.parseInt(age),contact,address,email,adminId);
         if (status){
             JOptionPane.showMessageDialog(this, "Donor registered");
             jTextDonorName.setText("");
@@ -245,7 +245,7 @@ public class DonorRegisterationNGO extends javax.swing.JPanel {
         }
         
     }//GEN-LAST:event_jButtonDonorRegistrationActionPerformed
-private Boolean validateInputFields(String name,int age,String contactno,String address,String email,String gender) {
+private Boolean validateInputFields(String name,String age,String contactno,String address,String email,String gender) {
         //Function to validate the input fields
         Pattern patternCellNumber = Pattern.compile("^[+\\d](\\d{11})$");
         Matcher matcherCell = patternCellNumber.matcher(contactno);
@@ -269,7 +269,11 @@ private Boolean validateInputFields(String name,int age,String contactno,String 
             JOptionPane.showMessageDialog(this,"Contact number should be valid. Must start with +1.");
             validated=false;
         }
-        else if(age < 0 || age > 99){
+        else if(age == null || age.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Age cannot be empty");
+            validated=false;
+        }
+        else if(Integer.parseInt(age) < 0){
             JOptionPane.showMessageDialog(this,"Age cannot be less than 0");
             validated=false;
         }

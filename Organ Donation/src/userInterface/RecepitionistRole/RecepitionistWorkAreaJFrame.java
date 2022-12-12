@@ -50,6 +50,7 @@ public class RecepitionistWorkAreaJFrame extends javax.swing.JFrame {
                 g.drawImage(i, 0, 0, this.getSize().width,
                     this.getSize().height, this);
             }};
+            jLabel1 = new javax.swing.JLabel();
 
             setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -119,22 +120,26 @@ public class RecepitionistWorkAreaJFrame extends javax.swing.JFrame {
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(34, 34, 34)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(97, Short.MAX_VALUE))
+                    .addContainerGap(292, Short.MAX_VALUE))
             );
 
             jSplitReceptionistWorkArea.setLeftComponent(jPanel1);
 
             jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/organ-donation_RECEPITIONIST.gif"))); // NOI18N
+
             javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
             jPanel2.setLayout(jPanel2Layout);
             jPanel2Layout.setHorizontalGroup(
                 jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 982, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             );
             jPanel2Layout.setVerticalGroup(
                 jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 603, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
 
             jSplitReceptionistWorkArea.setRightComponent(jPanel2);
@@ -218,6 +223,7 @@ public class RecepitionistWorkAreaJFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitReceptionistWorkArea;
