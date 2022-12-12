@@ -66,7 +66,7 @@ public class ManagePathoProfileJPanel extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("PATIENT  REGISTRATION");
 
@@ -77,7 +77,7 @@ public class ManagePathoProfileJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(368, 368, 368))
+                .addGap(290, 290, 290))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,7 +127,7 @@ public class ManagePathoProfileJPanel extends javax.swing.JPanel {
         jButton1.setFont(new java.awt.Font("Arial Hebrew Scholar", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("SAVE");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -231,7 +231,10 @@ public class ManagePathoProfileJPanel extends javax.swing.JPanel {
         
         // TODO add your handling code here:
         String name=jTextField1.getText();
-        int age=Integer.parseInt(jTextField4.getText());
+        int age=-1;
+        if (jTextField4.getText()!=null && !jTextField4.getText().isEmpty()){
+            age=Integer.parseInt(jTextField4.getText());
+        }
         String contact=jTextField6.getText();
         String address=jTextField7.getText();
         String gender=jComboBox1.getSelectedItem().toString();
@@ -284,8 +287,8 @@ void populateField(Employee emp){
             JOptionPane.showMessageDialog(this,"Contact number should be valid. Must start with +1.");
             validated=false;
         }
-        else if(age < 0 || age > 99){
-            JOptionPane.showMessageDialog(this,"Age cannot be less than 0");
+        else if(age < 0 || age > 99 || age == -1){
+            JOptionPane.showMessageDialog(this,"Check age field");
             validated=false;
         }
         else if(gender == null || gender.isEmpty()){

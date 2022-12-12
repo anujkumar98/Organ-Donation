@@ -42,6 +42,8 @@ public class DriverStatusJPanel extends javax.swing.JPanel {
         jTableDriverAvailibilityStatus = new javax.swing.JTable();
         jButtonRefreshDriver = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jTableDriverAvailibilityStatus.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -55,7 +57,10 @@ public class DriverStatusJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTableDriverAvailibilityStatus);
 
+        jButtonRefreshDriver.setBackground(new java.awt.Color(175, 38, 72));
+        jButtonRefreshDriver.setForeground(new java.awt.Color(255, 255, 255));
         jButtonRefreshDriver.setText("REFERESH");
+        jButtonRefreshDriver.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButtonRefreshDriver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRefreshDriverActionPerformed(evt);

@@ -38,7 +38,7 @@ public class DoctorProfileJPanel extends javax.swing.JPanel {
         jTextEmailDoctor.setText(emp.getEmail() == null ? "" : emp.getEmail());
         jTextAgeDoctor.setText(emp.getAge() == 0 ? "" : Integer.toString(emp.getAge()));
         jTextContactDoctor.setText(emp.getContactNumber() == null ? "" : emp.getContactNumber());
-        System.out.println(emp.getAddress());
+        //System.out.println(emp.getAddress());
         jTextAdressDoctor.setText(emp.getAddress() == null ? "" : emp.getAddress());
     }
     /**
@@ -73,7 +73,7 @@ public class DoctorProfileJPanel extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("CREATE DOCTOR PROFILE");
 
@@ -139,7 +139,7 @@ public class DoctorProfileJPanel extends javax.swing.JPanel {
         jButtonUpdateProfile.setFont(new java.awt.Font("Microsoft YaHei", 1, 18)); // NOI18N
         jButtonUpdateProfile.setForeground(new java.awt.Color(255, 255, 255));
         jButtonUpdateProfile.setText("UPDATE PROFILE");
-        jButtonUpdateProfile.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 51, 102), 1, true));
+        jButtonUpdateProfile.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jButtonUpdateProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonUpdateProfileActionPerformed(evt);
@@ -212,8 +212,6 @@ public class DoctorProfileJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel8)
-                        .addGap(95, 95, 95)
                         .addComponent(jLabel9))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jComboDoctorGender, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -222,7 +220,9 @@ public class DoctorProfileJPanel extends javax.swing.JPanel {
                             .addComponent(jTextContactDoctor, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
                             .addComponent(jLabel7))
                         .addGap(18, 18, 18)
-                        .addComponent(jTextAdressDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextAdressDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
                         .addGap(51, 51, 51)
                         .addComponent(jButtonUpdateProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(260, 260, 260))
@@ -234,7 +234,10 @@ public class DoctorProfileJPanel extends javax.swing.JPanel {
         
         String name=jTextFirstNameDoctor.getText();
         String email=jTextEmailDoctor.getText();
-        int age=Integer.parseInt(jTextAgeDoctor.getText());
+        int age=-1;
+        if (jTextAgeDoctor.getText()!=null && !jTextAgeDoctor.getText().isEmpty()){
+            age=Integer.parseInt(jTextAgeDoctor.getText());
+        }
         String contact=jTextContactDoctor.getText();
         String address =jTextAdressDoctor.getText();
         String gender=jComboDoctorGender.getSelectedItem().toString();
@@ -285,8 +288,8 @@ private Boolean validateInputFields(String name,int age,String contactno,String 
             JOptionPane.showMessageDialog(this,"Contact number should be valid. Must start with +1.");
             validated=false;
         }
-        else if(age < 0 || age > 99){
-            JOptionPane.showMessageDialog(this,"Age cannot be less than 0");
+        else if(age < 0 || age > 99 || age == -1){
+            JOptionPane.showMessageDialog(this,"Please check age field");
             validated=false;
         }
         else if(gender == null || gender.isEmpty()){

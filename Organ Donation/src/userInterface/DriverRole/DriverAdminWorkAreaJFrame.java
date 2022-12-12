@@ -5,6 +5,7 @@
 package userInterface.DriverRole;
 
 import Business.Employee.Employee;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -18,8 +19,10 @@ public class DriverAdminWorkAreaJFrame extends javax.swing.JFrame {
     private static Employee emp;
     public DriverAdminWorkAreaJFrame(Employee e) {
         initComponents();
+      
         this.emp=e;
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,7 +47,7 @@ public class DriverAdminWorkAreaJFrame extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(175, 38, 72));
 
         jButtonDriverProfileUpdate.setText("PROFILE UPDATE");
-        jButtonDriverProfileUpdate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButtonDriverProfileUpdate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButtonDriverProfileUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDriverProfileUpdateActionPerformed(evt);
@@ -52,15 +55,17 @@ public class DriverAdminWorkAreaJFrame extends javax.swing.JFrame {
         });
 
         jButtonDriverManageRequest.setText("MANGE REQUEST");
-        jButtonDriverManageRequest.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButtonDriverManageRequest.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButtonDriverManageRequest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDriverManageRequestActionPerformed(evt);
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("LOGOUT");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -77,10 +82,10 @@ public class DriverAdminWorkAreaJFrame extends javax.swing.JFrame {
                     .addComponent(jButtonDriverProfileUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonDriverManageRequest, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

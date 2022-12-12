@@ -38,6 +38,7 @@ public class PathologyWorkArea extends javax.swing.JFrame {
         LogoutJButton = new javax.swing.JButton();
         ManageProfileJButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,16 +46,18 @@ public class PathologyWorkArea extends javax.swing.JFrame {
 
         ManageReportsJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ManageReportsJButton.setText("MANAGE REPORTS");
-        ManageReportsJButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        ManageReportsJButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         ManageReportsJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ManageReportsJButtonActionPerformed(evt);
             }
         });
 
+        LogoutJButton.setBackground(new java.awt.Color(0, 0, 0));
         LogoutJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        LogoutJButton.setForeground(new java.awt.Color(255, 255, 255));
         LogoutJButton.setText("LOGOUT");
-        LogoutJButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        LogoutJButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         LogoutJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LogoutJButtonActionPerformed(evt);
@@ -63,7 +66,7 @@ public class PathologyWorkArea extends javax.swing.JFrame {
 
         ManageProfileJButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ManageProfileJButton.setText("MANAGE PROFILE");
-        ManageProfileJButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        ManageProfileJButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         ManageProfileJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ManageProfileJButtonActionPerformed(evt);
@@ -94,22 +97,27 @@ public class PathologyWorkArea extends javax.swing.JFrame {
                 .addComponent(ManageProfileJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addComponent(LogoutJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(249, Short.MAX_VALUE))
+                .addContainerGap(407, Short.MAX_VALUE))
         );
 
         jSplitPaneAdmin.setLeftComponent(jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/PATHOWINDOW.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 711, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 654, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 812, Short.MAX_VALUE)
         );
 
         jSplitPaneAdmin.setRightComponent(jPanel2);
@@ -118,7 +126,7 @@ public class PathologyWorkArea extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPaneAdmin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 816, Short.MAX_VALUE)
+            .addComponent(jSplitPaneAdmin, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,6 +210,7 @@ public class PathologyWorkArea extends javax.swing.JFrame {
     private javax.swing.JButton LogoutJButton;
     private javax.swing.JButton ManageProfileJButton;
     private javax.swing.JButton ManageReportsJButton;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPaneAdmin;

@@ -52,7 +52,7 @@
         <Container class="javax.swing.JPanel" name="jPanel1">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="35" green="15" red="96" type="rgb"/>
+              <Color blue="48" green="26" red="af" type="rgb"/>
             </Property>
           </Properties>
           <Constraints>
@@ -94,7 +94,7 @@
                       <Component id="jButton3" min="-2" pref="77" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                       <Component id="jButton1" min="-2" pref="47" max="-2" attributes="0"/>
-                      <EmptySpace pref="303" max="32767" attributes="0"/>
+                      <EmptySpace pref="437" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -108,7 +108,7 @@
                 <Property name="text" type="java.lang.String" value="PROFILE"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder/>
+                    <LineBorder thickness="2"/>
                   </Border>
                 </Property>
               </Properties>
@@ -124,7 +124,7 @@
                 <Property name="text" type="java.lang.String" value="MANAGE PATIENTS"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder/>
+                    <LineBorder thickness="2"/>
                   </Border>
                 </Property>
               </Properties>
@@ -157,7 +157,7 @@
                 <Property name="text" type="java.lang.String" value="MANAGE DONORS"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder/>
+                    <LineBorder thickness="2"/>
                   </Border>
                 </Property>
               </Properties>
@@ -173,7 +173,7 @@
                 <Property name="text" type="java.lang.String" value="MANAGE RECEIVERS"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder/>
+                    <LineBorder thickness="2"/>
                   </Border>
                 </Property>
               </Properties>
@@ -217,6 +217,9 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/assets/DOCJPANEL.jpeg"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="jLabel1"/>
               </Properties>
             </Component>

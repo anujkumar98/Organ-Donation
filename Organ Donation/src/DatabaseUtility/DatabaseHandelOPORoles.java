@@ -123,7 +123,7 @@ public class DatabaseHandelOPORoles {
                 donorHospitalId=resultSet.getInt("HOSPITAL_ID");
             }
             int reciverHospitalId=0;
-            String fetchReciverHospitalId="SELECT HOSPITAL_ID FROM ORGAN_DONOR_RECEIVER_LIST WHERE ORGAN_DONOR_RECEIVER_LIST_ID = "+donorId;
+            String fetchReciverHospitalId="SELECT HOSPITAL_ID FROM ORGAN_DONOR_RECEIVER_LIST WHERE ORGAN_DONOR_RECEIVER_LIST_ID = "+reciverID;
             resultSet=statement.executeQuery(fetchReciverHospitalId);
             while(resultSet.next()){
                 reciverHospitalId=resultSet.getInt("HOSPITAL_ID");
