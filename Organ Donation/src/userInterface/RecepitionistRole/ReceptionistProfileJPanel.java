@@ -235,7 +235,10 @@ public class ReceptionistProfileJPanel extends javax.swing.JPanel {
         
         String name=jTextFirstNameDoctor.getText();
         String email=jTextEmailDoctor.getText();
-        int age=Integer.parseInt(jTextAgeDoctor.getText());
+        int age=-1;
+        if (jTextAgeDoctor.getText()!=null && !jTextAgeDoctor.getText().isEmpty()){
+            age=Integer.parseInt(jTextAgeDoctor.getText());
+        }
         String contact=jTextContactDoctor.getText();
         String address =jTextAdressDoctor.getText();
         String gender=jComboDoctorGender.getSelectedItem().toString();
@@ -286,8 +289,8 @@ private Boolean validateInputFields(String name,int age,String contactno,String 
             JOptionPane.showMessageDialog(this,"Contact number should be valid. Must start with +1.");
             validated=false;
         }
-        else if(age < 0 || age > 99){
-            JOptionPane.showMessageDialog(this,"Age cannot be less than 0");
+        else if(age < 0 || age > 99 || age==-1){
+            JOptionPane.showMessageDialog(this,"Check age field");
             validated=false;
         }
         else if(gender == null || gender.isEmpty()){

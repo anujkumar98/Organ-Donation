@@ -92,7 +92,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <Component id="jCheckBoxKidneyD" min="-2" pref="21" max="-2" attributes="0"/>
-                  <Component id="jCheckBoxLungD" min="-2" max="-2" attributes="0"/>
+                  <Component id="jCheckBoxLungD" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="39" pref="39" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -318,6 +318,9 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxLungDActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCheckBoxKidneyD">
       <Properties>

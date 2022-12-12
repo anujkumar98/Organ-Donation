@@ -146,6 +146,11 @@ public class DoctorManageDonorJPanel extends javax.swing.JPanel {
         jCheckBoxLungD.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jCheckBoxLungD.setText("LUNG");
         jCheckBoxLungD.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51)));
+        jCheckBoxLungD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxLungDActionPerformed(evt);
+            }
+        });
 
         jCheckBoxKidneyD.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jCheckBoxKidneyD.setText("KIDNEY");
@@ -334,6 +339,10 @@ public class DoctorManageDonorJPanel extends javax.swing.JPanel {
         selected=false;
         
     }//GEN-LAST:event_jButtonDonorReportToAdminActionPerformed
+
+    private void jCheckBoxLungDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxLungDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBoxLungDActionPerformed
 
 void clearFields(){
     jTextFieldDonorName.setText("");

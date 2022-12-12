@@ -245,7 +245,10 @@ public class DriverUpdateProfileJPanel extends javax.swing.JPanel {
     private void jTextDriverUpdateProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextDriverUpdateProfileActionPerformed
         // TODO add your handling code here:
         String name=jTextDriverName.getText();
-        int age=Integer.parseInt(jTextDriverAge.getText());
+        int age=-1;
+        if (jTextDriverAge.getText()!=null && !jTextDriverAge.getText().isEmpty()){
+            age=Integer.parseInt(jTextDriverAge.getText());
+        }
         String contact=jTextDriverContact.getText();
         String address=jTextDriverNaAddress.getText();
         String gender=jComboBoxGender.getSelectedItem().toString();
@@ -289,8 +292,8 @@ private Boolean validateInputFields(String name,int age,String contactno,String 
             JOptionPane.showMessageDialog(this,"Contact number should be valid. Must start with +1.");
             validated=false;
         }
-        else if(age < 0 || age > 99){
-            JOptionPane.showMessageDialog(this,"Age cannot be less than 0");
+        else if(age < 0 || age > 99 || age == -1){
+            JOptionPane.showMessageDialog(this,"Please check age field");
             validated=false;
         }
         else if(gender == null || gender.isEmpty()){

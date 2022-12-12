@@ -225,7 +225,10 @@ public class OPOAdminProfile extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String name=jTextNGOAdminName.getText();
-        int age=Integer.parseInt(jTextNGOAdminAge.getText());
+        int age=-1;
+        if (jTextNGOAdminAge.getText()!=null && !jTextNGOAdminAge.getText().isEmpty()){
+            age=Integer.parseInt(jTextNGOAdminAge.getText());
+        }
         String contact=jTextNGOAdminContact.getText();
         String address=jTextNGOAdminAdrdess.getText();
         String gender=jComboBoxNGOGender.getSelectedItem().toString();
@@ -279,8 +282,8 @@ private Boolean validateInputFields(String name,int age,String contactno,String 
             JOptionPane.showMessageDialog(this,"Contact number should be valid. Must start with +1.");
             validated=false;
         }
-        else if(age < 0 || age > 99){
-            JOptionPane.showMessageDialog(this,"Age cannot be less than 0");
+        else if(age < 0 || age > 99 || age == -1){
+            JOptionPane.showMessageDialog(this,"Check age field");
             validated=false;
         }
         else if(gender == null || gender.isEmpty()){

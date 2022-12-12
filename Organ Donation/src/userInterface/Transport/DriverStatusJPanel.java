@@ -60,7 +60,7 @@ public class DriverStatusJPanel extends javax.swing.JPanel {
         jButtonRefreshDriver.setBackground(new java.awt.Color(175, 38, 72));
         jButtonRefreshDriver.setForeground(new java.awt.Color(255, 255, 255));
         jButtonRefreshDriver.setText("REFERESH");
-        jButtonRefreshDriver.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 0)));
+        jButtonRefreshDriver.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButtonRefreshDriver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRefreshDriverActionPerformed(evt);

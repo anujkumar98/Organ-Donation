@@ -5,6 +5,7 @@
 package userInterface.DriverRole;
 
 import Business.Employee.Employee;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -18,8 +19,10 @@ public class DriverAdminWorkAreaJFrame extends javax.swing.JFrame {
     private static Employee emp;
     public DriverAdminWorkAreaJFrame(Employee e) {
         initComponents();
+      
         this.emp=e;
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
